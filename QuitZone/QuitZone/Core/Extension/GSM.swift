@@ -28,6 +28,8 @@ struct AppColor {
     private init() {}
 }
 
+//ukuran image
+
 //button start, submit
 
 //button nagivation bar (save, edit, create team, create)
