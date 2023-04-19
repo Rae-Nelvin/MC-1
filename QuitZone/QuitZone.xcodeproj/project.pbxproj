@@ -14,6 +14,16 @@
 		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
 		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
 		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
+		ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */; };
+		ABF47E5429EFD26E0067F243 /* HomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5329EFD26E0067F243 /* HomeComponent.swift */; };
+		ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5529EFD27F0067F243 /* UserComponent.swift */; };
+		ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5729EFD2940067F243 /* ParticipantComponent.swift */; };
+		ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5929EFD2EE0067F243 /* CreateTeamComponent.swift */; };
+		ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5B29EFD3100067F243 /* LeaderboardComponent.swift */; };
+		ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */; };
+		ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5F29EFD37D0067F243 /* FormComponent.swift */; };
+		ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */; };
+		ABF47E6429EFD3AF0067F243 /* MissionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E6329EFD3AF0067F243 /* MissionComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +54,16 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeComponent.swift; sourceTree = "<group>"; };
+		ABF47E5329EFD26E0067F243 /* HomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponent.swift; sourceTree = "<group>"; };
+		ABF47E5529EFD27F0067F243 /* UserComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComponent.swift; sourceTree = "<group>"; };
+		ABF47E5729EFD2940067F243 /* ParticipantComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantComponent.swift; sourceTree = "<group>"; };
+		ABF47E5929EFD2EE0067F243 /* CreateTeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamComponent.swift; sourceTree = "<group>"; };
+		ABF47E5B29EFD3100067F243 /* LeaderboardComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardComponent.swift; sourceTree = "<group>"; };
+		ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDetailComponent.swift; sourceTree = "<group>"; };
+		ABF47E5F29EFD37D0067F243 /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
+		ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditComponent.swift; sourceTree = "<group>"; };
+		ABF47E6329EFD3AF0067F243 /* MissionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +114,9 @@
 		15BF5D6F29EFBC68003C1500 /* QuitZone */ = {
 			isa = PBXGroup;
 			children = (
-				15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */,
-				15BF5D7229EFBC68003C1500 /* ContentView.swift */,
-				15BF5D7429EFBC69003C1500 /* Assets.xcassets */,
+				ABF47E4829EFC6020067F243 /* Application */,
+				ABF47E4729EFC5D80067F243 /* Core */,
+				ABF47E4629EFC5CD0067F243 /* Features */,
 				15BF5D7629EFBC69003C1500 /* Preview Content */,
 			);
 			path = QuitZone;
@@ -125,6 +145,128 @@
 				15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */,
 			);
 			path = QuitZoneUITests;
+			sourceTree = "<group>";
+		};
+		ABF47E4329EFC09A0067F243 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		ABF47E4429EFC5850067F243 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E4E29EFC7BB0067F243 /* Views */,
+				ABF47E4F29EFC7ED0067F243 /* Components */,
+				ABF47E5029EFC7F90067F243 /* Extension */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		ABF47E4529EFC5A10067F243 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		ABF47E4629EFC5CD0067F243 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E4529EFC5A10067F243 /* Model */,
+				ABF47E4329EFC09A0067F243 /* View */,
+				ABF47E4429EFC5850067F243 /* ViewModel */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		ABF47E4729EFC5D80067F243 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E4929EFC6490067F243 /* Constants */,
+				ABF47E4A29EFC64F0067F243 /* Resources */,
+				ABF47E4B29EFC6550067F243 /* Utilities */,
+				ABF47E4C29EFC65A0067F243 /* Themes */,
+				ABF47E4D29EFC6900067F243 /* Extension */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		ABF47E4829EFC6020067F243 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		ABF47E4929EFC6490067F243 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		ABF47E4A29EFC64F0067F243 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15BF5D7429EFBC69003C1500 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ABF47E4B29EFC6550067F243 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		ABF47E4C29EFC65A0067F243 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		ABF47E4D29EFC6900067F243 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		ABF47E4E29EFC7BB0067F243 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				15BF5D7229EFBC68003C1500 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		ABF47E4F29EFC7ED0067F243 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */,
+				ABF47E5F29EFD37D0067F243 /* FormComponent.swift */,
+				ABF47E5329EFD26E0067F243 /* HomeComponent.swift */,
+				ABF47E5529EFD27F0067F243 /* UserComponent.swift */,
+				ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */,
+				ABF47E5729EFD2940067F243 /* ParticipantComponent.swift */,
+				ABF47E5929EFD2EE0067F243 /* CreateTeamComponent.swift */,
+				ABF47E5B29EFD3100067F243 /* LeaderboardComponent.swift */,
+				ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */,
+				ABF47E6329EFD3AF0067F243 /* MissionComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		ABF47E5029EFC7F90067F243 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +399,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
+				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
+				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
+				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
+				ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */,
+				ABF47E6429EFD3AF0067F243 /* MissionComponent.swift in Sources */,
+				ABF47E5429EFD26E0067F243 /* HomeComponent.swift in Sources */,
+				ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */,
+				ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
+				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
