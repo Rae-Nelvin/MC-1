@@ -10,14 +10,42 @@ import SwiftUI
 struct UserComponent: View {
     var body: some View {
         NavigationView {
-            
-            
-//            VStack {
-//                HStack {
-//                    Text("Date of Birth")
-//                    Text("1 April 1050")
-//                }
-//            }
+            VStack (alignment: .leading){
+                HStack {
+                    VStack {
+                    }
+                    .frame(width:96, height:96)
+                    .background(.red)
+                    .clipShape(Circle())
+                    .padding(.trailing, 16)
+                    VStack (alignment: .leading) {
+                        Text("\(user().name)")
+                        Text("873 yo")
+                    }
+                }
+                
+                
+                HStack {
+                    Text("Date of Birth")
+                    Spacer()
+                    Text("\(user().dateOfBirth)")
+                }
+                .background(.gray)
+                
+                
+                Spacer()
+            }
+            .padding(32)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        UserEditComponent()
+                    } label : {
+                        Text("Edit")
+                    }
+                    NavigationLink("", )
+                }
+            }
         }
     }
 }
