@@ -8,8 +8,30 @@
 import SwiftUI
 
 struct HomeComponent: View {
+    
     var body: some View {
-        Text("INI HOME")
+        GeometryReader {
+            let size = $0.size
+            ScrollView(showsIndicators: false) {
+                Text("Quit Zone")
+                    .customText(size:36)
+                
+                Image("Lungs")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 200, height: 300)
+                
+                //progress
+                VStack {
+//                    DatePicker()
+//                        .datePickerStyle(.graphical)
+                }
+            }
+            .frame(maxWidth: size.width, alignment: .center)
+            .padding()
+            
+            
+        }
     }
 }
 

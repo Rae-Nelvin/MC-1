@@ -38,12 +38,12 @@ struct UserComponent: View {
             .padding(32)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        UserEditComponent()
-                    } label : {
-                        Text("Edit")
-                    }
-                    NavigationLink("", )
+                    NavigationLink(
+                        destination: UserEditComponent(),
+                        label: {
+                            Text("Edit")
+                        }
+                    )
                 }
             }
         }

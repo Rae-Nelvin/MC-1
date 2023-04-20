@@ -10,13 +10,12 @@ import SwiftUI
 //buat atur title
 extension Text {
     // set kalo body brp, title brp,
-    func titleText(size:Double) -> some View {
+    //title: 40
+    //body:14
+    func customText(size:Double) -> some View {
         self.font(.system(size: size))
     }
-    
-    func bodyText() {
-        
-    }
+ 
 }
 
 //warna apps kita
