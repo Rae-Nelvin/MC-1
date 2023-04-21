@@ -29,18 +29,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		15BF5DBA29EFBCF8003C1500 /* PBXContainerItemProxy */ = {
+		15BF5D7E29EFBC69003C1500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 15BF5D9B29EFBCF7003C1500 /* Project object */;
+			containerPortal = 15BF5D6529EFBC68003C1500 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 15BF5DA229EFBCF7003C1500;
+			remoteGlobalIDString = 15BF5D6C29EFBC68003C1500;
 			remoteInfo = QuitZone;
 		};
-		15BF5DC429EFBCF8003C1500 /* PBXContainerItemProxy */ = {
+		15BF5D8829EFBC69003C1500 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 15BF5D9B29EFBCF7003C1500 /* Project object */;
+			containerPortal = 15BF5D6529EFBC68003C1500 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 15BF5DA229EFBCF7003C1500;
+			remoteGlobalIDString = 15BF5D6C29EFBC68003C1500;
 			remoteInfo = QuitZone;
 		};
 /* End PBXContainerItemProxy section */
@@ -71,21 +71,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		15BF5DA029EFBCF7003C1500 /* Frameworks */ = {
+		15BF5D6A29EFBC68003C1500 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DB629EFBCF8003C1500 /* Frameworks */ = {
+		15BF5D7A29EFBC69003C1500 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DC029EFBCF8003C1500 /* Frameworks */ = {
+		15BF5D8429EFBC69003C1500 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -95,27 +95,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		15BF5D9A29EFBCF7003C1500 = {
+		15BF5D6429EFBC68003C1500 = {
 			isa = PBXGroup;
 			children = (
-				15BF5DA529EFBCF7003C1500 /* QuitZone */,
-				15BF5DBC29EFBCF8003C1500 /* QuitZoneTests */,
-				15BF5DC629EFBCF8003C1500 /* QuitZoneUITests */,
-				15BF5DA429EFBCF7003C1500 /* Products */,
+				15BF5D6F29EFBC68003C1500 /* QuitZone */,
+				15BF5D8029EFBC69003C1500 /* QuitZoneTests */,
+				15BF5D8A29EFBC69003C1500 /* QuitZoneUITests */,
+				15BF5D6E29EFBC68003C1500 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		15BF5DA429EFBCF7003C1500 /* Products */ = {
+		15BF5D6E29EFBC68003C1500 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				15BF5DA329EFBCF7003C1500 /* QuitZone.app */,
-				15BF5DB929EFBCF8003C1500 /* QuitZoneTests.xctest */,
-				15BF5DC329EFBCF8003C1500 /* QuitZoneUITests.xctest */,
+				15BF5D6D29EFBC68003C1500 /* QuitZone.app */,
+				15BF5D7D29EFBC69003C1500 /* QuitZoneTests.xctest */,
+				15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		15BF5DA529EFBCF7003C1500 /* QuitZone */ = {
+		15BF5D6F29EFBC68003C1500 /* QuitZone */ = {
 			isa = PBXGroup;
 			children = (
 				ABF47E4829EFC6020067F243 /* Application */,
@@ -126,27 +126,27 @@
 			path = QuitZone;
 			sourceTree = "<group>";
 		};
-		15BF5DAC29EFBCF8003C1500 /* Preview Content */ = {
+		15BF5D7629EFBC69003C1500 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				15BF5DAD29EFBCF8003C1500 /* Preview Assets.xcassets */,
+				15BF5D7729EFBC69003C1500 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		15BF5DBC29EFBCF8003C1500 /* QuitZoneTests */ = {
+		15BF5D8029EFBC69003C1500 /* QuitZoneTests */ = {
 			isa = PBXGroup;
 			children = (
-				15BF5DBD29EFBCF8003C1500 /* QuitZoneTests.swift */,
+				15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */,
 			);
 			path = QuitZoneTests;
 			sourceTree = "<group>";
 		};
-		15BF5DC629EFBCF8003C1500 /* QuitZoneUITests */ = {
+		15BF5D8A29EFBC69003C1500 /* QuitZoneUITests */ = {
 			isa = PBXGroup;
 			children = (
-				15BF5DC729EFBCF8003C1500 /* QuitZoneUITests.swift */,
-				15BF5DC929EFBCF8003C1500 /* QuitZoneUITestsLaunchTests.swift */,
+				15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */,
+				15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */,
 			);
 			path = QuitZoneUITests;
 			sourceTree = "<group>";
@@ -278,13 +278,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		15BF5DA229EFBCF7003C1500 /* QuitZone */ = {
+		15BF5D6C29EFBC68003C1500 /* QuitZone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BF5DCD29EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZone" */;
+			buildConfigurationList = 15BF5D9129EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZone" */;
 			buildPhases = (
-				15BF5D9F29EFBCF7003C1500 /* Sources */,
-				15BF5DA029EFBCF7003C1500 /* Frameworks */,
-				15BF5DA129EFBCF7003C1500 /* Resources */,
+				15BF5D6929EFBC68003C1500 /* Sources */,
+				15BF5D6A29EFBC68003C1500 /* Frameworks */,
+				15BF5D6B29EFBC68003C1500 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -292,69 +292,69 @@
 			);
 			name = QuitZone;
 			productName = QuitZone;
-			productReference = 15BF5DA329EFBCF7003C1500 /* QuitZone.app */;
+			productReference = 15BF5D6D29EFBC68003C1500 /* QuitZone.app */;
 			productType = "com.apple.product-type.application";
 		};
-		15BF5DB829EFBCF8003C1500 /* QuitZoneTests */ = {
+		15BF5D7C29EFBC69003C1500 /* QuitZoneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BF5DD029EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneTests" */;
+			buildConfigurationList = 15BF5D9429EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneTests" */;
 			buildPhases = (
-				15BF5DB529EFBCF8003C1500 /* Sources */,
-				15BF5DB629EFBCF8003C1500 /* Frameworks */,
-				15BF5DB729EFBCF8003C1500 /* Resources */,
+				15BF5D7929EFBC69003C1500 /* Sources */,
+				15BF5D7A29EFBC69003C1500 /* Frameworks */,
+				15BF5D7B29EFBC69003C1500 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				15BF5DBB29EFBCF8003C1500 /* PBXTargetDependency */,
+				15BF5D7F29EFBC69003C1500 /* PBXTargetDependency */,
 			);
 			name = QuitZoneTests;
 			productName = QuitZoneTests;
-			productReference = 15BF5DB929EFBCF8003C1500 /* QuitZoneTests.xctest */;
+			productReference = 15BF5D7D29EFBC69003C1500 /* QuitZoneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		15BF5DC229EFBCF8003C1500 /* QuitZoneUITests */ = {
+		15BF5D8629EFBC69003C1500 /* QuitZoneUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15BF5DD329EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneUITests" */;
+			buildConfigurationList = 15BF5D9729EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneUITests" */;
 			buildPhases = (
-				15BF5DBF29EFBCF8003C1500 /* Sources */,
-				15BF5DC029EFBCF8003C1500 /* Frameworks */,
-				15BF5DC129EFBCF8003C1500 /* Resources */,
+				15BF5D8329EFBC69003C1500 /* Sources */,
+				15BF5D8429EFBC69003C1500 /* Frameworks */,
+				15BF5D8529EFBC69003C1500 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				15BF5DC529EFBCF8003C1500 /* PBXTargetDependency */,
+				15BF5D8929EFBC69003C1500 /* PBXTargetDependency */,
 			);
 			name = QuitZoneUITests;
 			productName = QuitZoneUITests;
-			productReference = 15BF5DC329EFBCF8003C1500 /* QuitZoneUITests.xctest */;
+			productReference = 15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		15BF5D9B29EFBCF7003C1500 /* Project object */ = {
+		15BF5D6529EFBC68003C1500 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					15BF5DA229EFBCF7003C1500 = {
+					15BF5D6C29EFBC68003C1500 = {
 						CreatedOnToolsVersion = 14.3;
 					};
-					15BF5DB829EFBCF8003C1500 = {
+					15BF5D7C29EFBC69003C1500 = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 15BF5DA229EFBCF7003C1500;
+						TestTargetID = 15BF5D6C29EFBC68003C1500;
 					};
-					15BF5DC229EFBCF8003C1500 = {
+					15BF5D8629EFBC69003C1500 = {
 						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 15BF5DA229EFBCF7003C1500;
+						TestTargetID = 15BF5D6C29EFBC68003C1500;
 					};
 				};
 			};
-			buildConfigurationList = 15BF5D9E29EFBCF7003C1500 /* Build configuration list for PBXProject "QuitZone" */;
+			buildConfigurationList = 15BF5D6829EFBC68003C1500 /* Build configuration list for PBXProject "QuitZone" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -362,36 +362,36 @@
 				en,
 				Base,
 			);
-			mainGroup = 15BF5D9A29EFBCF7003C1500;
-			productRefGroup = 15BF5DA429EFBCF7003C1500 /* Products */;
+			mainGroup = 15BF5D6429EFBC68003C1500;
+			productRefGroup = 15BF5D6E29EFBC68003C1500 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				15BF5DA229EFBCF7003C1500 /* QuitZone */,
-				15BF5DB829EFBCF8003C1500 /* QuitZoneTests */,
-				15BF5DC229EFBCF8003C1500 /* QuitZoneUITests */,
+				15BF5D6C29EFBC68003C1500 /* QuitZone */,
+				15BF5D7C29EFBC69003C1500 /* QuitZoneTests */,
+				15BF5D8629EFBC69003C1500 /* QuitZoneUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		15BF5DA129EFBCF7003C1500 /* Resources */ = {
+		15BF5D6B29EFBC68003C1500 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15BF5DAE29EFBCF8003C1500 /* Preview Assets.xcassets in Resources */,
-				15BF5DAB29EFBCF8003C1500 /* Assets.xcassets in Resources */,
+				15BF5D7829EFBC69003C1500 /* Preview Assets.xcassets in Resources */,
+				15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DB729EFBCF8003C1500 /* Resources */ = {
+		15BF5D7B29EFBC69003C1500 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DC129EFBCF8003C1500 /* Resources */ = {
+		15BF5D8529EFBC69003C1500 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -401,7 +401,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		15BF5D9F29EFBCF7003C1500 /* Sources */ = {
+		15BF5D6929EFBC68003C1500 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -422,40 +422,40 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DB529EFBCF8003C1500 /* Sources */ = {
+		15BF5D7929EFBC69003C1500 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15BF5DBE29EFBCF8003C1500 /* QuitZoneTests.swift in Sources */,
+				15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		15BF5DBF29EFBCF8003C1500 /* Sources */ = {
+		15BF5D8329EFBC69003C1500 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15BF5DCA29EFBCF8003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
-				15BF5DC829EFBCF8003C1500 /* QuitZoneUITests.swift in Sources */,
+				15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
+				15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		15BF5DBB29EFBCF8003C1500 /* PBXTargetDependency */ = {
+		15BF5D7F29EFBC69003C1500 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15BF5DA229EFBCF7003C1500 /* QuitZone */;
-			targetProxy = 15BF5DBA29EFBCF8003C1500 /* PBXContainerItemProxy */;
+			target = 15BF5D6C29EFBC68003C1500 /* QuitZone */;
+			targetProxy = 15BF5D7E29EFBC69003C1500 /* PBXContainerItemProxy */;
 		};
-		15BF5DC529EFBCF8003C1500 /* PBXTargetDependency */ = {
+		15BF5D8929EFBC69003C1500 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 15BF5DA229EFBCF7003C1500 /* QuitZone */;
-			targetProxy = 15BF5DC429EFBCF8003C1500 /* PBXContainerItemProxy */;
+			target = 15BF5D6C29EFBC68003C1500 /* QuitZone */;
+			targetProxy = 15BF5D8829EFBC69003C1500 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		15BF5DCB29EFBCF8003C1500 /* Debug */ = {
+		15BF5D8F29EFBC69003C1500 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -515,7 +515,7 @@
 			};
 			name = Debug;
 		};
-		15BF5DCC29EFBCF8003C1500 /* Release */ = {
+		15BF5D9029EFBC69003C1500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -569,7 +569,7 @@
 			};
 			name = Release;
 		};
-		15BF5DCE29EFBCF8003C1500 /* Debug */ = {
+		15BF5D9229EFBC69003C1500 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -598,7 +598,7 @@
 			};
 			name = Debug;
 		};
-		15BF5DCF29EFBCF8003C1500 /* Release */ = {
+		15BF5D9329EFBC69003C1500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -627,7 +627,7 @@
 			};
 			name = Release;
 		};
-		15BF5DD129EFBCF8003C1500 /* Debug */ = {
+		15BF5D9529EFBC69003C1500 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -647,7 +647,7 @@
 			};
 			name = Debug;
 		};
-		15BF5DD229EFBCF8003C1500 /* Release */ = {
+		15BF5D9629EFBC69003C1500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -667,7 +667,7 @@
 			};
 			name = Release;
 		};
-		15BF5DD429EFBCF8003C1500 /* Debug */ = {
+		15BF5D9829EFBC69003C1500 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -685,7 +685,7 @@
 			};
 			name = Debug;
 		};
-		15BF5DD529EFBCF8003C1500 /* Release */ = {
+		15BF5D9929EFBC69003C1500 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -706,56 +706,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		15BF5D9E29EFBCF7003C1500 /* Build configuration list for PBXProject "QuitZone" */ = {
+		15BF5D6829EFBC68003C1500 /* Build configuration list for PBXProject "QuitZone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15BF5DCB29EFBCF8003C1500 /* Debug */,
-				15BF5DCC29EFBCF8003C1500 /* Release */,
+				15BF5D8F29EFBC69003C1500 /* Debug */,
+				15BF5D9029EFBC69003C1500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BF5DCD29EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZone" */ = {
+		15BF5D9129EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15BF5DCE29EFBCF8003C1500 /* Debug */,
-				15BF5DCF29EFBCF8003C1500 /* Release */,
+				15BF5D9229EFBC69003C1500 /* Debug */,
+				15BF5D9329EFBC69003C1500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BF5DD029EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneTests" */ = {
+		15BF5D9429EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15BF5DD129EFBCF8003C1500 /* Debug */,
-				15BF5DD229EFBCF8003C1500 /* Release */,
+				15BF5D9529EFBC69003C1500 /* Debug */,
+				15BF5D9629EFBC69003C1500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15BF5DD329EFBCF8003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneUITests" */ = {
+		15BF5D9729EFBC69003C1500 /* Build configuration list for PBXNativeTarget "QuitZoneUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				15BF5DD429EFBCF8003C1500 /* Debug */,
-				15BF5DD529EFBCF8003C1500 /* Release */,
+				15BF5D9829EFBC69003C1500 /* Debug */,
+				15BF5D9929EFBC69003C1500 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		15BF5DB129EFBCF8003C1500 /* QuitZone.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				15BF5DB229EFBCF8003C1500 /* QuitZone.xcdatamodel */,
-			);
-			currentVersion = 15BF5DB229EFBCF8003C1500 /* QuitZone.xcdatamodel */;
-			path = QuitZone.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
-	rootObject = 15BF5D9B29EFBCF7003C1500 /* Project object */;
+	rootObject = 15BF5D6529EFBC68003C1500 /* Project object */;
 }
