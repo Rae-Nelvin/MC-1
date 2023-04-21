@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CloudKit
 
-
+// Placeholder Delete Later
 struct user {
     var name : String = "Leonardo Da Vinci"
     var dateOfBirth : String = "1 April 1050"
@@ -16,4 +17,29 @@ struct user {
     var typeOfCigarette : String = "Not set"
     var email : String = "Not set"
     var phone : String = "Not set"
+}
+
+struct User: Identifiable {
+    var id: CKRecord.ID?
+    var iCloud: CKRecord.Reference
+    var name: String
+    var dob: Date
+    var frequency: Int
+    var smokerFor: Int
+    var typeOfCigaratte: String
+    
+    init(id: CKRecord.ID? = nil, name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigaratte: String, iCloud: CKRecord.Reference) {
+        self.id = id
+        self.iCloud = iCloud
+        self.name = name
+        self.dob = dob
+        self.frequency = frequency
+        self.smokerFor = smokerFor
+        self.typeOfCigaratte = typeOfCigaratte
+    }
+    
+    func toDictionary() -> [String: Any] {
+        return ["iCloud": iCloud, "name": name, "dob": dob, "frequency": frequency, "smokerFor": smokerFor, "typeOfCigaratte": typeOfCigaratte]
+    }
+
 }
