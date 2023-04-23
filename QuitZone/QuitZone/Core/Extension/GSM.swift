@@ -7,15 +7,28 @@
 
 import SwiftUI
 
-//buat atur title
+//buat atur Text
 extension Text {
     // set kalo body brp, title brp,
-    //title: 40
+    //title: 36
     //body:14
     func customText(size:Double) -> some View {
         self.font(.system(size: size))
     }
  
+}
+
+//buat atur penempatan View
+extension View {
+    func hAlign(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxWidth: .infinity, alignment: alignment)
+    }
+    
+    func vAlign(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxHeight: .infinity, alignment: alignment)
+    }
 }
 
 //warna apps kita

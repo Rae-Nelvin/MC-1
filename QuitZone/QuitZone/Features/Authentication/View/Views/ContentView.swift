@@ -15,7 +15,6 @@ struct ContentView: View {
                     Group {
                         HomeComponent()
                             .tabItem {
-                                //Text("Home")
                                 Label("Home", systemImage: "house")
                             }
                         ParticipantComponent()
@@ -30,7 +29,6 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Profile", systemImage: "person")
                             }
-                        
                     }
                 }
                 .onAppear {
