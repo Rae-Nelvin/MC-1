@@ -48,6 +48,7 @@ struct MissionComponent: View {
     @State private var isMissionShowed = false
     @State private var index: Int = -1
     @State private var data = dummyMission()
+
     
     var body: some View {
         ZStack {
@@ -76,9 +77,20 @@ struct MissionComponent: View {
                         .padding(1)
                         .onTapGesture {
                             withAnimation {
-                                isMissionShowed = true
+//                                isMissionShowed = true
                                 index = idx
+                                customMissionAlert(title: data[index].missionTitle,
+                                                            message: data[index].missionText,
+                                                            leftButton: "Cancel",
+                                                            rightButton: data[index].isDone ? "Unmark" : "Mark as Done",
+                                                            leftAction: {
+                                                                  print("cancelled")
+                                                             },
+                                                            rightAction: {
+                                                                 data[index].isDone.toggle()
+                                                             })
                             }
+                           
                         }
                     }
                 }
@@ -90,12 +102,12 @@ struct MissionComponent: View {
             
             
             //show mission
-            if isMissionShowed {
-                MissionAlert(isMissionShowed: $isMissionShowed,
-                             idx: $index,
-                             data: $data
-                )
-            }
+//            if isMissionShowed {
+//                MissionAlert(isMissionShowed: $isMissionShowed,
+//                             idx: $index,
+//                             data: $data
+//                )
+//            }
         }
     }
 }
@@ -106,29 +118,28 @@ struct MissionAlert: View {
     @Binding var data: [MissionData]
     
     var body: some View {
+        
         VStack {
-            VStack {
-                Text("**\(data[idx].missionTitle)**")
-                    .customText(size: 24)
-                    .padding(.bottom, 30)
-                Text("\(data[idx].missionText)")
-                    .customText(size: 20)
-                
-                //button
-                HStack {
-                    Button("Cancel") {
-                        isMissionShowed = false
-                    }
-                      
-                    Spacer()
-                    
-                    Button(data[idx].isDone ? "UnMark" : "Mark as Done") {
-                        data[idx].isDone.toggle()
-                        isMissionShowed = false
-                    }
+            Text("**\(data[idx].missionTitle)**")
+                .customText(size: 24)
+                .padding(.bottom, 30)
+            Text("\(data[idx].missionText)")
+                .customText(size: 20)
+            
+            //button
+            HStack {
+                Button("Cancel") {
+                    isMissionShowed = false
                 }
-                .padding()
+                
+                Spacer()
+                
+                Button(data[idx].isDone ? "UnMark" : "Mark as Done") {
+                    data[idx].isDone.toggle()
+                    isMissionShowed = false
+                }
             }
+            .padding()
         }
         .frame(width: 280, height: 200, alignment: .center)
         .background(.green)
@@ -136,6 +147,35 @@ struct MissionAlert: View {
         .padding()
     }
     
+}
+
+//optional
+extension View {
+    func customMissionAlert(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping ()-> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        //left side (Cancel)
+        alert.addAction(.init(title: leftButton, style: .default, handler: { _ in
+            leftAction()
+        }))
+
+        //right side (Mark as Done)
+        alert.addAction(.init(title: rightButton, style: .default, handler: { _ in
+            rightAction()
+        }))
+        
+        //showing alert
+        alertController().present(alert, animated: true, completion: nil)
+    }
+
+    //showing alert controller
+    func alertController() -> UIViewController {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {return .init()}
+        guard let root = screen.windows.first?.rootViewController else {return .init()}
+        
+        return root
+    }
+
 }
 
 
