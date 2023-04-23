@@ -12,11 +12,12 @@ import CloudKit
 struct QuitZoneApp: App {
     
     // Public Container
-    let container = CKContainer(identifier: "iCloud.Testing.QuitZone")
+//    let container = CKContainer(identifier: "iCloud.Testing.QuitZone")
     
     var body: some Scene {
         WindowGroup {
-            CloudKitUser(container: container)
+//            CloudKitUser(container: container)
+            ContentView()
         }
     }
 }

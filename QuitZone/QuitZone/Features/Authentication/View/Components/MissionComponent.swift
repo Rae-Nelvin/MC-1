@@ -7,36 +7,136 @@
 
 import SwiftUI
 
+struct MissionData: Identifiable {
+    let id = UUID()
+    let missionTitle: String
+    let missionText: String
+    var isDone = false
+}
+
+func dummyMission() -> [MissionData] {
+    let dummy: [MissionData] = [
+        MissionData(missionTitle: "Mission 1", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 2", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 3", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 4", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 5", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 6", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 7", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 8", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 9", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 10", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 11", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 12", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 13", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 14", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 15", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 16", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 17", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 18", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 19", missionText: "Dummy Missin Text"),
+        MissionData(missionTitle: "Mission 20", missionText: "Dummy Missin Text")
+    ]
+    
+    return dummy
+}
+
+
 struct MissionComponent: View {
     
     let columns = Array(repeating: GridItem(), count: 5)
-    let datas = 1...30
+    @State private var isMissionShowed = false
+    @State private var index: Int = -1
+    @State private var data = dummyMission()
+    
+    var body: some View {
+        ZStack {
+            //mission page
+            VStack {
+                Text("**Your Mission**")
+                    .customText(size: 36)
+                    .hAlign(.leading)
+                    .padding(.bottom, 90)
+                
+                //mission grid
+                LazyVGrid(columns: columns) {
+                    ForEach(data.indices, id: \.self) {idx in
+                        VStack {
+                            Text("")
+                        }
+                        .frame(width: 60, height: 60)
+                        .background(
+                            Rectangle()
+                                .fill(data[idx].isDone ? .green : .white)
+                                .background(
+                                    Rectangle()
+                                        .stroke()
+                                )
+                        )
+                        .padding(1)
+                        .onTapGesture {
+                            withAnimation {
+                                isMissionShowed = true
+                                index = idx
+                            }
+                        }
+                    }
+                }
+                .hAlign(.center)
+            }
+            .vAlign(.top)
+            .padding()
+            .blur(radius: isMissionShowed ? 1:0)
+            
+            
+            //show mission
+            if isMissionShowed {
+                MissionAlert(isMissionShowed: $isMissionShowed,
+                             idx: $index,
+                             data: $data
+                )
+            }
+        }
+    }
+}
+
+struct MissionAlert: View {
+    @Binding var isMissionShowed: Bool
+    @Binding var idx: Int
+    @Binding var data: [MissionData]
     
     var body: some View {
         VStack {
-            Text("**Daily Mission**")
-                .customText(size: 36)
-                .hAlign(.center)
-                .padding(.bottom, 30)
-            
-            LazyVGrid(columns: columns) {
-                 ForEach(datas, id: \.self) {data in
-                    VStack {
-                        Text(String(data))
+            VStack {
+                Text("**\(data[idx].missionTitle)**")
+                    .customText(size: 24)
+                    .padding(.bottom, 30)
+                Text("\(data[idx].missionText)")
+                    .customText(size: 20)
+                
+                HStack {
+                    Button("Cancel") {
+                        isMissionShowed = false
                     }
-                    .frame(width: 40, height: 40)
-                    .background(.red)
-                    .padding(1)
+                      
+                    Spacer()
                     
+                    Button("Mark as Done") {
+                        data[idx].isDone = true
+                        isMissionShowed = false
+                    }
                 }
+                .padding()
             }
-            .hAlign(.center)
-            
         }
-        .vAlign(.top)
+        .frame(width: 280, height: 200, alignment: .center)
+        .background(.green)
+        .clipShape(RoundedRectangle(cornerRadius: 25))
         .padding()
     }
+    
 }
+
 
 struct MissionComponent_Previews: PreviewProvider {
     static var previews: some View {
