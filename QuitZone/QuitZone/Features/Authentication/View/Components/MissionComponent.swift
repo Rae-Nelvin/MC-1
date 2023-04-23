@@ -114,6 +114,7 @@ struct MissionAlert: View {
                 Text("\(data[idx].missionText)")
                     .customText(size: 20)
                 
+                //button
                 HStack {
                     Button("Cancel") {
                         isMissionShowed = false
@@ -121,8 +122,8 @@ struct MissionAlert: View {
                       
                     Spacer()
                     
-                    Button("Mark as Done") {
-                        data[idx].isDone = true
+                    Button(data[idx].isDone ? "UnMark" : "Mark as Done") {
+                        data[idx].isDone.toggle()
                         isMissionShowed = false
                     }
                 }
