@@ -14,6 +14,8 @@
 		15A437B329F4185E00300BF5 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B229F4185E00300BF5 /* Member.swift */; };
 		15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B629F4198C00300BF5 /* TeamChallenge.swift */; };
 		15A437B929F41A3500300BF5 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B829F41A3500300BF5 /* Challenge.swift */; };
+		15A437BB29F5271800300BF5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BA29F5271800300BF5 /* Player.swift */; };
+		15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BE29F57D9000300BF5 /* DailyPlayer.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -61,6 +63,8 @@
 		15A437B229F4185E00300BF5 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		15A437B629F4198C00300BF5 /* TeamChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallenge.swift; sourceTree = "<group>"; };
 		15A437B829F41A3500300BF5 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		15A437BA29F5271800300BF5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		15A437BE29F57D9000300BF5 /* DailyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayer.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,6 +158,30 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		15A437BC29F57D4400300BF5 /* DailyTrack */ = {
+			isa = PBXGroup;
+			children = (
+				15A437BD29F57D8600300BF5 /* Model */,
+				15A437C029F57E8E00300BF5 /* ViewModel */,
+			);
+			path = DailyTrack;
+			sourceTree = "<group>";
+		};
+		15A437BD29F57D8600300BF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15A437BE29F57D9000300BF5 /* DailyPlayer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		15A437C029F57E8E00300BF5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		15BF5D6429EFBC68003C1500 = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +263,7 @@
 			children = (
 				ABC3E74829EFEBF300682177 /* UserModel.swift */,
 				15A437B029F4181200300BF5 /* Lung.swift */,
+				15A437BA29F5271800300BF5 /* Player.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -242,6 +271,7 @@
 		ABF47E4629EFC5CD0067F243 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				15A437BC29F57D4400300BF5 /* DailyTrack */,
 				15A437B429F4196800300BF5 /* Challenge */,
 				157792F629F4163C0031AA1C /* Team */,
 				157792F529F4162E0031AA1C /* Authentication */,
@@ -468,7 +498,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A437BB29F5271800300BF5 /* Player.swift in Sources */,
 				15A437B329F4185E00300BF5 /* Member.swift in Sources */,
+				15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */,
 				157792F929F4165D0031AA1C /* Team.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,

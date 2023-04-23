@@ -33,10 +33,10 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func saveUser(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
+    func savePlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
         let record = CKRecord(recordType: RecordType.player.rawValue)
         let iCloudReference = CKRecord.Reference(recordID: iCloud, action: .none)
-        let player = User(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
+        let player = Player(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
         record.setValuesForKeys(player.toDictionary())
         
         // Saving record into the Database
@@ -45,12 +45,81 @@ class PlayerViewModel: ObservableObject {
                 print(error)
             } else {
                 if let _ = newRecord {
-                    print("SAVED")
+                    print("New Player saved successfully")
                 }
             }
         }
-        
     }
+    
+    func getPlayer(completion: @escaping (Result<CKRecord, Error>) -> Void) {
+        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
+        let query = CKQuery(recordType: "Player", predicate: predicate)
+        
+        let queryOperation = CKQueryOperation(query: query)
+        queryOperation.desiredKeys = ["name", "dob", "frequency", "smokerFor"]
+        queryOperation.resultsLimit = 1
+        
+        self.database.perform(query, inZoneWith: nil) { (records, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                if let record = records?.first {
+                    completion(.success(record))
+                } else {
+                    let error = NSError(domain: "iCloud.Testing.QuitZone", code: 404, userInfo: [NSLocalizedDescriptionKey: "User Not Found"])
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?, completion: @escaping (Result<CKRecord, Error>) -> Void ) {
+        var player: CKRecord = CKRecord(recordType: "Player")
+        getPlayer() { results in
+            switch results {
+            case .failure(let error):
+                print(error)
+                return
+            case .success(let result):
+                player = result
+                
+                if name != "" {
+                    player.setValue(name, forKey: "name")
+                }
+                
+                // Supposedly to be unset after registering so it won't be buggy
+                if dob != Date() {
+                    player.setValue(dob, forKey: "dob")
+                }
+                
+                if frequency != 0 {
+                    player.setValue(frequency, forKey: "frequency")
+                }
+                
+                if smokerFor != 0 {
+                    player.setValue(smokerFor, forKey: "smokerFor")
+                }
+                
+                if typeOfCigarattes != "" {
+                    player.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
+                }
+                
+                self.database.save(player) { (savedRecord, error) in
+                    if let savedRecord = savedRecord {
+                        completion(.success(savedRecord))
+                    } else if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error"])))
+                    }
+                }
+            }
+        }
+    }
+    
+    func createPlayerLung() {}
+    
+    func updatePlayerLung() {}
 }
 
 // For Testing Purposes Delete Later
@@ -82,7 +151,25 @@ struct PlayerView: View {
         }
         .padding()
         Button("Submit") {
-            pvm.saveUser(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+            //            pvm.savePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes) { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let success):
+                    print(success)
+                }
+            }
+        }
+        Button("Check Account") {
+            pvm.getPlayer { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let success):
+                    print(success.recordID)
+                }
+            }
         }
     }
 }
