@@ -9,15 +9,12 @@ import Foundation
 import CloudKit
 import SwiftUI
 
-enum RecordType: String {
-    case player = "Player"
-}
-
 class PlayerViewModel: ObservableObject {
     
     private var database: CKDatabase
     private var container: CKContainer
     private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
+    @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
     
     init(container: CKContainer) {
         self.container = container
@@ -25,21 +22,16 @@ class PlayerViewModel: ObservableObject {
         fetchiCloudUserRecord()
     }
     
-    private func fetchiCloudUserRecord(){
-        CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
-            if let id = returnedID {
-                self?.iCloud = id
-            }
-        }
-    }
-    
-    func savePlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
-        let record = CKRecord(recordType: RecordType.player.rawValue)
+    func createPlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
+        let record = CKRecord(recordType: "Player")
         let iCloudReference = CKRecord.Reference(recordID: iCloud, action: .none)
         let player = Player(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
         record.setValuesForKeys(player.toDictionary())
         
-        // Saving record into the Database
+        self.uploadToDatabase(record: record)
+    }
+    
+    private func uploadToDatabase(record: CKRecord) {
         self.database.save(record) { newRecord, error in
             if let error = error {
                 print(error)
@@ -51,13 +43,17 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
+    private func fetchiCloudUserRecord() {
+        CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
+            if let id = returnedID {
+                self?.iCloud = id
+            }
+        }
+    }
+    
     func getPlayer(completion: @escaping (Result<CKRecord, Error>) -> Void) {
         let predicate = NSPredicate(format: "iCloud == %@", iCloud)
         let query = CKQuery(recordType: "Player", predicate: predicate)
-        
-        let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["name", "dob", "frequency", "smokerFor"]
-        queryOperation.resultsLimit = 1
         
         self.database.perform(query, inZoneWith: nil) { (records, error) in
             if let error = error {
@@ -65,6 +61,8 @@ class PlayerViewModel: ObservableObject {
             } else {
                 if let record = records?.first {
                     completion(.success(record))
+                    let fetchedPlayer = Player(id: record.recordID,name: record.value(forKey: "name") as! String, dob: record.value(forKey: "dob") as! Date, frequency: record.value(forKey: "frequency") as! Int, smokerFor: record.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record.value(forKey: "typeOfCigarattes") as! String, iCloud: record.value(forKey: "iCloud") as! CKRecord.Reference)
+                    self.player = fetchedPlayer
                 } else {
                     let error = NSError(domain: "iCloud.Testing.QuitZone", code: 404, userInfo: [NSLocalizedDescriptionKey: "User Not Found"])
                     completion(.failure(error))
@@ -73,7 +71,7 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?, completion: @escaping (Result<CKRecord, Error>) -> Void ) {
+    func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?) {
         var player: CKRecord = CKRecord(recordType: "Player")
         getPlayer() { results in
             switch results {
@@ -104,15 +102,7 @@ class PlayerViewModel: ObservableObject {
                     player.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
                 }
                 
-                self.database.save(player) { (savedRecord, error) in
-                    if let savedRecord = savedRecord {
-                        completion(.success(savedRecord))
-                    } else if let error = error {
-                        completion(.failure(error))
-                    } else {
-                        completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Unknown error"])))
-                    }
-                }
+                self.uploadToDatabase(record: player)
             }
         }
     }
@@ -120,6 +110,7 @@ class PlayerViewModel: ObservableObject {
     func createPlayerLung() {}
     
     func updatePlayerLung() {}
+    
 }
 
 // For Testing Purposes Delete Later
@@ -151,23 +142,16 @@ struct PlayerView: View {
         }
         .padding()
         Button("Submit") {
-            //            pvm.savePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes) { result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let success):
-                    print(success)
-                }
-            }
+            //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
         }
         Button("Check Account") {
-            pvm.getPlayer { result in
+            pvm.getPlayer(){ result in
                 switch result {
                 case .failure(let error):
                     print(error)
-                case .success(let success):
-                    print(success.recordID)
+                case .success(let record):
+                    print(record)
                 }
             }
         }
