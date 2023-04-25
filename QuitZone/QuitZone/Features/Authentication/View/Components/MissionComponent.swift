@@ -41,7 +41,6 @@ func dummyMission() -> [MissionData] {
     return dummy
 }
 
-
 struct MissionComponent: View {
     
     let columns = Array(repeating: GridItem(), count: 5)
@@ -49,7 +48,6 @@ struct MissionComponent: View {
     @State private var index: Int = -1
     @State private var data = dummyMission()
 
-    
     var body: some View {
         ZStack {
             //mission page
@@ -59,7 +57,7 @@ struct MissionComponent: View {
                     .hAlign(.leading)
                     .padding(.bottom, 90)
                 
-                //mission grid
+                //MARK: mission grid
                 LazyVGrid(columns: columns) {
                     ForEach(data.indices, id: \.self) {idx in
                         VStack {
@@ -99,7 +97,6 @@ struct MissionComponent: View {
             .vAlign(.top)
             .padding()
             .blur(radius: isMissionShowed ? 1:0)
-            
             
             //show mission
 //            if isMissionShowed {
@@ -149,7 +146,7 @@ struct MissionAlert: View {
     
 }
 
-//optional
+//MARK: optional mission alert
 extension View {
     func customMissionAlert(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping ()-> ()) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -162,6 +159,32 @@ extension View {
         //right side (Mark as Done)
         alert.addAction(.init(title: rightButton, style: .default, handler: { _ in
             rightAction()
+        }))
+        
+        //showing alert
+        alertController().present(alert, animated: true, completion: nil)
+    }
+    
+    func customAlertTextField(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping (String)-> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        alert.addTextField() { field in
+            field.keyboardType = .decimalPad
+            field.placeholder = "3"
+        }
+        
+        //left side (Cancel)
+        alert.addAction(.init(title: leftButton, style: .default, handler: { _ in
+            leftAction()
+        }))
+
+        //right side (Save)
+        alert.addAction(.init(title: rightButton, style: .default, handler: { _ in
+            if let text = alert.textFields?[0].text {
+                rightAction(text)
+            } else {
+                rightAction("-1")
+            }
         }))
         
         //showing alert
