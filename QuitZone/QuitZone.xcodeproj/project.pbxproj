@@ -18,6 +18,8 @@
 		15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BE29F57D9000300BF5 /* DailyPlayer.swift */; };
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
 		15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */; };
+		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
+		15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		15A437BE29F57D9000300BF5 /* DailyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayer.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
+		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
+		15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallengeViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				15A437B529F4196F00300BF5 /* Model */,
+				15A437CA29F7D14300300BF5 /* ViewModel */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 		15A437C029F57E8E00300BF5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -201,6 +207,14 @@
 				15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		15A437CA29F7D14300300BF5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		15BF5D6429EFBC68003C1500 = {
@@ -539,11 +553,13 @@
 				15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */,
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
+				15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */,
 				ABC3E74B29EFF18100682177 /* GSM.swift in Sources */,
 				15A437B129F4181200300BF5 /* Lung.swift in Sources */,
 				ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */,
 				ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
+				15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */,
 				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

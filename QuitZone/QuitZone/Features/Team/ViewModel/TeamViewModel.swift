@@ -108,7 +108,7 @@ class TeamViewModel: ObservableObject {
     }
     
     func getTeam(teamID: CKRecord.ID) {
-        let predicate = NSPredicate(value: true)
+        let predicate = NSPredicate(format: "teamID == %@", teamID)
         let query = CKQuery(recordType: "Team", predicate: predicate)
         
         dvm.read(query: query) { result in

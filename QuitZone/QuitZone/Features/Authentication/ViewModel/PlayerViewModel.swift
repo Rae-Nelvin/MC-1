@@ -11,15 +11,11 @@ import SwiftUI
 
 class PlayerViewModel: ObservableObject {
     
-    private var database: CKDatabase
-    private var container: CKContainer
     private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
     @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
     private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     
-    init(container: CKContainer) {
-        self.container = container
-        self.database = self.container.publicCloudDatabase
+    init() {
         fetchiCloudUserRecord()
     }
     
@@ -154,6 +150,6 @@ struct PlayerView: View {
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(pvm: PlayerViewModel(container: CKContainer.default()))
+        PlayerView(pvm: PlayerViewModel())
     }
 }
