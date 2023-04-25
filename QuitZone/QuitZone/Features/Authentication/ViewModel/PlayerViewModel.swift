@@ -15,6 +15,7 @@ class PlayerViewModel: ObservableObject {
     private var container: CKContainer
     private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
     @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
+    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     
     init(container: CKContainer) {
         self.container = container
@@ -28,17 +29,12 @@ class PlayerViewModel: ObservableObject {
         let player = Player(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
         record.setValuesForKeys(player.toDictionary())
         
-        self.uploadToDatabase(record: record)
-    }
-    
-    private func uploadToDatabase(record: CKRecord) {
-        self.database.save(record) { newRecord, error in
-            if let error = error {
+        dvm.create(record: record) { result in
+            switch result {
+            case .failure(let error):
                 print(error)
-            } else {
-                if let _ = newRecord {
-                    print("New Player saved successfully")
-                }
+            case .success(let record):
+                print(record)
             }
         }
     }
@@ -51,58 +47,63 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func getPlayer(completion: @escaping (Result<CKRecord, Error>) -> Void) {
+    func getPlayer() {
         let predicate = NSPredicate(format: "iCloud == %@", iCloud)
         let query = CKQuery(recordType: "Player", predicate: predicate)
         
-        self.database.perform(query, inZoneWith: nil) { (records, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                if let record = records?.first {
-                    completion(.success(record))
-                    let fetchedPlayer = Player(id: record.recordID,name: record.value(forKey: "name") as! String, dob: record.value(forKey: "dob") as! Date, frequency: record.value(forKey: "frequency") as! Int, smokerFor: record.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record.value(forKey: "typeOfCigarattes") as! String, iCloud: record.value(forKey: "iCloud") as! CKRecord.Reference)
-                    self.player = fetchedPlayer
-                } else {
-                    let error = NSError(domain: "iCloud.Testing.QuitZone", code: 404, userInfo: [NSLocalizedDescriptionKey: "User Not Found"])
-                    completion(.failure(error))
-                }
+        dvm.read(query: query) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let records):
+                let record = records.first
+                let fetchedPlayer = Player(id: record?.recordID,name: record?.value(forKey: "name") as! String, dob: record?.value(forKey: "dob") as! Date, frequency: record?.value(forKey: "frequency") as! Int, smokerFor: record?.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record?.value(forKey: "typeOfCigarattes") as! String, iCloud: record?.value(forKey: "iCloud") as! CKRecord.Reference)
+                self?.player = fetchedPlayer
             }
         }
     }
     
     func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?) {
-        var player: CKRecord = CKRecord(recordType: "Player")
-        getPlayer() { results in
-            switch results {
+        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
+        let query = CKQuery(recordType: "Player", predicate: predicate)
+        dvm.read(query: query) { result in
+            switch result {
             case .failure(let error):
                 print(error)
-                return
-            case .success(let result):
-                player = result
-                
-                if name != "" {
-                    player.setValue(name, forKey: "name")
+            case .success(let records):
+                DispatchQueue.main.async {
+                    let player = records.first
+                    
+                    if name != "" {
+                        player?.setValue(name, forKey: "name")
+                    }
+                    
+                    // Supposedly to be unset after registering so it won't be buggy
+                    if dob != Date() {
+                        player?.setValue(dob, forKey: "dob")
+                    }
+                    
+                    if frequency != 0 {
+                        player?.setValue(frequency, forKey: "frequency")
+                    }
+                    
+                    if smokerFor != 0 {
+                        player?.setValue(smokerFor, forKey: "smokerFor")
+                    }
+                    
+                    if typeOfCigarattes != "" {
+                        player?.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
+                    }
+                    
+                    self.dvm.create(record: player ?? CKRecord(recordType: "")) { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(let record):
+                            print(record)
+                        }
+                    }
                 }
-                
-                // Supposedly to be unset after registering so it won't be buggy
-                if dob != Date() {
-                    player.setValue(dob, forKey: "dob")
-                }
-                
-                if frequency != 0 {
-                    player.setValue(frequency, forKey: "frequency")
-                }
-                
-                if smokerFor != 0 {
-                    player.setValue(smokerFor, forKey: "smokerFor")
-                }
-                
-                if typeOfCigarattes != "" {
-                    player.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
-                }
-                
-                self.uploadToDatabase(record: player)
             }
         }
     }
@@ -146,14 +147,7 @@ struct PlayerView: View {
             pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
         }
         Button("Check Account") {
-            pvm.getPlayer(){ result in
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let record):
-                    print(record)
-                }
-            }
+            pvm.getPlayer()
         }
     }
 }

@@ -17,6 +17,7 @@
 		15A437BB29F5271800300BF5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BA29F5271800300BF5 /* Player.swift */; };
 		15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BE29F57D9000300BF5 /* DailyPlayer.swift */; };
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
+		15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -67,6 +68,7 @@
 		15A437BA29F5271800300BF5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		15A437BE29F57D9000300BF5 /* DailyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayer.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
+		15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -193,6 +195,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		15A437C429F7BE9A00300BF5 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		15BF5D6429EFBC68003C1500 = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +292,7 @@
 		ABF47E4629EFC5CD0067F243 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				15A437C429F7BE9A00300BF5 /* Database */,
 				15A437BC29F57D4400300BF5 /* DailyTrack */,
 				15A437B429F4196800300BF5 /* Challenge */,
 				157792F629F4163C0031AA1C /* Team */,
@@ -519,6 +530,7 @@
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
 				15A437B929F41A3500300BF5 /* Challenge.swift in Sources */,
+				15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */,
 				ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */,
 				ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */,
 				ABF47E6429EFD3AF0067F243 /* MissionComponent.swift in Sources */,
