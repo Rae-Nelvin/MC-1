@@ -13,6 +13,7 @@ struct UserComponent: View {
             VStack (alignment: .leading){
                 HStack {
                     VStack {
+                        Text("Ini buat image")
                     }
                     .frame(width:96, height:96)
                     .background(.red)
@@ -30,7 +31,49 @@ struct UserComponent: View {
                     Spacer()
                     Text("\(user().dateOfBirth)")
                 }
-                .background(.gray)
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
+                HStack {
+                    Text("Frequency")
+                    Spacer()
+                    Text("\(user().frequency)")
+                }
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
+                HStack {
+                    Text("Smoker for...")
+                    Spacer()
+                    Text("\(user().smokerFor)")
+                }
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
+                HStack {
+                    Text("Type of Cigarette")
+                    Spacer()
+                    Text("\(user().typeOfCigarette)")
+                }
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
+                HStack {
+                    Text("Email")
+                    Spacer()
+                    Text("\(user().email)")
+                }
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
+                HStack {
+                    Text("Phone")
+                    Spacer()
+                    Text("\(user().phone)")
+                }
+                .frame(width:.infinity, height:40)
+                .background(.gray.opacity(0.2))
+                
                 
                 
                 Spacer()
