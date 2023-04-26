@@ -9,23 +9,33 @@ import Foundation
 import CloudKit
 import SwiftUI
 
-enum RecordType: String {
-    case player = "Player"
-}
-
 class PlayerViewModel: ObservableObject {
     
-    private var database: CKDatabase
-    private var container: CKContainer
     private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
+    @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
+    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     
-    init(container: CKContainer) {
-        self.container = container
-        self.database = self.container.publicCloudDatabase
+    init() {
         fetchiCloudUserRecord()
     }
     
-    private func fetchiCloudUserRecord(){
+    func createPlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
+        let record = CKRecord(recordType: "Player")
+        let iCloudReference = CKRecord.Reference(recordID: iCloud, action: .none)
+        let player = Player(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
+        record.setValuesForKeys(player.toDictionary())
+        
+        dvm.create(record: record) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let record):
+                print(record)
+            }
+        }
+    }
+    
+    private func fetchiCloudUserRecord() {
         CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
             if let id = returnedID {
                 self?.iCloud = id
@@ -33,24 +43,71 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func saveUser(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
-        let record = CKRecord(recordType: RecordType.player.rawValue)
-        let iCloudReference = CKRecord.Reference(recordID: iCloud, action: .none)
-        let player = User(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
-        record.setValuesForKeys(player.toDictionary())
+    func getPlayer() {
+        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
+        let query = CKQuery(recordType: "Player", predicate: predicate)
         
-        // Saving record into the Database
-        self.database.save(record) { newRecord, error in
-            if let error = error {
+        dvm.read(query: query) { [weak self] result in
+            switch result {
+            case .failure(let error):
                 print(error)
-            } else {
-                if let _ = newRecord {
-                    print("SAVED")
+            case .success(let records):
+                let record = records.first
+                let fetchedPlayer = Player(id: record?.recordID,name: record?.value(forKey: "name") as! String, dob: record?.value(forKey: "dob") as! Date, frequency: record?.value(forKey: "frequency") as! Int, smokerFor: record?.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record?.value(forKey: "typeOfCigarattes") as! String, iCloud: record?.value(forKey: "iCloud") as! CKRecord.Reference)
+                self?.player = fetchedPlayer
+            }
+        }
+    }
+    
+    func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?) {
+        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
+        let query = CKQuery(recordType: "Player", predicate: predicate)
+        dvm.read(query: query) { result in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let records):
+                DispatchQueue.main.async {
+                    let player = records.first
+                    
+                    if name != "" {
+                        player?.setValue(name, forKey: "name")
+                    }
+                    
+                    // Supposedly to be unset after registering so it won't be buggy
+                    if dob != Date() {
+                        player?.setValue(dob, forKey: "dob")
+                    }
+                    
+                    if frequency != 0 {
+                        player?.setValue(frequency, forKey: "frequency")
+                    }
+                    
+                    if smokerFor != 0 {
+                        player?.setValue(smokerFor, forKey: "smokerFor")
+                    }
+                    
+                    if typeOfCigarattes != "" {
+                        player?.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
+                    }
+                    
+                    self.dvm.create(record: player ?? CKRecord(recordType: "")) { result in
+                        switch result {
+                        case .failure(let error):
+                            print(error)
+                        case .success(let record):
+                            print(record)
+                        }
+                    }
                 }
             }
         }
-        
     }
+    
+    func createPlayerLung() {}
+    
+    func updatePlayerLung() {}
+    
 }
 
 // For Testing Purposes Delete Later
@@ -82,13 +139,17 @@ struct PlayerView: View {
         }
         .padding()
         Button("Submit") {
-            pvm.saveUser(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+            //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+        }
+        Button("Check Account") {
+            pvm.getPlayer()
         }
     }
 }
 
 struct PlayerView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerView(pvm: PlayerViewModel(container: CKContainer.default()))
+        PlayerView(pvm: PlayerViewModel())
     }
 }
