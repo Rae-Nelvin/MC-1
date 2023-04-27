@@ -78,7 +78,6 @@ class iCloudViewModel: ObservableObject {
 // For Testing Purposes Delete Later
 struct CloudKitUser: View {
     @StateObject private var vm: iCloudViewModel = iCloudViewModel()
-    var container: CKContainer
     
     var body: some View {
         NavigationView {
@@ -87,7 +86,7 @@ struct CloudKitUser: View {
                 Text(vm.error)
                 Text("Permission: \(vm.permissionStatus.description.uppercased())")
                 Text("Name: \(vm.userName)")
-                NavigationLink(destination: PlayerView(pvm: PlayerViewModel(container: container)), label: {
+                NavigationLink(destination: PlayerView(pvm: PlayerViewModel()), label: {
                     Text("Next")
                 })
             }
@@ -97,6 +96,6 @@ struct CloudKitUser: View {
 
 struct CloudKitUser_Previews: PreviewProvider {
     static var previews: some View {
-        CloudKitUser(container: CKContainer.default())
+        CloudKitUser()
     }
 }

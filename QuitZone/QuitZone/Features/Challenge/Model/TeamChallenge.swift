@@ -12,16 +12,16 @@ struct TeamChallenge: Identifiable {
     var id: CKRecord.ID?
     var teamID: CKRecord.Reference
     var challengeID: CKRecord.Reference
-    var ended_at: Date
+    var endedAt: Date
     
-    init(id: CKRecord.ID? = nil, teamID: CKRecord.Reference, challengeID: CKRecord.Reference, ended_at: Date) {
+    init(id: CKRecord.ID? = nil, teamID: CKRecord.Reference, challengeID: CKRecord.Reference, endedAt: Date) {
         self.id = id
         self.teamID = teamID
         self.challengeID = challengeID
-        self.ended_at = ended_at
+        self.endedAt = endedAt
     }
     
     func toDictionary() -> [String: Any] {
-        return ["teamID": teamID, "challengeID": challengeID, "ended_at": ended_at]
+        return ["teamID": teamID, "challengeID": challengeID, "endedAt": endedAt]
     }
 }
