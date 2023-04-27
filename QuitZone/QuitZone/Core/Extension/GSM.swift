@@ -29,24 +29,30 @@ extension Font {
         var value: String {
             switch self {
             case .regular:
-                return "Semibold"
+                return "dogica"
             case .bold:
-                return "Bold"
+                return "dogicabold"
             case .pixel:
-                return "Pixel"
+                return "pixel"
             case .pixelbold:
-                return "Pixelbold"
+                return "pixelbold"
             case .custom(let name):
                 return name
             }
         }
     }
     
+//.font(.dogica(.regular))
+
+    
     enum PixeledFont {
+        case pixeled
         case custom(String)
         
         var value: String {
             switch self {
+            case .pixeled:
+                return "Pixeled"
             case .custom(let name):
                 return name
             }
