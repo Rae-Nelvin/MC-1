@@ -13,7 +13,7 @@ struct QuitZoneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CloudKitUser()
+            ContentView()
         }
     }
 }

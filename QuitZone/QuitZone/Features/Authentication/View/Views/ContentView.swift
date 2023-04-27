@@ -8,6 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    init() {
+        for familyName in UIFont.familyNames {
+            print(familyName)
+            
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print("--\(fontName)")
+            }
+        }
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -43,6 +54,7 @@ struct ContentView: View {
             }
         }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

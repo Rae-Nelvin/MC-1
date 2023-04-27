@@ -90,8 +90,9 @@ struct HomeComponent: View {
             Text("Quit Zone")
                 //.customText(size:36)
                 //.font(.dogica(.regular))
-                .font(.custom("dogica", size: 36))
+                .font(.custom("Heibird", size: 36))
                 .frame(maxWidth: .infinity, alignment: .leading)
+            
             
             Image("Lungs")
                 .resizable()

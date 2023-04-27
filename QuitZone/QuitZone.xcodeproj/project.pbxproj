@@ -41,6 +41,9 @@
 		AB1E2F6129FA7DDA003A7CEE /* dogicapixelbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F5529FA7DDA003A7CEE /* dogicapixelbold.ttf */; };
 		AB1E2F7529FA88B0003A7CEE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7329FA88B0003A7CEE /* Info.plist */; };
 		AB1E2F7629FA88B0003A7CEE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7329FA88B0003A7CEE /* Info.plist */; };
+		AB1E2F7C29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
+		AB1E2F7D29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
+		AB1E2F7E29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
 		ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74829EFEBF300682177 /* UserModel.swift */; };
 		ABC3E74B29EFF18100682177 /* GSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74A29EFF18100682177 /* GSM.swift */; };
 		ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */; };
@@ -103,6 +106,7 @@
 		AB1E2F5529FA7DDA003A7CEE /* dogicapixelbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogicapixelbold.ttf; sourceTree = "<group>"; };
 		AB1E2F6229FA7DEA003A7CEE /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
 		AB1E2F7329FA88B0003A7CEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Heibird.otf; sourceTree = "<group>"; };
 		ABC3E74829EFEBF300682177 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		ABC3E74A29EFF18100682177 /* GSM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSM.swift; sourceTree = "<group>"; };
 		ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeComponent.swift; sourceTree = "<group>"; };
@@ -302,6 +306,7 @@
 				AB1E2F5229FA7DDA003A7CEE /* dogicapixel.ttf */,
 				AB1E2F5529FA7DDA003A7CEE /* dogicapixelbold.ttf */,
 				AB1E2F6229FA7DEA003A7CEE /* Pixeled.ttf */,
+				AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -377,7 +382,9 @@
 		ABF47E4A29EFC64F0067F243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB1E2F3529FA5C08003A7CEE /* Font */,
 				15BF5D7429EFBC69003C1500 /* Assets.xcassets */,
+				AB1E2F7329FA88B0003A7CEE /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -399,9 +406,7 @@
 		ABF47E4D29EFC6900067F243 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				AB1E2F3529FA5C08003A7CEE /* Font */,
 				ABC3E74A29EFF18100682177 /* GSM.swift */,
-				AB1E2F7329FA88B0003A7CEE /* Info.plist */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				AB1E2F5C29FA7DDA003A7CEE /* dogicabold.ttf in Resources */,
 				AB1E2F5F29FA7DDA003A7CEE /* dogicapixelbold.ttf in Resources */,
 				AB1E2F5929FA7DDA003A7CEE /* dogica.ttf in Resources */,
+				AB1E2F7C29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5629FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				15BF5D7829EFBC69003C1500 /* Preview Assets.xcassets in Resources */,
 				15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */,
@@ -556,6 +562,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB1E2F6029FA7DDA003A7CEE /* dogicapixelbold.ttf in Resources */,
+				AB1E2F7D29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5729FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				AB1E2F5A29FA7DDA003A7CEE /* dogica.ttf in Resources */,
 				AB1E2F7529FA88B0003A7CEE /* Info.plist in Resources */,
@@ -568,6 +575,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB1E2F6129FA7DDA003A7CEE /* dogicapixelbold.ttf in Resources */,
+				AB1E2F7E29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5829FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				AB1E2F5B29FA7DDA003A7CEE /* dogica.ttf in Resources */,
 				AB1E2F7629FA88B0003A7CEE /* Info.plist in Resources */,
