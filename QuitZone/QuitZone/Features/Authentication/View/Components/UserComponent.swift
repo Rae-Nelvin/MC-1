@@ -20,7 +20,7 @@ struct UserComponent: View {
                     .clipShape(Circle())
                     .padding(.trailing, 16)
                     VStack (alignment: .leading) {
-                        Text("\(user().name)")
+                        Text("\(User().name)")
                         Text("873 yo")
                     }
                 }
@@ -29,7 +29,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Date of Birth")
                     Spacer()
-                    Text("\(user().dateOfBirth)")
+                    Text("\(User().dateOfBirth)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))
@@ -37,7 +37,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Frequency")
                     Spacer()
-                    Text("\(user().frequency)")
+                    Text("\(User().frequency)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))
@@ -45,7 +45,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Smoker for...")
                     Spacer()
-                    Text("\(user().smokerFor)")
+                    Text("\(User().smokerFor)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))
@@ -53,7 +53,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Type of Cigarette")
                     Spacer()
-                    Text("\(user().typeOfCigarette)")
+                    Text("\(User().typeOfCigarette)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))
@@ -61,7 +61,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Email")
                     Spacer()
-                    Text("\(user().email)")
+                    Text("\(User().email)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))
@@ -69,7 +69,7 @@ struct UserComponent: View {
                 HStack {
                     Text("Phone")
                     Spacer()
-                    Text("\(user().phone)")
+                    Text("\(User().phone)")
                 }
                 .frame(width:.infinity, height:40)
                 .background(.gray.opacity(0.2))

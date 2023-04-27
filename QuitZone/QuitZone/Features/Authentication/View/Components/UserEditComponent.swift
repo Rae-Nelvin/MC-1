@@ -9,7 +9,13 @@ import SwiftUI
 
 struct UserEditComponent: View {
     
-    @State private var tempName = "123"
+    @State private var tempName : String = "Leonardo Da Vinci"
+    @State private var tempDateOfBirth : String = "1 April 1050"
+    @State private var tempFrequency : String = "Active"
+    @State private var tempSmokerFor : String = "Not set"
+    @State private var tempTypeOfCigarette : String = "Not set"
+    @State private var tempEmail : String = "Not set"
+    @State private var tempPhone : String = "Not set"
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -107,7 +113,7 @@ struct UserEditComponent: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    ///
+                    //update user info
                 } label: {
                     Text("Save")
                 }
@@ -124,24 +130,3 @@ struct UserEditComponent_Previews: PreviewProvider {
     }
 }
 
-//BUAT TEXTFIELD DI FORM DAN EDIT USER
-struct UserView: View {
-//        @StateObject var habitList = HabitList()
-
-    var body: some View {
-//            ForEach(Array(habitList.habitList.enumerated()), id: \.1.id) { index, habit in
-            UserFormView(user1: $user)
-//        }
-    }
-}
-
-struct UserFormView: View {
-    @Binding var user1: user
-
-    var body: some View {
-        VStack {
-            Text("\(user1.name)")
-            TextField("haha", text: $user1.name)
-        }
-    }
-}

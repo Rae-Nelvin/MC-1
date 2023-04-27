@@ -27,6 +27,24 @@
 		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
 		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
 		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
+		AB1E2F3729FA5C26003A7CEE /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3629FA5C26003A7CEE /* Pixeled.ttf */; };
+		AB1E2F3829FA5C26003A7CEE /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3629FA5C26003A7CEE /* Pixeled.ttf */; };
+		AB1E2F3929FA5C26003A7CEE /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3629FA5C26003A7CEE /* Pixeled.ttf */; };
+		AB1E2F3E29FA5C32003A7CEE /* dogicapixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3A29FA5C32003A7CEE /* dogicapixel.ttf */; };
+		AB1E2F3F29FA5C32003A7CEE /* dogicapixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3A29FA5C32003A7CEE /* dogicapixel.ttf */; };
+		AB1E2F4029FA5C32003A7CEE /* dogicapixel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3A29FA5C32003A7CEE /* dogicapixel.ttf */; };
+		AB1E2F4129FA5C32003A7CEE /* dogicabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3B29FA5C32003A7CEE /* dogicabold.ttf */; };
+		AB1E2F4229FA5C32003A7CEE /* dogicabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3B29FA5C32003A7CEE /* dogicabold.ttf */; };
+		AB1E2F4329FA5C32003A7CEE /* dogicabold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3B29FA5C32003A7CEE /* dogicabold.ttf */; };
+		AB1E2F4429FA5C32003A7CEE /* dogica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3C29FA5C32003A7CEE /* dogica.ttf */; };
+		AB1E2F4529FA5C32003A7CEE /* dogica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3C29FA5C32003A7CEE /* dogica.ttf */; };
+		AB1E2F4629FA5C32003A7CEE /* dogica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3C29FA5C32003A7CEE /* dogica.ttf */; };
+		AB1E2F4729FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3D29FA5C32003A7CEE /* dogicapixelbold.ttf */; };
+		AB1E2F4829FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3D29FA5C32003A7CEE /* dogicapixelbold.ttf */; };
+		AB1E2F4929FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F3D29FA5C32003A7CEE /* dogicapixelbold.ttf */; };
+		AB1E2F4B29FA5C50003A7CEE /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F4A29FA5C50003A7CEE /* Property List.plist */; };
+		AB1E2F4C29FA5C50003A7CEE /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F4A29FA5C50003A7CEE /* Property List.plist */; };
+		AB1E2F4D29FA5C50003A7CEE /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F4A29FA5C50003A7CEE /* Property List.plist */; };
 		ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74829EFEBF300682177 /* UserModel.swift */; };
 		ABC3E74B29EFF18100682177 /* GSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74A29EFF18100682177 /* GSM.swift */; };
 		ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */; };
@@ -83,6 +101,12 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		AB1E2F3629FA5C26003A7CEE /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Pixeled.ttf; path = ../../../../../../../../../Downloads/Pixeled.ttf; sourceTree = "<group>"; };
+		AB1E2F3A29FA5C32003A7CEE /* dogicapixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dogicapixel.ttf; path = ../../../../../../../../../Downloads/dogica/TTF/dogicapixel.ttf; sourceTree = "<group>"; };
+		AB1E2F3B29FA5C32003A7CEE /* dogicabold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dogicabold.ttf; path = ../../../../../../../../../Downloads/dogica/TTF/dogicabold.ttf; sourceTree = "<group>"; };
+		AB1E2F3C29FA5C32003A7CEE /* dogica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dogica.ttf; path = ../../../../../../../../../Downloads/dogica/TTF/dogica.ttf; sourceTree = "<group>"; };
+		AB1E2F3D29FA5C32003A7CEE /* dogicapixelbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dogicapixelbold.ttf; path = ../../../../../../../../../Downloads/dogica/TTF/dogicapixelbold.ttf; sourceTree = "<group>"; };
+		AB1E2F4A29FA5C50003A7CEE /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
 		ABC3E74829EFEBF300682177 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		ABC3E74A29EFF18100682177 /* GSM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSM.swift; sourceTree = "<group>"; };
 		ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeComponent.swift; sourceTree = "<group>"; };
@@ -274,6 +298,18 @@
 			path = QuitZoneUITests;
 			sourceTree = "<group>";
 		};
+		AB1E2F3529FA5C08003A7CEE /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				AB1E2F3C29FA5C32003A7CEE /* dogica.ttf */,
+				AB1E2F3B29FA5C32003A7CEE /* dogicabold.ttf */,
+				AB1E2F3A29FA5C32003A7CEE /* dogicapixel.ttf */,
+				AB1E2F3D29FA5C32003A7CEE /* dogicapixelbold.ttf */,
+				AB1E2F3629FA5C26003A7CEE /* Pixeled.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		ABF47E4329EFC09A0067F243 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,7 +403,9 @@
 		ABF47E4D29EFC6900067F243 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				AB1E2F3529FA5C08003A7CEE /* Font */,
 				ABC3E74A29EFF18100682177 /* GSM.swift */,
+				AB1E2F4A29FA5C50003A7CEE /* Property List.plist */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -508,7 +546,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1E2F3E29FA5C32003A7CEE /* dogicapixel.ttf in Resources */,
+				AB1E2F4729FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */,
+				AB1E2F4429FA5C32003A7CEE /* dogica.ttf in Resources */,
+				AB1E2F4129FA5C32003A7CEE /* dogicabold.ttf in Resources */,
 				15BF5D7829EFBC69003C1500 /* Preview Assets.xcassets in Resources */,
+				AB1E2F3729FA5C26003A7CEE /* Pixeled.ttf in Resources */,
+				AB1E2F4B29FA5C50003A7CEE /* Property List.plist in Resources */,
 				15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +561,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1E2F4C29FA5C50003A7CEE /* Property List.plist in Resources */,
+				AB1E2F4829FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */,
+				AB1E2F4229FA5C32003A7CEE /* dogicabold.ttf in Resources */,
+				AB1E2F4529FA5C32003A7CEE /* dogica.ttf in Resources */,
+				AB1E2F3F29FA5C32003A7CEE /* dogicapixel.ttf in Resources */,
+				AB1E2F3829FA5C26003A7CEE /* Pixeled.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +574,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB1E2F4D29FA5C50003A7CEE /* Property List.plist in Resources */,
+				AB1E2F4929FA5C32003A7CEE /* dogicapixelbold.ttf in Resources */,
+				AB1E2F4329FA5C32003A7CEE /* dogicabold.ttf in Resources */,
+				AB1E2F4629FA5C32003A7CEE /* dogica.ttf in Resources */,
+				AB1E2F4029FA5C32003A7CEE /* dogicapixel.ttf in Resources */,
+				AB1E2F3929FA5C26003A7CEE /* Pixeled.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
