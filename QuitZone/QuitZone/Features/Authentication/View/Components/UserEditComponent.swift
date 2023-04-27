@@ -124,16 +124,16 @@ struct UserEditComponent_Previews: PreviewProvider {
     }
 }
 
-//BUAT TEXTFIELD DI FORM DAN EDIT USER
-struct UserView: View {
-//        @StateObject var habitList = HabitList()
-
-    var body: some View {
-//            ForEach(Array(habitList.habitList.enumerated()), id: \.1.id) { index, habit in
-            UserFormView(user1: $user)
-//        }
-    }
-}
+////BUAT TEXTFIELD DI FORM DAN EDIT USER
+//struct UserView: View {
+////        @StateObject var habitList = HabitList()
+//    
+//    var body: some View {
+////            ForEach(Array(habitList.habitList.enumerated()), id: \.1.id) { index, habit in
+//            UserFormView(user1: $user)
+////        }
+//    }
+//}
 
 struct UserFormView: View {
     @Binding var user1: user
