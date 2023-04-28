@@ -101,6 +101,30 @@ struct AppColor {
 //back button (my teams, asoy geboy, edit profile)
 
 //text field form
+struct customTextField: View {
+    
+    @Binding var question: String
+    @Binding var answer: String
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("\(question)")
+                .font(.secondary(.regular, .body))
+                .padding(.bottom, 6)
+            TextField("", text: $answer)
+                .font(.title)
+                .autocapitalization(.none)
+                .padding(.horizontal, 12)
+                .frame(width:315, height:52)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color("SystemGray"), lineWidth: 2)
+                )
+        }
+        .frame(width:.infinity, height:82)
+        
+    }
+}
     //ada text
     //ada date
     //ada dropdown

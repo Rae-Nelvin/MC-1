@@ -21,7 +21,7 @@ struct WelcomeComponent: View {
             
             Spacer()
             
-            Text("Lorem impusm dolor sit amet! consectur adipiscing")
+            Text("Lorem impusm dolor sit amet! \nconsectur adipiscing \n...")
                 .font(.secondary(.regular, .body))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 100)
