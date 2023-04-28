@@ -13,9 +13,56 @@ extension Text {
     //title: 36
     //body:14
     func customText(size:Double) -> some View {
-        self.font(.system(size: size))
+        self.font(.custom("SF Pro", size: size))
     }
  
+}
+
+extension Font {
+    enum DogicaFont {
+        case regular
+        case bold
+        case pixel
+        case pixelbold
+        case custom(String)
+        
+        var value: String {
+            switch self {
+            case .regular:
+                return "dogica"
+            case .bold:
+                return "dogicabold"
+            case .pixel:
+                return "pixel"
+            case .pixelbold:
+                return "pixelbold"
+            case .custom(let name):
+                return name
+            }
+        }
+    }
+    
+    enum PixeledFont {
+        case pixeled
+        case custom(String)
+        
+        var value: String {
+            switch self {
+            case .pixeled:
+                return "Pixeled"
+            case .custom(let name):
+                return name
+            }
+        }
+    }
+    
+    static func dogica(_ type: DogicaFont, size: CGFloat = 32) -> Font {
+        return .custom(type.value, size: size)
+    }
+    
+    static func pixeled(_ type: PixeledFont, size: CGFloat = 32) -> Font {
+        return .custom(type.value, size: size)
+    }
 }
 
 //buat atur penempatan View

@@ -47,8 +47,11 @@ struct HomeComponent: View {
     var body: some View {
         ScrollView(showsIndicators: false) {
             Text("Quit Zone")
-                .customText(size:36)
+                //.customText(size:36)
+                //.font(.dogica(.regular))
+                .font(.custom("dogica", size: 36))
                 .frame(maxWidth: .infinity, alignment: .leading)
+            
             
             Image("Lungs")
                 .resizable()
