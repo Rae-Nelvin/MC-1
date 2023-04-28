@@ -9,7 +9,29 @@ import SwiftUI
 
 struct WelcomeComponent: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack (alignment: .center) {
+            
+            //tulisan quitgang
+            Text("Quitgang")
+                .font(.primary(.regular, .maintitle))
+                .padding(.top, 100)
+            
+            //gambar rokok
+            //animasi on tap gesture
+            
+            Spacer()
+            
+            Text("Lorem impusm dolor sit amet! consectur adipiscing")
+                .font(.secondary(.regular, .body))
+                .multilineTextAlignment(.center)
+                .padding(.bottom, 100)
+            //
+        }
+        .background(Image("Main Background")
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .edgesIgnoringSafeArea(.all)
+        )
     }
 }
 

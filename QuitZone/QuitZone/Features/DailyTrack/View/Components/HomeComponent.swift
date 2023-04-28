@@ -94,10 +94,10 @@ struct HomeComponent: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Text("Quit Zone")
+            Text("QuitGang")
                 //.customText(size:36)
-                //.font(.dogica(.regular))
-                .font(.custom("dogica", size: 36))
+                .font(.secondary(.regular, .title))
+                //.font(.custom("Blox2", size: 36))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             

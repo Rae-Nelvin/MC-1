@@ -19,49 +19,54 @@ extension Text {
 }
 
 extension Font {
-    enum DogicaFont {
+    enum BloxFont {
         case regular
-        case bold
-        case pixel
-        case pixelbold
-        case custom(String)
         
         var value: String {
             switch self {
             case .regular:
-                return "dogica"
-            case .bold:
-                return "dogicabold"
-            case .pixel:
-                return "pixel"
-            case .pixelbold:
-                return "pixelbold"
-            case .custom(let name):
-                return name
+                return "Blox-BRK"
             }
         }
     }
     
-    enum PixeledFont {
-        case pixeled
-        case custom(String)
+    enum TicketingFont {
+        case regular
         
         var value: String {
             switch self {
-            case .pixeled:
-                return "Pixeled"
-            case .custom(let name):
-                return name
+            case .regular:
+                return "Ticketing"
             }
         }
     }
     
-    static func dogica(_ type: DogicaFont, size: CGFloat = 32) -> Font {
-        return .custom(type.value, size: size)
+    enum SizeFont {
+        case maintitle
+        case title
+        case body
+        case caption
+        
+        var value: CGFloat {
+            switch self {
+            case .maintitle:
+                return 72
+            case .title:
+                return 34
+            case .body:
+                return 20
+            case .caption:
+                return 16
+            }
+        }
     }
     
-    static func pixeled(_ type: PixeledFont, size: CGFloat = 32) -> Font {
-        return .custom(type.value, size: size)
+    static func primary(_ type: BloxFont,  _ size: SizeFont) -> Font {
+        return .custom(type.value, size: size.value)
+    }
+    
+    static func secondary(_ type: TicketingFont, _ size: SizeFont) -> Font {
+        return .custom(type.value, size: size.value)
     }
 }
 
