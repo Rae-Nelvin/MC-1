@@ -13,6 +13,8 @@ struct Challenge: Identifiable {
     var name: String
     var description: String
     var typeID: Int
+    //butuh bool buat check & uncheck
+//    var isDone: Bool
     
     init(id: CKRecord.ID? = nil, name: String, description: String, typeID: Int) {
         self.id = id

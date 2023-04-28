@@ -8,41 +8,6 @@
 import SwiftUI
 import Charts
 
-struct ChartModel: Identifiable {
-    let id = UUID()
-    let date: Date
-    var cigarettes: Int
-    
-    //patokan: Sampoerna
-    private let nicotine = 0.8
-    private let tar = 12
-    private let price = 2000
-    
-    init(cigarettes : Int, dateString: String) {
-        let formattedDate = DateFormatter()
-        formattedDate.dateFormat = "ddMMyyyy"
-        formattedDate.locale = Locale(identifier: "id_ID")
-        formattedDate.timeZone = TimeZone.current
-        
-        self.cigarettes = cigarettes
-        self.date = formattedDate.date(from: dateString) ?? Date()
-    }
-    
-    var nicotineConsume: CGFloat {
-        return CGFloat(cigarettes) * self.nicotine
-    }
-    
-    var tarConsume: Int {
-        return cigarettes * self.tar
-    }
-    
-    var moneySpend: CGFloat {
-        return CGFloat(cigarettes) * CGFloat(self.price)
-    }
-    
-    
-}
-
 struct ProgressModel: Identifiable {
     let id = UUID()
     let date: Date
@@ -69,27 +34,14 @@ struct ProgressModel: Identifiable {
 struct HomeComponent: View {
     
     @State var currPicker = "7 Days"
-    @State var sampleAnalyticsByDate: [ChartModel] = []
+    @State var progressDataByDate: [ProgressModel] = []
     @State var progressData: [ProgressModel] = [
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 20, currDate: Date()), cigarettes: 5)
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 21, currDate: Date()), cigarettes: 2),
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 22, currDate: Date()), cigarettes: 3),
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 23, currDate: Date()), cigarettes: 4),
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 24, currDate: Date()), cigarettes: 1),
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 25, currDate: Date()), cigarettes: 2)
-        //        ProgressModel(date: CalendarHelper().getItemDate(day: 25, currDate: Date()), cigarettes: 2)
-    ]
-    let sampleAnalytics: [ChartModel] = [
-        ChartModel(cigarettes: 3, dateString: "01042022"),
-        ChartModel(cigarettes: 4, dateString: "02042022"),
-        ChartModel(cigarettes: 1, dateString: "03042022"),
-        ChartModel(cigarettes: 6, dateString: "14042023"),
-        ChartModel(cigarettes: 3, dateString: "05042023"),
-        ChartModel(cigarettes: 2, dateString: "19042023"),
-        ChartModel(cigarettes: 6, dateString: "20042023"),
-        ChartModel(cigarettes: 3, dateString: "21042023"),
-        ChartModel(cigarettes: 3, dateString: "22042023"),
-        ChartModel(cigarettes: 3, dateString: "24042023")
+        ProgressModel(date: CalendarHelper().getItemDate(day: 20, currAppDate: Date()), cigarettes: 5),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 21, currAppDate: Date()), cigarettes: 2),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 22, currAppDate: Date()), cigarettes: 3),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 23, currAppDate: Date()), cigarettes: 4),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 24, currAppDate: Date()), cigarettes: 1),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 25, currAppDate: Date()), cigarettes: 2)
     ]
     
     var body: some View {
@@ -115,7 +67,8 @@ struct HomeComponent: View {
                     .padding(.top, 30)
                 
                 //MARK: Calendar Progress View
-                CalendarView(progressData: $progressData)
+                CalendarView(progressData: $progressData,
+                             progressDataByDate: $progressDataByDate)
                 
                 //MARK: Statistics
                 VStack {
@@ -139,16 +92,16 @@ struct HomeComponent: View {
                     statisticsChart()
                 }
                 .onChange(of: currPicker) {tabName in
-                    sampleAnalyticsByDate.removeAll()
+                    progressDataByDate.removeAll()
                     if tabName == "7 Days" {
-                        last7Days()
+                        progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
                     }
                     else if tabName == "Month" {
-                        showMonths()
+                        progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
                     }
                 }
                 .onAppear {
-                    last7Days()
+                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
                 }
                 .padding(.top, 30)
             }
@@ -159,15 +112,15 @@ struct HomeComponent: View {
     @ViewBuilder
     func statisticsChart() -> some View {
         
-        let yAxisCigarettes = sampleAnalytics.max {x, y in
+        let yAxisCigarettes = progressData.max {x, y in
             return x.cigarettes < y.cigarettes
         }!.cigarettes
         
-        let yAxisTar = sampleAnalytics.max {x, y in
+        let yAxisTar = progressData.max {x, y in
             return x.tarConsume < y.tarConsume
         }!.tarConsume
         
-        let yAxisNicotine = sampleAnalytics.max {x, y in
+        let yAxisNicotine = progressData.max {x, y in
             return Int(x.nicotineConsume) < Int(y.nicotineConsume)
         }!.nicotineConsume
         
@@ -175,13 +128,13 @@ struct HomeComponent: View {
         //MARK: Cigarettes
         VStack(alignment: .leading) {
             Text("**Cigarette**")
-            Chart(sampleAnalyticsByDate) { data in
+            Chart(progressDataByDate) { data in
                 BarMark (
                     x: .value("Date", data.date, unit: .day),
                     y: .value("Cigarettes", data.cigarettes)
                 )
             }
-            .chartYScale(domain: 0...yAxisCigarettes + 10)
+            .chartYScale(domain: 0...yAxisCigarettes + 5)
             .frame(width: 300, height: 150)
         }
         .padding()
@@ -194,13 +147,13 @@ struct HomeComponent: View {
         //MARK: Tar
         VStack(alignment: .leading) {
             Text("**Tar**")
-            Chart(sampleAnalyticsByDate) { data in
+            Chart(progressDataByDate) { data in
                 BarMark (
                     x: .value("Date", data.date, unit: .day),
                     y: .value("Cigarettes", data.tarConsume)
                 )
             }
-            .chartYScale(domain: 0...yAxisTar + 100)
+            .chartYScale(domain: 0...yAxisTar + 50)
             .frame(width: 300, height: 150)
         }
         .padding()
@@ -213,13 +166,13 @@ struct HomeComponent: View {
         //MARK: Nicotine
         VStack(alignment: .leading) {
             Text("**Nicotine**")
-            Chart(sampleAnalyticsByDate) { data in
+            Chart(progressDataByDate) { data in
                 BarMark (
                     x: .value("Date", data.date, unit: .day),
                     y: .value("Nicotine", Int(data.nicotineConsume))
                 )
             }
-            .chartYScale(domain: 0...yAxisNicotine + 5)
+            .chartYScale(domain: 0...yAxisNicotine + 3)
             .frame(width: 300, height: 150)
         }
         .padding()
@@ -231,69 +184,7 @@ struct HomeComponent: View {
         
         
     }
-    
-    func last7Days() {
-        let sevenDaysAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        
-        for data in sampleAnalytics {
-            if data.date >= sevenDaysAgo! && data.date <= Date() {
-                sampleAnalyticsByDate.append(data)
-            }
-        }
-    }
-    
-    func showMonths() {
-        let currMonth = Calendar.current.component(.month, from: Date())
-        let currYear = Calendar.current.component(.year, from: Date())
-        
-        for data in sampleAnalytics {
-            let dataMonth = Calendar.current.component(.month, from: data.date)
-            let dataYear = Calendar.current.component(.year, from: data.date)
-            
-            if dataMonth == currMonth && dataYear == currYear {
-                sampleAnalyticsByDate.append(data)
-            }
-        }
-    }
 }
-//
-//class monthCalendar {
-//    @Published var month: Int
-//    @Published var year: Int
-//
-//    @Published var currProgressDate = Date()
-//    @Published var daysData: [String] = []
-//
-//    init(month: Int, year: Int) {
-//        self.month = month
-//        self.year = year
-//        showCalendarData()
-//    }
-//
-//    func showCalendarData() {
-//        daysData.removeAll()
-//
-//        //April contains 30 days (Int)
-//        let totalDays = CalendarHelper().totalDaysInMonth(date: currProgressDate)
-//
-//        //1 April = 6 (Saturday, means we want to empty space from sun to fri)
-//        let startingSpace = CalendarHelper().firstWeekDayOfMonth(date: currProgressDate)
-//
-//        var ctrItem: Int = 1
-//        //empty space have 42 box
-//        while(ctrItem <= 42) {
-//            if ctrItem <= startingSpace || (ctrItem - startingSpace) > totalDays {
-//                daysData.append("")
-//            } else {
-//                daysData.append(String(ctrItem - startingSpace))
-//            }
-//
-//            ctrItem += 1
-//        }
-//    }
-//
-//}
-//
 
 struct CalendarView: View {
     let columns = Array(repeating: GridItem(), count:7)
@@ -301,7 +192,8 @@ struct CalendarView: View {
     @State var currProgressDate = Date()
     @State var daysData: [String] = []
     @Binding var progressData: [ProgressModel]
-    
+    @Binding var progressDataByDate: [ProgressModel]
+
     var body: some View {
         VStack {
             //MARK: Calendar Navigation
@@ -309,7 +201,10 @@ struct CalendarView: View {
                 //left button
                 Button {
                     currProgressDate = CalendarHelper().minusMonth(date: currProgressDate)
-                    showCalendarData()
+                    DispatchQueue.main.async {
+//                        showCalendarData()
+                        daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
+                    }
                 } label: {
                     Image(systemName: "arrow.left")
                 }
@@ -328,7 +223,10 @@ struct CalendarView: View {
                 //right button
                 Button {
                     currProgressDate = CalendarHelper().plusMonth(date: currProgressDate)
-                    showCalendarData()
+                    DispatchQueue.main.async {
+//                        showCalendarData()
+                        daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
+                    }
                 } label: {
                     Image(systemName: "arrow.right")
                 }
@@ -345,7 +243,9 @@ struct CalendarView: View {
                 }
                 
                 //MARK: Day Section
-                ForEach(daysData, id:\.self) {boxItem in
+                ForEach(daysData.indices, id:\.self) {x in
+                    
+                    let boxItem = daysData[x]
                     
                     //get the current item date (1 is random number that I generate to handle error in empty boxItem)
                     let itemDate = CalendarHelper().getItemDate(day: Int(boxItem) ?? 1, currAppDate: currProgressDate)
@@ -356,9 +256,9 @@ struct CalendarView: View {
                     //show cigarettes data in box
                     let showCigarettes: Bool = (cigarettesData != -1) ? true : false
                     
-                    //used for block input from user in date greater than today
+                    //used to block input from user in date greater than today
                     let fillData: Bool = itemDate <= Date()
-                
+                    
                     //MARK: Day
                     VStack {
                         Text(boxItem)
@@ -409,7 +309,9 @@ struct CalendarView: View {
                                 print("New data saved: \(text) with date \(itemDate)")
                                 
                                 //refresh calendar to see update
-                                showCalendarData()
+//                                showCalendarData()
+                                daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
+                                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
                             }
                         }
                     }
@@ -418,11 +320,11 @@ struct CalendarView: View {
                 }
                 
             }
-            
             .hAlign(.center)
         }
         .onAppear {
-            showCalendarData()
+//            showCalendarData()
+            daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
         }
         
     }
@@ -437,27 +339,27 @@ struct CalendarView: View {
         return -1
     }
     
-    func showCalendarData() {
-        daysData.removeAll()
-        
-        //April contains 30 days (Int)
-        let totalDays = CalendarHelper().totalDaysInMonth(date: currProgressDate)
-        
-        //1 April = 6 (Saturday, means we want to empty space from sun to fri)
-        let startingSpace = CalendarHelper().firstWeekDayOfMonth(date: currProgressDate)
-        
-        var ctrItem: Int = 1
-        //empty space have 42 box
-        while(ctrItem <= 42) {
-            if ctrItem <= startingSpace || (ctrItem - startingSpace) > totalDays {
-                daysData.append("")
-            } else {
-                daysData.append(String(ctrItem - startingSpace))
-            }
-            
-            ctrItem += 1
-        }
-    }
+//    func showCalendarData() {
+//        daysData.removeAll()
+//
+//        //April contains 30 days (Int)
+//        let totalDays = CalendarHelper().totalDaysInMonth(date: currProgressDate)
+//
+//        //1 April = 6 (Saturday, means we want to empty space from sun to fri)
+//        let startingSpace = CalendarHelper().firstWeekDayOfMonth(date: currProgressDate)
+//
+//        var ctrItem: Int = 1
+//        //empty space have 42 box
+//        while(ctrItem <= 42) {
+//            if ctrItem <= startingSpace || (ctrItem - startingSpace) > totalDays {
+//                daysData.append("")
+//            } else {
+//                daysData.append(String(ctrItem - startingSpace))
+//            }
+//
+//            ctrItem += 1
+//        }
+//    }
 }
 
 struct CalendarHelper {
@@ -507,6 +409,60 @@ struct CalendarHelper {
         return calendar.component(.weekday, from: firstOfMonthDate) - 1
     }
     
+    func showStatLastSevenDays(progressData: [ProgressModel]) -> [ProgressModel] {
+        var progressDataByDate: [ProgressModel] = []
+        let sevenDaysInt = Calendar.current.component(.day, from: Date()) - 7
+        let sevenDaysAgoDate = CalendarHelper().getItemDate(day: sevenDaysInt, currAppDate: Date())
+        
+        for data in progressData {
+            if data.date >= sevenDaysAgoDate && data.date <= Date() {
+                progressDataByDate.append(data)
+            }
+        }
+        return progressDataByDate
+    }
+    
+    func showStatThisMonth(progressData: [ProgressModel]) -> [ProgressModel] {
+        
+        var progressDataByDate: [ProgressModel] = []
+        let currMonth = Calendar.current.component(.month, from: Date())
+        let currYear = Calendar.current.component(.year, from: Date())
+        
+        for data in progressData {
+            let dataMonth = Calendar.current.component(.month, from: data.date)
+            let dataYear = Calendar.current.component(.year, from: data.date)
+            
+            if dataMonth == currMonth && dataYear == currYear {
+                progressDataByDate.append(data)
+            }
+        }
+        return progressDataByDate
+    }
+    
+    func showCalendarData(currProgressDate: Date) -> [String] {
+        var daysData: [String] = []
+        
+        //April contains 30 days (Int)
+        let totalDays = totalDaysInMonth(date: currProgressDate)
+        
+        //1 April = 6 (Saturday, means we want to empty space from sun to fri)
+        let startingSpace = firstWeekDayOfMonth(date: currProgressDate)
+        
+        var ctrItem: Int = 1
+        //empty space have 42 box
+        while(ctrItem <= 42) {
+            if ctrItem <= startingSpace || (ctrItem - startingSpace) > totalDays {
+                daysData.append("")
+            } else {
+                daysData.append(String(ctrItem - startingSpace))
+            }
+            
+            ctrItem += 1
+        }
+        
+        return daysData
+    }
+    
 }
 
 struct HomeComponent_Previews: PreviewProvider {
@@ -514,28 +470,3 @@ struct HomeComponent_Previews: PreviewProvider {
         HomeComponent()
     }
 }
-
-
-//MARK: Some Testing Code
-/**
- 
- //to get the total
- let total = sample_analytics.reduce(0.0) { partialResult, item in
- Double(item.cigarettes) + partialResult
- }
- struct CalendarView: UIViewRepresentable {
- func updateUIView(_ uiView: UICalendarView, context: Context) {
- 
- }
- 
- func makeUIView(context: Context) -> UICalendarView {
- let view = UICalendarView()
- view.calendar = Calendar(identifier: .gregorian)
- //        view.availableDateRange
- return view
- }
- }
- 
- 
- 
- */
