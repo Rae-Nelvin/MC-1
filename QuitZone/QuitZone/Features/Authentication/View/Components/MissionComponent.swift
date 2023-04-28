@@ -14,8 +14,14 @@ struct MissionData: Identifiable {
     var isDone = false
 }
 
-func dummyMission() -> [MissionData] {
-    let dummy: [MissionData] = [
+
+struct MissionComponent: View {
+    
+    let columns = Array(repeating: GridItem(), count: 5)
+    @State private var isMissionShowed = false
+    @State private var index: Int = -1
+    @State private var data: [MissionData] = [
+        
         MissionData(missionTitle: "Mission 1", missionText: "Dummy Missin Text"),
         MissionData(missionTitle: "Mission 2", missionText: "Dummy Missin Text"),
         MissionData(missionTitle: "Mission 3", missionText: "Dummy Missin Text"),
@@ -37,16 +43,6 @@ func dummyMission() -> [MissionData] {
         MissionData(missionTitle: "Mission 19", missionText: "Dummy Missin Text"),
         MissionData(missionTitle: "Mission 20", missionText: "Dummy Missin Text")
     ]
-    
-    return dummy
-}
-
-struct MissionComponent: View {
-    
-    let columns = Array(repeating: GridItem(), count: 5)
-    @State private var isMissionShowed = false
-    @State private var index: Int = -1
-    @State private var data = dummyMission()
 
     var body: some View {
         ZStack {
