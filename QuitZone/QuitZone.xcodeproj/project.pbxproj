@@ -150,8 +150,8 @@
 		157792F529F4162E0031AA1C /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				ABF47E4529EFC5A10067F243 /* Model */,
 				ABF47E4329EFC09A0067F243 /* View */,
+				ABF47E4529EFC5A10067F243 /* Model */,
 				ABF47E4429EFC5850067F243 /* ViewModel */,
 			);
 			path = Authentication;
@@ -160,6 +160,7 @@
 		157792F629F4163C0031AA1C /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				AB81F37029FBC611009EFFE8 /* View */,
 				157792F729F416550031AA1C /* Model */,
 				15A437C129F57F5B00300BF5 /* ViewModel */,
 			);
@@ -178,6 +179,7 @@
 		15A437B429F4196800300BF5 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
+				AB81F37129FBC620009EFFE8 /* View */,
 				15A437B529F4196F00300BF5 /* Model */,
 				15A437CA29F7D14300300BF5 /* ViewModel */,
 			);
@@ -196,6 +198,7 @@
 		15A437BC29F57D4400300BF5 /* DailyTrack */ = {
 			isa = PBXGroup;
 			children = (
+				AB81F37229FBC629009EFFE8 /* View */,
 				15A437BD29F57D8600300BF5 /* Model */,
 				15A437C029F57E8E00300BF5 /* ViewModel */,
 			);
@@ -313,6 +316,81 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		AB81F37029FBC611009EFFE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB81F37829FBC6ED009EFFE8 /* Views */,
+				AB81F37729FBC6E3009EFFE8 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB81F37129FBC620009EFFE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB81F37629FBC6DC009EFFE8 /* Views */,
+				AB81F37529FBC6D5009EFFE8 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB81F37229FBC629009EFFE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AB81F37329FBC6B1009EFFE8 /* Views */,
+				AB81F37429FBC6B6009EFFE8 /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AB81F37329FBC6B1009EFFE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AB81F37429FBC6B6009EFFE8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E5329EFD26E0067F243 /* HomeComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AB81F37529FBC6D5009EFFE8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E6329EFD3AF0067F243 /* MissionComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AB81F37629FBC6DC009EFFE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AB81F37729FBC6E3009EFFE8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				ABF47E5729EFD2940067F243 /* ParticipantComponent.swift */,
+				ABF47E5929EFD2EE0067F243 /* CreateTeamComponent.swift */,
+				ABF47E5B29EFD3100067F243 /* LeaderboardComponent.swift */,
+				ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		AB81F37829FBC6ED009EFFE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		ABF47E4329EFC09A0067F243 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,14 +504,8 @@
 			children = (
 				ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */,
 				ABF47E5F29EFD37D0067F243 /* FormComponent.swift */,
-				ABF47E5329EFD26E0067F243 /* HomeComponent.swift */,
 				ABF47E5529EFD27F0067F243 /* UserComponent.swift */,
 				ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */,
-				ABF47E5729EFD2940067F243 /* ParticipantComponent.swift */,
-				ABF47E5929EFD2EE0067F243 /* CreateTeamComponent.swift */,
-				ABF47E5B29EFD3100067F243 /* LeaderboardComponent.swift */,
-				ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */,
-				ABF47E6329EFD3AF0067F243 /* MissionComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
