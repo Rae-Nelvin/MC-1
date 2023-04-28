@@ -423,11 +423,11 @@
 		ABF47E4629EFC5CD0067F243 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				15A437C429F7BE9A00300BF5 /* Database */,
-				15A437BC29F57D4400300BF5 /* DailyTrack */,
-				15A437B429F4196800300BF5 /* Challenge */,
-				157792F629F4163C0031AA1C /* Team */,
 				157792F529F4162E0031AA1C /* Authentication */,
+				15A437BC29F57D4400300BF5 /* DailyTrack */,
+				157792F629F4163C0031AA1C /* Team */,
+				15A437B429F4196800300BF5 /* Challenge */,
+				15A437C429F7BE9A00300BF5 /* Database */,
 			);
 			path = Features;
 			sourceTree = "<group>";
