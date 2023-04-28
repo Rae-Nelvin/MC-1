@@ -14,9 +14,11 @@ class PlayerViewModel: ObservableObject {
     private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
     @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
     private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    @Published var isRegistered: Bool = false
     
     init() {
         fetchiCloudUserRecord()
+        getPlayer()
     }
     
     func createPlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
@@ -51,10 +53,12 @@ class PlayerViewModel: ObservableObject {
             switch result {
             case .failure(let error):
                 print(error)
+                self?.isRegistered = false
             case .success(let records):
                 let record = records.first
                 let fetchedPlayer = Player(id: record?.recordID,name: record?.value(forKey: "name") as! String, dob: record?.value(forKey: "dob") as! Date, frequency: record?.value(forKey: "frequency") as! Int, smokerFor: record?.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record?.value(forKey: "typeOfCigarattes") as! String, iCloud: record?.value(forKey: "iCloud") as! CKRecord.Reference)
                 self?.player = fetchedPlayer
+                self?.isRegistered = true
             }
         }
     }
@@ -125,25 +129,30 @@ struct PlayerView: View {
     }
     
     var body: some View {
-        VStack {
-            Section(header: Text("Personal Info")) {
-                TextField("Enter your name", text: $name)
-                DatePicker("Enter your Date of Birth", selection: $dob, displayedComponents: [.date])
+        NavigationView {
+            VStack {
+                Section(header: Text("Personal Info")) {
+                    TextField("Enter your name", text: $name)
+                    DatePicker("Enter your Date of Birth", selection: $dob, displayedComponents: [.date])
+                }
+                
+                Section(header: Text("Smoking Info")) {
+                    TextField("Enter your frequency of smoking", value: $frequency, formatter: NumberFormatter())
+                    TextField("Enter you've been smoking for in months", value: $smokerFor, formatter: NumberFormatter())
+                    TextField("Enter your type of cigarattes", text: $typeOfCigarattes)
+                }
+                Button("Submit") {
+                    //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+                    pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+                }
+                Button("Check Account") {
+                    pvm.getPlayer()
+                }
+                NavigationLink(destination: CalendarViewModelView(player: pvm.player)) {
+                    Text("Go To Calendar Page")
+                }
             }
-            
-            Section(header: Text("Smoking Info")) {
-                TextField("Enter your frequency of smoking", value: $frequency, formatter: NumberFormatter())
-                TextField("Enter you've been smoking for in months", value: $smokerFor, formatter: NumberFormatter())
-                TextField("Enter your type of cigarattes", text: $typeOfCigarattes)
-            }
-        }
-        .padding()
-        Button("Submit") {
-            //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-        }
-        Button("Check Account") {
-            pvm.getPlayer()
+            .padding()
         }
     }
 }

@@ -7,15 +7,21 @@
 
 import Foundation
 import CloudKit
+import SwiftUI
 
 class DailyPlayerViewModel: ObservableObject {
     
     private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    @Published var player: Player
     
-    func createDaily(playerID: CKRecord.ID, cigars: Int?) {
+    init(player: Player) {
+        self.player = player
+    }
+    
+    func createDaily(cigars: Int?) {
         let record = CKRecord(recordType: "DailyPlayer")
-        let reference = CKRecord.Reference(recordID: playerID, action: .none)
-        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0, date: Date())
+        let reference = CKRecord.Reference(recordID: self.player.id ?? CKRecord.ID(recordName: "Placeholder"), action: .none)
+        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0)
         record.setValuesForKeys(daily.toDictionary())
         
         dvm.create(record: record) { result in
@@ -52,5 +58,23 @@ class DailyPlayerViewModel: ObservableObject {
             }
         }
     }
+}
+
+struct HomeDailyPlayer: View {
+    @ObservedObject var dpvm: DailyPlayerViewModel
     
+    init(player: Player) {
+        self.dpvm = DailyPlayerViewModel(player: player)
+    }
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text(dpvm.player.name)
+                Button("Make Daily Track") {
+                    dpvm.createDaily(cigars: 2)
+                }
+            }
+        }
+    }
 }

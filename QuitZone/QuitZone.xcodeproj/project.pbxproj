@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F329F26BA20031AA1C /* PlayerViewModel.swift */; };
 		157792F929F4165D0031AA1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F829F4165D0031AA1C /* Team.swift */; };
+		15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8B29FB796700F04678 /* HomeCalendarView.swift */; };
+		15965F8E29FB7DA200F04678 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8D29FB7DA200F04678 /* Day.swift */; };
 		15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437AE29F4180200300BF5 /* iCloudViewModel.swift */; };
 		15A437B129F4181200300BF5 /* Lung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B029F4181200300BF5 /* Lung.swift */; };
 		15A437B329F4185E00300BF5 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B229F4185E00300BF5 /* Member.swift */; };
@@ -27,6 +29,7 @@
 		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
 		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
 		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
+		15DB5C8029FACE6D00388D43 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DB5C7F29FACE6D00388D43 /* CalendarViewModel.swift */; };
 		ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74829EFEBF300682177 /* UserModel.swift */; };
 		ABC3E74B29EFF18100682177 /* GSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74A29EFF18100682177 /* GSM.swift */; };
 		ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */; };
@@ -62,6 +65,8 @@
 		157792EB29F24F8F0031AA1C /* QuitZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitZone.entitlements; sourceTree = "<group>"; };
 		157792F329F26BA20031AA1C /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		157792F829F4165D0031AA1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		15965F8B29FB796700F04678 /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
+		15965F8D29FB7DA200F04678 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		15A437AE29F4180200300BF5 /* iCloudViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudViewModel.swift; sourceTree = "<group>"; };
 		15A437B029F4181200300BF5 /* Lung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lung.swift; sourceTree = "<group>"; };
 		15A437B229F4185E00300BF5 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
@@ -83,6 +88,7 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		15DB5C7F29FACE6D00388D43 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		ABC3E74829EFEBF300682177 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		ABC3E74A29EFF18100682177 /* GSM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSM.swift; sourceTree = "<group>"; };
 		ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeComponent.swift; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		15A437BC29F57D4400300BF5 /* DailyTrack */ = {
 			isa = PBXGroup;
 			children = (
+				15DB5C7C29FACE3E00388D43 /* New Group */,
 				15A437BD29F57D8600300BF5 /* Model */,
 				15A437C029F57E8E00300BF5 /* ViewModel */,
 			);
@@ -181,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				15A437BE29F57D9000300BF5 /* DailyPlayer.swift */,
+				15965F8D29FB7DA200F04678 /* Day.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */,
+				15DB5C7F29FACE6D00388D43 /* CalendarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -272,6 +281,30 @@
 				15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */,
 			);
 			path = QuitZoneUITests;
+			sourceTree = "<group>";
+		};
+		15DB5C7C29FACE3E00388D43 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				15DB5C7D29FACE4900388D43 /* Views */,
+				15DB5C7E29FACE5000388D43 /* Components */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		15DB5C7D29FACE4900388D43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15DB5C7E29FACE5000388D43 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				15965F8B29FB796700F04678 /* HomeCalendarView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		ABF47E4329EFC09A0067F243 /* View */ = {
@@ -542,6 +575,7 @@
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
 				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
+				15965F8E29FB7DA200F04678 /* Day.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
 				15A437B929F41A3500300BF5 /* Challenge.swift in Sources */,
 				15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */,
@@ -554,6 +588,8 @@
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
 				15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */,
+				15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */,
+				15DB5C8029FACE6D00388D43 /* CalendarViewModel.swift in Sources */,
 				ABC3E74B29EFF18100682177 /* GSM.swift in Sources */,
 				15A437B129F4181200300BF5 /* Lung.swift in Sources */,
 				ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */,

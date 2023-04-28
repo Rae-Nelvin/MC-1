@@ -33,7 +33,7 @@ class DatabaseViewModel {
     
     func read(query: CKQuery, completion: @escaping (Result<[CKRecord], Error>) -> Void) {
         var fetchedRecords: [CKRecord] = []
-        self.database.perform(query, inZoneWith: nil) { [weak self] (records, error) in
+        self.database.perform(query, inZoneWith: nil) { (records, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
