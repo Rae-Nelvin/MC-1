@@ -100,6 +100,7 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		68FAC7A029FBA93F00B6BC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AB1E2F5229FA7DDA003A7CEE /* dogicapixel.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogicapixel.ttf; sourceTree = "<group>"; };
 		AB1E2F5329FA7DDA003A7CEE /* dogica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogica.ttf; sourceTree = "<group>"; };
 		AB1E2F5429FA7DDA003A7CEE /* dogicabold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogicabold.ttf; sourceTree = "<group>"; };
@@ -264,6 +265,7 @@
 		15BF5D6F29EFBC68003C1500 /* QuitZone */ = {
 			isa = PBXGroup;
 			children = (
+				68FAC7A029FBA93F00B6BC93 /* Info.plist */,
 				157792EB29F24F8F0031AA1C /* QuitZone.entitlements */,
 				ABF47E4829EFC6020067F243 /* Application */,
 				ABF47E4729EFC5D80067F243 /* Core */,
@@ -779,6 +781,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuitZone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -809,6 +812,7 @@
 				DEVELOPMENT_TEAM = R4FBGZQ29P;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuitZone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
