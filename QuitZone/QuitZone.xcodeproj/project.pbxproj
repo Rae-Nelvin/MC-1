@@ -44,6 +44,15 @@
 		AB1E2F7C29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
 		AB1E2F7D29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
 		AB1E2F7E29FA8B19003A7CEE /* Heibird.otf in Resources */ = {isa = PBXBuildFile; fileRef = AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */; };
+		AB81F37A29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
+		AB81F37B29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
+		AB81F37C29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
+		AB81F37E29FBC8E3009EFFE8 /* Blox2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */; };
+		AB81F37F29FBC8E3009EFFE8 /* Blox2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */; };
+		AB81F38029FBC8E3009EFFE8 /* Blox2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */; };
+		AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */; };
+		AB81F38329FBCA13009EFFE8 /* MainTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */; };
+		AB81F38429FBCA13009EFFE8 /* MainTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */; };
 		ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74829EFEBF300682177 /* UserModel.swift */; };
 		ABC3E74B29EFF18100682177 /* GSM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC3E74A29EFF18100682177 /* GSM.swift */; };
 		ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */; };
@@ -108,6 +117,9 @@
 		AB1E2F6229FA7DEA003A7CEE /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
 		AB1E2F7329FA88B0003A7CEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB1E2F7B29FA8B19003A7CEE /* Heibird.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Heibird.otf; sourceTree = "<group>"; };
+		AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ticketing.ttf; sourceTree = "<group>"; };
+		AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blox2.ttf; sourceTree = "<group>"; };
+		AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTeamView.swift; sourceTree = "<group>"; };
 		ABC3E74829EFEBF300682177 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		ABC3E74A29EFF18100682177 /* GSM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSM.swift; sourceTree = "<group>"; };
 		ABF47E5129EFD25F0067F243 /* WelcomeComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeComponent.swift; sourceTree = "<group>"; };
@@ -306,6 +318,8 @@
 		AB1E2F3529FA5C08003A7CEE /* Font */ = {
 			isa = PBXGroup;
 			children = (
+				AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */,
+				AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */,
 				AB1E2F5329FA7DDA003A7CEE /* dogica.ttf */,
 				AB1E2F5429FA7DDA003A7CEE /* dogicabold.ttf */,
 				AB1E2F5229FA7DDA003A7CEE /* dogicapixel.ttf */,
@@ -387,6 +401,7 @@
 		AB81F37829FBC6ED009EFFE8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -621,9 +636,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB81F37E29FBC8E3009EFFE8 /* Blox2.ttf in Resources */,
 				AB1E2F5C29FA7DDA003A7CEE /* dogicabold.ttf in Resources */,
 				AB1E2F5F29FA7DDA003A7CEE /* dogicapixelbold.ttf in Resources */,
 				AB1E2F5929FA7DDA003A7CEE /* dogica.ttf in Resources */,
+				AB81F37A29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */,
 				AB1E2F7C29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5629FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				15BF5D7829EFBC69003C1500 /* Preview Assets.xcassets in Resources */,
@@ -639,7 +656,9 @@
 				AB1E2F7D29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5729FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				AB1E2F5A29FA7DDA003A7CEE /* dogica.ttf in Resources */,
+				AB81F37F29FBC8E3009EFFE8 /* Blox2.ttf in Resources */,
 				AB1E2F7529FA88B0003A7CEE /* Info.plist in Resources */,
+				AB81F37B29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */,
 				AB1E2F5D29FA7DDA003A7CEE /* dogicabold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -652,7 +671,9 @@
 				AB1E2F7E29FA8B19003A7CEE /* Heibird.otf in Resources */,
 				AB1E2F5829FA7DDA003A7CEE /* dogicapixel.ttf in Resources */,
 				AB1E2F5B29FA7DDA003A7CEE /* dogica.ttf in Resources */,
+				AB81F38029FBC8E3009EFFE8 /* Blox2.ttf in Resources */,
 				AB1E2F7629FA88B0003A7CEE /* Info.plist in Resources */,
+				AB81F37C29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */,
 				AB1E2F5E29FA7DDA003A7CEE /* dogicabold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -672,6 +693,7 @@
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
 				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
+				AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
 				15A437B929F41A3500300BF5 /* Challenge.swift in Sources */,
 				15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */,
@@ -698,6 +720,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB81F38329FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,6 +730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
+				AB81F38429FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
