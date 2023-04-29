@@ -13,6 +13,8 @@ class iCloudViewModel: ObservableObject {
     @Published var isSignedInToiCloud: Bool = false
     @Published var error: String = ""
     @Published var userName: String = ""
+    @Published var iCloud: CKRecord.ID = CKRecord.ID(recordName: "Placeholder")
+    @Published var isLoading: Bool = true
     
     init() {
         getiCloudStatus()
@@ -60,6 +62,8 @@ class iCloudViewModel: ObservableObject {
         CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
             if let id = returnedID {
                 self?.discoveriCloudUser(id: id)
+                self?.iCloud = id
+                self?.isLoading = false
             }
         }
     }
@@ -72,30 +76,5 @@ class iCloudViewModel: ObservableObject {
                 }
             }
         }
-    }
-}
-
-// For Testing Purposes Delete Later
-struct CloudKitUser: View {
-    @StateObject private var vm: iCloudViewModel = iCloudViewModel()
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("IS SIGNED IN: \(vm.isSignedInToiCloud.description.uppercased())")
-                Text(vm.error)
-                Text("Permission: \(vm.permissionStatus.description.uppercased())")
-                Text("Name: \(vm.userName)")
-                NavigationLink(destination: PlayerView(pvm: PlayerViewModel()), label: {
-                    Text("Next")
-                })
-            }
-        }
-    }
-}
-
-struct CloudKitUser_Previews: PreviewProvider {
-    static var previews: some View {
-        CloudKitUser()
     }
 }

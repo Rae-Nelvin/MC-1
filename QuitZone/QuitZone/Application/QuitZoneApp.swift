@@ -10,10 +10,18 @@ import CloudKit
 
 @main
 struct QuitZoneApp: App {
+    @ObservedObject var qzvm: QuitZoneViewModel = QuitZoneViewModel()
     
     var body: some Scene {
         WindowGroup {
-            CloudKitUser()
+            ZStack {
+                switch qzvm.currentPage {
+                case "iCloudView":
+                    PlayerView()
+                default:
+                    PlayerView()
+                }
+            }
         }
     }
 }

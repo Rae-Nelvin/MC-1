@@ -97,12 +97,8 @@ class MissionViewModel: ObservableObject {
                             switch result {
                             case .failure(let error):
                                 print(error)
-                            case .success(let status):
-                                print(status)
-                                DispatchQueue.main.async {
-                                    self.fetchingPlayerMissions()
-                                }
-//                                self.fetchingPlayerMissions()
+                            case .success(_):
+                                self.fetchingPlayerMissions()
                             }
                         }
                     }
@@ -117,35 +113,34 @@ class MissionViewModel: ObservableObject {
 
 struct MissionViewModelView: View {
     
-    @StateObject var mvm: MissionViewModel
+    @ObservedObject var mvm: MissionViewModel
     
-    init(mvm: MissionViewModel) {
-        _mvm = StateObject(wrappedValue: mvm)
+    init(player: Player) {
+        mvm = MissionViewModel(player: player)
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(mvm.missions, id: \.id) { mission in
-                        HStack {
-                            VStack {
-                                Text(mission.title)
-                                Text(mission.description)
-                            }
-                            Button("Check") {
-                                mvm.finishMission(mission: mission)
-                            }
-                            .disabled(mission.isDone == true)
-                            Button("Uncheck") {
-                                mvm.cancelFinishedMission(mission: mission)
-                            }
-                            .disabled(mission.isDone == false)
-                            Text(String(mission.isDone))
+        VStack {
+            List {
+                ForEach(mvm.missions, id: \.id) { mission in
+                    HStack {
+                        VStack {
+                            Text(mission.title)
+                            Text(mission.description)
                         }
+                        Button("Check") {
+                            mvm.finishMission(mission: mission)
+                        }
+                        .disabled(mission.isDone == true)
+                        Button("Uncheck") {
+                            mvm.cancelFinishedMission(mission: mission)
+                        }
+                        .disabled(mission.isDone == false)
+                        Text(String(mission.isDone))
                     }
                 }
             }
         }
+        
     }
 }

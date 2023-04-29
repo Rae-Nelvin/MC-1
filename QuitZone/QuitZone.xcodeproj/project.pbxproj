@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F329F26BA20031AA1C /* PlayerViewModel.swift */; };
 		157792F929F4165D0031AA1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F829F4165D0031AA1C /* Team.swift */; };
+		158B325F29FD3B6000EC7EAD /* QuitZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */; };
 		15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8B29FB796700F04678 /* HomeCalendarView.swift */; };
 		15965F8E29FB7DA200F04678 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8D29FB7DA200F04678 /* Day.swift */; };
 		15965F9329FBCB5C00F04678 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9229FBCB5C00F04678 /* Mission.swift */; };
@@ -65,6 +66,7 @@
 		157792EB29F24F8F0031AA1C /* QuitZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitZone.entitlements; sourceTree = "<group>"; };
 		157792F329F26BA20031AA1C /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		157792F829F4165D0031AA1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneViewModel.swift; sourceTree = "<group>"; };
 		15965F8B29FB796700F04678 /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
 		15965F8D29FB7DA200F04678 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		15965F9229FBCB5C00F04678 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */,
+				158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
 				15965F9529FCC8D600F04678 /* LungViewModel.swift in Sources */,
 				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
+				158B325F29FD3B6000EC7EAD /* QuitZoneViewModel.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				15965F8E29FB7DA200F04678 /* Day.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
