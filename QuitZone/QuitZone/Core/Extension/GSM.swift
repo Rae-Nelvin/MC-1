@@ -15,7 +15,7 @@ extension Text {
     func customText(size:Double) -> some View {
         self.font(.custom("SF Pro", size: size))
     }
- 
+    
 }
 
 extension Font {
@@ -70,7 +70,6 @@ extension Font {
     }
 }
 
-//buat atur penempatan View
 extension View {
     func hAlign(_ alignment: Alignment) -> some View {
         self
@@ -80,6 +79,16 @@ extension View {
     func vAlign(_ alignment: Alignment) -> some View {
         self
             .frame(maxHeight: .infinity, alignment: alignment)
+    }
+    
+    func statisticsFormating() -> some View {
+        self
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    .fill(.white.shadow(.drop(radius: 5)))
+            )
+            .padding(.top, 15)
     }
 }
 
@@ -125,15 +134,67 @@ struct customTextField: View {
         
     }
 }
-    //ada text
-    //ada date
-    //ada dropdown
+//ada text
+//ada date
+//ada dropdown
 
 //alert
-
-
-//button alert
-
+//MARK: Mission alert
+extension View {
+    //MARK: Alert with 2 Button
+    func customMissionAlert(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping ()-> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        //left side (Cancel)
+        alert.addAction(.init(title: leftButton, style: .default, handler: { _ in
+            leftAction()
+        }))
+        
+        //right side (Mark as Done)
+        alert.addAction(.init(title: rightButton, style: .default, handler: { _ in
+            rightAction()
+        }))
+        
+        //showing alert
+        alertController().present(alert, animated: true, completion: nil)
+    }
+    
+    //button alert
+    //MARK: Alert with 2 Button & 1 Textfield
+    func customAlertTextField(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping (String)-> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addTextField() { field in
+            field.keyboardType = .decimalPad
+            field.placeholder = "3"
+        }
+        
+        //left side (Cancel)
+        alert.addAction(.init(title: leftButton, style: .default, handler: { _ in
+            leftAction()
+        }))
+        
+        //right side (Save)
+        alert.addAction(.init(title: rightButton, style: .default, handler: { _ in
+            if let text = alert.textFields?[0].text {
+                rightAction(text)
+            } else {
+                rightAction("-1")
+            }
+        }))
+        
+        //showing alert
+        alertController().present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK: showing alert controller
+    func alertController() -> UIViewController {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {return .init()}
+        guard let root = screen.windows.first?.rootViewController else {return .init()}
+        
+        return root
+    }
+}
 
 //tabview
 
