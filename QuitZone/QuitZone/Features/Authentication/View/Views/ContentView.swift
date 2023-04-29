@@ -24,7 +24,7 @@ struct ContentView: View {
             VStack {
                 TabView {
                     Group {
-                        HomeComponent()
+                        HomeView()
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
@@ -32,7 +32,7 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Friends", systemImage: "network")
                             }
-                        MissionComponent()
+                        MissionView()
                             .tabItem {
                                 Label("Mission", systemImage: "scroll")
                             }
