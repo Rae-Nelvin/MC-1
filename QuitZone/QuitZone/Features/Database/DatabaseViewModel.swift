@@ -22,9 +22,14 @@ class DatabaseViewModel {
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
-                } else {
-                    if let newRecord = newRecord {
-                        completion(.success(newRecord))
+                }
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+                    self.database.fetch(withRecordID: record.recordID) { (record, error) in
+                        if let record = record {
+                            timer.invalidate()
+                            completion(.success(record))
+                        }
                     }
                 }
             }
@@ -52,12 +57,24 @@ class DatabaseViewModel {
     }
     
     func delete(recordID: CKRecord.ID, completion: @escaping (Result<Bool, Error>) -> Void) {
-        self.database.delete(withRecordID: recordID) { (records, error) in
+        self.database.delete(withRecordID: recordID) { (recordID, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
-                } else {
-                    completion(.success(true))
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                    let fetchOperation = CKFetchRecordsOperation(recordIDs: [recordID!])
+                    fetchOperation.fetchRecordsCompletionBlock = { (records, error) in
+                        if error != nil {
+                            completion(.success(true))
+                        } else {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self?.delete(recordID: recordID!, completion: completion)
+                            }
+                        }
+                    }
+                    self?.database.add(fetchOperation)
                 }
             }
         }

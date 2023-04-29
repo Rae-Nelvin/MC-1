@@ -21,7 +21,7 @@ class MissionViewModel: ObservableObject {
     }
     
     func fetchingPlayerMissions() {
-        self.missions = []
+        missions = []
         let date = Date()
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day], from: date)
@@ -45,13 +45,16 @@ class MissionViewModel: ObservableObject {
     }
     
     func fetchingMissions() {
-        for var mission in missionLists.lists {
+        for missionList in missionLists.lists {
+            var mission: Mission = missionList
             for playerMission in self.playerMissions {
-                if Mission.compare(lhs: mission, rhs: playerMission) == true {
-                    mission.isDone = true
+                if Mission.compare(lhs: missionList, rhs: playerMission) == true {
+                    mission = Mission(title: missionList.title, description: missionList.description, point: missionList.point, isDone: true)
+                } else {
+                    mission = Mission(title: missionList.title, description: missionList.description, point: missionList.point, isDone: false)
                 }
             }
-            self.missions.append(mission)
+            missions.append(mission)
         }
     }
     
@@ -102,7 +105,6 @@ class MissionViewModel: ObservableObject {
                     }
                 }
             }
-            
         }
     }
     
