@@ -8,12 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+//    init() {
+//        for familyName in UIFont.familyNames {
+//            print(familyName)
+//
+//            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+//                print("--\(fontName)")
+//            }
+//        }
+//    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 TabView {
                     Group {
-                        HomeComponent()
+                        HomeView()
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
@@ -21,7 +32,7 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Friends", systemImage: "network")
                             }
-                        MissionComponent()
+                        MissionView()
                             .tabItem {
                                 Label("Mission", systemImage: "scroll")
                             }
@@ -43,6 +54,7 @@ struct ContentView: View {
             }
         }
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

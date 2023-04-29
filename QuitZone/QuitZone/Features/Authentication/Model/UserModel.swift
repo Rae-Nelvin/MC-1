@@ -9,7 +9,7 @@ import Foundation
 import CloudKit
 
 // Placeholder Delete Later
-struct user {
+struct User {
     var name : String = "Leonardo Da Vinci"
     var dateOfBirth : String = "1 April 1050"
     var frequency : String = "Active"

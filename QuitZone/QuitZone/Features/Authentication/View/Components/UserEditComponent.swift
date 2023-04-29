@@ -9,7 +9,13 @@ import SwiftUI
 
 struct UserEditComponent: View {
     
-    @State private var tempName = "123"
+    @State private var tempName : String = "Leonardo Da Vinci"
+    @State private var tempDateOfBirth : String = "1 April 1050"
+    @State private var tempFrequency : String = "Active"
+    @State private var tempSmokerFor : String = "Not set"
+    @State private var tempTypeOfCigarette : String = "Not set"
+    @State private var tempEmail : String = "Not set"
+    @State private var tempPhone : String = "Not set"
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -107,7 +113,7 @@ struct UserEditComponent: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    ///
+                    //update user info
                 } label: {
                     Text("Save")
                 }
@@ -123,3 +129,4 @@ struct UserEditComponent_Previews: PreviewProvider {
         UserEditComponent()
     }
 }
+
