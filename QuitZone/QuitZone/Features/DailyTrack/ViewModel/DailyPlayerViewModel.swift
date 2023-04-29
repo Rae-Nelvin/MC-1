@@ -21,7 +21,7 @@ class DailyPlayerViewModel: ObservableObject {
     func createDaily(cigars: Int?) {
         let record = CKRecord(recordType: "DailyPlayer")
         let reference = CKRecord.Reference(recordID: self.player.id ?? CKRecord.ID(recordName: "Placeholder"), action: .none)
-        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0)
+        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0, date: Date())
         record.setValuesForKeys(daily.toDictionary())
         
         dvm.create(record: record) { result in
@@ -34,8 +34,8 @@ class DailyPlayerViewModel: ObservableObject {
         }
     }
     
-    func updateDaily(playerID: CKRecord.ID, cigars: Int) {
-        let predicate = NSPredicate(format: "playerID == %@", playerID)
+    func updateDaily(cigars: Int, date: Date) {
+        let predicate = NSPredicate(format: "playerID == %@ AND date == %@", self.player.id ?? CKRecord.ID(recordName: "Placeholder"), date as NSDate)
         let query = CKQuery(recordType: "DailyPlayer", predicate: predicate)
         
         dvm.read(query: query) { result in
@@ -44,7 +44,7 @@ class DailyPlayerViewModel: ObservableObject {
                 print(error)
             case .success(let records):
                 let record = records.first
-                var totalCigars = record?.value(forKey: "cigars") as! Int + cigars
+                let totalCigars = record?.value(forKey: "cigars") as! Int + cigars
                 record?.setValue(totalCigars, forKey: "cigars")
                 
                 self.dvm.create(record: record ?? CKRecord(recordType: "DailyPlayer")) { result in

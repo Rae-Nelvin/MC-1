@@ -11,17 +11,17 @@
 		157792F929F4165D0031AA1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F829F4165D0031AA1C /* Team.swift */; };
 		15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8B29FB796700F04678 /* HomeCalendarView.swift */; };
 		15965F8E29FB7DA200F04678 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8D29FB7DA200F04678 /* Day.swift */; };
+		15965F9329FBCB5C00F04678 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9229FBCB5C00F04678 /* Mission.swift */; };
+		15965F9529FCC8D600F04678 /* LungViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9429FCC8D600F04678 /* LungViewModel.swift */; };
+		15965F9829FCD56100F04678 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9729FCD56100F04678 /* MissionViewModel.swift */; };
 		15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437AE29F4180200300BF5 /* iCloudViewModel.swift */; };
 		15A437B129F4181200300BF5 /* Lung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B029F4181200300BF5 /* Lung.swift */; };
 		15A437B329F4185E00300BF5 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B229F4185E00300BF5 /* Member.swift */; };
-		15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B629F4198C00300BF5 /* TeamChallenge.swift */; };
-		15A437B929F41A3500300BF5 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B829F41A3500300BF5 /* Challenge.swift */; };
 		15A437BB29F5271800300BF5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BA29F5271800300BF5 /* Player.swift */; };
 		15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BE29F57D9000300BF5 /* DailyPlayer.swift */; };
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
 		15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */; };
 		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
-		15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -67,17 +67,17 @@
 		157792F829F4165D0031AA1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		15965F8B29FB796700F04678 /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
 		15965F8D29FB7DA200F04678 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		15965F9229FBCB5C00F04678 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		15965F9429FCC8D600F04678 /* LungViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungViewModel.swift; sourceTree = "<group>"; };
+		15965F9729FCD56100F04678 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
 		15A437AE29F4180200300BF5 /* iCloudViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudViewModel.swift; sourceTree = "<group>"; };
 		15A437B029F4181200300BF5 /* Lung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lung.swift; sourceTree = "<group>"; };
 		15A437B229F4185E00300BF5 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-		15A437B629F4198C00300BF5 /* TeamChallenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallenge.swift; sourceTree = "<group>"; };
-		15A437B829F41A3500300BF5 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		15A437BA29F5271800300BF5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		15A437BE29F57D9000300BF5 /* DailyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayer.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
 		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
-		15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChallengeViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -156,28 +156,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		15A437B429F4196800300BF5 /* Challenge */ = {
+		15965F8F29FBCB4700F04678 /* Mission */ = {
 			isa = PBXGroup;
 			children = (
-				15A437B529F4196F00300BF5 /* Model */,
-				15A437CA29F7D14300300BF5 /* ViewModel */,
+				15965F9129FBCB5300F04678 /* Model */,
+				15965F9629FCD55100F04678 /* ViewModel */,
 			);
-			path = Challenge;
+			path = Mission;
 			sourceTree = "<group>";
 		};
-		15A437B529F4196F00300BF5 /* Model */ = {
+		15965F9129FBCB5300F04678 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				15A437B629F4198C00300BF5 /* TeamChallenge.swift */,
-				15A437B829F41A3500300BF5 /* Challenge.swift */,
+				15965F9229FBCB5C00F04678 /* Mission.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		15965F9629FCD55100F04678 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				15965F9729FCD56100F04678 /* MissionViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		15A437BC29F57D4400300BF5 /* DailyTrack */ = {
 			isa = PBXGroup;
 			children = (
-				15DB5C7C29FACE3E00388D43 /* New Group */,
+				15DB5C7C29FACE3E00388D43 /* View */,
 				15A437BD29F57D8600300BF5 /* Model */,
 				15A437C029F57E8E00300BF5 /* ViewModel */,
 			);
@@ -216,14 +223,6 @@
 				15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */,
 			);
 			path = Database;
-			sourceTree = "<group>";
-		};
-		15A437CA29F7D14300300BF5 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				15A437CB29F7D15E00300BF5 /* TeamChallengeViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		15BF5D6429EFBC68003C1500 = {
@@ -283,13 +282,13 @@
 			path = QuitZoneUITests;
 			sourceTree = "<group>";
 		};
-		15DB5C7C29FACE3E00388D43 /* New Group */ = {
+		15DB5C7C29FACE3E00388D43 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				15DB5C7D29FACE4900388D43 /* Views */,
 				15DB5C7E29FACE5000388D43 /* Components */,
 			);
-			path = "New Group";
+			path = View;
 			sourceTree = "<group>";
 		};
 		15DB5C7D29FACE4900388D43 /* Views */ = {
@@ -322,6 +321,7 @@
 			children = (
 				157792F329F26BA20031AA1C /* PlayerViewModel.swift */,
 				15A437AE29F4180200300BF5 /* iCloudViewModel.swift */,
+				15965F9429FCC8D600F04678 /* LungViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -339,9 +339,9 @@
 		ABF47E4629EFC5CD0067F243 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				15965F8F29FBCB4700F04678 /* Mission */,
 				15A437C429F7BE9A00300BF5 /* Database */,
 				15A437BC29F57D4400300BF5 /* DailyTrack */,
-				15A437B429F4196800300BF5 /* Challenge */,
 				157792F629F4163C0031AA1C /* Team */,
 				157792F529F4162E0031AA1C /* Authentication */,
 			);
@@ -573,29 +573,29 @@
 				157792F929F4165D0031AA1C /* Team.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
+				15965F9529FCC8D600F04678 /* LungViewModel.swift in Sources */,
 				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				15965F8E29FB7DA200F04678 /* Day.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
-				15A437B929F41A3500300BF5 /* Challenge.swift in Sources */,
 				15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */,
 				ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */,
 				ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */,
 				ABF47E6429EFD3AF0067F243 /* MissionComponent.swift in Sources */,
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
 				ABF47E5429EFD26E0067F243 /* HomeComponent.swift in Sources */,
-				15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */,
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
 				15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */,
 				15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */,
+				15965F9829FCD56100F04678 /* MissionViewModel.swift in Sources */,
 				15DB5C8029FACE6D00388D43 /* CalendarViewModel.swift in Sources */,
 				ABC3E74B29EFF18100682177 /* GSM.swift in Sources */,
 				15A437B129F4181200300BF5 /* Lung.swift in Sources */,
 				ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */,
 				ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
-				15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */,
+				15965F9329FBCB5C00F04678 /* Mission.swift in Sources */,
 				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

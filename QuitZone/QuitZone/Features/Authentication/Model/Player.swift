@@ -14,7 +14,7 @@ struct Player: Identifiable {
     var name: String
     var dob: Date
     var frequency: Int
-    var smokerFor: Int
+    var smokerFor: Int // per bulan
     var typeOfCigarattes: String
     
     init(id: CKRecord.ID? = nil, name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String, iCloud: CKRecord.Reference) {

@@ -18,7 +18,7 @@ class PlayerViewModel: ObservableObject {
     
     init() {
         fetchiCloudUserRecord()
-        getPlayer()
+//        getPlayer()
     }
     
     func createPlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
@@ -59,6 +59,7 @@ class PlayerViewModel: ObservableObject {
                 let fetchedPlayer = Player(id: record?.recordID,name: record?.value(forKey: "name") as! String, dob: record?.value(forKey: "dob") as! Date, frequency: record?.value(forKey: "frequency") as! Int, smokerFor: record?.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record?.value(forKey: "typeOfCigarattes") as! String, iCloud: record?.value(forKey: "iCloud") as! CKRecord.Reference)
                 self?.player = fetchedPlayer
                 self?.isRegistered = true
+                print(record)
             }
         }
     }
@@ -108,10 +109,6 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func createPlayerLung() {}
-    
-    func updatePlayerLung() {}
-    
 }
 
 // For Testing Purposes Delete Later
@@ -148,8 +145,8 @@ struct PlayerView: View {
                 Button("Check Account") {
                     pvm.getPlayer()
                 }
-                NavigationLink(destination: CalendarViewModelView(player: pvm.player)) {
-                    Text("Go To Calendar Page")
+                NavigationLink(destination: MissionViewModelView(player: pvm.player)) {
+                    Text("Go To Mission Page")
                 }
             }
             .padding()

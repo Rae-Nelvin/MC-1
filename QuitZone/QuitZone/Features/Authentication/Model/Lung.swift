@@ -8,19 +8,19 @@
 import Foundation
 import CloudKit
 
-struct UserLung: Identifiable {
-    var id = UUID()
-    var userID: CKRecord.Reference
+struct PlayerLung: Identifiable {
+    var id: CKRecord.ID?
+    var playerID: CKRecord.Reference
     var condition: LungCondition
     
-    init(id: UUID = UUID(), userID: CKRecord.Reference, condition: LungCondition) {
+    init(id: CKRecord.ID? = nil, playerID: CKRecord.Reference, condition: LungCondition) {
         self.id = id
-        self.userID = userID
+        self.playerID = playerID
         self.condition = condition
     }
     
     func toDictionary() -> [String: Any] {
-        return ["userID": userID, "condition": condition]
+        return ["playerID": playerID, "condition": condition]
     }
 }
 
