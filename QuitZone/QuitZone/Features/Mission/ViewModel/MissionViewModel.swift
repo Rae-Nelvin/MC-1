@@ -21,7 +21,7 @@ class MissionViewModel: ObservableObject {
     }
     
     func fetchingPlayerMissions() {
-        missions = []
+        self.missions = []
         let date = Date()
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day], from: date)
@@ -54,7 +54,7 @@ class MissionViewModel: ObservableObject {
                     mission = Mission(title: missionList.title, description: missionList.description, point: missionList.point, isDone: false)
                 }
             }
-            missions.append(mission)
+            self.missions.append(mission)
         }
     }
     
@@ -99,7 +99,10 @@ class MissionViewModel: ObservableObject {
                                 print(error)
                             case .success(let status):
                                 print(status)
-                                self.fetchingPlayerMissions()
+                                DispatchQueue.main.async {
+                                    self.fetchingPlayerMissions()
+                                }
+//                                self.fetchingPlayerMissions()
                             }
                         }
                     }
@@ -114,30 +117,32 @@ class MissionViewModel: ObservableObject {
 
 struct MissionViewModelView: View {
     
-    @ObservedObject var mvm: MissionViewModel
+    @StateObject var mvm: MissionViewModel
     
-    init(player: Player) {
-        self.mvm = MissionViewModel(player: player)
+    init(mvm: MissionViewModel) {
+        _mvm = StateObject(wrappedValue: mvm)
     }
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(mvm.missions, id: \.id) { mission in
-                    HStack {
-                        VStack {
-                            Text(mission.title)
-                            Text(mission.description)
+        NavigationView {
+            VStack {
+                List {
+                    ForEach(mvm.missions, id: \.id) { mission in
+                        HStack {
+                            VStack {
+                                Text(mission.title)
+                                Text(mission.description)
+                            }
+                            Button("Check") {
+                                mvm.finishMission(mission: mission)
+                            }
+                            .disabled(mission.isDone == true)
+                            Button("Uncheck") {
+                                mvm.cancelFinishedMission(mission: mission)
+                            }
+                            .disabled(mission.isDone == false)
+                            Text(String(mission.isDone))
                         }
-                        Button("Check") {
-                            mvm.finishMission(mission: mission)
-                        }
-                        .disabled(mission.isDone == true)
-                        Button("Uncheck") {
-                            mvm.cancelFinishedMission(mission: mission)
-                        }
-                        .disabled(mission.isDone == false)
-                        Text(String(mission.isDone))
                     }
                 }
             }

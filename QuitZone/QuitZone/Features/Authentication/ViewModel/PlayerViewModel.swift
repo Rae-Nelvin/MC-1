@@ -145,8 +145,8 @@ struct PlayerView: View {
                 Button("Check Account") {
                     pvm.getPlayer()
                 }
-                NavigationLink(destination: MissionViewModelView(player: pvm.player)) {
-                    Text("Go To Mission Page")
+                NavigationLink(destination: MissionViewModelView(mvm: MissionViewModel(player: pvm.player))) {
+                    Text("Go to Mission Page")
                 }
             }
             .padding()
