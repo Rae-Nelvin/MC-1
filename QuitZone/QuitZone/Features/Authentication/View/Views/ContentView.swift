@@ -28,7 +28,7 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
-                        ParticipantComponent()
+                        MainTeamView()
                             .tabItem {
                                 Label("Friends", systemImage: "network")
                             }
