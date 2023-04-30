@@ -85,6 +85,9 @@
 		ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5529EFD27F0067F243 /* UserComponent.swift */; };
 		ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5F29EFD37D0067F243 /* FormComponent.swift */; };
 		ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */; };
+		ABF5520429FE856800785A06 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5520329FE856800785A06 /* Font.swift */; };
+		ABF5520529FE856800785A06 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5520329FE856800785A06 /* Font.swift */; };
+		ABF5520629FE856800785A06 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5520329FE856800785A06 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +163,7 @@
 		ABF47E5529EFD27F0067F243 /* UserComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserComponent.swift; sourceTree = "<group>"; };
 		ABF47E5F29EFD37D0067F243 /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
 		ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditComponent.swift; sourceTree = "<group>"; };
+		ABF5520329FE856800785A06 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -570,6 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				ABC3E74A29EFF18100682177 /* GSM.swift */,
+				ABF5520329FE856800785A06 /* Font.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -786,6 +791,7 @@
 				68FAC7DF29FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
 				68FAC7C129FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
+				ABF5520429FE856800785A06 /* Font.swift in Sources */,
 				15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */,
 				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);
@@ -808,6 +814,7 @@
 				68FAC7C229FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
 				15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */,
 				68FAC7B629FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
+				ABF5520529FE856800785A06 /* Font.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +827,7 @@
 				68FAC7D929FC703500B6BC93 /* CompareLungComponent.swift in Sources */,
 				68FAC7BB29FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
 				68FAC7B729FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
+				ABF5520629FE856800785A06 /* Font.swift in Sources */,
 				15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
 				68FAC7D129FC6CF200B6BC93 /* LeaderboardDetailView.swift in Sources */,
 				AB81F38429FBCA13009EFFE8 /* MainTeamView.swift in Sources */,

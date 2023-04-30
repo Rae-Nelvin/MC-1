@@ -13,7 +13,7 @@ struct WelcomeComponent: View {
             
             //tulisan quitgang
             Text("Quitgang")
-                .font(.primary(.regular, .maintitle))
+                .font(.primary(.maintitle))
                 .padding(.top, 100)
             
             //gambar rokok
@@ -22,7 +22,7 @@ struct WelcomeComponent: View {
             Spacer()
             
             Text("Lorem impusm dolor sit amet! \nconsectur adipiscing \n...")
-                .font(.secondary(.regular, .body))
+                .font(.secondary(.body))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 100)
             //

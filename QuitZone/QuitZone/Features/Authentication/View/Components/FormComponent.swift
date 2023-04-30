@@ -19,7 +19,7 @@ struct FormComponent: View {
     @State private var tempvar6 : String = ""
     
     @State private var tempvar7 : String = "How frequent?"
-    @State private var tempvar8 : Int = 1
+    @State private var tempvar8 : Double = 1
     
     var body: some View {
         VStack {
@@ -29,10 +29,26 @@ struct FormComponent: View {
                 .padding(.bottom, 29)
             customTextField(question: $tempvar5, answer: $tempvar6)
                 .padding(.bottom, 29)
-            Text("\(tempvar7)")
+            HStack {
+                Text("\(tempvar7)")
+                    .font(.secondary(.body))
+                    .padding(.bottom, 6)
+                Text("(on a scale of 10)")
+                    .font(.secondary(.custom(12)))
+                    .padding(.bottom, 6)
+                Spacer()
+
+            }
+            HStack {
+                Slider(value: $tempvar8, in:1...10, step: 1.0)
+                Text("\(Int(tempvar8))")
+                    .font(.secondary(.custom(12)))
+                    .padding(.bottom, 6)
+            }
 
 
         }
+        .frame(width:315)
     }
 }
 
