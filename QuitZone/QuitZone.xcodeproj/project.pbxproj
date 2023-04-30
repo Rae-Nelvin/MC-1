@@ -56,6 +56,7 @@
 		ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */; };
 		ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E5F29EFD37D0067F243 /* FormComponent.swift */; };
 		ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */; };
+		ABF5520229FE412D00785A06 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF5520129FE412D00785A06 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		ABF47E5D29EFD31F0067F243 /* LeaderboardDetailComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDetailComponent.swift; sourceTree = "<group>"; };
 		ABF47E5F29EFD37D0067F243 /* FormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormComponent.swift; sourceTree = "<group>"; };
 		ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEditComponent.swift; sourceTree = "<group>"; };
+		ABF5520129FE412D00785A06 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Font.swift; path = ../../../../../../../../Desktop/Font.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,6 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				ABC3E74A29EFF18100682177 /* GSM.swift */,
+				ABF5520129FE412D00785A06 /* Font.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				8003DFF729FD341B0092937D /* LungsComponent.swift in Sources */,
 				ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
+				ABF5520229FE412D00785A06 /* Font.swift in Sources */,
 				15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */,
 				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);

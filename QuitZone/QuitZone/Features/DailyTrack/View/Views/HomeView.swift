@@ -22,10 +22,8 @@ struct HomeView: View {
     
     var body: some View {
         ScrollView(showsIndicators: false) {
-            Text("Quit Zone")
-            //.customText(size:36)
-            //.font(.dogica(.regular))
-                .font(.custom("dogica", size: 36))
+            Text("Quitgang")
+                .font(.primary(.title))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             //MARK: Lungs
@@ -34,7 +32,7 @@ struct HomeView: View {
             //MARK: Progress
             VStack {
                 Text("**Progress**")
-                    .customText(size: 24)
+                    .font(.secondary(.custom(24)))
                     .hAlign(.leading)
                     .padding(.bottom, 15)
                     .padding(.top, 30)
@@ -49,7 +47,7 @@ struct HomeView: View {
                 //MARK: Statistics Selection
                 HStack {
                     Text("**Statistics**")
-                        .customText(size: 24)
+                        .font(.secondary(.custom(24)))
                         .hAlign(.leading)
                     
                     Spacer()
