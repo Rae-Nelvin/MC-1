@@ -92,9 +92,9 @@ class TeamViewModel: ObservableObject {
         }
     }
     
-    func createTeam(name: String) {
+    func createTeam(name: String, goal: String) {
         let record = CKRecord(recordType: "Team")
-        let team = Team(name: name, players: 1, inviteCode: generateRandomStrings())
+        let team = Team(name: name, players: 1, inviteCode: generateRandomStrings(), goal: goal)
         record.setValuesForKeys(team.toDictionary())
         
         dvm.create(record: record) { result in
@@ -116,7 +116,7 @@ class TeamViewModel: ObservableObject {
             case .failure(let error):
                 print(error)
             case .success(let records):
-                let team = Team(name: (records.first?.value(forKey: "name")) as! String, players: records.first?.value(forKey: "players") as! Int)
+                let team = Team(name: (records.first?.value(forKey: "name")) as! String, players: records.first?.value(forKey: "players") as! Int, goal: (records.first?.value(forKey: "name")) as! String)
                 self.teams.append(team)
             }
         }
