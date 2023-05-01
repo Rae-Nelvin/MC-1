@@ -14,6 +14,7 @@ struct CalendarComponent: View {
     @State var daysData: [String] = []
     @Binding var progressData: [ProgressModel]
     @Binding var progressDataByDate: [ProgressModel]
+    @Binding var currPicker: String
 
     var body: some View {
         VStack {
@@ -86,14 +87,6 @@ struct CalendarComponent: View {
                         if boxItem != "" {
                             Text(showCigarettes ? String(cigarettesData) : " ")
                                 .frame(width: 35, height: 35)
-//                                .background(
-//                                    Rectangle()
-//                                        .fill(fillData ? .gray.opacity(0.8): .gray.opacity(0.1))
-//                                        .background(
-//                                            Rectangle()
-//                                                .stroke()
-//                                        )
-//                                )
                                 .background(
                                     //imagenya ilang
                                     Image("CalendarBox")
@@ -128,21 +121,35 @@ struct CalendarComponent: View {
                                                  rightButton: "Save") {
                                 print("Cancelled")
                             } rightAction: { text in
-                                //add new data
-                                let newData = ProgressModel(date: itemDate, cigarettes: Int(text)!)
-                                progressData.append(newData)
                                 
-                                print("New data saved: \(text) with date \(itemDate)")
+                                var isDataExist = false
                                 
-                                //refresh calendar to see update
+                                //find data to update
+                                for index in progressData.indices {
+                                    if progressData[index].date == itemDate {
+                                        progressData[index].cigarettes = Int(text)!
+                                        isDataExist = true
+                                        break
+                                    }
+                                }
+                                
+                                //add new data if there's no record in itemDate
+                                if !isDataExist {
+                                    let newData = ProgressModel(date: itemDate, cigarettes: Int(text)!)
+                                    progressData.append(newData)
+                                    
+                                    print("New data saved: \(text) with date \(itemDate)")
+                                }
+                                
+                                //refresh calendar to see update and set statistics view to 7 Days
                                 daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                                 progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
+                                currPicker = "7 Days"
                             }
                         }
                     }
                     .hAlign(.center)
                     .padding(1)
-                    
                 }
                 
             }

@@ -12,12 +12,13 @@ struct HomeView: View {
     @State var currPicker = "7 Days"
     @State var progressDataByDate: [ProgressModel] = []
     @State var progressData: [ProgressModel] = [
-        ProgressModel(date: CalendarHelper().getItemDate(day: 20, currAppDate: Date()), cigarettes: 5),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 21, currAppDate: Date()), cigarettes: 2),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 22, currAppDate: Date()), cigarettes: 3),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 23, currAppDate: Date()), cigarettes: 4),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 24, currAppDate: Date()), cigarettes: 1),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 25, currAppDate: Date()), cigarettes: 2)
+        ProgressModel(date: CalendarHelper().getItemDate(day: 1, currAppDate: Date()), cigarettes: 5),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 2, currAppDate: Date()), cigarettes: 2),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 3, currAppDate: Date()), cigarettes: 3),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 4, currAppDate: Date()), cigarettes: 6),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 5, currAppDate: Date()), cigarettes: 1),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 29, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 2),
+        ProgressModel(date: CalendarHelper().getItemDate(day: 30, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 3)
     ]
     
     var body: some View {
@@ -39,7 +40,8 @@ struct HomeView: View {
                 
                 //MARK: Calendar Progress View
                 CalendarComponent(progressData: $progressData,
-                                  progressDataByDate: $progressDataByDate)
+                                  progressDataByDate: $progressDataByDate,
+                                  currPicker: $currPicker)
             }
             
             //MARK: Statistics
