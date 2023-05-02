@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct WelcomeComponent: View {
+    
+    @Binding var currentPage : String
+    
     var body: some View {
         VStack (alignment: .center) {
             
@@ -27,6 +30,10 @@ struct WelcomeComponent: View {
                 .padding(.bottom, 100)
             //
         }
+        .frame(maxWidth:.infinity, maxHeight: .infinity)
+        .onTapGesture {
+            currentPage = "Form"
+        }
         .background(Image("Main Background")
             .resizable()
             .aspectRatio(contentMode: .fill)
@@ -37,6 +44,6 @@ struct WelcomeComponent: View {
 
 struct WelcomeComponent_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeComponent()
+        WelcomeComponent(currentPage: .constant("Welcome"))
     }
 }

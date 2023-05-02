@@ -12,7 +12,7 @@ import CloudKit
 struct User {
     var name : String = "Leonardo Da Vinci"
     var dateOfBirth : String = "1 April 1050"
-    var frequency : String = "Active"
+    var frequency : Int = 1
     var smokerFor : String = "Not set"
     var typeOfCigarette : String = "Not set"
     var email : String = "Not set"

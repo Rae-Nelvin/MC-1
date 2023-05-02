@@ -21,16 +21,42 @@ struct HomeView: View {
         ProgressModel(date: CalendarHelper().getItemDate(day: 30, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 3)
     ]
     
+    @State var showCalendar : Bool = false
+    
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            Text("Quitgang")
-                .font(.primary(.title))
-                .frame(maxWidth: .infinity, alignment: .leading)
+        VStack {
+            HStack {
+                ProgressBar(percentage: 57, tickValue: 320)
+                ProgressBar(percentage: 75, tickValue: 14)
+                ProgressBar(percentage: 95, tickValue: 21)
+                ProgressBar(percentage: 100, tickValue: 80)
+            }
+            .hAlign(.top)
+            .padding(.bottom, 16)
             
-            //MARK: Lungs
-           LungsComponent()
+            VStack {
+                Image(LungCondition.LungImage(.lv10)())
+                    .resizable()
+                    .frame(width: 301*0.7, height: 258*0.7)
+                    .padding(.bottom, 124)
+                    .hAlign(.top)
+                
+                Button {
+                    showCalendar.toggle()
+                } label : {
+                    Text("Show Calendar")
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding()
+            .background(
+                Image("humanBody")
+                    .resizable()
+                    .scaledToFit()
+            )
             
-            //MARK: Progress
+        }
+        .sheet(isPresented: $showCalendar) {
             VStack {
                 Text("**Progress**")
                     .font(.secondary(.custom(24)))
@@ -43,44 +69,7 @@ struct HomeView: View {
                                   progressDataByDate: $progressDataByDate,
                                   currPicker: $currPicker)
             }
-            
-            //MARK: Statistics
-            VStack {
-                //MARK: Statistics Selection
-                HStack {
-                    Text("**Statistics**")
-                        .font(.secondary(.custom(24)))
-                        .hAlign(.leading)
-                    
-                    Spacer()
-                    
-                    Picker("", selection: $currPicker) {
-                        Text("Last 7 Days").tag("7 Days")
-                        Text("This Month").tag("Month")
-                    }
-                    .pickerStyle(.segmented)
-                    .frame(width: 200)
-                }
-                
-                //MARK: Show statistics chart
-                StatisticsComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
-            }
-            .onChange(of: currPicker) {tabName in
-                progressDataByDate.removeAll()
-                if tabName == "7 Days" {
-                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-                }
-                else if tabName == "Month" {
-                    progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
-                }
-            }
-            .onAppear {
-                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-            }
-            .padding(.top, 30)
-            
         }
-        .padding()
     }
 }
 
@@ -89,3 +78,56 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
+
+
+
+
+            //            //MARK: Lungs
+            //            LungsComponent()
+                        
+            //            //MARK: Progress
+            //            VStack {
+            //                Text("**Progress**")
+            //                    .font(.secondary(.custom(24)))
+            //                    .hAlign(.leading)
+            //                    .padding(.bottom, 15)
+            //                    .padding(.top, 30)
+                            
+            //                //MARK: Calendar Progress View
+            //                CalendarComponent(progressData: $progressData,
+            //                                  progressDataByDate: $progressDataByDate)
+            //            }
+            //            //MARK: Statistics
+            //            VStack {
+            //                //MARK: Statistics Selection
+            //                HStack {
+            //                    Text("**Statistics**")
+            //                        .font(.secondary(.custom(24)))
+            //                        .hAlign(.leading)
+            //
+            //                    Spacer()
+            //
+            //                    Picker("", selection: $currPicker) {
+            //                        Text("Last 7 Days").tag("7 Days")
+            //                        Text("This Month").tag("Month")
+            //                    }
+            //                    .pickerStyle(.segmented)
+            //                    .frame(width: 200)
+            //                }
+            //
+            //                //MARK: Show statistics chart
+            //                StatisticsComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
+            //            }
+            //            .onChange(of: currPicker) {tabName in
+            //                progressDataByDate.removeAll()
+            //                if tabName == "7 Days" {
+            //                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
+            //                }
+            //                else if tabName == "Month" {
+            //                    progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
+            //                }
+            //            }
+            //            .onAppear {
+            //                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
+            //            }
+            //            .padding(.top, 30)

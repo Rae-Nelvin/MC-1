@@ -51,6 +51,7 @@ struct customTextField: View {
         
     }
 }
+
 extension View {
     func hAlign(_ alignment: Alignment) -> some View {
         self
@@ -85,6 +86,18 @@ struct AppColor {
 //ukuran image
 
 //button start, submit
+struct customButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .background(Color.white)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color("SystemGray"), lineWidth: 2)
+            )
+            .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
+    }
+}
+
 
 //button nagivation bar (save, edit, create team, create)
 
