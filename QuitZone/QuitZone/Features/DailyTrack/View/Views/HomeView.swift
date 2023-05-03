@@ -35,11 +35,8 @@ struct HomeView: View {
             .padding(.bottom, 16)
             
             VStack {
-                Image(LungCondition.LungImage(.lv10)())
-                    .resizable()
-                    .frame(width: 301*0.7, height: 258*0.7)
-                    .padding(.bottom, 124)
-                    .hAlign(.top)
+                LungsComponent()
+                
                 
                 Button {
                     showCalendar.toggle()
