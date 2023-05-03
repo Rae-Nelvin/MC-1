@@ -21,52 +21,85 @@ struct HomeView: View {
         ProgressModel(date: CalendarHelper().getItemDate(day: 30, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 3)
     ]
     
+    @ObservedObject var vm = TestSheetViewModel()
+    
     @State var showCalendar : Bool = false
+    
     
     var body: some View {
         VStack {
+            //MARK: 3 button
             HStack {
-                ProgressBar(percentage: 57, tickValue: 320)
-                ProgressBar(percentage: 75, tickValue: 14)
-                ProgressBar(percentage: 95, tickValue: 21)
-                ProgressBar(percentage: 100, tickValue: 80)
+                ProgressBar(percentage: 57, tickValue: 320, showText: true) //Nikotin
+                    .onTapGesture {
+                        vm.showSheetContentStatus = .nicotine
+                        vm.sheetStatus.toggle()
+                    }
+                
+                ProgressBar(percentage: 75, tickValue: 14, showText: true) //Tar
+                    .onTapGesture {
+                        vm.showSheetContentStatus = .tar
+                        vm.sheetStatus.toggle()
+                    }
+                
+                ZStack {
+                    ProgressBar(percentage: 100, tickValue: 40, showText: false) //Kalender
+                    Image(systemName:"calendar")
+                        .font(.largeTitle)
+                }
+                .onTapGesture {
+                    showCalendar.toggle()
+                }
             }
             .hAlign(.top)
             .padding(.bottom, 16)
             
-            VStack {
-                LungsComponent()
-                
-                
-                Button {
-                    showCalendar.toggle()
-                } label : {
-                    Text("Show Calendar")
+            Spacer()
+            
+            ZStack {
+                VStack {
+                    if showCalendar {
+                        //MARK: Calendar
+                        CalendarComponent(progressData: $progressData, progressDataByDate: $progressDataByDate, currPicker: $currPicker)
+                            .zIndex(1)
+                            .padding(.top, 50)
+                            .padding(.horizontal, 16)
+                            .background(Color.white.opacity(0.5))
+                        Spacer()
+                    }
+                    else {
+                        VStack {
+                            LungsComponent()
+                                .padding(.bottom, 28)
+                        }
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .padding()
+                        .blur(radius: showCalendar ? 1 : 0)
+                        
+                        
+                    }
+                    
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding()
             .background(
                 Image("humanBody")
                     .resizable()
                     .scaledToFit()
             )
-            
-        }
-        .sheet(isPresented: $showCalendar) {
-            VStack {
-                Text("**Progress**")
-                    .font(.secondary(.custom(24)))
-                    .hAlign(.leading)
-                    .padding(.bottom, 15)
-                    .padding(.top, 30)
-                
-                //MARK: Calendar Progress View
-                CalendarComponent(progressData: $progressData,
-                                  progressDataByDate: $progressDataByDate,
-                                  currPicker: $currPicker)
+            .sheet(isPresented: $vm.sheetStatus) {
+                switch vm.showSheetContentStatus {
+                case .nicotine:
+                    NicotineComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
+                        .presentationDetents([.height(250)])
+                        .presentationDragIndicator(.visible)
+                case .tar:
+                    TarComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
+                        .presentationDetents([.height(250)])
+                        .presentationDragIndicator(.visible)
+                }
             }
         }
+        
     }
 }
 
@@ -79,52 +112,52 @@ struct HomeView_Previews: PreviewProvider {
 
 
 
-            //            //MARK: Lungs
-            //            LungsComponent()
-                        
-            //            //MARK: Progress
-            //            VStack {
-            //                Text("**Progress**")
-            //                    .font(.secondary(.custom(24)))
-            //                    .hAlign(.leading)
-            //                    .padding(.bottom, 15)
-            //                    .padding(.top, 30)
-                            
-            //                //MARK: Calendar Progress View
-            //                CalendarComponent(progressData: $progressData,
-            //                                  progressDataByDate: $progressDataByDate)
-            //            }
-            //            //MARK: Statistics
-            //            VStack {
-            //                //MARK: Statistics Selection
-            //                HStack {
-            //                    Text("**Statistics**")
-            //                        .font(.secondary(.custom(24)))
-            //                        .hAlign(.leading)
-            //
-            //                    Spacer()
-            //
-            //                    Picker("", selection: $currPicker) {
-            //                        Text("Last 7 Days").tag("7 Days")
-            //                        Text("This Month").tag("Month")
-            //                    }
-            //                    .pickerStyle(.segmented)
-            //                    .frame(width: 200)
-            //                }
-            //
-            //                //MARK: Show statistics chart
-            //                StatisticsComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
-            //            }
-            //            .onChange(of: currPicker) {tabName in
-            //                progressDataByDate.removeAll()
-            //                if tabName == "7 Days" {
-            //                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-            //                }
-            //                else if tabName == "Month" {
-            //                    progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
-            //                }
-            //            }
-            //            .onAppear {
-            //                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-            //            }
-            //            .padding(.top, 30)
+//            //MARK: Lungs
+//            LungsComponent()
+
+//            //MARK: Progress
+//            VStack {
+//                Text("**Progress**")
+//                    .font(.secondary(.custom(24)))
+//                    .hAlign(.leading)
+//                    .padding(.bottom, 15)
+//                    .padding(.top, 30)
+
+//                //MARK: Calendar Progress View
+//                CalendarComponent(progressData: $progressData,
+//                                  progressDataByDate: $progressDataByDate)
+//            }
+//            //MARK: Statistics
+//            VStack {
+//                //MARK: Statistics Selection
+//                HStack {
+//                    Text("**Statistics**")
+//                        .font(.secondary(.custom(24)))
+//                        .hAlign(.leading)
+//
+//                    Spacer()
+//
+//                    Picker("", selection: $currPicker) {
+//                        Text("Last 7 Days").tag("7 Days")
+//                        Text("This Month").tag("Month")
+//                    }
+//                    .pickerStyle(.segmented)
+//                    .frame(width: 200)
+//                }
+//
+//                //MARK: Show statistics chart
+//                StatisticsComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
+//            }
+//            .onChange(of: currPicker) {tabName in
+//                progressDataByDate.removeAll()
+//                if tabName == "7 Days" {
+//                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
+//                }
+//                else if tabName == "Month" {
+//                    progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
+//                }
+//            }
+//            .onAppear {
+//                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
+//            }
+//            .padding(.top, 30)

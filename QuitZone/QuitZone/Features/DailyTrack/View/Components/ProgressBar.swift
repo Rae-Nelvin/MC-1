@@ -11,6 +11,7 @@ struct ProgressBar : View {
     
     var percentage: Double
     let tickValue : Double
+    let showText : Bool
     
     func tick(at tick: Int, status: Bool) -> some View {
         VStack {
@@ -34,8 +35,10 @@ struct ProgressBar : View {
                 }
             }
             
-            Text("\(Int(percentage))%")
-                .font(.secondary(.title))
+            if showText {
+                Text("\(Int(percentage))%")
+                    .font(.secondary(.title))
+            }
             
         }
         .frame(width: 80, height: 80, alignment: .center)
@@ -46,6 +49,6 @@ struct ProgressBar : View {
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(percentage: 95, tickValue: 30)
+        ProgressBar(percentage: 95, tickValue: 30, showText: false)
     }
 }
