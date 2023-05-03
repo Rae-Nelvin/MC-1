@@ -13,7 +13,6 @@ import CoreData
 struct QuitZoneApp: App {
     let persistenceController = PersistenceController.shared
     @ObservedObject var qzvm: QuitZoneViewModel = QuitZoneViewModel()
-    let container = NSPersistentCloudKitContainer(name: "QuitZoneModel")
     
     var body: some Scene {
         WindowGroup {

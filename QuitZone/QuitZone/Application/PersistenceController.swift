@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 struct PersistenceController {
     static let shared = PersistenceController()
@@ -15,32 +16,29 @@ struct PersistenceController {
     
     init() {
         container = NSPersistentCloudKitContainer(name: "QuitZoneModel")
-        
+
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Could not retrieve a persistent store description.")
         }
-        
-        description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.Testing.QuitZone")
-        
+
+        description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.QuitZoneWithCoreData")
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
+
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
     func save() {
-        let context = container.viewContext
-        
-        if context.hasChanges {
+        if container.viewContext.hasChanges {
             do {
-                try context.save()
+                try container.viewContext.save()
             } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                print("Error saving context: \(error)")
             }
         }
     }

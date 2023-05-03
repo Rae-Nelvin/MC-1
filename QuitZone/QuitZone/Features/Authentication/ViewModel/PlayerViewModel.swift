@@ -19,6 +19,7 @@ class PlayerViewModel: ObservableObject {
     
     init() {
         self.icvm = iCloudViewModel()
+        self.isLoading = false
         DispatchQueue.main.async {
             if self.icvm.isLoading == false {
                 self.getPlayer()
@@ -27,17 +28,21 @@ class PlayerViewModel: ObservableObject {
     }
     
     func createPlayer(name: String, dob: Date, frequency: Int16, smokerFor: Int16, typeOfCigarattes: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "Player", in: viewContext)
-        let player = NSManagedObject(entity: entity!, insertInto: viewContext)
         
-        player.setValue(name, forKey: "name")
-        player.setValue(dob, forKey: "dob")
-        player.setValue(frequency, forKey: "frequency")
-        player.setValue(smokerFor, forKey: "smokerFor")
-        player.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
+        let player = Player(context: PersistenceController.shared.container.viewContext)
+        
+        player.name = name
+        player.dob = dob
+        player.frequency = frequency
+        player.smokerFor = smokerFor
+        player.typeOfCigarattes = typeOfCigarattes
+        player.iCloud = icvm.iCloud
         
         do {
-            try viewContext.save()
+            try PersistenceController.shared.container.viewContext.save()
+            PersistenceController.shared.save()
+            isRegistered = true
+            print(player)
         } catch let error as NSError {
             print("Could not save. \(error), \(error.userInfo)")
         }
@@ -49,8 +54,12 @@ class PlayerViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "iCloud == %@", icvm.iCloud)
         
         do {
-            let results = try viewContext.fetch(request)
-            player = results.first ?? Player()
+            let count = try PersistenceController.shared.container.viewContext.count(for: request)
+            if count > 0 {
+                let results = try PersistenceController.shared.container.viewContext.fetch(request)
+                player = results.first ?? Player()
+                isRegistered = true
+            }
         } catch let error {
             print("Error fetching records: \(error)")
         }
@@ -59,24 +68,24 @@ class PlayerViewModel: ObservableObject {
     func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: String?, player: Player) {
         
         if name != "" {
-            player.setValue(name, forKey: "name")
+            player.name = name
         }
         
         // Supposedly to be unset after registering so it won't be buggy
         if dob != Date() {
-            player.setValue(dob, forKey: "dob")
+            player.dob = dob
         }
         
         if frequency != 0 {
-            player.setValue(frequency, forKey: "frequency")
+            player.frequency = frequency!
         }
         
         if smokerFor != 0 {
-            player.setValue(smokerFor, forKey: "smokerFor")
+            player.smokerFor = smokerFor!
         }
         
         if typeOfCigarattes != "" {
-            player.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
+            player.typeOfCigarattes = typeOfCigarattes
         }
         
         do {
@@ -114,14 +123,14 @@ struct PlayerView: View {
                             TextField("Enter your type of cigarattes", text: $typeOfCigarattes)
                         }
                         Button("Submit") {
-                            //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-                            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, player: pvm.player)
+                                        pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+//                            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, player: pvm.player)
                         }
                         Button("Check Account") {
                             pvm.getPlayer()
                         }
                     }
-                } else if pvm.isRegistered == true {
+                } else if pvm.isLoading == false && pvm.isRegistered == true {
                     MissionViewModelView(player: pvm.player)
                 }
                 else {

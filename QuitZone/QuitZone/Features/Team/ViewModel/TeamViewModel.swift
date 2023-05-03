@@ -50,7 +50,7 @@ class TeamViewModel: ObservableObject {
     
     func getMemberOfs(player: Player) {
         let request: NSFetchRequest<Member> = Member.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@", player.id!)
+        request.predicate = NSPredicate(format: "playerID == %@", player.objectID)
         
         do {
             let results = try self.viewContext.fetch(request)
@@ -64,7 +64,7 @@ class TeamViewModel: ObservableObject {
     
     func deleteMember(player: Player, team: Team) {
         let request: NSFetchRequest<Member> = Member.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ && teamID == %@", player.id!, team.id!)
+        request.predicate = NSPredicate(format: "playerID == %@ && teamID == %@", player.objectID, team.objectID)
         
         do {
             let results = try self.viewContext.fetch(request)
@@ -114,7 +114,7 @@ class TeamViewModel: ObservableObject {
     func updateTeam(name: String?, player: Int16?, team: Team) {
         var players: Int16 = 0
         let request: NSFetchRequest<Team> = Team.fetchRequest()
-        request.predicate = NSPredicate(format: "teamID == %@", team.id!)
+        request.predicate = NSPredicate(format: "teamID == %@", team.objectID)
         
         do {
             let results = try self.viewContext.fetch(request)

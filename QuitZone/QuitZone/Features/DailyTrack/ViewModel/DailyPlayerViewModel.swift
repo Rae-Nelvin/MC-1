@@ -53,7 +53,7 @@ class DailyPlayerViewModel: ObservableObject {
         let startDate = calendar.date(from: components)!
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
         let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND timestamps >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "playerID == %@ AND timestamps >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
             let results = try viewContext.fetch(request)

@@ -48,7 +48,7 @@ class CalendarViewModel: ObservableObject {
         }
         
         let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
             let results = try viewContext.fetch(request)

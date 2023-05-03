@@ -30,13 +30,16 @@ class MissionViewModel: ObservableObject {
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
         
         let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
-            let results = try viewContext.fetch(request)
-            for result in results {
-                let playerMission = result
-                self.playerMissions.append(playerMission)
+            let count = try PersistenceController.shared.container.viewContext.count(for: request)
+            if count > 0 {
+                let results = try PersistenceController.shared.container.viewContext.fetch(request)
+                for result in results {
+                    let playerMission = result
+                    self.playerMissions.append(playerMission)
+                }
             }
         } catch let error as NSError {
             print("Error fetching records: \(error)")
@@ -81,7 +84,7 @@ class MissionViewModel: ObservableObject {
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
         
         let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
             let results = try viewContext.fetch(request)
