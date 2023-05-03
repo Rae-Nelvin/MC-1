@@ -85,6 +85,24 @@ struct AppColor {
 
 //ukuran image
 
+enum faceImage : String {
+    case happy = "happyface"
+    case neutral = "neutralface"
+    case sad = "sadface"
+}
+
+enum Page : String{
+    case welcome = "Welcome"
+    case form = "Form"
+    case home = "Home"
+    case friend = "Friend"
+    case mission = "Mission"
+    case user = "User"
+}
+
+
+//face di user
+
 //button start, submit
 struct customButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {

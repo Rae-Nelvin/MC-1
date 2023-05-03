@@ -34,7 +34,7 @@ struct WelcomeComponent: View {
         .onTapGesture {
             currentPage = "Form"
         }
-        .background(Image("Main Background")
+        .background(Image("mainBackground")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
