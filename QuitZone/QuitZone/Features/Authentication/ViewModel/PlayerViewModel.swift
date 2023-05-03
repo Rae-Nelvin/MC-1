@@ -29,7 +29,7 @@ class PlayerViewModel: ObservableObject {
     
     func createPlayer(name: String, dob: Date, frequency: Int16, smokerFor: Int16, typeOfCigarattes: String) {
         
-        let player = Player(context: PersistenceController.shared.container.viewContext)
+        let player = Player(context: PersistenceController.shared.viewContext)
         
         player.name = name
         player.dob = dob
@@ -38,15 +38,8 @@ class PlayerViewModel: ObservableObject {
         player.typeOfCigarattes = typeOfCigarattes
         player.iCloud = icvm.iCloud
         
-        do {
-            try PersistenceController.shared.container.viewContext.save()
-            PersistenceController.shared.save()
-            isRegistered = true
-            print(player)
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-        
+        PersistenceController.shared.save()
+        print("Saving Data...")
     }
     
     func getPlayer() {
@@ -54,9 +47,10 @@ class PlayerViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "iCloud == %@", icvm.iCloud)
         
         do {
-            let count = try PersistenceController.shared.container.viewContext.count(for: request)
+            let count = try PersistenceController.shared.viewContext.count(for: request)
+            print("Player", count)
             if count > 0 {
-                let results = try PersistenceController.shared.container.viewContext.fetch(request)
+                let results = try PersistenceController.shared.viewContext.fetch(request)
                 player = results.first ?? Player()
                 isRegistered = true
             }
@@ -88,11 +82,7 @@ class PlayerViewModel: ObservableObject {
             player.typeOfCigarattes = typeOfCigarattes
         }
         
-        do {
-            try viewContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        PersistenceController.shared.save()
     }
     
 }
@@ -131,7 +121,11 @@ struct PlayerView: View {
                         }
                     }
                 } else if pvm.isLoading == false && pvm.isRegistered == true {
-                    MissionViewModelView(player: pvm.player)
+                    VStack {
+                        Text(pvm.player.name ?? "")
+                        Text(pvm.player.typeOfCigarattes ?? "")
+                        Text("\(pvm.player.objectID)")
+                    }
                 }
                 else {
                     Text("Loading")

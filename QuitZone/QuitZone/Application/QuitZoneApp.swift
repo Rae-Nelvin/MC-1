@@ -11,7 +11,6 @@ import CoreData
 
 @main
 struct QuitZoneApp: App {
-    let persistenceController = PersistenceController.shared
     @ObservedObject var qzvm: QuitZoneViewModel = QuitZoneViewModel()
     
     var body: some Scene {
@@ -20,7 +19,6 @@ struct QuitZoneApp: App {
                 switch qzvm.currentPage {
                 case "iCloudView":
                     PlayerView()
-                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 default:
                     PlayerView()
                 }

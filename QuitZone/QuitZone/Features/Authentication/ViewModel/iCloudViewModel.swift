@@ -9,6 +9,7 @@ import CloudKit
 import SwiftUI
 
 class iCloudViewModel: ObservableObject {
+    private var container: CKContainer = CKContainer(identifier: "iCloud.QuitZoneWithCoreData")
     @Published var permissionStatus: Bool = false
     @Published var isSignedInToiCloud: Bool = false
     @Published var error: String = ""
@@ -23,7 +24,7 @@ class iCloudViewModel: ObservableObject {
     }
     
     private func getiCloudStatus() {
-        CKContainer.default().accountStatus{ [weak self] returnedStatus, returnedError in
+        container.accountStatus{ [weak self] returnedStatus, returnedError in
             DispatchQueue.main.async {
                 switch returnedStatus {
                 case .available:
@@ -49,7 +50,7 @@ class iCloudViewModel: ObservableObject {
     }
     
     func requestPermission() {
-        CKContainer.default().requestApplicationPermission([.userDiscoverability]) { [weak self] returnedStatus, returnedError in
+        container.requestApplicationPermission([.userDiscoverability]) { [weak self] returnedStatus, returnedError in
             DispatchQueue.main.async {
                 if returnedStatus == .granted {
                     self?.permissionStatus = true
@@ -59,7 +60,7 @@ class iCloudViewModel: ObservableObject {
     }
     
     func fetchiCloudUserRecord() {
-        CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
+        container.fetchUserRecordID { [weak self] returnedID, returnedError in
             if let id = returnedID {
                 self?.discoveriCloudUser(id: id)
                 self?.iCloud = id
@@ -69,7 +70,7 @@ class iCloudViewModel: ObservableObject {
     }
     
     func discoveriCloudUser(id: CKRecord.ID){
-        CKContainer.default().discoverUserIdentity(withUserRecordID: id) { [weak self] returnedIdentity, returnedError in
+        container.discoverUserIdentity(withUserRecordID: id) { [weak self] returnedIdentity, returnedError in
             DispatchQueue.main.async {
                 if let name = returnedIdentity?.nameComponents?.givenName {
                     self?.userName = name

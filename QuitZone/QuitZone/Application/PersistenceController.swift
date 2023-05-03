@@ -14,32 +14,48 @@ struct PersistenceController {
     
     let container: NSPersistentCloudKitContainer
     
+    var viewContext: NSManagedObjectContext {
+        return container.viewContext
+    }
+    
     init() {
         container = NSPersistentCloudKitContainer(name: "QuitZoneModel")
-
+            
         guard let description = container.persistentStoreDescriptions.first else {
             fatalError("Could not retrieve a persistent store description.")
         }
-
+        
         description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.QuitZoneWithCoreData")
-
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
+        viewContext.automaticallyMergesChangesFromParent = true
+        viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
     }
     
     func save() {
-        if container.viewContext.hasChanges {
-            do {
-                try container.viewContext.save()
-            } catch {
-                print("Error saving context: \(error)")
-            }
+        do {
+            try viewContext.save()
+        } catch let error as NSError {
+            print("Error saving to CD : \(error)")
+        }
+    }
+    
+    func deleteAllPlayers() {
+        let managedObjectContext = viewContext
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Player")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try managedObjectContext.execute(batchDeleteRequest)
+        } catch let error {
+            print("Error deleting records: \(error)")
         }
     }
 }
