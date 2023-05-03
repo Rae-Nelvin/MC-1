@@ -6,12 +6,13 @@
 //
 
 import Foundation
-import CloudKit
 import SwiftUI
+import CoreData
 
 class MissionViewModel: ObservableObject {
+    
+    @Environment(\.managedObjectContext) private var viewContext
     private var player: Player
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     @Published var missions: [Mission] = []
     private var playerMissions: [PlayerMission] = []
     
@@ -27,21 +28,20 @@ class MissionViewModel: ObservableObject {
         let components = calendar.dateComponents([.year, .month, .day], from: date)
         let startDate = calendar.date(from: components)!
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
-        let predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id ?? CKRecord.ID(recordName: "placeholder"), startDate as NSDate, endDate as NSDate)
-        let query = CKQuery(recordType: "PlayerMission", predicate: predicate)
         
-        self.dvm.read(query: query) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                for record in records {
-                    let playerMission = PlayerMission(id: record.recordID, playerID: record.value(forKey: "playerID") as! CKRecord.Reference, missionTitle: record.value(forKey: "missionTitle") as! String, missionPoint: record.value(forKey: "missionPoint") as! Int)
-                    self?.playerMissions.append(playerMission)
-                }
+        let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            let results = try viewContext.fetch(request)
+            for result in results {
+                let playerMission = result
+                self.playerMissions.append(playerMission)
             }
-            self?.fetchingMissions()
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
+        self.fetchingMissions()
     }
     
     func fetchingMissions() {
@@ -59,20 +59,17 @@ class MissionViewModel: ObservableObject {
     }
     
     func finishMission(mission: Mission) {
-        let record = CKRecord(recordType: "PlayerMission")
-        let reference = CKRecord.Reference(recordID: self.player.id ?? CKRecord.ID(recordName: "Placeholder"), action: .none)
-        let playerMission = PlayerMission(playerID: reference, missionTitle: mission.title, missionPoint: mission.point)
-        record.setValuesForKeys(playerMission.toDictionary())
+        let entity = NSEntityDescription.entity(forEntityName: "PlayerMission", in: self.viewContext)
+        let playerMission = NSManagedObject(entity: entity!, insertInto: self.viewContext)
         
-        self.dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success( _):
-                print("Record Uploaded")
-                self.fetchingPlayerMissions()
-            }
-            
+        playerMission.setValue(self.player.id, forKey: "playerID")
+        playerMission.setValue(mission.title, forKey: "missionTitle")
+        playerMission.setValue(mission.point, forKey: "missionPoint")
+        
+        do {
+            try self.viewContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
         }
     }
     
@@ -82,28 +79,25 @@ class MissionViewModel: ObservableObject {
         let components = calendar.dateComponents([.year, .month, .day], from: date)
         let startDate = calendar.date(from: components)!
         let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
-        let predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id ?? CKRecord.ID(recordName: "placeholder"), startDate as NSDate, endDate as NSDate)
-        let query = CKQuery(recordType: "PlayerMission", predicate: predicate)
         
-        self.dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                for record in records {
-                    let playerMission = PlayerMission(id: record.recordID, playerID: record.value(forKey: "playerID") as! CKRecord.Reference, missionTitle: record.value(forKey: "missionTitle") as! String, missionPoint: record.value(forKey: "missionPoint") as! Int)
-                    if (mission.title == playerMission.missionTitle && mission.point == playerMission.missionPoint) {
-                        self.dvm.delete(recordID: playerMission.id ?? CKRecord.ID(recordName: "Placeholder")) { result in
-                            switch result {
-                            case .failure(let error):
-                                print(error)
-                            case .success(_):
-                                self.fetchingPlayerMissions()
-                            }
-                        }
+        let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            let results = try viewContext.fetch(request)
+            for result in results {
+                let playerMission = result
+                if (mission.title == playerMission.missionTitle && mission.point == playerMission.missionPoint) {
+                    viewContext.delete(playerMission)
+                    do {
+                        try viewContext.save()
+                    } catch let error as NSError {
+                        print("Could not save. \(error), \(error.userInfo)")
                     }
                 }
             }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     

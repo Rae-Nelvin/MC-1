@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import CloudKit
 import SwiftUI
+import CoreData
 
 class DailyPlayerViewModel: ObservableObject {
     
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    @Environment(\.managedObjectContext) private var viewContext
     @Published var player: Player
     
     init(player: Player) {
@@ -19,43 +19,48 @@ class DailyPlayerViewModel: ObservableObject {
     }
     
     func createDaily(cigars: Int?) {
-        let record = CKRecord(recordType: "DailyPlayer")
-        let reference = CKRecord.Reference(recordID: self.player.id ?? CKRecord.ID(recordName: "Placeholder"), action: .none)
-        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0, date: Date())
-        record.setValuesForKeys(daily.toDictionary())
+        let entity = NSEntityDescription.entity(forEntityName: "DailyPlayer", in: viewContext)
+        let daily = NSManagedObject(entity: entity!, insertInto: viewContext)
         
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-            }
+        daily.setValue(cigars, forKey: "cigars")
+        daily.setValue(player.id, forKey: "playerID")
+        daily.setValue(Date(), forKey: "timestamps")
+        
+        do {
+            try viewContext.save()
+        } catch let error as NSError {
+            print("Could not save daily. \(error), \(error.userInfo)")
         }
     }
     
     func updateDaily(cigars: Int, date: Date) {
-        let predicate = NSPredicate(format: "playerID == %@ AND date == %@", self.player.id ?? CKRecord.ID(recordName: "Placeholder"), date as NSDate)
-        let query = CKQuery(recordType: "DailyPlayer", predicate: predicate)
+        guard let daily = getDaily(date: date) else {
+            return
+        }
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                let totalCigars = record?.value(forKey: "cigars") as! Int + cigars
-                record?.setValue(totalCigars, forKey: "cigars")
-                
-                self.dvm.create(record: record ?? CKRecord(recordType: "DailyPlayer")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let record):
-                        print(record)
-                    }
-                }
-            }
+        daily.setValue(cigars, forKey: "cigars")
+        
+        do {
+            try viewContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func getDaily(date: Date) -> DailyPlayer? {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let startDate = calendar.date(from: components)!
+        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@ AND timestamps >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            let results = try viewContext.fetch(request)
+            return results.first ?? DailyPlayer()
+        } catch let error as NSError {
+            print("Error fetching records : \(error)")
+            return nil
         }
     }
 }
@@ -70,7 +75,7 @@ struct HomeDailyPlayer: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(dpvm.player.name)
+                Text(dpvm.player.name ?? "")
                 Button("Make Daily Track") {
                     dpvm.createDaily(cigars: 2)
                 }

@@ -7,10 +7,13 @@
 
 import SwiftUI
 import CloudKit
+import CoreData
 
 @main
 struct QuitZoneApp: App {
+    let persistenceController = PersistenceController.shared
     @ObservedObject var qzvm: QuitZoneViewModel = QuitZoneViewModel()
+    let container = NSPersistentCloudKitContainer(name: "QuitZoneModel")
     
     var body: some Scene {
         WindowGroup {
@@ -18,10 +21,13 @@ struct QuitZoneApp: App {
                 switch qzvm.currentPage {
                 case "iCloudView":
                     PlayerView()
+                        .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 default:
                     PlayerView()
                 }
             }
         }
     }
+    
+   
 }

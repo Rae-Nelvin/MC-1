@@ -8,8 +8,8 @@
 import Foundation
 import CloudKit
 
-class DatabaseViewModel {
-    static let myInstance = DatabaseViewModel()
+class CloudKitDatabaseViewModel {
+    static let myInstance = CloudKitDatabaseViewModel()
     private var database: CKDatabase
     private var container: CKContainer = CKContainer(identifier: "iCloud.Testing.QuitZone")
     

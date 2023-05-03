@@ -6,19 +6,15 @@
 //
 
 import Foundation
-import CloudKit
+import CoreData
 import SwiftUI
 
 class TeamViewModel: ObservableObject {
     
-    private var database: CKDatabase
-    private var container: CKContainer
+    @Environment(\.managedObjectContext) private var viewContext
     @Published var teams: [Team] = []
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     
-    init(container: CKContainer) {
-        self.container = container
-        self.database = self.container.publicCloudDatabase
+    init() {
     }
     
     private func generateRandomStrings() -> String {
@@ -35,174 +31,155 @@ class TeamViewModel: ObservableObject {
         return randomString
     }
     
-    func createMember(playerID: CKRecord.ID, teamID: CKRecord.ID) {
-        let record = CKRecord(recordType: "Member")
-        let playerReference = CKRecord.Reference(recordID: playerID, action: .none)
-        let teamReference = CKRecord.Reference(recordID: teamID, action: .none)
+    func createMember(player: Player, team: Team) {
+        let entity = NSEntityDescription.entity(forEntityName: "Member", in: self.viewContext)
+        let member = NSManagedObject(entity: entity!, insertInto: self.viewContext)
         
-        let member = Member(playerID: playerReference, teamID: teamReference, score: 0, date_joined: Date())
-        record.setValuesForKeys(member.toDictionary())
+        member.setValue(player.id, forKey: "playerID")
+        member.setValue(team.id, forKey: "teamID")
+        member.setValue(0, forKey: "score")
+        member.setValue(Date(), forKey: "date_joined")
         
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-                self.updateTeam(name: "", player: 1, teamID: teamID)
-            }
+        do {
+            try self.viewContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+            self.updateTeam(name: "", player: 1, team: team)
         }
     }
     
-    func getMemberOfs(playerID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "playerID == %@", playerID)
-        let query = CKQuery(recordType: "Member", predicate: predicate)
+    func getMemberOfs(player: Player) {
+        let request: NSFetchRequest<Member> = Member.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@", player.id!)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                for record in records {
-                    self.getTeam(teamID: record.value(forKey: "teamID") as! CKRecord.ID)
-                }
+        do {
+            let results = try self.viewContext.fetch(request)
+            for result in results {
+                self.getTeam(teamID: result.teamID)
             }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func deleteMember(playerID: CKRecord.ID, teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "playerID == %@ && teamID == %@", playerID, teamID)
-        let query = CKQuery(recordType: "Member", predicate: predicate)
+    func deleteMember(player: Player, team: Team) {
+        let request: NSFetchRequest<Member> = Member.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@ && teamID == %@", player.id!, team.id!)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.dvm.delete(recordID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let result):
-                        print(result)
-                    }
-                }
+        do {
+            let results = try self.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            self.viewContext.delete(result)
+            
+            do {
+                try self.viewContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
             }
+            
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func createTeam(name: String) {
-        let record = CKRecord(recordType: "Team")
-        let team = Team(name: name, players: 1, inviteCode: generateRandomStrings())
-        record.setValuesForKeys(team.toDictionary())
+    func createTeam(name: String, goal: String) {
+        let entity = NSEntityDescription.entity(forEntityName: "Team", in: self.viewContext)
+        let team = NSManagedObject(entity: entity!, insertInto: self.viewContext)
+        let inviteCode = generateRandomStrings()
         
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-            }
+        team.setValue(name, forKey: "name")
+        team.setValue(inviteCode, forKey: "inviteCode")
+        team.setValue(goal, forKey: "goal")
+        
+        do {
+            try self.viewContext.save()
+        } catch let error as NSError {
+            print("Could not save \(error), \(error.userInfo)")
         }
     }
     
-    func getTeam(teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "teamID == %@", teamID)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
+    func getTeam(teamID: Team.ID) {
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "teamID == %@", teamID!)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let team = Team(name: (records.first?.value(forKey: "name")) as! String, players: records.first?.value(forKey: "players") as! Int)
-                self.teams.append(team)
-            }
+        do {
+            let results = try self.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            self.teams.append(result)
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func updateTeam(name: String?, player: Int?, teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "teamID == %@", teamID)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
+    func updateTeam(name: String?, player: Int16?, team: Team) {
+        var players: Int16 = 0
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "teamID == %@", team.id!)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                if name != "" {
-                    record?.setValue(name, forKey: "name")
-                }
-                
-                if player != 0 {
-                    var players = record?.value(forKey: "players")
-                    players = players as! Int + (player ?? 0)
-                    record?.setValue(players, forKey: "players")
-                }
-                
-                DispatchQueue.main.async {
-                    self.dvm.create(record: record ?? CKRecord(recordType: "Team")) { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let record):
-                            print(record)
-                        }
-                    }
-                }
+        do {
+            let results = try self.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            if name != "" {
+                result.setValue(name, forKey: "name")
             }
+            
+            if player != 0 {
+                players = players + (player ?? 0)
+                result.setValue(players, forKey: "players")
+            }
+            
+            do {
+                try self.viewContext.save()
+            } catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func joinTeam(inviteCode: String, playerID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "inviteCode == %@", inviteCode)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
+    func joinTeam(inviteCode: String, player: Player) {
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "inviteCode == %@", inviteCode)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.createMember(playerID: playerID, teamID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder"))
-            }
+        do {
+            let results = try self.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            self.createMember(player: player, team: result)
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func deleteTeam(teamID: CKRecord.ID) {
-        var predicate = NSPredicate(format: "teamID == %@", teamID)
-        var query = CKQuery(recordType: "Member", predicate: predicate)
+    func deleteTeam(team: Team) {
+        let requestMember: NSFetchRequest<Member> = Member.fetchRequest()
+        requestMember.predicate = NSPredicate(format: "teamID == %@", team.id!)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let results):
-                for result in results {
-                    self.deleteMember(playerID: result.value(forKey: "playerID") as! CKRecord.ID, teamID: result.value(forKey: "teamID") as! CKRecord.ID)
-                }
+        do {
+            let results = try self.viewContext.fetch(requestMember)
+            for result in results {
+                self.deleteMember(player: result.playerID as! Player, team: result.teamID as! Team)
             }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
         
-        predicate = NSPredicate(format: "teamID == %@", teamID)
-        query = CKQuery(recordType: "Team", predicate: predicate)
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.dvm.delete(recordID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let result):
-                        print(result)
-                    }
-                }
+        let requestTeam: NSFetchRequest<Team> = Team.fetchRequest()
+        requestTeam.predicate = NSPredicate(format: "teamID == %@", team.id!)
+        do {
+            let results = try self.viewContext.fetch(requestTeam)
+            guard let result = results.first else { return }
+            self.viewContext.delete(result)
+            
+            do {
+                try self.viewContext.save()
+            } catch let error as NSError {
+                print("Coould not save. \(error), \(error.userInfo)")
             }
+            
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     

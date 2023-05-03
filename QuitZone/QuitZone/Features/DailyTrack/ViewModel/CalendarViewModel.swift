@@ -6,22 +6,23 @@
 //
 
 import Foundation
-import CloudKit
 import SwiftUI
+import CoreData
 
 class CalendarViewModel: ObservableObject {
+    
+    @Environment(\.managedObjectContext) private var viewContext
     @Published var totalDays: Int = 0
     @Published var daysData: [Day] = []
     @Published var month: Int = Calendar.current.component(.month, from: Date())
     @Published var year: Int = Calendar.current.component(.year, from: Date())
     @Published var spaces: Int = 0
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
     private var player: Player
     
     init(player: Player) {
         self.player = player
         self.totalDays = getDaysInMonth()
-        getDailyPlayerData()
+        getMonthlyPlayerData()
         getSpacesForCalendar()
     }
     
@@ -36,7 +37,7 @@ class CalendarViewModel: ObservableObject {
         return 0
     }
     
-    func getDailyPlayerData() {
+    func getMonthlyPlayerData() {
         let calendar = Calendar.current
         
         let startDateComponents = DateComponents(year: self.year, month: self.month, day: 1)
@@ -46,28 +47,27 @@ class CalendarViewModel: ObservableObject {
             return
         }
         
-        let predicate = NSPredicate(format: "creationDate >= %@ AND creationDate < %@", startDate as NSDate, endDate as NSDate)
-        let query = CKQuery(recordType: "DailyPlayer", predicate: predicate)
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                for i in 0..<self.totalDays {
-                    let daysAndDate = self.getDaysAndDate(month: self.month, year: self.year, day: i + 1)
-                    var day = Day(id: i, isFill: false, day: daysAndDate.first?.0 ?? "Null", date: daysAndDate.first?.1 ?? Date())
-                    self.daysData.append(day)
-                }
-                for record in records {
-                    let dailyPlayer = DailyPlayer(id: record.recordID ,playerID: record.value(forKey: "playerID") as! CKRecord.Reference, cigars: record.value(forKey: "cigars") as! Int, date: record.value(forKey: "date") as! Date)
-                    for i in 0..<self.daysData.count {
-                        if dailyPlayer.date == self.daysData[i].date {
-                            self.daysData[i].isFill = true
-                            self.daysData[i].dailyPlayer = dailyPlayer
-                        }
+        let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
+        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.id!, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            let results = try viewContext.fetch(request)
+            for i in 0..<self.totalDays {
+                let daysAndDate = self.getDaysAndDate(month: self.month, year: self.year, day: i + 1)
+                var day = Day(id: i, isFill: false, day: daysAndDate.first?.0 ?? "Null", date: daysAndDate.first?.1 ?? Date())
+                self.daysData.append(day)
+            }
+            for result in results {
+                let dailyPlayer = result
+                for i in 0..<self.daysData.count {
+                    if dailyPlayer.timestamps == self.daysData[i].date {
+                        self.daysData[i].isFill = true
+                        self.daysData[i].dailyPlayer = dailyPlayer
                     }
                 }
             }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     
@@ -114,7 +114,7 @@ struct CalendarViewModelView: View {
     var body: some View {
         VStack {
             Button("getDailyPlayer") {
-                cvm.getDailyPlayerData()
+                cvm.getMonthlyPlayerData()
             }
         }
     }

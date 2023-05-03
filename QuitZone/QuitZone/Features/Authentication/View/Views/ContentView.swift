@@ -28,10 +28,6 @@ struct ContentView: View {
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
-                        ParticipantComponent()
-                            .tabItem {
-                                Label("Friends", systemImage: "network")
-                            }
                         MissionView()
                             .tabItem {
                                 Label("Mission", systemImage: "scroll")

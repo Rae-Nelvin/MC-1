@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153422D02A0127D200F41915 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153422CF2A0127D200F41915 /* PlayerExtension.swift */; };
+		1565D07B2A010B5A002D3C33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1565D0792A010B53002D3C33 /* CoreData.framework */; };
+		1565D07C2A010B5A002D3C33 /* CoreData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1565D0792A010B53002D3C33 /* CoreData.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1565D0802A010B9A002D3C33 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D07F2A010B9A002D3C33 /* Mission.swift */; };
+		1565D0832A010BA3002D3C33 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0822A010BA3002D3C33 /* MissionViewModel.swift */; };
+		1565D0882A010BCB002D3C33 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */; };
+		1565D08A2A010BED002D3C33 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0892A010BED002D3C33 /* Day.swift */; };
+		1565D0902A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1565D08E2A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld */; };
+		1565D0AA2A0111EE002D3C33 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0A92A0111EE002D3C33 /* Persistence.swift */; };
 		157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F329F26BA20031AA1C /* PlayerViewModel.swift */; };
-		157792F929F4165D0031AA1C /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F829F4165D0031AA1C /* Team.swift */; };
 		158B325F29FD3B6000EC7EAD /* QuitZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */; };
-		15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8B29FB796700F04678 /* HomeCalendarView.swift */; };
-		15965F8E29FB7DA200F04678 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F8D29FB7DA200F04678 /* Day.swift */; };
-		15965F9329FBCB5C00F04678 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9229FBCB5C00F04678 /* Mission.swift */; };
-		15965F9529FCC8D600F04678 /* LungViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9429FCC8D600F04678 /* LungViewModel.swift */; };
-		15965F9829FCD56100F04678 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15965F9729FCD56100F04678 /* MissionViewModel.swift */; };
 		15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437AE29F4180200300BF5 /* iCloudViewModel.swift */; };
 		15A437B129F4181200300BF5 /* Lung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B029F4181200300BF5 /* Lung.swift */; };
-		15A437B329F4185E00300BF5 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B229F4185E00300BF5 /* Member.swift */; };
-		15A437BB29F5271800300BF5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BA29F5271800300BF5 /* Player.swift */; };
-		15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437BE29F57D9000300BF5 /* DailyPlayer.swift */; };
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
-		15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */; };
+		15A437C729F7BEB300300BF5 /* CloudKitDatabaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C629F7BEB300300BF5 /* CloudKitDatabaseViewModel.swift */; };
 		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
@@ -78,23 +78,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1565D07D2A010B5A002D3C33 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1565D07C2A010B5A002D3C33 /* CoreData.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		153422CF2A0127D200F41915 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
+		1565D0792A010B53002D3C33 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1565D07F2A010B9A002D3C33 /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		1565D0822A010BA3002D3C33 /* MissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
+		1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		1565D0892A010BED002D3C33 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		1565D08F2A010EB7002D3C33 /* QuitZoneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuitZoneModel.xcdatamodel; sourceTree = "<group>"; };
+		1565D0A92A0111EE002D3C33 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		157792EB29F24F8F0031AA1C /* QuitZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitZone.entitlements; sourceTree = "<group>"; };
 		157792F329F26BA20031AA1C /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		157792F829F4165D0031AA1C /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneViewModel.swift; sourceTree = "<group>"; };
-		15965F8B29FB796700F04678 /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
-		15965F8D29FB7DA200F04678 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		15965F9229FBCB5C00F04678 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		15965F9429FCC8D600F04678 /* LungViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungViewModel.swift; sourceTree = "<group>"; };
-		15965F9729FCD56100F04678 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
 		15A437AE29F4180200300BF5 /* iCloudViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudViewModel.swift; sourceTree = "<group>"; };
 		15A437B029F4181200300BF5 /* Lung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lung.swift; sourceTree = "<group>"; };
-		15A437B229F4185E00300BF5 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-		15A437BA29F5271800300BF5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		15A437BE29F57D9000300BF5 /* DailyPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayer.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
-		15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewModel.swift; sourceTree = "<group>"; };
+		15A437C629F7BEB300300BF5 /* CloudKitDatabaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitDatabaseViewModel.swift; sourceTree = "<group>"; };
 		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
@@ -137,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1565D07B2A010B5A002D3C33 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +172,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1565D0772A010AFF002D3C33 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		1565D0782A010B53002D3C33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1565D0792A010B53002D3C33 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1565D07E2A010B9A002D3C33 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1565D07F2A010B9A002D3C33 /* Mission.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1565D0812A010BA3002D3C33 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1565D0822A010BA3002D3C33 /* MissionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		157792F529F4162E0031AA1C /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,36 +226,8 @@
 		157792F729F416550031AA1C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				157792F829F4165D0031AA1C /* Team.swift */,
-				15A437B229F4185E00300BF5 /* Member.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		15965F8F29FBCB4700F04678 /* Mission */ = {
-			isa = PBXGroup;
-			children = (
-				AB81F37129FBC620009EFFE8 /* View */,
-				15A437B529F4196F00300BF5 /* Model */,
-				15A437CA29F7D14300300BF5 /* ViewModel */,
-			);
-			path = Mission;
-			sourceTree = "<group>";
-		};
-		15965F9129FBCB5300F04678 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				15965F9229FBCB5C00F04678 /* Mission.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		15965F9629FCD55100F04678 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				15965F9729FCD56100F04678 /* MissionViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		15A437BC29F57D4400300BF5 /* DailyTrack */ = {
@@ -225,8 +243,8 @@
 		15A437BD29F57D8600300BF5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1565D0892A010BED002D3C33 /* Day.swift */,
 				8003DFFA29FD35270092937D /* CalendarHelper.swift */,
-				15A437BE29F57D9000300BF5 /* DailyPlayer.swift */,
 				8003E00A29FD38820092937D /* StatisticsHelper.swift */,
 			);
 			path = Model;
@@ -236,7 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */,
-				15DB5C7F29FACE6D00388D43 /* CalendarViewModel.swift */,
+				1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -252,7 +270,8 @@
 		15A437C429F7BE9A00300BF5 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				15A437C629F7BEB300300BF5 /* DatabaseViewModel.swift */,
+				1565D08E2A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld */,
+				15A437C629F7BEB300300BF5 /* CloudKitDatabaseViewModel.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -264,6 +283,8 @@
 				15BF5D8029EFBC69003C1500 /* QuitZoneTests */,
 				15BF5D8A29EFBC69003C1500 /* QuitZoneUITests */,
 				15BF5D6E29EFBC68003C1500 /* Products */,
+				1565D0772A010AFF002D3C33 /* Recovered References */,
+				1565D0782A010B53002D3C33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -317,6 +338,8 @@
 		8003DFFE29FD36380092937D /* Mission */ = {
 			isa = PBXGroup;
 			children = (
+				1565D0812A010BA3002D3C33 /* ViewModel */,
+				1565D07E2A010B9A002D3C33 /* Model */,
 				8003E00129FD37010092937D /* View */,
 			);
 			path = Mission;
@@ -366,15 +389,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AB81F37129FBC620009EFFE8 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				AB81F37629FBC6DC009EFFE8 /* Views */,
-				AB81F37529FBC6D5009EFFE8 /* Components */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		AB81F37229FBC629009EFFE8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,20 +415,6 @@
 				8003DFFC29FD35590092937D /* ProgressModel.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		AB81F37529FBC6D5009EFFE8 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		AB81F37629FBC6DC009EFFE8 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AB81F37729FBC6E3009EFFE8 /* Components */ = {
@@ -461,7 +461,7 @@
 			children = (
 				ABC3E74829EFEBF300682177 /* UserModel.swift */,
 				15A437B029F4181200300BF5 /* Lung.swift */,
-				15A437BA29F5271800300BF5 /* Player.swift */,
+				153422CF2A0127D200F41915 /* PlayerExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,7 +473,6 @@
 				157792F529F4162E0031AA1C /* Authentication */,
 				15A437BC29F57D4400300BF5 /* DailyTrack */,
 				157792F629F4163C0031AA1C /* Team */,
-				15A437B429F4196800300BF5 /* Challenge */,
 				15A437C429F7BE9A00300BF5 /* Database */,
 			);
 			path = Features;
@@ -496,6 +495,7 @@
 			children = (
 				15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */,
 				158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */,
+				1565D0A92A0111EE002D3C33 /* Persistence.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -575,6 +575,7 @@
 				15BF5D6929EFBC68003C1500 /* Sources */,
 				15BF5D6A29EFBC68003C1500 /* Frameworks */,
 				15BF5D6B29EFBC68003C1500 /* Resources */,
+				1565D07D2A010B5A002D3C33 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -701,12 +702,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15A437BB29F5271800300BF5 /* Player.swift in Sources */,
-				15A437B329F4185E00300BF5 /* Member.swift in Sources */,
-				15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */,
 				8003DFF529FD34020092937D /* HomeView.swift in Sources */,
-				157792F929F4165D0031AA1C /* Team.swift in Sources */,
+				1565D0902A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld in Sources */,
+				153422D02A0127D200F41915 /* PlayerExtension.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
+				1565D0882A010BCB002D3C33 /* CalendarViewModel.swift in Sources */,
 				ABF47E5E29EFD31F0067F243 /* LeaderboardDetailComponent.swift in Sources */,
 				8003E00729FD37AD0092937D /* MissionComponent.swift in Sources */,
 				ABF47E5829EFD2940067F243 /* ParticipantComponent.swift in Sources */,
@@ -719,27 +719,25 @@
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
 				8003DFFD29FD35590092937D /* ProgressModel.swift in Sources */,
 				8003E00429FD37240092937D /* MissionView.swift in Sources */,
-				15A437B929F41A3500300BF5 /* Challenge.swift in Sources */,
-				15A437C729F7BEB300300BF5 /* DatabaseViewModel.swift in Sources */,
+				15A437C729F7BEB300300BF5 /* CloudKitDatabaseViewModel.swift in Sources */,
 				ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */,
 				ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */,
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
 				8003DFF929FD343A0092937D /* StatisticsComponent.swift in Sources */,
 				8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */,
-				15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */,
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
 				15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */,
-				15965F8C29FB796700F04678 /* HomeCalendarView.swift in Sources */,
-				15965F9829FCD56100F04678 /* MissionViewModel.swift in Sources */,
-				15DB5C8029FACE6D00388D43 /* CalendarViewModel.swift in Sources */,
+				1565D0832A010BA3002D3C33 /* MissionViewModel.swift in Sources */,
+				1565D08A2A010BED002D3C33 /* Day.swift in Sources */,
 				ABC3E74B29EFF18100682177 /* GSM.swift in Sources */,
 				15A437B129F4181200300BF5 /* Lung.swift in Sources */,
 				ABF47E5C29EFD3100067F243 /* LeaderboardComponent.swift in Sources */,
+				1565D0AA2A0111EE002D3C33 /* Persistence.swift in Sources */,
 				8003DFF729FD341B0092937D /* LungsComponent.swift in Sources */,
 				ABF47E5A29EFD2EE0067F243 /* CreateTeamComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
-				15965F9329FBCB5C00F04678 /* Mission.swift in Sources */,
+				1565D0802A010B9A002D3C33 /* Mission.swift in Sources */,
 				ABF47E6229EFD39C0067F243 /* UserEditComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1071,6 +1069,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1565D08E2A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1565D08F2A010EB7002D3C33 /* QuitZoneModel.xcdatamodel */,
+			);
+			currentVersion = 1565D08F2A010EB7002D3C33 /* QuitZoneModel.xcdatamodel */;
+			path = QuitZoneModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 15BF5D6529EFBC68003C1500 /* Project object */;
 }
