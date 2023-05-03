@@ -11,7 +11,6 @@ import CoreData
 
 class DailyPlayerViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
     @Published var player: Player
     
     init(player: Player) {
@@ -19,18 +18,13 @@ class DailyPlayerViewModel: ObservableObject {
     }
     
     func createDaily(cigars: Int?) {
-        let entity = NSEntityDescription.entity(forEntityName: "DailyPlayer", in: viewContext)
-        let daily = NSManagedObject(entity: entity!, insertInto: viewContext)
+        let daily = DailyPlayer(context: PersistenceController.shared.viewContext)
         
         daily.setValue(cigars, forKey: "cigars")
         daily.setValue(player.id, forKey: "playerID")
         daily.setValue(Date(), forKey: "timestamps")
         
-        do {
-            try viewContext.save()
-        } catch let error as NSError {
-            print("Could not save daily. \(error), \(error.userInfo)")
-        }
+        PersistenceController.shared.save()
     }
     
     func updateDaily(cigars: Int, date: Date) {
@@ -40,11 +34,7 @@ class DailyPlayerViewModel: ObservableObject {
         
         daily.setValue(cigars, forKey: "cigars")
         
-        do {
-            try viewContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        PersistenceController.shared.save()
     }
     
     func getDaily(date: Date) -> DailyPlayer? {
@@ -56,7 +46,7 @@ class DailyPlayerViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "playerID == %@ AND timestamps >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
-            let results = try viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             return results.first ?? DailyPlayer()
         } catch let error as NSError {
             print("Error fetching records : \(error)")

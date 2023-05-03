@@ -11,7 +11,6 @@ import SwiftUI
 
 class TeamViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
     @Published var teams: [Team] = []
     
     init() {
@@ -32,20 +31,14 @@ class TeamViewModel: ObservableObject {
     }
     
     func createMember(player: Player, team: Team) {
-        let entity = NSEntityDescription.entity(forEntityName: "Member", in: self.viewContext)
-        let member = NSManagedObject(entity: entity!, insertInto: self.viewContext)
+        let member = Member(context: PersistenceController.shared.viewContext)
         
         member.setValue(player.id, forKey: "playerID")
         member.setValue(team.id, forKey: "teamID")
         member.setValue(0, forKey: "score")
         member.setValue(Date(), forKey: "date_joined")
         
-        do {
-            try self.viewContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-            self.updateTeam(name: "", player: 1, team: team)
-        }
+        PersistenceController.shared.save()
     }
     
     func getMemberOfs(player: Player) {
@@ -53,7 +46,7 @@ class TeamViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "playerID == %@", player.objectID)
         
         do {
-            let results = try self.viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             for result in results {
                 self.getTeam(teamID: result.teamID)
             }
@@ -67,35 +60,25 @@ class TeamViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "playerID == %@ && teamID == %@", player.objectID, team.objectID)
         
         do {
-            let results = try self.viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             guard let result = results.first else { return }
-            self.viewContext.delete(result)
+            PersistenceController.shared.viewContext.delete(result)
             
-            do {
-                try self.viewContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
-            
+            PersistenceController.shared.save()
         } catch let error as NSError {
             print("Error fetching records: \(error)")
         }
     }
     
     func createTeam(name: String, goal: String) {
-        let entity = NSEntityDescription.entity(forEntityName: "Team", in: self.viewContext)
-        let team = NSManagedObject(entity: entity!, insertInto: self.viewContext)
+        let team = Team(context: PersistenceController.shared.viewContext)
         let inviteCode = generateRandomStrings()
         
         team.setValue(name, forKey: "name")
         team.setValue(inviteCode, forKey: "inviteCode")
         team.setValue(goal, forKey: "goal")
         
-        do {
-            try self.viewContext.save()
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
-        }
+        PersistenceController.shared.save()
     }
     
     func getTeam(teamID: Team.ID) {
@@ -103,7 +86,7 @@ class TeamViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "teamID == %@", teamID!)
         
         do {
-            let results = try self.viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             guard let result = results.first else { return }
             self.teams.append(result)
         } catch let error as NSError {
@@ -117,7 +100,7 @@ class TeamViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "teamID == %@", team.objectID)
         
         do {
-            let results = try self.viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             guard let result = results.first else { return }
             if name != "" {
                 result.setValue(name, forKey: "name")
@@ -128,11 +111,7 @@ class TeamViewModel: ObservableObject {
                 result.setValue(players, forKey: "players")
             }
             
-            do {
-                try self.viewContext.save()
-            } catch let error as NSError {
-                print("Could not save. \(error), \(error.userInfo)")
-            }
+            PersistenceController.shared.save()
             
         } catch let error as NSError {
             print("Error fetching records: \(error)")
@@ -144,7 +123,7 @@ class TeamViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "inviteCode == %@", inviteCode)
         
         do {
-            let results = try self.viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             guard let result = results.first else { return }
             self.createMember(player: player, team: result)
         } catch let error as NSError {
@@ -157,7 +136,7 @@ class TeamViewModel: ObservableObject {
         requestMember.predicate = NSPredicate(format: "teamID == %@", team.id!)
         
         do {
-            let results = try self.viewContext.fetch(requestMember)
+            let results = try PersistenceController.shared.viewContext.fetch(requestMember)
             for result in results {
                 self.deleteMember(player: result.playerID as! Player, team: result.teamID as! Team)
             }
@@ -168,16 +147,11 @@ class TeamViewModel: ObservableObject {
         let requestTeam: NSFetchRequest<Team> = Team.fetchRequest()
         requestTeam.predicate = NSPredicate(format: "teamID == %@", team.id!)
         do {
-            let results = try self.viewContext.fetch(requestTeam)
+            let results = try PersistenceController.shared.viewContext.fetch(requestTeam)
             guard let result = results.first else { return }
-            self.viewContext.delete(result)
+            PersistenceController.shared.viewContext.delete(result)
             
-            do {
-                try self.viewContext.save()
-            } catch let error as NSError {
-                print("Coould not save. \(error), \(error.userInfo)")
-            }
-            
+            PersistenceController.shared.save()
         } catch let error as NSError {
             print("Error fetching records: \(error)")
         }

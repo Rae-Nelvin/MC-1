@@ -11,7 +11,6 @@ import CoreData
 
 class MissionViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
     private var player: Player
     @Published var missions: [Mission] = []
     private var playerMissions: [PlayerMission] = []
@@ -62,18 +61,13 @@ class MissionViewModel: ObservableObject {
     }
     
     func finishMission(mission: Mission) {
-        let entity = NSEntityDescription.entity(forEntityName: "PlayerMission", in: self.viewContext)
-        let playerMission = NSManagedObject(entity: entity!, insertInto: self.viewContext)
+        let playerMission = PlayerMission(context: PersistenceController.shared.viewContext)
         
         playerMission.setValue(self.player.id, forKey: "playerID")
         playerMission.setValue(mission.title, forKey: "missionTitle")
         playerMission.setValue(mission.point, forKey: "missionPoint")
         
-        do {
-            try self.viewContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
+        PersistenceController.shared.save()
     }
     
     func cancelFinishedMission(mission: Mission) {
@@ -87,16 +81,12 @@ class MissionViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
-            let results = try viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             for result in results {
                 let playerMission = result
                 if (mission.title == playerMission.missionTitle && mission.point == playerMission.missionPoint) {
-                    viewContext.delete(playerMission)
-                    do {
-                        try viewContext.save()
-                    } catch let error as NSError {
-                        print("Could not save. \(error), \(error.userInfo)")
-                    }
+                    PersistenceController.shared.viewContext.delete(playerMission)
+                    PersistenceController.shared.save()
                 }
             }
         } catch let error as NSError {

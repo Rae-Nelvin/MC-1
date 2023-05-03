@@ -11,7 +11,6 @@ import CoreData
 
 class CalendarViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
     @Published var totalDays: Int = 0
     @Published var daysData: [Day] = []
     @Published var month: Int = Calendar.current.component(.month, from: Date())
@@ -51,7 +50,7 @@ class CalendarViewModel: ObservableObject {
         request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
         
         do {
-            let results = try viewContext.fetch(request)
+            let results = try PersistenceController.shared.viewContext.fetch(request)
             for i in 0..<self.totalDays {
                 let daysAndDate = self.getDaysAndDate(month: self.month, year: self.year, day: i + 1)
                 var day = Day(id: i, isFill: false, day: daysAndDate.first?.0 ?? "Null", date: daysAndDate.first?.1 ?? Date())
