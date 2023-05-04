@@ -71,6 +71,9 @@
 		8003E00929FD37EA0092937D /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00829FD37EA0092937D /* MissionModel.swift */; };
 		8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00A29FD38820092937D /* StatisticsHelper.swift */; };
 		80602C112A02B42300EFE9C0 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C102A02B42300EFE9C0 /* MissionViewModel.swift */; };
+		80602C142A03C49B00EFE9C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 80602C132A03C49B00EFE9C0 /* Lottie */; };
+		80602C162A03C55C00EFE9C0 /* LottieViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */; };
+		80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */; };
 		AB81F37A29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
 		AB81F37B29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
 		AB81F37C29FBC8D9009EFFE8 /* Ticketing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */; };
@@ -159,6 +162,8 @@
 		8003E00829FD37EA0092937D /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
 		8003E00A29FD38820092937D /* StatisticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsHelper.swift; sourceTree = "<group>"; };
 		80602C102A02B42300EFE9C0 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
+		80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewComponent.swift; sourceTree = "<group>"; };
+		80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenComponentView.swift; sourceTree = "<group>"; };
 		AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ticketing.ttf; sourceTree = "<group>"; };
 		AB81F37D29FBC8E3009EFFE8 /* Blox2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blox2.ttf; sourceTree = "<group>"; };
 		AB81F38129FBCA13009EFFE8 /* MainTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTeamView.swift; sourceTree = "<group>"; };
@@ -179,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80602C142A03C49B00EFE9C0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -622,6 +628,8 @@
 				ABF47E5F29EFD37D0067F243 /* FormComponent.swift */,
 				ABF47E5529EFD27F0067F243 /* UserComponent.swift */,
 				ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */,
+				80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */,
+				80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -649,6 +657,9 @@
 			dependencies = (
 			);
 			name = QuitZone;
+			packageProductDependencies = (
+				80602C132A03C49B00EFE9C0 /* Lottie */,
+			);
 			productName = QuitZone;
 			productReference = 15BF5D6D29EFBC68003C1500 /* QuitZone.app */;
 			productType = "com.apple.product-type.application";
@@ -721,6 +732,9 @@
 				Base,
 			);
 			mainGroup = 15BF5D6429EFBC68003C1500;
+			packageReferences = (
+				80602C122A03C49B00EFE9C0 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			productRefGroup = 15BF5D6E29EFBC68003C1500 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -783,6 +797,7 @@
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				8003DFFB29FD35270092937D /* CalendarHelper.swift in Sources */,
+				80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */,
 				8003E00929FD37EA0092937D /* MissionModel.swift in Sources */,
 				8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */,
 				AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
@@ -816,6 +831,7 @@
 				68FAC7DF29FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
 				68FAC7C129FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
+				80602C162A03C55C00EFE9C0 /* LottieViewComponent.swift in Sources */,
 				ABF5520429FE856800785A06 /* Font.swift in Sources */,
 				ABD4BEFE2A026EF200B83554 /* TarComponent.swift in Sources */,
 				15A437CC29F7D15E00300BF5 /* TeamChallengeViewModel.swift in Sources */,
@@ -1174,6 +1190,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		80602C122A03C49B00EFE9C0 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		80602C132A03C49B00EFE9C0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80602C122A03C49B00EFE9C0 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 15BF5D6529EFBC68003C1500 /* Project object */;
 }

@@ -21,6 +21,9 @@ struct WelcomeComponent: View {
             
             //gambar rokok
             //animasi on tap gesture
+            LottieViewComponent(name: "testing", loopMode: .loop)
+                .frame(width: 250, height: 250)
+                .padding(.top, 50)
             
             Spacer()
             
@@ -37,7 +40,9 @@ struct WelcomeComponent: View {
             .edgesIgnoringSafeArea(.all)
         )
         .onTapGesture {
-            currentPage = Page.form
+//            currentPage = Page.form
+            currentPage = .splashScreen
+//            SplashScreenComponentView()
         }
     }
 }

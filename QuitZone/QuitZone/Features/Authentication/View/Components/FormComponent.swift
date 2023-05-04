@@ -25,7 +25,7 @@ struct FormComponent: View {
     
     var buttonText = "See your lung \nhealth now!"
     
-    var body: some View {
+    var body: some View {        
         ZStack {
             VStack {
                 Image("formBackground")

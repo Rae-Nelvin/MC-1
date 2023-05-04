@@ -152,6 +152,7 @@ enum faceImage : String {
 
 enum Page : String {
     case welcome
+    case splashScreen
     case form
     case home
     case gangs
