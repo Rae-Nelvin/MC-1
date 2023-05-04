@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissionView: View {
-    @StateObject var missionViewModel = MissionViewModel()
+    @StateObject var missionViewModel = MissionViewModels()
     
     var body: some View {
         //mission page

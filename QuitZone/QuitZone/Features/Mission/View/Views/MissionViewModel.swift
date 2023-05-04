@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class MissionViewModel: ObservableObject {
+class MissionViewModels: ObservableObject {
     let columns = Array(repeating: GridItem(), count: 5)
     @Published var data: [MissionModel] = [
         MissionModel(missionTitle: "Mission 1", missionText: "Dummy Missin Text"),
