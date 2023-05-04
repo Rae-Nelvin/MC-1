@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct CreateTeamNavComponent: View {
-    
-    @State private var showingAlert = false
-    @State private var mainTeamPage = false
         
     var body: some View {
         HStack{
@@ -21,19 +18,6 @@ struct CreateTeamNavComponent: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 1)
             Spacer()
-            Button("Create"){
-                showingAlert.toggle()
-            }
-            
-            //success create alert
-            .alert("Congratulations!", isPresented: $showingAlert){
-                Button("Ok"){
-                    mainTeamPage.toggle()
-                }
-                Button("Cancel", role: .cancel) {}
-            } message: {
-                Text("Your team is created")
-            }
         }
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
     }

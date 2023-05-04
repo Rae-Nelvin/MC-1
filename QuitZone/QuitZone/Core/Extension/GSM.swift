@@ -118,6 +118,30 @@ struct AppColor {
 }
 
 
+//struct customBackButton : View {
+//    
+//    var text: String
+//    var page: Page
+//    @Binding var currentPage: Page
+//    
+//    var body: some View {
+//        Button {
+//            currentPage = self.page
+//        } label: {
+//            HStack {
+//                Image("ButtonLeft")
+//                    .resizable()
+//                    .frame(width: 42, height: 40)
+//                    .padding(.trailing, 8)
+//                Text("\(self.text)")
+//                    .font(.secondary(.body))
+//            }
+//        }
+//    }
+//}
+
+
+
 
 //MARK: ENUM2
 enum faceImage : String {
@@ -127,12 +151,16 @@ enum faceImage : String {
 }
 
 enum Page : String {
-    case welcome = "Welcome"
-    case form = "Form"
-    case home = "Home"
-    case friend = "Friend"
-    case mission = "Mission"
-    case user = "User"
+    case welcome
+    case form
+    case home
+    case gangs
+    case task
+    case profile
+    
+    case leaderboard
+    case createteam
+    
 }
 
 

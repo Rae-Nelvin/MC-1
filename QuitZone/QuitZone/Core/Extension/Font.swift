@@ -39,6 +39,7 @@ extension Font {
     enum SizeFont {
         case maintitle
         case title
+        case subtitle
         case body
         case caption
         case custom(Int)
@@ -50,6 +51,8 @@ extension Font {
                 return 72
             case .title:
                 return 34
+            case .subtitle:
+                return 32
             case .body:
                 return 20
             case .caption:
