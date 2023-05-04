@@ -10,6 +10,7 @@ import SwiftUI
 struct LeaderboardNavComponent: View {
     
     @Binding var team:Team
+    //curennt Page
     
     var body: some View {
         VStack{

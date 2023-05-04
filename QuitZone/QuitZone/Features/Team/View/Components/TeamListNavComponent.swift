@@ -23,7 +23,7 @@ struct TeamListNavComponent: View {
             
             //title
             Text("Gangs")
-                .font(.primary(.subtitle))
+                .font(.primary(.custom(40)))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 1)
             Spacer()

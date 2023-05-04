@@ -32,9 +32,10 @@ struct CreateTeamView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Create"){
-                        showingAlert.toggle()
-                    }
+                    customActionButton(page: Page.createteam, text: "Create", action: $showingAlert, currentPage: $currentPage)
+//                    Button("Create"){
+//                        showingAlert.toggle()
+//                    }
                     .alert("Congratulations!", isPresented: $showingAlert){
                         Button("Okay!"){
                             currentPage = Page.gangs
