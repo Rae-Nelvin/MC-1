@@ -43,7 +43,7 @@ struct WelcomeComponent: View {
             .edgesIgnoringSafeArea(.all)
         )
         .onTapGesture {
-            currentPage = Page.form
+            pvm.currPage = "Loading iCloud Screen"
         }
     }
 }

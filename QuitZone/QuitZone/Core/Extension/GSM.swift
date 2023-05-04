@@ -73,7 +73,6 @@ struct customButton: View {
     
     var text: String
     @State private var didTap:Bool = false
-    @Binding var currentPage: Page
     
     var body: some View {
         Button {
@@ -81,7 +80,6 @@ struct customButton: View {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                 self.didTap.toggle()
             }
-            currentPage = Page.home
         } label : {
             Text("\(self.text)")
                 .font(.secondary(.body))

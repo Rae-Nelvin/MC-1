@@ -23,6 +23,7 @@ struct FormComponent: View {
     @State private var smokerFor: Int16 = 0
     @State private var frequency: Int16 = 0
     @State private var typeOfCigarattes: String = ""
+    var buttonText = "See your lung \nhealth now!"
     
     var body: some View {
         ZStack {
@@ -58,7 +59,7 @@ struct FormComponent: View {
                         .padding(.bottom, 6)
                 }
                 customTextField(question: $tempvar9, answer: $typeOfCigarattes)
-                customButton(text: buttonText, currentPage: $currentPage)
+                customButton(text: buttonText)
             }
             .frame(width:315)
         }
