@@ -26,6 +26,7 @@ struct PersistenceController {
         }
         
         description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.QuitZoneWithCoreData")
+        description.cloudKitContainerOptions?.databaseScope = .public
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
@@ -35,6 +36,7 @@ struct PersistenceController {
         
         viewContext.automaticallyMergesChangesFromParent = true
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
     }
     
     func save() {
