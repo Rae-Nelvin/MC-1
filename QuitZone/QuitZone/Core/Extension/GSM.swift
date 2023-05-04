@@ -7,25 +7,8 @@
 
 import SwiftUI
 
-//Text
-extension Text {
-    func customText(size:Double) -> some View {
-        self.font(.secondary(.custom(Int(size))))
-    }
 
-}
-
-//struct customText: View {
-//    @State var text: String
-//    
-//    var body: some View {
-//        Text("\(text)")
-//            .font(.secondary(.regular, .body))
-//            .padding(.bottom, 6)
-//    }
-//}
-
-
+//MARK: STRUCT2
 //TextField
 struct customTextField: View {
     
@@ -52,57 +35,6 @@ struct customTextField: View {
     }
 }
 
-extension View {
-    func hAlign(_ alignment: Alignment) -> some View {
-        self
-            .frame(maxWidth: .infinity, alignment: alignment)
-    }
-    
-    func vAlign(_ alignment: Alignment) -> some View {
-        self
-            .frame(maxHeight: .infinity, alignment: alignment)
-    }
-    
-    func statisticsFormating() -> some View {
-        self
-            .padding()
-            .background(
-                RoundedRectangle(cornerRadius: 15, style: .continuous)
-                    .fill(.white.shadow(.drop(radius: 5)))
-            )
-            .padding(.top, 15)
-    }
-}
-
-//warna apps kita
-struct AppColor {
-    static let primary1 = Color("blue")
-    static let primary2 = Color("yellow")
-    static let secondary = Color("green")
-    static let tertiary = Color("yellow")
-    private init() {}
-}
-
-//ukuran image
-
-enum faceImage : String {
-    case happy = "happyface"
-    case neutral = "neutralface"
-    case sad = "sadface"
-}
-
-enum Page : String {
-    case welcome = "Welcome"
-    case form = "Form"
-    case home = "Home"
-    case friend = "Friend"
-    case mission = "Mission"
-    case user = "User"
-}
-
-
-//face di user
-
 //button start, submit
 struct customButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -112,6 +44,7 @@ struct customButtonStyle: ButtonStyle {
     }
 }
 
+//button form
 struct customButton: View {
     
     var text: String
@@ -141,7 +74,6 @@ struct customButton: View {
     }
 }
 
-
 //button nagivation bar atas (save, edit, create team, create)
 
 //button navigation bar bawah
@@ -167,15 +99,67 @@ struct customNavigationButton: View {
     }
 }
 
-//back button (my teams, asoy geboy, edit profile)
+
+struct AppColor {
+    static let primary1 = Color("blue")
+    static let primary2 = Color("yellow")
+    static let secondary = Color("green")
+    static let tertiary = Color("yellow")
+    private init() {}
+}
 
 
-//ada text
-//ada date
-//ada dropdown
+
+//MARK: ENUM2
+enum faceImage : String {
+    case happy = "happyface"
+    case neutral = "neutralface"
+    case sad = "sadface"
+}
+
+enum Page : String {
+    case welcome = "Welcome"
+    case form = "Form"
+    case home = "Home"
+    case friend = "Friend"
+    case mission = "Mission"
+    case user = "User"
+}
+
+
+//MARK: EXTENSION2
+//Text
+extension Text {
+    func customText(size:Double) -> some View {
+        self.font(.secondary(.custom(Int(size))))
+    }
+
+}
+
+
+extension View {
+    func hAlign(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxWidth: .infinity, alignment: alignment)
+    }
+    
+    func vAlign(_ alignment: Alignment) -> some View {
+        self
+            .frame(maxHeight: .infinity, alignment: alignment)
+    }
+    
+    func statisticsFormating() -> some View {
+        self
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15, style: .continuous)
+                    .fill(.white.shadow(.drop(radius: 5)))
+            )
+            .padding(.top, 15)
+    }
+}
 
 //alert
-//MARK: Mission alert
 extension View {
     //MARK: Alert with 2 Button
     func customMissionAlert(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping ()-> ()) {
@@ -232,18 +216,6 @@ extension View {
     }
 }
 
-//tabview
-
-
-//user info list
-
-
-//team list container
-
-
-//team member list container
-
-//search bar
 
 
 
