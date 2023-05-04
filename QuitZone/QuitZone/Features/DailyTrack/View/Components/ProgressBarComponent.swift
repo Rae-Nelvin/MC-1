@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProgressBar : View {
+struct ProgressBarComponent : View {
     
     var percentage: Double
     let tickValue : Double
@@ -49,6 +49,6 @@ struct ProgressBar : View {
 
 struct ProgressBar_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressBar(percentage: 95, tickValue: 30, showText: false)
+        ProgressBarComponent(percentage: 95, tickValue: 30, showText: false)
     }
 }

@@ -15,7 +15,7 @@ struct TarComponent: View {
     var body: some View {
         //MARK: Tar
         VStack(alignment: .leading) {
-            Text("**Tar**")
+            Text("**Tar Last 7 Days**")
             Chart(progressDataByDate) { data in
                 BarMark (
                     x: .value("Date", data.date, unit: .day),

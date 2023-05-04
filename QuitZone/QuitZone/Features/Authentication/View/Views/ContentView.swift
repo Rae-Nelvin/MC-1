@@ -20,13 +20,12 @@ struct ContentView: View {
 //        }
 //    }
     
-    @State private var currentPage : String = Page.home.rawValue
+    @State private var currentPage : String = Page.welcome.rawValue
     
     @State private var dummyUser : User = User(name: "Leonardo Da Vinci", dateOfBirth: "1 April 1050", frequency: 1, smokerFor: "Not set", typeOfCigarette: "Not set", email: "Not set", phone: "Not set")
     
     var body: some View {
         VStack {
-            
             switch currentPage {
             case Page.welcome.rawValue :
                 WelcomeComponent(currentPage: $currentPage)
@@ -36,7 +35,7 @@ struct ContentView: View {
                 VStack {
                     GeometryReader { geometry in
                         ZStack {
-                            switch (currentPage) {
+                            switch currentPage {
                             case Page.home.rawValue:
                                 HomeView()
                             case Page.friend.rawValue:

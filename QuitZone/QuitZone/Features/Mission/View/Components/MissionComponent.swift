@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissionComponent: View {
-    @Binding var data: MissionModel
+    @Binding var mission: MissionModel
     
     var body: some View {
         VStack {
@@ -17,7 +17,7 @@ struct MissionComponent: View {
         .frame(width: 60, height: 60)
         .background(
             Rectangle()
-                .fill(data.isDone ? .green : .white)
+                .fill(mission.isDone ? .green : .white)
                 .background(
                     Rectangle()
                         .stroke()
@@ -27,15 +27,15 @@ struct MissionComponent: View {
         .onTapGesture {
             withAnimation {
 //                                isMissionShown.toggle()
-                customMissionAlert(title: data.missionTitle,
-                                   message: data.missionText,
+                customMissionAlert(title: mission.missionTitle,
+                                   message: mission.missionText,
                                    leftButton: "Cancel",
-                                   rightButton: data.isDone ? "Unmark" : "Mark as Done",
+                                   rightButton: mission.isDone ? "Unmark" : "Mark as Done",
                                    leftAction: {
                                         print("cancelled")
                                     },
                                     rightAction: {
-                                        data.isDone.toggle()
+                                        mission.isDone.toggle()
                                     })
             }
            

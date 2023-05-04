@@ -7,67 +7,41 @@
 
 import SwiftUI
 
-
 struct MissionView: View {
+    @StateObject var missionViewModel = MissionViewModel()
     
-    let columns = Array(repeating: GridItem(), count: 5)
-//    @State private var isMissionShown = false
-    @State private var data: [MissionModel] = [
-        MissionModel(missionTitle: "Mission 1", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 2", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 3", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 4", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 5", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 6", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 7", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 8", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 9", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 10", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 11", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 12", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 13", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 14", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 15", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 16", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 17", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 18", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 19", missionText: "Dummy Missin Text"),
-        MissionModel(missionTitle: "Mission 20", missionText: "Dummy Missin Text")
-    ]
-
     var body: some View {
-        ZStack {
-            //mission page
-            VStack {
-                Text("**Your Mission**")
-                    .customText(size: 36)
-                    .hAlign(.leading)
-                    .padding(.bottom, 90)
-                
-                //MARK: Missions
-                LazyVGrid(columns: columns) {
-                    ForEach(data.indices, id: \.self) {index in
-                        
-                        //MARK: Mission Box Item
-                        MissionComponent(data: $data[index])
-                    }
+        //mission page
+        VStack {
+            Text("**Your Mission**")
+                .customText(size: 36)
+                .hAlign(.leading)
+                .padding(.bottom, 90)
+            
+            //MARK: Missions
+            LazyVGrid(columns: missionViewModel.columns) {
+                ForEach(missionViewModel.data.indices, id: \.self) {index in
+                    
+                    //MARK: Mission Box Item
+                    MissionComponent(mission: $missionViewModel.data[index])
                 }
             }
-            .vAlign(.top)
-            .padding()
-            //show mission
-//            if isMissionShowed {
-//                MissionAlert(isMissionShowed: $isMissionShowed,
-//                             idx: $index,
-//                             data: $data
-//                )
-//            }
         }
+        .vAlign(.top)
+        .padding()
     }
 }
 
 //MARK: Optional Mission Alert
 /*
+ show mission
+            if isMissionShowed {
+                MissionAlert(isMissionShowed: $isMissionShowed,
+                             idx: $index,
+                             data: $data
+                )
+            }
+ 
 struct MissionAlert: View {
     @Binding var isMissionShowed: Bool
     @Binding var idx: Int

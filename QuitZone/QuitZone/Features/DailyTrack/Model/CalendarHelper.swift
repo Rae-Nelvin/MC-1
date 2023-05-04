@@ -68,7 +68,6 @@ struct CalendarHelper {
     }
     
     func showStatThisMonth(progressData: [ProgressModel]) -> [ProgressModel] {
-        
         var progressDataByDate: [ProgressModel] = []
         let currMonth = Calendar.current.component(.month, from: Date())
         let currYear = Calendar.current.component(.year, from: Date())
@@ -104,10 +103,8 @@ struct CalendarHelper {
             
             ctrItem += 1
         }
-        
         return daysData
     }
-    
     
     //MARK: to find a cigarette from our model with itemDate
     func findCigInProgressData(itemDate: Date, progressData: [ProgressModel]) -> Int {

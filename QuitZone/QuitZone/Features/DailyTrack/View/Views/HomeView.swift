@@ -8,47 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    @State var currPicker = "7 Days"
-    @State var progressDataByDate: [ProgressModel] = []
-    @State var progressData: [ProgressModel] = [
-        ProgressModel(date: CalendarHelper().getItemDate(day: 1, currAppDate: Date()), cigarettes: 5),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 2, currAppDate: Date()), cigarettes: 2),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 3, currAppDate: Date()), cigarettes: 3),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 4, currAppDate: Date()), cigarettes: 6),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 5, currAppDate: Date()), cigarettes: 1),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 29, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 2),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 30, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 3)
-    ]
-    
     @ObservedObject var vm = TestSheetViewModel()
-    
-    @State var showCalendar : Bool = false
-    
     
     var body: some View {
         VStack {
             //MARK: 3 button
             HStack {
-                ProgressBar(percentage: 57, tickValue: 320, showText: true) //Nikotin
+                //MARK: Nicotine
+                ProgressBarComponent(percentage: 57, tickValue: 320, showText: true)
                     .onTapGesture {
                         vm.showSheetContentStatus = .nicotine
                         vm.sheetStatus.toggle()
                     }
                 
-                ProgressBar(percentage: 75, tickValue: 14, showText: true) //Tar
+                //MARK: Tar
+                ProgressBarComponent(percentage: 75, tickValue: 14, showText: true)
                     .onTapGesture {
                         vm.showSheetContentStatus = .tar
                         vm.sheetStatus.toggle()
                     }
                 
+                //MARK: Calendar
                 ZStack {
-                    ProgressBar(percentage: 100, tickValue: 40, showText: false) //Kalender
+                    ProgressBarComponent(percentage: 100, tickValue: 40, showText: false)
                     Image(systemName:"calendar")
                         .font(.largeTitle)
                 }
                 .onTapGesture {
-                    showCalendar.toggle()
+                    vm.showCalendar.toggle()
                 }
             }
             .hAlign(.top)
@@ -56,50 +43,48 @@ struct HomeView: View {
             
             Spacer()
             
-            ZStack {
-                VStack {
-                    if showCalendar {
-                        //MARK: Calendar
-                        CalendarComponent(progressData: $progressData, progressDataByDate: $progressDataByDate, currPicker: $currPicker)
-                            .zIndex(1)
-                            .padding(.top, 50)
-                            .padding(.horizontal, 16)
-                            .background(Color.white.opacity(0.5))
-                        Spacer()
+            VStack {
+                //MARK: Calendar
+                if vm.showCalendar {
+                    CalendarComponent(progressData: $vm.progressData,
+                                      progressDataByDate: $vm.progressDataByDate)
+                        .padding(.top, 50)
+                        .padding(.horizontal, 16)
+                        .background(Color.white.opacity(0.5))
+                    Spacer()
+                }
+                else {
+                    //MARK: Lung
+                    VStack {
+                        LungsComponent()
+                            .padding(.bottom, 28)
                     }
-                    else {
-                        VStack {
-                            LungsComponent()
-                                .padding(.bottom, 28)
-                        }
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .padding()
-                        .blur(radius: showCalendar ? 1 : 0)
-                        
-                        
-                    }
-                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .padding()
                 }
             }
             .background(
                 Image("humanBody")
                     .resizable()
                     .scaledToFit()
+                    .blur(radius: vm.showCalendar ? 3 : 0)
             )
             .sheet(isPresented: $vm.sheetStatus) {
                 switch vm.showSheetContentStatus {
-                case .nicotine:
-                    NicotineComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
-                        .presentationDetents([.height(250)])
-                        .presentationDragIndicator(.visible)
-                case .tar:
-                    TarComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
-                        .presentationDetents([.height(250)])
-                        .presentationDragIndicator(.visible)
+                    case .nicotine:
+                    NicotineComponent(progressData: $vm.progressData, progressDataByDate: $vm.progressDataByDate)
+                            .presentationDetents([.height(250)])
+                            .presentationDragIndicator(.visible)
+                    case .tar:
+                    TarComponent(progressData: $vm.progressData, progressDataByDate: $vm.progressDataByDate)
+                            .presentationDetents([.height(250)])
+                            .presentationDragIndicator(.visible)
                 }
             }
+            .onAppear {
+                vm.progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: vm.progressData)
+            }
         }
-        
     }
 }
 
@@ -108,8 +93,6 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-
 
 
 //            //MARK: Lungs

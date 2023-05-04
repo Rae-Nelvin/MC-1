@@ -31,14 +31,14 @@ struct WelcomeComponent: View {
             //
         }
         .frame(maxWidth:.infinity, maxHeight: .infinity)
-        .onTapGesture {
-            currentPage = "Form"
-        }
         .background(Image("mainBackground")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
         )
+        .onTapGesture {
+            currentPage = "Form"
+        }
     }
 }
 
