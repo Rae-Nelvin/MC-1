@@ -12,12 +12,20 @@ struct UserComponent: View {
         NavigationView {
             VStack (alignment: .leading){
                 HStack {
-                    VStack {
-                        Text("Ini buat image")
+                    ZStack {
+                        VStack {
+                            Image("dummyUserPhoto")
+                                .resizable()
+                        }
+                        .frame(width:96, height:96)
+                        .clipShape(Circle())
+                        VStack (alignment: .leading){
+                            Image("happyface")
+                                .resizable()
+                                .frame(width:32, height:32)
+                        }
+                        .offset(CGSize(width: -35, height: 35))
                     }
-                    .frame(width:96, height:96)
-                    .background(.red)
-                    .clipShape(Circle())
                     .padding(.trailing, 16)
                     VStack (alignment: .leading) {
                         Text("\(User().name)")

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct WelcomeComponent: View {
+    
+    @Binding var currentPage : String
+    
     var body: some View {
         VStack (alignment: .center) {
             
             //tulisan quitgang
             Text("Quitgang")
-                .font(.primary(.regular, .maintitle))
+                .font(.primary(.maintitle))
                 .padding(.top, 100)
             
             //gambar rokok
@@ -22,12 +25,16 @@ struct WelcomeComponent: View {
             Spacer()
             
             Text("Lorem impusm dolor sit amet! \nconsectur adipiscing \n...")
-                .font(.secondary(.regular, .body))
+                .font(.secondary(.body))
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 100)
             //
         }
-        .background(Image("Main Background")
+        .frame(maxWidth:.infinity, maxHeight: .infinity)
+        .onTapGesture {
+            currentPage = "Form"
+        }
+        .background(Image("mainBackground")
             .resizable()
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
@@ -37,6 +44,6 @@ struct WelcomeComponent: View {
 
 struct WelcomeComponent_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeComponent()
+        WelcomeComponent(currentPage: .constant("Welcome"))
     }
 }

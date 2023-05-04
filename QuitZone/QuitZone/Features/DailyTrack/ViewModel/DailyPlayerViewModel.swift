@@ -73,3 +73,19 @@ struct HomeDailyPlayer: View {
         }
     }
 }
+
+
+
+enum sheetContent: Identifiable {
+    case nicotine
+    case tar
+    var id: Int {
+        hashValue
+    }
+}
+
+class TestSheetViewModel: ObservableObject {
+    @Published var showSheetContentStatus: sheetContent = .nicotine
+    @Published var sheetStatus: Bool = false
+    
+}
