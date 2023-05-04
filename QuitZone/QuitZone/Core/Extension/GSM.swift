@@ -79,6 +79,7 @@ struct customButton: View {
 //button navigation bar bawah
 struct customNavigationButton: View {
     
+    var text: String
     var page: Page
     var image: String
     @Binding var currentPage: Page
@@ -87,12 +88,20 @@ struct customNavigationButton: View {
         Button {
             currentPage = self.page
         } label: {
-            VStack {
-                Image("\(self.image)")
+            ZStack {
+                Image((self.page == currentPage) ? "blankSquarePressed" : "blankSquare")
                     .resizable()
-                    .frame(width: 60, height: 60)
-                Text("Home")
-                    .font(.secondary(.caption))
+                    .frame(width: 80, height: 73.89)
+                VStack {
+                    Image("\(self.image)")
+                        .resizable()
+                        .frame(width: 41, height: 41)
+                        .padding(.bottom,-10)
+                    Text("\(self.text)")
+                        .font(.secondary(.caption))
+                        .foregroundColor(.black)
+                }
+                .offset((self.page == currentPage) ? CGSize(width: 3, height: 5) : CGSize(width: -2, height: 0))
             }
         }
         

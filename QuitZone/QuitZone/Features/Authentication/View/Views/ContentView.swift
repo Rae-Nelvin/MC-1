@@ -39,28 +39,38 @@ struct ContentView: View {
                             // bottom tab bar
                             VStack {
                                 Spacer()
-                                HStack {
+                                
+                                ZStack {
+                                    Image("navigationBarBackground")
+                                        .resizable()
+                                        .frame(width: geometry.size.width, height: geometry.size.width/3)
+                                        .offset(CGSize(width: 0, height: 20))
                                     
-                                    Spacer()
-                                    
-                                    customNavigationButton(page: Page.home, image: "barHome", currentPage: $currentPage)
-                                    
-                                    Spacer()
-                                    
-                                    customNavigationButton(page: Page.friend, image: "barGangs", currentPage: $currentPage)
-                                    
-                                    Spacer()
-                                    
-                                    customNavigationButton(page: Page.mission, image: "barTasks", currentPage: $currentPage)
-                                    
-                                    Spacer()
-                                    
-                                    customNavigationButton(page: Page.user, image:"barProfile", currentPage: $currentPage)
-                                    
-                                    Spacer()
-                                }
-                                .frame(width: geometry.size.width, height: geometry.size.height/9)
+                                    HStack {
+                                        
+                                        Spacer()
+                                        
+                                        customNavigationButton(text: "Home", page: Page.home, image: "barHome", currentPage: $currentPage)
+                                        
+                                        Spacer()
+                                        
+                                        customNavigationButton(text: "Gangs", page: Page.friend, image: "barGangs", currentPage: $currentPage)
+                                        
+                                        Spacer()
+                                        
+                                        customNavigationButton(text: "Tasks", page: Page.mission, image: "barTasks", currentPage: $currentPage)
+                                        
+                                        Spacer()
+                                        
+                                        customNavigationButton(text: "Profile", page: Page.user, image:"barProfile", currentPage: $currentPage)
+                                        
+                                        Spacer()
+                                    }
+                                    .offset(CGSize(width: -7, height: 14))
+                                    .padding(.horizontal,20)
+                                    .frame(width: geometry.size.width, height: geometry.size.height/9)
                                 .background(Material.ultraThinMaterial.opacity(0.1))
+                                }
                             }
                         }
                     }
