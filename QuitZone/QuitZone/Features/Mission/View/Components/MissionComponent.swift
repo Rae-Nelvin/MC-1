@@ -12,16 +12,18 @@ struct MissionComponent: View {
     
     var body: some View {
         VStack {
-            Text("?")
+            Text("")
         }
         .frame(width: 60, height: 60)
         .background(
-            Rectangle()
-                .fill(mission.isDone ? .green : .white)
-                .background(
-                    Rectangle()
-                        .stroke()
-                )
+            Image(mission.isDone ? "MissionBoxChecked" : "MissionBoxUnchecked")
+                .resizable()
+//            Rectangle()
+//                .fill(mission.isDone ?  : .white)
+//                .background(
+//                    Rectangle()
+//                        .stroke()
+//                )
         )
         .padding(1)
         .onTapGesture {

@@ -26,7 +26,9 @@ struct CalendarComponent: View {
                         daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                     }
                 } label: {
-                    Image(systemName: "arrow.left")
+                    Image("ButtonLeft")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
                 
                 //Month & Year
@@ -34,9 +36,11 @@ struct CalendarComponent: View {
                     Text(CalendarHelper()
                         .getCalendarComponentString(date: currProgressDate, format: "LLLL")
                     )
+                    .font(.secondary(.custom(24)))
                     Text(CalendarHelper()
                         .getCalendarComponentString(date: currProgressDate, format: "yyyy")
                     )
+                    .font(.secondary(.custom(24)))
                 }
                 .frame(width: 200)
                 
@@ -47,7 +51,9 @@ struct CalendarComponent: View {
                         daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                     }
                 } label: {
-                    Image(systemName: "arrow.right")
+                    Image("ButtonRight")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
             }
             .padding(.bottom, 30)
@@ -59,6 +65,7 @@ struct CalendarComponent: View {
                     Text(day)
                         .hAlign(.center)
                         .padding(.trailing, 5)
+                        .font(.secondary(.custom(22)))
                 }
                 
                 //MARK: Day Section

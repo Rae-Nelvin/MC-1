@@ -16,6 +16,7 @@ struct MainTeamView: View {
         Team(name: "Team 4", players: 12, goal: "Mengurangi rokok 3 batang per hari"),
         Team(name: "Team 5", players: 20, goal: "Mengurangi rokok 3 batang per hari")
     ]
+    
     var body: some View {
         NavigationView {
             VStack{

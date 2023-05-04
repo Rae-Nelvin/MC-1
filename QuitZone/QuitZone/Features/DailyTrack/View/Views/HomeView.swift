@@ -51,6 +51,7 @@ struct HomeView: View {
                         .padding(.top, 50)
                         .padding(.horizontal, 16)
                         .background(Color.white.opacity(0.5))
+                    
                     Spacer()
                 }
                 else {
@@ -93,54 +94,3 @@ struct HomeView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-
-//            //MARK: Lungs
-//            LungsComponent()
-
-//            //MARK: Progress
-//            VStack {
-//                Text("**Progress**")
-//                    .font(.secondary(.custom(24)))
-//                    .hAlign(.leading)
-//                    .padding(.bottom, 15)
-//                    .padding(.top, 30)
-
-//                //MARK: Calendar Progress View
-//                CalendarComponent(progressData: $progressData,
-//                                  progressDataByDate: $progressDataByDate)
-//            }
-//            //MARK: Statistics
-//            VStack {
-//                //MARK: Statistics Selection
-//                HStack {
-//                    Text("**Statistics**")
-//                        .font(.secondary(.custom(24)))
-//                        .hAlign(.leading)
-//
-//                    Spacer()
-//
-//                    Picker("", selection: $currPicker) {
-//                        Text("Last 7 Days").tag("7 Days")
-//                        Text("This Month").tag("Month")
-//                    }
-//                    .pickerStyle(.segmented)
-//                    .frame(width: 200)
-//                }
-//
-//                //MARK: Show statistics chart
-//                StatisticsComponent(progressData: $progressData, progressDataByDate: $progressDataByDate)
-//            }
-//            .onChange(of: currPicker) {tabName in
-//                progressDataByDate.removeAll()
-//                if tabName == "7 Days" {
-//                    progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-//                }
-//                else if tabName == "Month" {
-//                    progressDataByDate = CalendarHelper().showStatThisMonth(progressData: progressData)
-//                }
-//            }
-//            .onAppear {
-//                progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-//            }
-//            .padding(.top, 30)
