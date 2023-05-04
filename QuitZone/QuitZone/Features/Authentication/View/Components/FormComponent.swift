@@ -21,7 +21,9 @@ struct FormComponent: View {
     
     
     @Binding var dummyUser: User
-    @Binding var currentPage : String
+    @Binding var currentPage : Page
+    
+    var buttonText = "See your lung \nhealth now!"
     
     var body: some View {
         ZStack {
@@ -53,15 +55,17 @@ struct FormComponent: View {
                         .padding(.bottom, 6)
                 }
                 
-                Button {
-                    currentPage = "Home"
-                } label : {
-                    Text("See your lung health now!")
-                        .font(.secondary(.body))
-                        .padding(8)
-                }
-                .padding(.top, 32)
-                .buttonStyle(customButtonStyle())
+//                Button {
+//                    currentPage = "Home"
+//                } label : {
+//                    Text("See your lung health now!")
+//                        .font(.secondary(.body))
+//                        .padding(8)
+//                }
+//                .padding(.top, 32)
+//                .buttonStyle(customButtonStyle())
+                
+                customButton(text: buttonText, currentPage: $currentPage)
             }
             .frame(width:315)
         }
@@ -74,6 +78,6 @@ struct FormComponent_Previews: PreviewProvider {
     @State static var user:User = User(name: "", dateOfBirth: "", frequency: 1, smokerFor: "", typeOfCigarette: "", email: "", phone: "")
     
     static var previews: some View {
-        FormComponent(dummyUser: $user, currentPage: .constant("Form"))
+        FormComponent(dummyUser: $user, currentPage: .constant(Page.form))
     }
 }

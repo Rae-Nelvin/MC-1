@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeComponent: View {
     
-    @Binding var currentPage : String
+    @Binding var currentPage : Page
     
     var body: some View {
         VStack (alignment: .center) {
@@ -37,13 +37,13 @@ struct WelcomeComponent: View {
             .edgesIgnoringSafeArea(.all)
         )
         .onTapGesture {
-            currentPage = "Form"
+            currentPage = Page.form
         }
     }
 }
 
 struct WelcomeComponent_Previews: PreviewProvider {
     static var previews: some View {
-        WelcomeComponent(currentPage: .constant("Welcome"))
+        WelcomeComponent(currentPage: .constant(Page.welcome))
     }
 }

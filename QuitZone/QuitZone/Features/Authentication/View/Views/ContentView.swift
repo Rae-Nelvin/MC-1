@@ -8,41 +8,30 @@
 import SwiftUI
 
 struct ContentView: View {
-
-//    MARK: INI CODE BUAT NGECEK NAMA FONT DI SYSTEM
-//    init() {
-//        for familyName in UIFont.familyNames {
-//            print(familyName)
-//
-//            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-//                print("--\(fontName)")
-//            }
-//        }
-//    }
     
-    @State private var currentPage : String = Page.welcome.rawValue
+    @State private var currentPage = Page.home
     
     @State private var dummyUser : User = User(name: "Leonardo Da Vinci", dateOfBirth: "1 April 1050", frequency: 1, smokerFor: "Not set", typeOfCigarette: "Not set", email: "Not set", phone: "Not set")
     
     var body: some View {
         VStack {
             switch currentPage {
-            case Page.welcome.rawValue :
+            case Page.welcome :
                 WelcomeComponent(currentPage: $currentPage)
-            case Page.form.rawValue :
+            case Page.form :
                 FormComponent(dummyUser: $dummyUser, currentPage: $currentPage)
             default:
                 VStack {
                     GeometryReader { geometry in
                         ZStack {
                             switch currentPage {
-                            case Page.home.rawValue:
+                            case Page.home:
                                 HomeView()
-                            case Page.friend.rawValue:
+                            case Page.friend:
                                 MainTeamView()
-                            case Page.mission.rawValue:
+                            case Page.mission:
                                 MissionView()
-                            case Page.user.rawValue:
+                            case Page.user:
                                 UserComponent()
                             default:
                                 HomeView()
@@ -51,38 +40,23 @@ struct ContentView: View {
                             VStack {
                                 Spacer()
                                 HStack {
+                                    
                                     Spacer()
-                                    Button {
-                                        currentPage = Page.home.rawValue
-                                    } label: {
-                                        Image("barHome")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                    }
+                                    
+                                    customNavigationButton(page: Page.home, image: "barHome", currentPage: $currentPage)
+                                    
                                     Spacer()
-                                    Button {
-                                        currentPage = Page.friend.rawValue
-                                    } label: {
-                                        Image("barFriend")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                    }
+                                    
+                                    customNavigationButton(page: Page.friend, image: "barGangs", currentPage: $currentPage)
+                                    
                                     Spacer()
-                                    Button {
-                                        currentPage = Page.mission.rawValue
-                                    } label: {
-                                        Image("barMission")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                    }
+                                    
+                                    customNavigationButton(page: Page.mission, image: "barTasks", currentPage: $currentPage)
+                                    
                                     Spacer()
-                                    Button {
-                                        currentPage = Page.user.rawValue
-                                    } label: {
-                                        Image("barUser")
-                                            .resizable()
-                                            .frame(width: 60, height: 60)
-                                    }
+                                    
+                                    customNavigationButton(page: Page.user, image:"barProfile", currentPage: $currentPage)
+                                    
                                     Spacer()
                                 }
                                 .frame(width: geometry.size.width, height: geometry.size.height/9)
@@ -90,45 +64,6 @@ struct ContentView: View {
                             }
                         }
                     }
-                    
-                    
-//                    TabView {
-//                        Group {
-//                            HomeView()
-//                                .tabItem {
-//                                    Label {
-//                                        Text("Home")
-//                                    } icon :{
-//                                        Image("barHome")
-//                                            .resizable()
-//                                            .scaledToFit()
-//                                            .frame(width: 100, height: 100)
-//                                    }
-//                                }
-//                            MainTeamView()
-//                                .tabItem {
-//                                    Label("Friends", systemImage: "network")
-//                                }
-//                            MissionView()
-//                                .tabItem {
-//                                    Label("Mission", systemImage: "scroll")
-//                                }
-//                            UserComponent()
-//                                .tabItem {
-//                                    Label("Profile", systemImage: "person")
-//                                }
-//                        }
-//                    }
-//                    .onAppear {
-//                        let appearance = UITabBarAppearance()
-//                        appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-//                        appearance.backgroundImage = UIImage(named: "dummyUserPhoto")
-////                        appearance.backgroundColor = UIColor(Color.orange.opacity(0.2))
-//                        // Use this appearance when scrolling behind the TabView:
-//                        UITabBar.appearance().standardAppearance = appearance
-//                        // Use this appearance when scrolled all the way up:
-//                        UITabBar.appearance().scrollEdgeAppearance = appearance
-//                    }
                 }
             }
         }

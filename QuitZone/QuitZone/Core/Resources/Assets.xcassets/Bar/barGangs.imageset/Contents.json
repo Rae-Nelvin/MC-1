@@ -1,12 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "barUser.png",
+      "filename" : "barGangs.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "barUser 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

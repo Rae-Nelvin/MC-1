@@ -91,7 +91,7 @@ enum faceImage : String {
     case sad = "sadface"
 }
 
-enum Page : String{
+enum Page : String {
     case welcome = "Welcome"
     case form = "Form"
     case home = "Home"
@@ -107,17 +107,65 @@ enum Page : String{
 struct customButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .background(Color.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color("SystemGray"), lineWidth: 2)
-            )
+            .background(Image("board"))
             .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
     }
 }
 
+struct customButton: View {
+    
+    var text: String
+    @State private var didTap:Bool = false
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            self.didTap.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                self.didTap.toggle()
+            }
+            currentPage = Page.home
+        } label : {
+            Text("\(self.text)")
+                .font(.secondary(.body))
+                .foregroundColor(.black)
+                .offset(CGSize(width: 0, height: didTap ? 4 : -6))
+                .animation(nil)
+        }
+        .frame(width: 240, height: 80, alignment: .center)
+        .padding(.all, 20)
+        .background(Image(didTap ? "boardPressed" : "board")
+            .resizable()
+            .frame(width: 240, height: 80)
+        )
+    }
+}
 
-//button nagivation bar (save, edit, create team, create)
+
+//button nagivation bar atas (save, edit, create team, create)
+
+//button navigation bar bawah
+struct customNavigationButton: View {
+    
+    var page: Page
+    var image: String
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            currentPage = self.page
+        } label: {
+            VStack {
+                Image("\(self.image)")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                Text("Home")
+                    .font(.secondary(.caption))
+            }
+        }
+        
+    }
+}
 
 //back button (my teams, asoy geboy, edit profile)
 
