@@ -7,25 +7,8 @@
 
 import SwiftUI
 
-//Text
-extension Text {
-    func customText(size:Double) -> some View {
-        self.font(.secondary(.custom(Int(size))))
-    }
 
-}
-
-//struct customText: View {
-//    @State var text: String
-//    
-//    var body: some View {
-//        Text("\(text)")
-//            .font(.secondary(.regular, .body))
-//            .padding(.bottom, 6)
-//    }
-//}
-
-
+//MARK: STRUCT2
 //TextField
 struct customTextField: View {
     
@@ -73,9 +56,119 @@ struct customIntField: View {
                 )
         }
         .frame(width:.infinity, height:82)
+    }
+}
+
+//button start, submit
+struct customButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .background(Image("board"))
+            .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
+    }
+}
+
+//button form
+struct customButton: View {
+    
+    var text: String
+    @State private var didTap:Bool = false
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            self.didTap.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                self.didTap.toggle()
+            }
+            currentPage = Page.home
+        } label : {
+            Text("\(self.text)")
+                .font(.secondary(.body))
+                .foregroundColor(.black)
+                .offset(CGSize(width: 0, height: didTap ? 4 : -6))
+                .animation(nil)
+        }
+        .frame(width: 240, height: 80, alignment: .center)
+        .padding(.all, 20)
+        .background(Image(didTap ? "boardPressed" : "board")
+            .resizable()
+            .frame(width: 240, height: 80)
+        )
+    }
+}
+
+//button nagivation bar atas (save, edit, create team, create)
+
+//button navigation bar bawah
+struct customNavigationButton: View {
+    
+    var text: String
+    var page: Page
+    var image: String
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            currentPage = self.page
+        } label: {
+            ZStack {
+                Image((self.page == currentPage) ? "blankSquarePressed" : "blankSquare")
+                    .resizable()
+                    .frame(width: 80, height: 73.89)
+                VStack {
+                    Image("\(self.image)")
+                        .resizable()
+                        .frame(width: 41, height: 41)
+                        .padding(.bottom,-10)
+                    Text("\(self.text)")
+                        .font(.secondary(.caption))
+                        .foregroundColor(.black)
+                }
+                .offset((self.page == currentPage) ? CGSize(width: 3, height: 5) : CGSize(width: -2, height: 0))
+            }
+        }
         
     }
 }
+
+
+struct AppColor {
+    static let primary1 = Color("blue")
+    static let primary2 = Color("yellow")
+    static let secondary = Color("green")
+    static let tertiary = Color("yellow")
+    private init() {}
+}
+
+
+
+//MARK: ENUM2
+enum faceImage : String {
+    case happy = "happyface"
+    case neutral = "neutralface"
+    case sad = "sadface"
+}
+
+enum Page : String {
+    case welcome = "Welcome"
+    case form = "Form"
+    case home = "Home"
+    case friend = "Friend"
+    case mission = "Mission"
+    case user = "User"
+}
+
+
+//MARK: EXTENSION2
+//Text
+extension Text {
+    func customText(size:Double) -> some View {
+        self.font(.secondary(.custom(Int(size))))
+    }
+
+}
+
 
 extension View {
     func hAlign(_ alignment: Alignment) -> some View {
@@ -99,60 +192,7 @@ extension View {
     }
 }
 
-//warna apps kita
-struct AppColor {
-    static let primary1 = Color("blue")
-    static let primary2 = Color("yellow")
-    static let secondary = Color("green")
-    static let tertiary = Color("yellow")
-    private init() {}
-}
-
-//ukuran image
-
-enum faceImage : String {
-    case happy = "happyface"
-    case neutral = "neutralface"
-    case sad = "sadface"
-}
-
-enum Page : String{
-    case welcome = "Welcome"
-    case form = "Form"
-    case home = "Home"
-    case friend = "Friend"
-    case mission = "Mission"
-    case user = "User"
-}
-
-
-//face di user
-
-//button start, submit
-struct customButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .background(Color.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color("SystemGray"), lineWidth: 2)
-            )
-            .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
-    }
-}
-
-
-//button nagivation bar (save, edit, create team, create)
-
-//back button (my teams, asoy geboy, edit profile)
-
-
-//ada text
-//ada date
-//ada dropdown
-
 //alert
-//MARK: Mission alert
 extension View {
     //MARK: Alert with 2 Button
     func customMissionAlert(title: String, message: String, leftButton: String, rightButton: String, leftAction: @escaping ()->(), rightAction: @escaping ()-> ()) {
@@ -209,18 +249,6 @@ extension View {
     }
 }
 
-//tabview
-
-
-//user info list
-
-
-//team list container
-
-
-//team member list container
-
-//search bar
 
 
 

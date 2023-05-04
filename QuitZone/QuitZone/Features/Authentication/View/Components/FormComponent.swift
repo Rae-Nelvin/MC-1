@@ -58,16 +58,7 @@ struct FormComponent: View {
                         .padding(.bottom, 6)
                 }
                 customTextField(question: $tempvar9, answer: $typeOfCigarattes)
-                    .padding(.bottom, 29)
-                Button {
-                    pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-                } label : {
-                    Text("See your lung health now!")
-                        .font(.secondary(.body))
-                        .padding(8)
-                }
-                .padding(.top, 32)
-                .buttonStyle(customButtonStyle())
+                customButton(text: buttonText, currentPage: $currentPage)
             }
             .frame(width:315)
         }

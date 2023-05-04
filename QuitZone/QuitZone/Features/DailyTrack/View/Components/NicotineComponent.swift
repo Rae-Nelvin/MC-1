@@ -15,7 +15,7 @@ struct NicotineComponent: View {
     var body: some View {
         //MARK: Nicotine
         VStack(alignment: .leading) {
-            Text("**Nicotine**")
+            Text("**Nicotine Last 7 Days**")
             Chart(progressDataByDate) { data in
                 BarMark (
                     x: .value("Date", data.date, unit: .day),

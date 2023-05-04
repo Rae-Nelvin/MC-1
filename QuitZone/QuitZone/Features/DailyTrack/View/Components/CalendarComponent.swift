@@ -14,7 +14,6 @@ struct CalendarComponent: View {
     @State var daysData: [String] = []
     @Binding var progressData: [ProgressModel]
     @Binding var progressDataByDate: [ProgressModel]
-    @Binding var currPicker: String
 
     var body: some View {
         VStack {
@@ -27,7 +26,9 @@ struct CalendarComponent: View {
                         daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                     }
                 } label: {
-                    Image(systemName: "arrow.left")
+                    Image("ButtonLeft")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
                 
                 //Month & Year
@@ -35,9 +36,11 @@ struct CalendarComponent: View {
                     Text(CalendarHelper()
                         .getCalendarComponentString(date: currProgressDate, format: "LLLL")
                     )
+                    .font(.secondary(.custom(24)))
                     Text(CalendarHelper()
                         .getCalendarComponentString(date: currProgressDate, format: "yyyy")
                     )
+                    .font(.secondary(.custom(24)))
                 }
                 .frame(width: 200)
                 
@@ -48,7 +51,9 @@ struct CalendarComponent: View {
                         daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                     }
                 } label: {
-                    Image(systemName: "arrow.right")
+                    Image("ButtonRight")
+                        .resizable()
+                        .frame(width: 30, height: 30)
                 }
             }
             .padding(.bottom, 30)
@@ -60,6 +65,7 @@ struct CalendarComponent: View {
                     Text(day)
                         .hAlign(.center)
                         .padding(.trailing, 5)
+                        .font(.secondary(.custom(22)))
                 }
                 
                 //MARK: Day Section
@@ -88,10 +94,14 @@ struct CalendarComponent: View {
                             Text(showCigarettes ? String(cigarettesData) : " ")
                                 .frame(width: 35, height: 35)
                                 .background(
-                                    //imagenya ilang
-                                    Image("CalendarBox")
+                                   fillData ?
+                                    Image("CalendarTickFill")
                                         .resizable()
                                         .scaledToFit()
+                                   :
+                                   Image("CalendarTickUnFill")
+                                       .resizable()
+                                       .scaledToFit()
                                 )
                                 .padding(-1)
                         }
@@ -144,7 +154,7 @@ struct CalendarComponent: View {
                                 //refresh calendar to see update and set statistics view to 7 Days
                                 daysData = CalendarHelper().showCalendarData(currProgressDate: currProgressDate)
                                 progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: progressData)
-                                currPicker = "7 Days"
+//                                currPicker = "7 Days"
                             }
                         }
                     }

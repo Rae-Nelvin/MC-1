@@ -42,6 +42,9 @@ struct WelcomeComponent: View {
             .aspectRatio(contentMode: .fill)
             .edgesIgnoringSafeArea(.all)
         )
+        .onTapGesture {
+            currentPage = Page.form
+        }
     }
 }
 
