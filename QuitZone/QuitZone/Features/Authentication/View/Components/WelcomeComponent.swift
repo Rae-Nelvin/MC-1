@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WelcomeComponent: View {
     
-    @Binding var currentPage : String
+    @ObservedObject var pvm: PlayerViewModel
     
     var body: some View {
         VStack (alignment: .center) {
@@ -24,15 +24,18 @@ struct WelcomeComponent: View {
             
             Spacer()
             
-            Text("Lorem impusm dolor sit amet! \nconsectur adipiscing \n...")
-                .font(.secondary(.body))
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 100)
-            //
+            Button {
+                pvm.currPage = "Loading iCloud Screen"
+            } label: {
+                Text("Continue")
+                    .font(.secondary(.body))
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 100)
+            }
         }
         .frame(maxWidth:.infinity, maxHeight: .infinity)
         .onTapGesture {
-            currentPage = "Form"
+            pvm.currPage = "Loading iCloud Screen"
         }
         .background(Image("mainBackground")
             .resizable()
@@ -42,8 +45,8 @@ struct WelcomeComponent: View {
     }
 }
 
-struct WelcomeComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeComponent(currentPage: .constant("Welcome"))
-    }
-}
+//struct WelcomeComponent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WelcomeComponent(pvm: pvm)
+//    }
+//}

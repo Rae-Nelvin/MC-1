@@ -31,21 +31,3 @@ struct missionLists {
     static let lists = [Mission(title: "Dummy 1", description: "Dummy 1", point: 20),
                         Mission(title: "Dummy 2", description: "Dummy 2", point: 30)]
 }
-
-//struct PlayerMission: Identifiable {
-//    var id: CKRecord.ID?
-//    var playerID: CKRecord.Reference
-//    var missionTitle: String
-//    var missionPoint: Int16
-//    
-//    init(id: CKRecord.ID? = nil, playerID: CKRecord.Reference, missionTitle: String, missionPoint: Int16) {
-//        self.id = id
-//        self.playerID = playerID
-//        self.missionTitle = missionTitle
-//        self.missionPoint = missionPoint
-//    }
-//    
-//    func toDictionary() -> [String: Any] {
-//        return ["playerID": playerID, "missionTitle": missionTitle, "missionPoint": missionPoint]
-//    }
-//}

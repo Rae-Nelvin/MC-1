@@ -15,9 +15,9 @@ struct TeamListComponent: View {
     var body: some View {
         NavigationLink(destination: LeaderboardView(team: $team)) {
             VStack{
-                Text("**\(team.name)**")
-                    .hAlign(.leading)
-                    .padding(.bottom,1)
+//                Text("**\(team.name)**")
+//                    .hAlign(.leading)
+//                    .padding(.bottom,1)
                 Text("\(team.players) participants")
                     .hAlign(.leading)
             }
@@ -32,7 +32,7 @@ struct TeamListComponent: View {
 
 struct TeamList_Previews: PreviewProvider {
     
-    @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Stop merokok")
+    @State static var team: Team = Team()
     
     static var previews: some View {
        TeamListComponent(team: $team)

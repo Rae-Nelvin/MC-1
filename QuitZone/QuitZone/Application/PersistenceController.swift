@@ -36,7 +36,6 @@ struct PersistenceController {
         
         viewContext.automaticallyMergesChangesFromParent = true
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        
     }
     
     func save() {

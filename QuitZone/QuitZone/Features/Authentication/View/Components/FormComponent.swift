@@ -9,19 +9,20 @@ import SwiftUI
 
 struct FormComponent: View {
     
-    @State private var tempvar1 : String = "Your name"
+    @ObservedObject var pvm: PlayerViewModel
     
+    @State private var tempvar1 : String = "Your name"
     @State private var tempvar3 : String = "Date of Birth"
     @State private var tempvar4 : String = ""
-    
     @State private var tempvar5 : String = "How long have you smoked"
-    
     @State private var tempvar7 : String = "How frequent?"
     @State private var tempvar8 : Double = 1
-    
-    
-    @Binding var dummyUser: User
-    @Binding var currentPage : String
+    @State private var tempvar9: String = "What cigarattes do you smoke?"
+    @State private var name: String = ""
+    @State private var dob: Date = Date()
+    @State private var smokerFor: Int16 = 0
+    @State private var frequency: Int16 = 0
+    @State private var typeOfCigarattes: String = ""
     
     var body: some View {
         ZStack {
@@ -30,11 +31,11 @@ struct FormComponent: View {
             }
             
             VStack {
-                customTextField(question: $tempvar1, answer: $dummyUser.name)
+                customTextField(question: $tempvar1, answer: $name)
                     .padding(.bottom, 29)
-                customTextField(question: $tempvar3, answer: $dummyUser.dateOfBirth)
-                    .padding(.bottom, 29)
-                customTextField(question: $tempvar5, answer: $dummyUser.smokerFor)
+//                customTextField(question: $tempvar3, answer: $dob)
+//                    .padding(.bottom, 29)
+                customIntField(question: $tempvar5, answer: $smokerFor)
                     .padding(.bottom, 29)
                 HStack {
                     Text("\(tempvar7)")
@@ -47,14 +48,19 @@ struct FormComponent: View {
 
                 }
                 HStack {
-                    Slider(value: $tempvar8, in:1...10, step: 1.0)
-                    Text("\(Int(tempvar8))")
+                    Slider(value: Binding(get: {
+                        Double(frequency)
+                    }, set: {
+                        frequency = Int16($0)
+                    }), in:1...10, step: 1)
+                    Text("\(Int(frequency))")
                         .font(.secondary(.custom(12)))
                         .padding(.bottom, 6)
                 }
-                
+                customTextField(question: $tempvar9, answer: $typeOfCigarattes)
+                    .padding(.bottom, 29)
                 Button {
-                    currentPage = "Home"
+                    pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
                 } label : {
                     Text("See your lung health now!")
                         .font(.secondary(.body))
@@ -69,11 +75,11 @@ struct FormComponent: View {
     
 }
 
-struct FormComponent_Previews: PreviewProvider {
-    
-    @State static var user:User = User(name: "", dateOfBirth: "", frequency: 1, smokerFor: "", typeOfCigarette: "", email: "", phone: "")
-    
-    static var previews: some View {
-        FormComponent(dummyUser: $user, currentPage: .constant("Form"))
-    }
-}
+//struct FormComponent_Previews: PreviewProvider {
+//
+//    @State static var user:User = User(name: "", dateOfBirth: "", frequency: 1, smokerFor: "", typeOfCigarette: "", email: "", phone: "")
+//
+//    static var previews: some View {
+//        FormComponent(dummyUser: $user, currentPage: .constant("Form"))
+//    }
+//}

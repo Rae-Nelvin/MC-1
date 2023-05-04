@@ -11,11 +11,11 @@ import CoreData
 
 class PlayerViewModel: ObservableObject {
     
-    @Environment(\.managedObjectContext) private var viewContext
     private var icvm: iCloudViewModel
     @Published var isRegistered: Bool = false
     @Published var isLoading: Bool = true
     @Published var player: Player = Player()
+    @Published var currPage: String = "Splash Screen"
     
     init() {
         self.icvm = iCloudViewModel()
@@ -39,7 +39,7 @@ class PlayerViewModel: ObservableObject {
         player.iCloud = icvm.iCloud
         
         PersistenceController.shared.save()
-        print("Saving Data...")
+        self.currPage = "Home Screen"
     }
     
     func getPlayer() {
@@ -83,55 +83,5 @@ class PlayerViewModel: ObservableObject {
         }
         
         PersistenceController.shared.save()
-    }
-    
-}
-
-// For Testing Purposes Delete Later
-
-struct PlayerView: View {
-    @ObservedObject private var pvm: PlayerViewModel = PlayerViewModel()
-    @State private var name: String = ""
-    @State private var dob: Date = Date()
-    @State private var frequency: Int16 = 0
-    @State private var smokerFor: Int16 = 0
-    @State private var typeOfCigarattes: String = ""
-    
-    var body: some View {
-        NavigationView {
-            ZStack {
-                if pvm.isLoading == false && pvm.isRegistered == false {
-                    VStack {
-                        Section(header: Text("Personal Info")) {
-                            TextField("Enter your name", text: $name)
-                            DatePicker("Enter your Date of Birth", selection: $dob, displayedComponents: [.date])
-                        }
-                        
-                        Section(header: Text("Smoking Info")) {
-                            TextField("Enter your frequency of smoking", value: $frequency, formatter: NumberFormatter())
-                            TextField("Enter you've been smoking for in months", value: $smokerFor, formatter: NumberFormatter())
-                            TextField("Enter your type of cigarattes", text: $typeOfCigarattes)
-                        }
-                        Button("Submit") {
-                                        pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-//                            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, player: pvm.player)
-                        }
-                        Button("Check Account") {
-                            pvm.getPlayer()
-                        }
-                    }
-                } else if pvm.isLoading == false && pvm.isRegistered == true {
-                    VStack {
-                        Text(pvm.player.name ?? "")
-                        Text(pvm.player.typeOfCigarattes ?? "")
-                        Text("\(pvm.player.objectID)")
-                    }
-                }
-                else {
-                    Text("Loading")
-                }
-            }
-        }
-        .padding()
     }
 }

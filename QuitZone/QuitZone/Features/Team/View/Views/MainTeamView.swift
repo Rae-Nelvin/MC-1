@@ -9,13 +9,7 @@ import SwiftUI
 
 struct MainTeamView: View {
     
-    @State var teamLists:[Team] = [
-        Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 2", players: 8, goal: "Stop merokok"),
-        Team(name: "Team 3", players: 5, goal: "Stop rokok"),
-        Team(name: "Team 4", players: 12, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 5", players: 20, goal: "Mengurangi rokok 3 batang per hari")
-    ]
+    @State var teamLists: [Team] = []
     var body: some View {
         NavigationView {
             VStack{

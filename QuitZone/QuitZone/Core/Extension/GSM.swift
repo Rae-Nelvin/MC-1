@@ -52,6 +52,31 @@ struct customTextField: View {
     }
 }
 
+struct customIntField: View {
+    
+    @Binding var question: String
+    @Binding var answer: Int16
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("\(question)")
+                .font(.secondary(.body))
+                .padding(.bottom, 6)
+            TextField("", value: $answer, formatter: NumberFormatter())
+                .font(.title)
+                .autocapitalization(.none)
+                .padding(.horizontal, 12)
+                .frame(width:315, height:52)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color("SystemGray"), lineWidth: 2)
+                )
+        }
+        .frame(width:.infinity, height:82)
+        
+    }
+}
+
 extension View {
     func hAlign(_ alignment: Alignment) -> some View {
         self

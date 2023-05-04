@@ -15,16 +15,7 @@ struct QuitZoneApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ZStack {
-                switch qzvm.currentPage {
-                case "iCloudView":
-                    PlayerView()
-                default:
-                    PlayerView()
-                }
-            }
+            ContentView()
         }
     }
-    
-   
 }

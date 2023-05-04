@@ -43,7 +43,7 @@ struct LeaderboardView: View {
 
 struct LeaderboardView_Previews: PreviewProvider {
     
-    @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 5 batang perhari")
+    @State static var team: Team = Team()
     
     static var previews: some View {
         LeaderboardView(team: $team)
