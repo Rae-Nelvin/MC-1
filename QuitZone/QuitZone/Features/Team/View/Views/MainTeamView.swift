@@ -1,38 +1,38 @@
+////
+////  CreateTeamComponent.swift
+////  QuitZone
+////
+////  Created by Jonathan Evan Christian on 19/04/23.
+////
 //
-//  CreateTeamComponent.swift
-//  QuitZone
+//import SwiftUI
 //
-//  Created by Jonathan Evan Christian on 19/04/23.
+//struct MainTeamView: View {
+//    
+//    @State var teamLists: [Team] = []
+//    var body: some View {
+//        NavigationView {
+//            VStack{
+//                TeamListNavComponent(currentPage: $currentPage)
+//                List($teamLists, id: \.self) { team in
+//                    TeamListComponent(team: team)
+//                }
+//                .teamListStyle()
+//            }
+//            
+//        }
+//    }
+//}
 //
-
-import SwiftUI
-
-struct MainTeamView: View {
-    
-    @State var teamLists: [Team] = []
-    var body: some View {
-        NavigationView {
-            VStack{
-                TeamListNavComponent(currentPage: $currentPage)
-                List($teamLists, id: \.self) { team in
-                    TeamListComponent(team: team)
-                }
-                .teamListStyle()
-            }
-            
-        }
-    }
-}
-
-extension List {
-    func teamListStyle() -> some View {
-        self.background(.white)
-            .scrollContentBackground(.hidden)
-    }
-}
-
-struct MainTeamView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTeamView(currentPage: .constant(Page.gangs))
-    }
-}
+//extension List {
+//    func teamListStyle() -> some View {
+//        self.background(.white)
+//            .scrollContentBackground(.hidden)
+//    }
+//}
+//
+//struct MainTeamView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainTeamView(currentPage: .constant(Page.gangs))
+//    }
+//}

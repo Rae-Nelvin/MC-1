@@ -17,13 +17,13 @@ struct ContentView: View {
             case "Splash Screen" :
                 WelcomeComponent(pvm: self.pvm)
             case "Loading iCloud Screen":
-                LoadingComponent(pvm: self.pvm)
+                SplashScreenComponentView(pvm: self.pvm)
             case "Register Form Screen" :
                 FormComponent(pvm: self.pvm)
             case "Home Screen":
-                HomeComponents(pvm: self.pvm)
+                HomeView(pvm: self.pvm)
             default:
-                HomeComponents(pvm: self.pvm)
+                HomeView(pvm: self.pvm)
             }
         }
     }

@@ -71,11 +71,11 @@ struct UserComponent: View {
     }
 }
 
-struct UserComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        UserComponent(currentPage: .constant(.profile))
-    }
-}
+//struct UserComponent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UserComponent(currentPage: .constant(.profile))
+//    }
+//}
 
 struct UserDetailComponent: View {
     var text: String

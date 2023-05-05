@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		153422D12A025B8A00F41915 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1565D0792A010B53002D3C33 /* CoreData.framework */; };
 		1565D0802A010B9A002D3C33 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D07F2A010B9A002D3C33 /* Mission.swift */; };
 		1565D0832A010BA3002D3C33 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0822A010BA3002D3C33 /* MissionViewModel.swift */; };
 		1565D0882A010BCB002D3C33 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */; };
 		1565D08A2A010BED002D3C33 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0892A010BED002D3C33 /* Day.swift */; };
-		1565D0902A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1565D08E2A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld */; };
+		1565D0902A010EB7002D3C33 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		1565D0AA2A0111EE002D3C33 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0A92A0111EE002D3C33 /* PersistenceController.swift */; };
 		157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 157792F329F26BA20031AA1C /* PlayerViewModel.swift */; };
 		158B325F29FD3B6000EC7EAD /* QuitZoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158B325E29FD3B6000EC7EAD /* QuitZoneViewModel.swift */; };
@@ -22,6 +21,8 @@
 		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
 		15B1D4312A05089A00320AA5 /* Cigarattes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4302A05089A00320AA5 /* Cigarattes.swift */; };
 		15B1D4332A05106300320AA5 /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4322A05106300320AA5 /* StatisticViewModel.swift */; };
+		15B1D4372A05426800320AA5 /* QuitZoneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4352A05426800320AA5 /* QuitZoneModel.xcdatamodeld */; };
+		15B1D4462A05428300320AA5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D43E2A05428300320AA5 /* HomeView.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -29,8 +30,6 @@
 		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
 		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
 		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
-		15E470502A039DE6001BA9AA /* LoadingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4704F2A039DE6001BA9AA /* LoadingComponent.swift */; };
-		15E470522A03A18C001BA9AA /* HomeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E470512A03A18C001BA9AA /* HomeComponents.swift */; };
 		68FAC7B529FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
 		68FAC7B629FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
 		68FAC7B729FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
@@ -65,7 +64,7 @@
 		68FAC7E829FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */; };
 		68FAC7E929FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */; };
 		8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF229FD33E30092937D /* CalendarComponent.swift */; };
-		8003DFF529FD34020092937D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF429FD34020092937D /* HomeView.swift */; };
+		8003DFF529FD34020092937D /* HomeComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF429FD34020092937D /* HomeComponents.swift */; };
 		8003DFF729FD341B0092937D /* LungsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF629FD341B0092937D /* LungsComponent.swift */; };
 		8003DFF929FD343A0092937D /* StatisticsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF829FD343A0092937D /* StatisticsComponent.swift */; };
 		8003DFFB29FD35270092937D /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFFA29FD35270092937D /* CalendarHelper.swift */; };
@@ -124,7 +123,6 @@
 		1565D0822A010BA3002D3C33 /* MissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
 		1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		1565D0892A010BED002D3C33 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
-		1565D08F2A010EB7002D3C33 /* QuitZoneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuitZoneModel.xcdatamodel; sourceTree = "<group>"; };
 		1565D0A92A0111EE002D3C33 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		157792EB29F24F8F0031AA1C /* QuitZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitZone.entitlements; sourceTree = "<group>"; };
 		157792F329F26BA20031AA1C /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
@@ -136,6 +134,8 @@
 		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
 		15B1D4302A05089A00320AA5 /* Cigarattes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cigarattes.swift; sourceTree = "<group>"; };
 		15B1D4322A05106300320AA5 /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
+		15B1D4362A05426800320AA5 /* QuitZoneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuitZoneModel.xcdatamodel; sourceTree = "<group>"; };
+		15B1D43E2A05428300320AA5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,8 +146,6 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		15E4704F2A039DE6001BA9AA /* LoadingComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingComponent.swift; sourceTree = "<group>"; };
-		15E470512A03A18C001BA9AA /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponents.swift; sourceTree = "<group>"; };
 		68FAC7A029FBA93F00B6BC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListComponent.swift; sourceTree = "<group>"; };
 		68FAC7B829FC52DB00B6BC93 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
@@ -161,7 +159,7 @@
 		68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamNavComponent.swift; sourceTree = "<group>"; };
 		68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamFormComponent.swift; sourceTree = "<group>"; };
 		8003DFF229FD33E30092937D /* CalendarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarComponent.swift; sourceTree = "<group>"; };
-		8003DFF429FD34020092937D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		8003DFF429FD34020092937D /* HomeComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeComponents.swift; sourceTree = "<group>"; };
 		8003DFF629FD341B0092937D /* LungsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungsComponent.swift; sourceTree = "<group>"; };
 		8003DFF829FD343A0092937D /* StatisticsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsComponent.swift; sourceTree = "<group>"; };
 		8003DFFA29FD35270092937D /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
@@ -313,7 +311,7 @@
 		15A437C429F7BE9A00300BF5 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				1565D08E2A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld */,
+				15B1D4352A05426800320AA5 /* QuitZoneModel.xcdatamodeld */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -460,7 +458,7 @@
 		AB81F37329FBC6B1009EFFE8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8003DFF429FD34020092937D /* HomeView.swift */,
+				15B1D43E2A05428300320AA5 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -468,6 +466,7 @@
 		AB81F37429FBC6B6009EFFE8 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8003DFF429FD34020092937D /* HomeComponents.swift */,
 				8003DFF229FD33E30092937D /* CalendarComponent.swift */,
 				8003DFF629FD341B0092937D /* LungsComponent.swift */,
 				8003DFF829FD343A0092937D /* StatisticsComponent.swift */,
@@ -780,9 +779,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				68FAC7B529FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
-				15E470522A03A18C001BA9AA /* HomeComponents.swift in Sources */,
-				8003DFF529FD34020092937D /* HomeView.swift in Sources */,
-				1565D0902A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld in Sources */,
+				8003DFF529FD34020092937D /* HomeComponents.swift in Sources */,
+				1565D0902A010EB7002D3C33 /* (null) in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				1565D0882A010BCB002D3C33 /* CalendarViewModel.swift in Sources */,
 				8003E00729FD37AD0092937D /* MissionComponent.swift in Sources */,
@@ -791,7 +789,6 @@
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				158B325F29FD3B6000EC7EAD /* QuitZoneViewModel.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
-				15E470502A039DE6001BA9AA /* LoadingComponent.swift in Sources */,
 				8003DFFB29FD35270092937D /* CalendarHelper.swift in Sources */,
 				80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */,
 				8003E00929FD37EA0092937D /* MissionModel.swift in Sources */,
@@ -800,6 +797,7 @@
 				68FAC7B929FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
 				15B1D4312A05089A00320AA5 /* Cigarattes.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
+				15B1D4462A05428300320AA5 /* HomeView.swift in Sources */,
 				8003DFFD29FD35590092937D /* ProgressModel.swift in Sources */,
 				ABD4BF002A026F4B00B83554 /* NicotineComponent.swift in Sources */,
 				80602C112A02B42300EFE9C0 /* MissionViewModels.swift in Sources */,
@@ -829,6 +827,7 @@
 				68FAC7DF29FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
 				68FAC7C129FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
+				15B1D4372A05426800320AA5 /* QuitZoneModel.xcdatamodeld in Sources */,
 				80602C162A03C55C00EFE9C0 /* LottieViewComponent.swift in Sources */,
 				ABF5520429FE856800785A06 /* Font.swift in Sources */,
 				ABD4BEFE2A026EF200B83554 /* TarComponent.swift in Sources */,
@@ -1207,6 +1206,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		15B1D4352A05426800320AA5 /* QuitZoneModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				15B1D4362A05426800320AA5 /* QuitZoneModel.xcdatamodel */,
+			);
+			currentVersion = 15B1D4362A05426800320AA5 /* QuitZoneModel.xcdatamodel */;
+			path = QuitZoneModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 15BF5D6529EFBC68003C1500 /* Project object */;
 }

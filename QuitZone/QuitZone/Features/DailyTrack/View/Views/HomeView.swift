@@ -1,93 +1,70 @@
 //
-//  HomeComponent.swift
+//  HomeComponents.swift
 //  QuitZone
 //
-//  Created by Jonathan Evan Christian on 19/04/23.
+//  Created by Leonardo Wijaya on 04/05/23.
 //
 
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject private var dpvm: DailyPlayerViewModel
     
-    init(player: Player) {
-        self.dpvm = DailyPlayerViewModel(player: player)
-    }
+    @State private var currentPage: Page = Page.home
+    @ObservedObject var pvm: PlayerViewModel
     
     var body: some View {
         VStack {
-            //MARK: 3 button
-            HStack {
-                //MARK: Nicotine
-                ProgressBarComponent(percentage: 57, tickValue: 320, showText: true)
-                    .onTapGesture {
-                        dpvm.showSheetContentStatus = .nicotine
-                        dpvm.sheetStatus.toggle()
-                    }
-                
-                //MARK: Tar
-                ProgressBarComponent(percentage: 75, tickValue: 14, showText: true)
-                    .onTapGesture {
-                        dpvm.showSheetContentStatus = .tar
-                        dpvm.sheetStatus.toggle()
-                    }
-                
-                //MARK: Calendar
+            GeometryReader { geometry in
                 ZStack {
-                    ProgressBarComponent(percentage: 100, tickValue: 40, showText: false)
-                    Image(systemName:"calendar")
-                        .font(.largeTitle)
-                }
-                .onTapGesture {
-                    dpvm.showCalendar.toggle()
-                    dpvm.fetchDailyPlayer()
-                }
-            }
-            .hAlign(.top)
-            .padding(.bottom, 16)
-            
-            Spacer()
-            
-            VStack {
-                //MARK: Calendar
-                if dpvm.showCalendar {
-                    CalendarComponent(player: dpvm.player)
-                        .padding(.top, 50)
-                        .padding(.horizontal, 16)
-                        .background(Color.white.opacity(0.5))
-                    
-                    Spacer()
-                }
-                else {
-                    //MARK: Lung
-                    VStack {
-                        LungsComponent()
-                            .padding(.bottom, 28)
+                    switch currentPage {
+                    case Page.home:
+                        HomeComponents(player: pvm.player)
+//                    case Page.friend:
+//                        MainTeamView()
+//                    case Page.mission:
+//                        MissionView()
+//                    case Page.user:
+//                        UserComponent()
+                    default:
+                        HomeComponents(player: pvm.player)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .padding()
+                    // bottom tab bar
+                    VStack {
+                        Spacer()
+                        
+                        ZStack {
+                            Image("navigationBarBackground")
+                                .resizable()
+                                .frame(width: geometry.size.width, height: geometry.size.width/3)
+                                .offset(CGSize(width: 0, height: 20))
+                            
+                            HStack {
+                                
+                                Spacer()
+                                
+                                customNavigationButton(text: "Home", page: Page.home, image: "barHome", currentPage: $currentPage)
+                                
+                                Spacer()
+                                
+                                customNavigationButton(text: "Gangs", page: Page.friend, image: "barGangs", currentPage: $currentPage)
+                                
+                                Spacer()
+                                
+                                customNavigationButton(text: "Tasks", page: Page.mission, image: "barTasks", currentPage: $currentPage)
+                                
+                                Spacer()
+                                
+                                customNavigationButton(text: "Profile", page: Page.user, image:"barProfile", currentPage: $currentPage)
+                                
+                                Spacer()
+                            }
+                            .offset(CGSize(width: -7, height: 14))
+                            .padding(.horizontal,20)
+                            .frame(width: geometry.size.width, height: geometry.size.height/9)
+                        .background(Material.ultraThinMaterial.opacity(0.1))
+                        }
+                    }
                 }
-            }
-            .background(
-                Image("humanBody")
-                    .resizable()
-                    .scaledToFit()
-                    .blur(radius: dpvm.showCalendar ? 3 : 0)
-            )
-            .sheet(isPresented: $dpvm.sheetStatus) {
-                switch dpvm.showSheetContentStatus {
-                    case .nicotine:
-                    NicotineComponent(progressData: $dpvm.progressData, progressDataByDate: $dpvm.progressDataByDate)
-                            .presentationDetents([.height(250)])
-                            .presentationDragIndicator(.visible)
-                    case .tar:
-                    TarComponent(progressData: $dpvm.progressData, progressDataByDate: $dpvm.progressDataByDate)
-                            .presentationDetents([.height(250)])
-                            .presentationDragIndicator(.visible)
-                }
-            }
-            .onAppear {
-                dpvm.progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: dpvm.progressData)
             }
         }
     }

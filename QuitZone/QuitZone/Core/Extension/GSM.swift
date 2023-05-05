@@ -183,10 +183,11 @@ enum Page : String {
     case task
     case profile
     case editProfile
-    
+    case friend
     case leaderboard
     case createteam
-    
+    case mission
+    case user
 }
 
 
