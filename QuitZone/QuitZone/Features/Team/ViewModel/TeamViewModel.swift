@@ -43,12 +43,14 @@ class TeamViewModel: ObservableObject {
     
     func getMemberOfs(player: Player) {
         let request: NSFetchRequest<Member> = Member.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@", player.objectID)
+        request.predicate = NSPredicate(format: "player == %@", player)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
-            for result in results {
-                self.getTeam(teamID: result.teamID)
+            if results.count > 0 {
+                for result in results {
+                    self.getTeam(team: result.team!)
+                }
             }
         } catch let error as NSError {
             print("Error fetching records: \(error)")
@@ -81,9 +83,9 @@ class TeamViewModel: ObservableObject {
         PersistenceController.shared.save()
     }
     
-    func getTeam(teamID: Team.ID) {
+    func getTeam(team: Team) {
         let request: NSFetchRequest<Team> = Team.fetchRequest()
-        request.predicate = NSPredicate(format: "teamID == %@", teamID!)
+        request.predicate = NSPredicate(format: "team == %@", team)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
@@ -133,19 +135,19 @@ class TeamViewModel: ObservableObject {
     
     func deleteTeam(team: Team) {
         let requestMember: NSFetchRequest<Member> = Member.fetchRequest()
-        requestMember.predicate = NSPredicate(format: "teamID == %@", team.id!)
+        requestMember.predicate = NSPredicate(format: "team == %@", team)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(requestMember)
             for result in results {
-                self.deleteMember(player: result.playerID as! Player, team: result.teamID as! Team)
+                self.deleteMember(player: result.player!, team: result.team!)
             }
         } catch let error as NSError {
             print("Error fetching records: \(error)")
         }
         
         let requestTeam: NSFetchRequest<Team> = Team.fetchRequest()
-        requestTeam.predicate = NSPredicate(format: "teamID == %@", team.id!)
+        requestTeam.predicate = NSPredicate(format: "team == %@", team)
         do {
             let results = try PersistenceController.shared.viewContext.fetch(requestTeam)
             guard let result = results.first else { return }

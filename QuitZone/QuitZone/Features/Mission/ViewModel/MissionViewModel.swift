@@ -13,7 +13,7 @@ class MissionViewModel: ObservableObject {
     
     private var player: Player
     @Published var missions: [Mission] = []
-    private var playerMissions: [PlayerMission] = []
+    @Published var playerMissions: [PlayerMission] = []
     
     init(player: Player) {
         self.player = player
@@ -24,12 +24,13 @@ class MissionViewModel: ObservableObject {
         self.missions = []
         let date = Date()
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        let startDate = calendar.date(from: components)!
-        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        var startOfWeek: Date = Date()
+        var interval = TimeInterval()
+        _ = calendar.dateInterval(of: .weekOfYear,start: &startOfWeek, interval: &interval, for: date)
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
         
         let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "player == %@ AND creationDate >= %@ AND creationDate < %@", self.player, startOfWeek as NSDate, endOfWeek as NSDate)
         
         do {
             let count = try PersistenceController.shared.container.viewContext.count(for: request)
@@ -63,22 +64,25 @@ class MissionViewModel: ObservableObject {
     func finishMission(mission: Mission) {
         let playerMission = PlayerMission(context: PersistenceController.shared.viewContext)
         
-        playerMission.setValue(self.player.id, forKey: "playerID")
-        playerMission.setValue(mission.title, forKey: "missionTitle")
-        playerMission.setValue(mission.point, forKey: "missionPoint")
+        playerMission.missionTitle = mission.title
+        playerMission.missionPoint = Int16(mission.point)
+        playerMission.creationDate = Date()
+        playerMission.player = self.player
         
         PersistenceController.shared.save()
+        self.fetchingPlayerMissions()
     }
     
     func cancelFinishedMission(mission: Mission) {
         let date = Date()
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        let startDate = calendar.date(from: components)!
-        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        var startOfWeek: Date = Date()
+        var interval = TimeInterval()
+        _ = calendar.dateInterval(of: .weekOfYear,start: &startOfWeek, interval: &interval, for: date)
+        let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
         
         let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "player == %@ AND creationDate >= %@ AND creationDate < %@", self.player, startOfWeek as NSDate, endOfWeek as NSDate)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
@@ -92,42 +96,7 @@ class MissionViewModel: ObservableObject {
         } catch let error as NSError {
             print("Error fetching records: \(error)")
         }
+        self.fetchingPlayerMissions()
     }
     
-}
-
-// Dummy View Delete Later
-
-struct MissionViewModelView: View {
-    
-    @ObservedObject var mvm: MissionViewModel
-    
-    init(player: Player) {
-        mvm = MissionViewModel(player: player)
-    }
-    
-    var body: some View {
-        VStack {
-            List {
-                ForEach(mvm.missions, id: \.id) { mission in
-                    HStack {
-                        VStack {
-                            Text(mission.title)
-                            Text(mission.description)
-                        }
-                        Button("Check") {
-                            mvm.finishMission(mission: mission)
-                        }
-                        .disabled(mission.isDone == true)
-                        Button("Uncheck") {
-                            mvm.cancelFinishedMission(mission: mission)
-                        }
-                        .disabled(mission.isDone == false)
-                        Text(String(mission.isDone))
-                    }
-                }
-            }
-        }
-        
-    }
 }

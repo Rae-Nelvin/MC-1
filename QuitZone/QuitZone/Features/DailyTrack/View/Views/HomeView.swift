@@ -21,8 +21,8 @@ struct HomeView: View {
                         HomeComponents(player: pvm.player)
 //                    case Page.friend:
 //                        MainTeamView()
-//                    case Page.mission:
-//                        MissionView()
+                    case Page.mission:
+                        MissionView(player: pvm.player)
 //                    case Page.user:
 //                        UserComponent()
                     default:

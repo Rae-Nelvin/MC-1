@@ -71,9 +71,7 @@
 		8003DFFD29FD35590092937D /* ProgressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFFC29FD35590092937D /* ProgressModel.swift */; };
 		8003E00429FD37240092937D /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00329FD37240092937D /* MissionView.swift */; };
 		8003E00729FD37AD0092937D /* MissionComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00629FD37AD0092937D /* MissionComponent.swift */; };
-		8003E00929FD37EA0092937D /* MissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00829FD37EA0092937D /* MissionModel.swift */; };
 		8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003E00A29FD38820092937D /* StatisticsHelper.swift */; };
-		80602C112A02B42300EFE9C0 /* MissionViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C102A02B42300EFE9C0 /* MissionViewModels.swift */; };
 		80602C142A03C49B00EFE9C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 80602C132A03C49B00EFE9C0 /* Lottie */; };
 		80602C162A03C55C00EFE9C0 /* LottieViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */; };
 		80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */; };
@@ -166,9 +164,7 @@
 		8003DFFC29FD35590092937D /* ProgressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressModel.swift; sourceTree = "<group>"; };
 		8003E00329FD37240092937D /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 		8003E00629FD37AD0092937D /* MissionComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionComponent.swift; sourceTree = "<group>"; };
-		8003E00829FD37EA0092937D /* MissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionModel.swift; sourceTree = "<group>"; };
 		8003E00A29FD38820092937D /* StatisticsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsHelper.swift; sourceTree = "<group>"; };
-		80602C102A02B42300EFE9C0 /* MissionViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModels.swift; sourceTree = "<group>"; };
 		80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieViewComponent.swift; sourceTree = "<group>"; };
 		80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenComponentView.swift; sourceTree = "<group>"; };
 		AB81F37929FBC8D9009EFFE8 /* Ticketing.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ticketing.ttf; sourceTree = "<group>"; };
@@ -378,11 +374,9 @@
 		8003DFFE29FD36380092937D /* Mission */ = {
 			isa = PBXGroup;
 			children = (
+				8003E00129FD37010092937D /* View */,
 				1565D0812A010BA3002D3C33 /* ViewModel */,
 				1565D07E2A010B9A002D3C33 /* Model */,
-				8003E00129FD37010092937D /* View */,
-				80602C0E2A02B3C500EFE9C0 /* Model */,
-				80602C0F2A02B3D200EFE9C0 /* ViewModel */,
 			);
 			path = Mission;
 			sourceTree = "<group>";
@@ -400,8 +394,6 @@
 			isa = PBXGroup;
 			children = (
 				8003E00329FD37240092937D /* MissionView.swift */,
-				8003E00829FD37EA0092937D /* MissionModel.swift */,
-				80602C102A02B42300EFE9C0 /* MissionViewModels.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -412,20 +404,6 @@
 				8003E00629FD37AD0092937D /* MissionComponent.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		80602C0E2A02B3C500EFE9C0 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		80602C0F2A02B3D200EFE9C0 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		AB1E2F3529FA5C08003A7CEE /* Font */ = {
@@ -791,7 +769,6 @@
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				8003DFFB29FD35270092937D /* CalendarHelper.swift in Sources */,
 				80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */,
-				8003E00929FD37EA0092937D /* MissionModel.swift in Sources */,
 				8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */,
 				AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7B929FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
@@ -800,7 +777,6 @@
 				15B1D4462A05428300320AA5 /* HomeView.swift in Sources */,
 				8003DFFD29FD35590092937D /* ProgressModel.swift in Sources */,
 				ABD4BF002A026F4B00B83554 /* NicotineComponent.swift in Sources */,
-				80602C112A02B42300EFE9C0 /* MissionViewModels.swift in Sources */,
 				8003E00429FD37240092937D /* MissionView.swift in Sources */,
 				ABC3E74929EFEBF300682177 /* UserModel.swift in Sources */,
 				ABF47E5629EFD27F0067F243 /* UserComponent.swift in Sources */,
