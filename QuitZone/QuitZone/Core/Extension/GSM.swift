@@ -24,7 +24,7 @@ struct customTextField: View {
                 .font(.title)
                 .autocapitalization(.none)
                 .padding(.horizontal, 12)
-                .frame(width:315, height:52)
+                .frame(width:315, height: question == "Group Goal" ? 100 : 52)
                 .overlay(
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(Color("SystemGray"), lineWidth: 2)
@@ -41,6 +41,92 @@ struct customButtonStyle: ButtonStyle {
         configuration.label
             .background(Image("board"))
             .scaleEffect(configuration.isPressed ? 1.2 : 1.0)
+    }
+}
+
+//DatePicker
+struct customDatePicker: View {
+    
+    @Binding var question: String
+    @Binding var answer: String
+    @State private var selectedDate = Date()
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("\(question)")
+                .font(.secondary(.body))
+                .padding(.bottom, 6)
+            DatePicker("",
+                       selection: $selectedDate,
+                       displayedComponents: [.date])
+            .datePickerStyle(.compact)
+            .padding(.horizontal, 12)
+            .frame(width:315, height:52)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color("SystemGray"), lineWidth: 2)
+            )
+        }
+        .frame(width:.infinity, height:82)
+    }
+}
+
+//Dropdown
+struct customDropdown: View {
+    
+    @Binding var question: String
+    @Binding var answer: String
+    @State private var selectedOption = 0
+    let options = ["Option 1", "Option 2", "Option 3"]
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("\(question)")
+                .font(.secondary(.body))
+                .padding(.bottom, 6)
+            Picker("Select an option", selection: $selectedOption) {
+                ForEach(0 ..< options.count) { index in
+                    Text(self.options[index]).tag(index)
+                }
+            }
+            .pickerStyle(.menu)
+            .padding(.horizontal, 12)
+            .frame(width:315, height:52)
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color("SystemGray"), lineWidth: 2)
+            )
+        }
+        .frame(width:.infinity, height:82)
+    }
+}
+
+//Slider
+struct customSlider: View {
+    
+    @Binding var question: String
+    @Binding var answer: Double
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            HStack {
+                Text("\(question)")
+                    .font(.secondary(.body))
+                    .padding(.bottom, 6)
+                Text("(on a scale of 10)")
+                    .font(.secondary(.custom(12)))
+                    .padding(.bottom, 6)
+                Spacer()
+                
+            }
+            HStack {
+                Slider(value: $answer, in:1...10, step: 1.0)
+                Text("\(Int(answer))")
+                    .font(.secondary(.custom(12)))
+                    .padding(.bottom, 6)
+            }
+        }
+        .frame(width:.infinity, height:82)
     }
 }
 
@@ -71,6 +157,65 @@ struct customButton: View {
             .resizable()
             .frame(width: 240, height: 80)
         )
+    }
+}
+
+//custom generate field
+struct customGenerateField : View {
+    
+    @Binding var invitationCode: String
+    @State private var emptyString: String = ""
+    
+    @State private var generateAlert: Bool = false
+    @State private var didTap:Bool = false
+    
+    var body : some View{
+        VStack (alignment: .leading) {
+            HStack{
+                Text("**Invitation Code**")
+                    .font(.secondary(.body))
+                    .padding(.bottom, 6)
+                Spacer()
+                Button {
+                    generateAlert.toggle()
+                    invitationCode = "abcde"
+                    self.didTap.toggle()
+                    DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+                        self.didTap.toggle()
+                    }
+                } label : {
+                    Text("Generate")
+                        .font(.secondary(.caption))
+                        .foregroundColor(.black)
+                        .offset(CGSize(width: 0, height: didTap ? 4 : -6))
+                        .animation(nil)
+                }
+                .frame(width: 90, height: 45, alignment: .center)
+                .padding(.vertical, 10)
+                .background(Image(didTap ? "boardPressed" : "board")
+                    .resizable()
+                    .frame(width: 90, height: 45)
+                )
+                .alert("Team Invitation Code", isPresented: $generateAlert){
+                    Button("OK", action: {
+                        generateAlert.toggle()
+                    })
+                    Button("Cancel", role: .cancel) {}
+                } message: {
+                    Text(invitationCode)
+                }
+            }
+            TextField("", text: (!generateAlert && !invitationCode.isEmpty) ? $invitationCode : $emptyString)
+                .font(.title)
+                .autocapitalization(.none)
+                .padding(.horizontal, 12)
+                .frame(width:315, height:52)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color("SystemGray"), lineWidth: 2)
+                )
+        }
+        .frame(width:315, height:82)
     }
 }
 
@@ -119,30 +264,51 @@ struct AppColor {
     private init() {}
 }
 
+struct customBackButton: View {
+    
+    var page: Page
+    var text: String
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            currentPage = self.page
+        } label: {
+            HStack {
+                Image("ButtonLeft")
+                    .resizable()
+                    .frame(width: 42, height: 40)
+                Text("\(self.text)")
+                    .foregroundColor(.black)
+                    .font(.secondary(.body))
+            }
+        }
+    }
+}
 
-//struct customBackButton : View {
-//    
-//    var text: String
-//    var page: Page
-//    @Binding var currentPage: Page
-//    
-//    var body: some View {
-//        Button {
-//            currentPage = self.page
-//        } label: {
-//            HStack {
-//                Image("ButtonLeft")
-//                    .resizable()
-//                    .frame(width: 42, height: 40)
-//                    .padding(.trailing, 8)
-//                Text("\(self.text)")
-//                    .font(.secondary(.body))
-//            }
-//        }
-//    }
-//}
-
-
+struct customActionButton:View {
+    var page:Page
+    var text:String
+    @Binding var action: Bool
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            currentPage = self.page
+            self.action.toggle()
+        } label: {
+            ZStack {
+                Image("blankRectangleGray")
+                    .resizable()
+                    .frame(width: 91.38, height: 38)
+                Text("\(text)")
+                    .foregroundColor(.black)
+                    .font(.secondary(.body))
+                    .offset(CGSize(width: -2, height: -2))
+            }
+        }
+    }
+}
 
 
 //MARK: ENUM2
@@ -174,7 +340,6 @@ extension Text {
     func customText(size:Double) -> some View {
         self.font(.secondary(.custom(Int(size))))
     }
-
 }
 
 

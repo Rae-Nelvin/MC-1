@@ -11,55 +11,16 @@ struct CreateTeamFormComponent: View {
     
     @State private var teamName: String = ""
     @State private var teamGoal: String = ""
-    
     @State private var invitationCode: String = ""
-    @State private var generateAlert: Bool = false
-
     
     var body: some View {
-        Form{
-            Section{
-                    Text("**Team Name**")
-                        .hAlign(.leading)
-                    TextField("Input your name...", text: $teamName)
-            }
-            
-            Section{
-                Text("**Team Goal**")
-                    .hAlign(.leading)
-                TextField("Ex: stop smoking within 30 days...", text: $teamGoal)
-                    .frame(height: 100)
-            }
-            
-            Section{
-                HStack{
-                    Text("**Invitation Code**")
-                        .hAlign(.leading)
-                    Spacer()
-                    Button("Generate"){
-                        generateAlert.toggle()
-                        invitationCode = "ABCDE"
-                    }
-                    .alert("Team Invitation Code", isPresented: $generateAlert){
-                        Button("OK", action: {
-                            generateAlert.toggle()
-                        })
-                        Button("Cancel", role: .cancel) {}
-                    } message: {
-                        Text(invitationCode)
-                    }
-                }
-                
-                //show invitation code after generated
-                if(!generateAlert && !invitationCode.isEmpty){
-                    Text(invitationCode)
-                }
-                
-                
-            }
+        VStack{
+            customTextField(question: .constant("Name"), answer: $teamName)
+                .padding(.bottom, 29)
+            customTextField(question: .constant("Group Goal"), answer: $teamGoal)
+                .padding(.bottom, 35)
+            customGenerateField(invitationCode: $invitationCode)            
         }
-//            .scrollContentBackground(.hidden)
-//            .background(Color.white)
     }
 }
 

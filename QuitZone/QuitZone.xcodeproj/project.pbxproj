@@ -27,6 +27,13 @@
 		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
 		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
 		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
+		6888D1FF2A050C77001A5503 /* CustomDatePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D1FE2A050C77001A5503 /* CustomDatePickerComponent.swift */; };
+		6888D2012A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2002A0516D7001A5503 /* CustomDropdownComponent.swift */; };
+		6888D2022A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2002A0516D7001A5503 /* CustomDropdownComponent.swift */; };
+		6888D2032A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2002A0516D7001A5503 /* CustomDropdownComponent.swift */; };
+		6888D2052A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
+		6888D2062A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
+		6888D2072A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
 		68FAC7B529FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
 		68FAC7B629FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
 		68FAC7B729FBD72900B6BC93 /* TeamListComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */; };
@@ -54,12 +61,6 @@
 		68FAC7DB29FC709500B6BC93 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DA29FC709500B6BC93 /* CreateTeamView.swift */; };
 		68FAC7DC29FC709500B6BC93 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DA29FC709500B6BC93 /* CreateTeamView.swift */; };
 		68FAC7DD29FC709500B6BC93 /* CreateTeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DA29FC709500B6BC93 /* CreateTeamView.swift */; };
-		68FAC7DF29FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */; };
-		68FAC7E029FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */; };
-		68FAC7E129FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */; };
-		68FAC7E729FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */; };
-		68FAC7E829FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */; };
-		68FAC7E929FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */; };
 		8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF229FD33E30092937D /* CalendarComponent.swift */; };
 		8003DFF529FD34020092937D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF429FD34020092937D /* HomeView.swift */; };
 		8003DFF729FD341B0092937D /* LungsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8003DFF629FD341B0092937D /* LungsComponent.swift */; };
@@ -139,6 +140,9 @@
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
 		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6888D1FE2A050C77001A5503 /* CustomDatePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePickerComponent.swift; sourceTree = "<group>"; };
+		6888D2002A0516D7001A5503 /* CustomDropdownComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropdownComponent.swift; sourceTree = "<group>"; };
+		6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionButtonComponent.swift; sourceTree = "<group>"; };
 		68FAC7A029FBA93F00B6BC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListComponent.swift; sourceTree = "<group>"; };
 		68FAC7B829FC52DB00B6BC93 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
@@ -149,8 +153,6 @@
 		68FAC7D229FC701F00B6BC93 /* BingoScoreComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BingoScoreComponent.swift; sourceTree = "<group>"; };
 		68FAC7D629FC703500B6BC93 /* CompareLungComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareLungComponent.swift; sourceTree = "<group>"; };
 		68FAC7DA29FC709500B6BC93 /* CreateTeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamView.swift; sourceTree = "<group>"; };
-		68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamNavComponent.swift; sourceTree = "<group>"; };
-		68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTeamFormComponent.swift; sourceTree = "<group>"; };
 		8003DFF229FD33E30092937D /* CalendarComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarComponent.swift; sourceTree = "<group>"; };
 		8003DFF429FD34020092937D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		8003DFF629FD341B0092937D /* LungsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungsComponent.swift; sourceTree = "<group>"; };
@@ -494,8 +496,7 @@
 				68FAC7C429FC620100B6BC93 /* LeaderboardNavComponent.swift */,
 				68FAC7D229FC701F00B6BC93 /* BingoScoreComponent.swift */,
 				68FAC7D629FC703500B6BC93 /* CompareLungComponent.swift */,
-				68FAC7DE29FC713900B6BC93 /* CreateTeamNavComponent.swift */,
-				68FAC7E629FC755700B6BC93 /* CreateTeamFormComponent.swift */,
+				6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -630,6 +631,8 @@
 				ABF47E6129EFD39C0067F243 /* UserEditComponent.swift */,
 				80602C152A03C55C00EFE9C0 /* LottieViewComponent.swift */,
 				80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */,
+				6888D1FE2A050C77001A5503 /* CustomDatePickerComponent.swift */,
+				6888D2002A0516D7001A5503 /* CustomDropdownComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -785,6 +788,7 @@
 			files = (
 				15A437BB29F5271800300BF5 /* Player.swift in Sources */,
 				68FAC7B529FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
+				6888D1FF2A050C77001A5503 /* CustomDatePickerComponent.swift in Sources */,
 				15A437B329F4185E00300BF5 /* Member.swift in Sources */,
 				15A437BF29F57D9000300BF5 /* DailyPlayer.swift in Sources */,
 				8003DFF529FD34020092937D /* HomeView.swift in Sources */,
@@ -792,6 +796,7 @@
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				8003E00729FD37AD0092937D /* MissionComponent.swift in Sources */,
 				68FAC7BD29FC57A600B6BC93 /* TeamListNavComponent.swift in Sources */,
+				6888D2052A055412001A5503 /* CustomActionButtonComponent.swift in Sources */,
 				68FAC7C529FC620100B6BC93 /* LeaderboardNavComponent.swift in Sources */,
 				157792F929F4165D0031AA1C /* Team.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
@@ -800,6 +805,7 @@
 				80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */,
 				8003E00929FD37EA0092937D /* MissionModel.swift in Sources */,
 				8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */,
+				6888D2012A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */,
 				AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7B929FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
@@ -814,7 +820,6 @@
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
 				8003DFF929FD343A0092937D /* StatisticsComponent.swift in Sources */,
 				8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */,
-				68FAC7E729FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */,
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
 				68FAC7D329FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
 				15A437B729F4198C00300BF5 /* TeamChallenge.swift in Sources */,
@@ -828,7 +833,6 @@
 				15A437B129F4181200300BF5 /* Lung.swift in Sources */,
 				ABBF84182A011232007D7EC6 /* ProgressBarComponent.swift in Sources */,
 				8003DFF729FD341B0092937D /* LungsComponent.swift in Sources */,
-				68FAC7DF29FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
 				15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */,
 				68FAC7C129FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
 				80602C162A03C55C00EFE9C0 /* LottieViewComponent.swift in Sources */,
@@ -843,14 +847,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6888D2062A055412001A5503 /* CustomActionButtonComponent.swift in Sources */,
 				68FAC7C629FC620100B6BC93 /* LeaderboardNavComponent.swift in Sources */,
 				68FAC7D829FC703500B6BC93 /* CompareLungComponent.swift in Sources */,
-				68FAC7E029FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
+				6888D2022A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */,
 				68FAC7D429FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
 				68FAC7DC29FC709500B6BC93 /* CreateTeamView.swift in Sources */,
 				68FAC7BA29FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
 				68FAC7D029FC6CF200B6BC93 /* LeaderboardDetailView.swift in Sources */,
-				68FAC7E829FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */,
 				68FAC7BE29FC57A600B6BC93 /* TeamListNavComponent.swift in Sources */,
 				AB81F38329FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7C229FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
@@ -867,16 +871,16 @@
 				68FAC7BF29FC57A600B6BC93 /* TeamListNavComponent.swift in Sources */,
 				68FAC7DD29FC709500B6BC93 /* CreateTeamView.swift in Sources */,
 				68FAC7D929FC703500B6BC93 /* CompareLungComponent.swift in Sources */,
+				6888D2032A0516D7001A5503 /* CustomDropdownComponent.swift in Sources */,
 				68FAC7BB29FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
 				68FAC7B729FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
 				ABF5520629FE856800785A06 /* Font.swift in Sources */,
+				6888D2072A055412001A5503 /* CustomActionButtonComponent.swift in Sources */,
 				15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
 				68FAC7D129FC6CF200B6BC93 /* LeaderboardDetailView.swift in Sources */,
 				AB81F38429FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
-				68FAC7E929FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */,
 				68FAC7C729FC620100B6BC93 /* LeaderboardNavComponent.swift in Sources */,
 				68FAC7C329FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
-				68FAC7E129FC713900B6BC93 /* CreateTeamNavComponent.swift in Sources */,
 				68FAC7D529FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
 				15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */,
 			);

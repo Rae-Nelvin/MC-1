@@ -10,18 +10,22 @@ import SwiftUI
 struct LeaderboardNavComponent: View {
     
     @Binding var team:Team
-    //curennt Page
     
     var body: some View {
         VStack{
-            Text("\(team.name) Leaderboard")
+            Text("\(team.name)")
                 .customText(size:30)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 1)
             Text("**Goal:** \(team.goal)")
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(.black, lineWidth: 1)
+                )
         }
-        .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
+        .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
     }
     
 }

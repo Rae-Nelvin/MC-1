@@ -9,14 +9,7 @@ import SwiftUI
 
 struct FormComponent: View {
     
-    @State private var tempvar1 : String = "Your name"
-    
-    @State private var tempvar3 : String = "Date of Birth"
     @State private var tempvar4 : String = ""
-    
-    @State private var tempvar5 : String = "How long have you smoked"
-    
-    @State private var tempvar7 : String = "How frequent?"
     @State private var tempvar8 : Double = 1
     
     @Binding var dummyUser: User
@@ -24,39 +17,30 @@ struct FormComponent: View {
     
     var buttonText = "See your lung\nhealth now!"
     
+    @State private var options:[String]=["Sampoerna", "Rokok 2", "Rokok 3", "Rokok 4"]
+    
     var body: some View {        
         ZStack {
             VStack {
                 Image("formBackground")
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            
-            VStack {
-                customTextField(question: $tempvar1, answer: $dummyUser.name)
-                    .padding(.bottom, 29)
-                customTextField(question: $tempvar3, answer: $dummyUser.dateOfBirth)
-                    .padding(.bottom, 29)
-                customTextField(question: $tempvar5, answer: $dummyUser.smokerFor)
-                    .padding(.bottom, 29)
-                HStack {
-                    Text("\(tempvar7)")
-                        .font(.secondary(.body))
-                        .padding(.bottom, 6)
-                    Text("(on a scale of 10)")
-                        .font(.secondary(.custom(12)))
-                        .padding(.bottom, 6)
-                    Spacer()
-
-                }
-                HStack {
-                    Slider(value: $tempvar8, in:1...10, step: 1.0)
-                    Text("\(Int(tempvar8))")
-                        .font(.secondary(.custom(12)))
-                        .padding(.bottom, 6)
-                }
-                
-                customButton(text: buttonText, currentPage: $currentPage)
+            .ignoresSafeArea()
+        VStack {
+            customTextField(question: .constant("Your name"), answer: $dummyUser.name)
+                .padding(.bottom, 20)
+            CustomDatePickerComponent(question: .constant("Date of birth"), dateOfBirth: $dummyUser.dateOfBirth)
+                .padding(.bottom, 20)
+            CustomDatePickerComponent(question: .constant("When did you start smoking?"), dateOfBirth: $dummyUser.smokerFor)
+                .padding(.bottom, 20)
+            CustomDropdownComponent(question: .constant("Type of Cigarette"), answer: $dummyUser.typeOfCigarette, options: $options)
+                .padding(.bottom, 20)
+            customSlider(question: .constant("How frequent?"), answer: $tempvar8)
+            customButton(text: buttonText, currentPage: $currentPage)
             }
             .frame(width:315)
+            .offset(y:28)
         }
     }
     

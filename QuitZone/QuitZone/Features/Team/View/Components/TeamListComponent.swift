@@ -9,33 +9,45 @@ import SwiftUI
 
 struct TeamListComponent: View {
     
-    @State private var showPageLeaderboard = false
+    var page:Page
+    @Binding var currentPage:Page
+    
     @Binding var team:Team
+    @State private var isTapped = false
     
     var body: some View {
-        NavigationLink(destination: LeaderboardView(team: $team)) {
-            VStack{
-                Text("**\(team.name)**")
-                    .hAlign(.leading)
-                    .padding(.bottom,1)
-                Text("\(team.players) participants")
-                    .hAlign(.leading)
-            }
-            Text("My Rank **2**")
-                .hAlign(.bottomTrailing)
-                .padding(.top,1)
+        VStack{
+            Text("**\(team.name)**")
+                .foregroundColor(.black)
+                .offset(y: isTapped ? 10 : 1)
+            Text("\(team.players) participants")
+                .foregroundColor(.black)
+                .offset(y: isTapped ? 10 : 1)
         }
-        .padding(2)
-        .listRowBackground(Color.gray)
+        .background(
+            Image(isTapped ? "listPressed" : "list")
+                .resizable()
+                .frame(width: 302.56, height: 83)
+                .offset(y:11)
+        )
+        .padding(EdgeInsets(top: 10, leading: 30, bottom: 50, trailing: 30))
+        .onTapGesture {
+            isTapped.toggle()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2){
+                isTapped.toggle()
+            }
+            currentPage = self.page
+        }
     }
 }
 
 struct TeamList_Previews: PreviewProvider {
-    
+
+    @State static var gangPage:Page = Page.gangs
     @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Stop merokok")
-    
+
     static var previews: some View {
-       TeamListComponent(team: $team)
+        TeamListComponent(page:Page.leaderboard, currentPage: $gangPage, team: $team)
     }
 }
 

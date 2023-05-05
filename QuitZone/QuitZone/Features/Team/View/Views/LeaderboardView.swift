@@ -7,45 +7,60 @@
 
 import SwiftUI
 
+
+
 struct LeaderboardView: View {
     
+    @Binding var currentPage: Page
+
     @Binding var team:Team
     @State var members:[Member] = []
     
-    //delete if integrated with backend
+    //delete if integrated with backend (User & Player Model)
+    @State var picture:String = "profilePicture"
+    @State var emotion:String = "happyface"
     @State var name:String = "Jovan"
     @State var score:Double = 10
     @State var date_joined:Date = Date()
         
     var body: some View {
-        ScrollView(showsIndicators: false){
-            
-            //title & goal
-            LeaderboardNavComponent(team: $team)
-            
-            //list of members, count change to members.count if integrated
-            ForEach(0 ..< 5,  id: \.self) { index in
-                HStack{
-                    Text("\(index+1).")
-                        .padding()
-                        .frame(width: 55, height: 55)
-                        .background(Circle().fill(.gray).opacity(10))
-                    LeaderboardListComponent(name: $name, score: $score, date_joined: $date_joined)
+        NavigationStack{
+            VStack{
+                //MARK: TITLE & GOAL
+                LeaderboardNavComponent(team: $team)
+                
+                //MARK: MEMBER'S LIST
+                ScrollView(showsIndicators: false){
+                    ForEach(0 ..< 5,  id: \.self) { index in
+                        HStack{
+                            LeaderboardListComponent(picture: $picture, emotion:$emotion, name: $name, score: $score, date_joined: $date_joined)
+                        }
+                   }
                 }
-           }
-            
-        }.padding([.leading, .trailing], 15)
+                .padding([.leading, .trailing], 15)
+            }
+            .padding()
+            .background(
+                Image("mainBackground")
+                    .offset(y:-10)
+            )
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    customBackButton(page: Page.gangs, text: "Gangs", currentPage: $currentPage)
+                }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
     }
-    
 }
 
 
 
 struct LeaderboardView_Previews: PreviewProvider {
-    
+        
     @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 5 batang perhari")
     
     static var previews: some View {
-        LeaderboardView(team: $team)
+        LeaderboardView(currentPage: .constant(Page.leaderboard), team: $team)
     }
 }
