@@ -12,12 +12,15 @@ import SwiftUI
 class TeamViewModel: ObservableObject {
     
     @Published var teams: [Team] = []
+    @Published var player: Player
+    @Published var currPage: String = "Main Team View"
     
     init(player: Player) {
+        self.player = player
         getMemberOfs(player: player)
     }
     
-    private func generateRandomStrings() -> String {
+    func generateRandomStrings() -> String {
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let length = 5
         var randomString = ""
@@ -34,12 +37,13 @@ class TeamViewModel: ObservableObject {
     func createMember(player: Player, team: Team) {
         let member = Member(context: PersistenceController.shared.viewContext)
         
-        member.setValue(player.id, forKey: "playerID")
-        member.setValue(team.id, forKey: "teamID")
-        member.setValue(0, forKey: "score")
-        member.setValue(Date(), forKey: "date_joined")
+        member.player = player
+        member.team = team
+        member.date_joined = Date()
+        member.score = 0
         
         PersistenceController.shared.save()
+        self.getMemberOfs(player: player)
     }
     
     func getMemberOfs(player: Player) {
@@ -60,7 +64,7 @@ class TeamViewModel: ObservableObject {
     
     func deleteMember(player: Player, team: Team) {
         let request: NSFetchRequest<Member> = Member.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ && teamID == %@", player.objectID, team.objectID)
+        request.predicate = NSPredicate(format: "player == %@ AND team == %@", player, team)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
@@ -73,20 +77,22 @@ class TeamViewModel: ObservableObject {
         }
     }
     
-    func createTeam(name: String, goal: String) {
+    func createTeam(name: String, goal: String, invitationCode: String) {
         let team = Team(context: PersistenceController.shared.viewContext)
-        let inviteCode = generateRandomStrings()
         
-        team.setValue(name, forKey: "name")
-        team.setValue(inviteCode, forKey: "inviteCode")
-        team.setValue(goal, forKey: "goal")
+        team.name = name
+        team.goal = goal
+        team.inviteCode = invitationCode
+        team.players = 1
         
         PersistenceController.shared.save()
+        
+        self.createMember(player: self.player, team: team)
     }
     
     func getTeam(team: Team) {
         let request: NSFetchRequest<Team> = Team.fetchRequest()
-        request.predicate = NSPredicate(format: "team == %@", team)
+        request.predicate = NSPredicate(format: "self == %@", team)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
@@ -100,7 +106,7 @@ class TeamViewModel: ObservableObject {
     func updateTeam(name: String?, player: Int16?, team: Team) {
         var players: Int16 = 0
         let request: NSFetchRequest<Team> = Team.fetchRequest()
-        request.predicate = NSPredicate(format: "teamID == %@", team.objectID)
+        request.predicate = NSPredicate(format: "self == %@", team)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
@@ -148,7 +154,7 @@ class TeamViewModel: ObservableObject {
         }
         
         let requestTeam: NSFetchRequest<Team> = Team.fetchRequest()
-        requestTeam.predicate = NSPredicate(format: "team == %@", team)
+        requestTeam.predicate = NSPredicate(format: "self == %@", team)
         do {
             let results = try PersistenceController.shared.viewContext.fetch(requestTeam)
             guard let result = results.first else { return }

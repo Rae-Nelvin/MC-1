@@ -23,6 +23,7 @@
 		15B1D4372A05426800320AA5 /* QuitZoneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4352A05426800320AA5 /* QuitZoneModel.xcdatamodeld */; };
 		15B1D4462A05428300320AA5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D43E2A05428300320AA5 /* HomeView.swift */; };
 		15B1D44A2A05508B00320AA5 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4492A05508B00320AA5 /* UserView.swift */; };
+		15B1D44C2A057E9300320AA5 /* MainTeamComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D44B2A057E9300320AA5 /* MainTeamComponent.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -131,6 +132,7 @@
 		15B1D4362A05426800320AA5 /* QuitZoneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuitZoneModel.xcdatamodel; sourceTree = "<group>"; };
 		15B1D43E2A05428300320AA5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		15B1D4492A05508B00320AA5 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		15B1D44B2A057E9300320AA5 /* MainTeamComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTeamComponent.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				68FAC7D229FC701F00B6BC93 /* BingoScoreComponent.swift */,
 				68FAC7D629FC703500B6BC93 /* CompareLungComponent.swift */,
 				6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */,
+				15B1D44B2A057E9300320AA5 /* MainTeamComponent.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
 				68FAC7DB29FC709500B6BC93 /* CreateTeamView.swift in Sources */,
 				68FAC7D729FC703500B6BC93 /* CompareLungComponent.swift in Sources */,
+				15B1D44C2A057E9300320AA5 /* MainTeamComponent.swift in Sources */,
 				15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */,
 				1565D0832A010BA3002D3C33 /* MissionViewModel.swift in Sources */,
 				1565D08A2A010BED002D3C33 /* Day.swift in Sources */,

@@ -181,9 +181,27 @@ struct customButton: View {
     }
 }
 
+struct customActionButton:View {
+    var text: String
+    @State private var didTap:Bool = false
+    
+    var body: some View {
+        ZStack {
+            Image("blankRectangleGray")
+                .resizable()
+                .frame(width: 91.38, height: 38)
+            Text("\(text)")
+                .foregroundColor(.black)
+                .font(.secondary(.body))
+                .offset(CGSize(width: -2, height: -2))
+        }
+    }
+}
+
 //custom generate field
 struct customGenerateField : View {
     
+    @ObservedObject var tvm: TeamViewModel
     @Binding var invitationCode: String
     @State private var emptyString: String = ""
     
@@ -199,7 +217,7 @@ struct customGenerateField : View {
                 Spacer()
                 Button {
                     generateAlert.toggle()
-                    invitationCode = "abcde"
+                    invitationCode = tvm.generateRandomStrings()
                     self.didTap.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                         self.didTap.toggle()
@@ -285,49 +303,22 @@ struct AppColor {
     private init() {}
 }
 
-struct customBackButton: View {
+struct customBackButton : View {
     
-    var page: Page
     var text: String
-    @Binding var currentPage: Page
-    
+
     var body: some View {
-        Button {
-            currentPage = self.page
-        } label: {
-            HStack {
-                Image("ButtonLeft")
-                    .resizable()
-                    .frame(width: 42, height: 40)
-                Text("\(self.text)")
-                    .foregroundColor(.black)
-                    .font(.secondary(.body))
-            }
+        ZStack {
+            Image("blankRectangleGray")
+                .resizable()
+                .frame(width: 91.38, height: 38)
+            Text("\(text)")
+                .foregroundColor(.black)
+                .font(.secondary(.body))
+                .offset(CGSize(width: -2, height: -2))
         }
     }
 }
-
-//struct customBackButton : View {
-//    
-//    var text: String
-//    var page: Page
-//    @Binding var currentPage: Page
-//    
-//    var body: some View {
-//        Button {
-//            currentPage = self.page
-//        } label: {
-//            HStack {
-//                Image("ButtonLeft")
-//                    .resizable()
-//                    .frame(width: 42, height: 40)
-//                    .padding(.trailing, 8)
-//                Text("\(self.text)")
-//                    .font(.secondary(.body))
-//            }
-//        }
-//    }
-//}
 
 //MARK: ENUM2
 enum faceImage : String {

@@ -69,7 +69,7 @@ struct UserComponent: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: UserEditComponent(pvm: self.pvm)) {
-                        customUserActionButton(text: "Edit")
+                        customButton(text: "Edit")
                     }
                 }
             }

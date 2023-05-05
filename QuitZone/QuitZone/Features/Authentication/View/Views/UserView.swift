@@ -14,20 +14,3 @@ struct UserView: View {
         UserComponent(pvm: self.pvm)
     }
 }
-
-struct customUserActionButton: View {
-
-    var text: String
-
-    var body: some View {
-        ZStack {
-            Image("blankRectangleGray")
-                .resizable()
-                .frame(width: 91.38, height: 38)
-            Text("\(text)")
-                .foregroundColor(.black)
-                .font(.secondary(.body))
-                .offset(CGSize(width: -2, height: -2))
-        }
-    }
-}

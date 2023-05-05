@@ -42,6 +42,6 @@
         <attribute name="inviteCode" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="players" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
-        <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="team" inverseEntity="Member"/>
+        <relationship name="member" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Member" inverseName="team" inverseEntity="Member"/>
     </entity>
 </model>
