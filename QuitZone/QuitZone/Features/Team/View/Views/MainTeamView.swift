@@ -13,7 +13,7 @@ struct MainTeamView: View {
     var body: some View {
         NavigationView {
             VStack{
-                TeamListNavComponent()
+                TeamListNavComponent(currentPage: $currentPage)
                 List($teamLists, id: \.self) { team in
                     TeamListComponent(team: team)
                 }
@@ -22,7 +22,6 @@ struct MainTeamView: View {
             
         }
     }
-    
 }
 
 extension List {
@@ -33,8 +32,7 @@ extension List {
 }
 
 struct MainTeamView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        MainTeamView()
+        MainTeamView(currentPage: .constant(Page.gangs))
     }
 }

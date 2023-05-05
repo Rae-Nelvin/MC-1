@@ -16,117 +16,60 @@ struct UserEditComponent: View {
     @State private var tempTypeOfCigarette : String = "Not set"
     @State private var tempEmail : String = "Not set"
     @State private var tempPhone : String = "Not set"
+    @Binding var currentPage: Page
+    @State var dummyBool: Bool = false
     
     var body: some View {
-        VStack (alignment: .leading) {
-            HStack {
-                VStack {
-                    Text("Ini buat image")
+        NavigationStack {
+            VStack (alignment: .leading) {
+                HStack {
+                    VStack {
+                        Text("Ini buat image")
+                    }
+                    .frame(width:96, height:96)
+                    .background(.red)
+                    .clipShape(Circle())
+                    .padding(.trailing, 16)
+                    VStack (alignment: .leading) {
+                        Text("Select new image")
+                            .underline()
+                    }
                 }
-                .frame(width:96, height:96)
-                .background(.red)
-                .clipShape(Circle())
-                .padding(.trailing, 16)
-                VStack (alignment: .leading) {
-                    Text("Select new image")
-                        .underline()
+                
+                customTextField(question: .constant("Name"), answer: $tempName)
+                customTextField(question: .constant("Date of Birth"), answer: $tempName)
+                customTextField(question: .constant("Frequency"), answer: $tempName)
+                customTextField(question: .constant("Smoker for..."), answer: $tempName)
+                customTextField(question: .constant("Type of Cigarette"), answer: $tempName)
+                customTextField(question: .constant("Email"), answer: $tempName)
+                customTextField(question: .constant("Phone"), answer: $tempName)
+                
+//                    .padding(.bottom, 29)
+                
+            
+                
+                Spacer()
+                
+                
+                
+            }
+            .padding(32)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    customActionButton(page: .profile, text: "save", action: $dummyBool, currentPage: $currentPage)
                 }
-            }
-            
-            VStack (alignment: .leading) {
-                Text("Name")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Date of Birth")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Frequency")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Smoker for...")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Type of cigarette")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Email")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            VStack (alignment: .leading) {
-                Text("Phone")
-                    .font(.callout)
-                TextField("haha", text: $tempName)
-                    .font(.title2)
-                    .padding(.top, -10)
-            }
-            .frame(width:.infinity, height:52)
-            .background(.gray.opacity(0.2))
-            
-            
-            Spacer()
-            
-            
-            
-        }
-        .padding(32)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    //update user info
-                } label: {
-                    Text("Save")
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    customBackButton(page: .profile, text: "Profile", currentPage: $currentPage)
                 }
             }
-            
-            
         }
     }
 }
 
 struct UserEditComponent_Previews: PreviewProvider {
     static var previews: some View {
-        UserEditComponent()
+        UserEditComponent(currentPage: .constant(.editProfile))
     }
 }
 

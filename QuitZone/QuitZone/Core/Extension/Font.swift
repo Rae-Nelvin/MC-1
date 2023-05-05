@@ -39,9 +39,11 @@ extension Font {
     enum SizeFont {
         case maintitle
         case title
+        case subtitle
         case body
         case caption
         case custom(Int)
+        case subPage
         
         
         var value: CGFloat {
@@ -50,10 +52,14 @@ extension Font {
                 return 72
             case .title:
                 return 34
+            case .subtitle:
+                return 32
             case .body:
                 return 20
             case .caption:
                 return 16
+            case .subPage:
+                return 50
             case .custom (let size):
                 return CGFloat(size)
             }

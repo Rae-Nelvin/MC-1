@@ -14,25 +14,34 @@ struct TeamListNavComponent: View {
     @State private var createPage = false
     @State private var teamCode = ""
         
+    @Binding var currentPage : Page
+    
+    @State private var dummyBool : Bool = false
+    
     var body: some View {
         HStack{
             
             //title
-            Text("My Teams")
-                .customText(size:30)
+            Text("Gangs")
+                .font(.primary(.custom(50)))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 1)
             Spacer()
             
             //button
-            NavigationLink(destination: CreateTeamView(), isActive: $createPage){
-                Button("Create"){
-                    createPage.toggle()
-                }
-            }
-            Button("Join"){
-                joinAlert.toggle()
-            }
+
+            customActionButton(page: Page.createteam, text: "create", action: $dummyBool, currentPage: $currentPage)
+            
+            customActionButton(page: Page.gangs, text: "join", action: $joinAlert, currentPage: $currentPage)
+            
+//            NavigationLink(destination: CreateTeamView(), isActive: $createPage){
+//
+//
+//                Button("Create"){
+//                    createPage.toggle()
+//                }
+//            }
+            
             
             //alert join a team
             .alert("Join a Team", isPresented: $joinAlert){
@@ -60,6 +69,31 @@ struct TeamListNavComponent: View {
 }
 struct TeamListNavComponent_Previews: PreviewProvider {
     static var previews: some View {
-        TeamListNavComponent()
+        TeamListNavComponent(currentPage: .constant(Page.gangs ))
+    }
+}
+
+struct customActionButton: View {
+    
+    var page:Page
+    var text:String
+    @Binding var action: Bool
+    @Binding var currentPage: Page
+    
+    var body: some View {
+        Button {
+            currentPage = self.page
+            self.action.toggle()
+        } label: {
+            ZStack {
+                Image("blankRectangleGray")
+                    .resizable()
+                    .frame(width: 91.38, height: 38)
+                Text("\(text)")
+                    .foregroundColor(.black)
+                    .font(.secondary(.body))
+                    .offset(CGSize(width: -2, height: -2))
+            }
+        }
     }
 }

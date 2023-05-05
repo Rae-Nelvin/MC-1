@@ -45,6 +45,7 @@ struct WelcomeComponent: View {
         .onTapGesture {
             pvm.currPage = "Loading iCloud Screen"
         }
+        
     }
 }
 

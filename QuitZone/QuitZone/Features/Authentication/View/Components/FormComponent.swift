@@ -26,7 +26,7 @@ struct FormComponent: View {
     var buttonText = "See your lung \nhealth now!"
     @State private var didTap:Bool = false
     
-    var body: some View {
+    var body: some View {        
         ZStack {
             VStack {
                 Image("formBackground")
