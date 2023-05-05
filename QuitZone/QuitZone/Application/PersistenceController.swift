@@ -39,23 +39,12 @@ struct PersistenceController {
     }
     
     func save() {
-        do {
-            try viewContext.save()
-        } catch let error as NSError {
-            print("Error saving to CD : \(error)")
-        }
-    }
-    
-    func deleteAllPlayers() {
-        let managedObjectContext = viewContext
-        
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Player")
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try managedObjectContext.execute(batchDeleteRequest)
-        } catch let error {
-            print("Error deleting records: \(error)")
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch let error as NSError {
+                print("Error saving to CD : \(error)")
+            }
         }
     }
 }

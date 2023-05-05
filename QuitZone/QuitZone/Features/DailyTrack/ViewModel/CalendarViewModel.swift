@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 import CoreData
 
 class CalendarViewModel: ObservableObject {
@@ -21,10 +20,41 @@ class CalendarViewModel: ObservableObject {
     init(player: Player) {
         self.player = player
         self.totalDays = getDaysInMonth()
-        getMonthlyPlayerData()
         getSpacesForCalendar()
+        getMonthlyPlayerData()
     }
     
+    func monthIntToString(monthInt: Int) -> String {
+        var dateComponent = DateComponents()
+        dateComponent.month = monthInt
+        
+        let currDate = Calendar(identifier: .gregorian).date(from: dateComponent)!
+        
+        var dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL"
+        
+        return dateFormatter.string(from: currDate)
+    }
+    
+    func goToMonth(isMinus: Bool) {
+        if isMinus {
+            if self.month == 1 {
+                self.month = 12
+                self.year = self.year - 1
+            } else {
+                self.month = self.month - 1
+            }
+        } else {
+            if self.month == 12 {
+                self.month = 1
+                self.year = self.year + 1
+            } else {
+                self.month = self.month + 1
+            }
+        }
+        
+        refreshViewModel()
+    }
     
     func getDaysInMonth() -> Int {
         let calendar = Calendar.current
@@ -34,6 +64,45 @@ class CalendarViewModel: ObservableObject {
             return calendar.range(of: .day, in: .month, for: lastDayOfMonth)?.count ?? 0
         }
         return 0
+    }
+    
+    func createDaily(cigars: Int16?, date: Date) {
+        let daily = DailyPlayer(context: PersistenceController.shared.viewContext)
+        
+        daily.cigars = cigars ?? 0
+        daily.player = self.player
+        daily.date = date
+        
+        PersistenceController.shared.save()
+        refreshViewModel()
+    }
+    
+    func updateDaily(cigars: Int16?, date: Date) {
+        guard let daily = getDaily(date: date) else {
+            return
+        }
+        
+        daily.setValue(cigars, forKey: "cigars")
+        
+        PersistenceController.shared.save()
+        refreshViewModel()
+    }
+    
+    private func getDaily(date: Date) -> DailyPlayer? {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let startDate = calendar.date(from: components)!
+        let endDate = calendar.date(byAdding: .day, value: 1, to: startDate)!
+        let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
+        request.predicate = NSPredicate(format: "player == %@ AND date >= %@ AND date < %@", self.player, startDate as NSDate, endDate as NSDate)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            return results.first ?? DailyPlayer()
+        } catch let error as NSError {
+            print("Error fetching records : \(error)")
+            return nil
+        }
     }
     
     func getMonthlyPlayerData() {
@@ -47,21 +116,22 @@ class CalendarViewModel: ObservableObject {
         }
         
         let request: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
-        request.predicate = NSPredicate(format: "playerID == %@ AND creationDate >= %@ AND creationDate < %@", self.player.objectID, startDate as NSDate, endDate as NSDate)
+        request.predicate = NSPredicate(format: "player == %@ AND date >= %@ AND date < %@", self.player, startDate as NSDate, endDate as NSDate)
         
         do {
             let results = try PersistenceController.shared.viewContext.fetch(request)
             for i in 0..<self.totalDays {
                 let daysAndDate = self.getDaysAndDate(month: self.month, year: self.year, day: i + 1)
-                var day = Day(id: i, isFill: false, day: daysAndDate.first?.0 ?? "Null", date: daysAndDate.first?.1 ?? Date())
+                let day = Day(id: i, isFill: false, cigars: 0, date: daysAndDate.first?.1 ?? Date())
                 self.daysData.append(day)
             }
             for result in results {
-                let dailyPlayer = result
+                let dailyPlayer: DailyPlayer = result
                 for i in 0..<self.daysData.count {
-                    if dailyPlayer.timestamps == self.daysData[i].date {
+                    if self.stripDate(from: dailyPlayer.date!) == self.stripDate(from: self.daysData[i].date) {
                         self.daysData[i].isFill = true
-                        self.daysData[i].dailyPlayer = dailyPlayer
+                        self.daysData[i].cigars = result.cigars
+                        self.daysData[i].dailyPlayer = result
                     }
                 }
             }
@@ -101,20 +171,17 @@ class CalendarViewModel: ObservableObject {
             return
         }
     }
-}
-
-struct CalendarViewModelView: View {
-    @ObservedObject var cvm: CalendarViewModel
     
-    init(player: Player) {
-        self.cvm = CalendarViewModel(player: player)
+    private func refreshViewModel() {
+        self.totalDays = getDaysInMonth()
+        getSpacesForCalendar()
+        self.daysData = []
+        getMonthlyPlayerData()
     }
     
-    var body: some View {
-        VStack {
-            Button("getDailyPlayer") {
-                cvm.getMonthlyPlayerData()
-            }
-        }
+    private func stripDate(from date: Date) -> Date? {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        return calendar.date(from: components)
     }
 }

@@ -9,6 +9,11 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var vm = TestSheetViewModel()
+    @ObservedObject private var dpvm: DailyPlayerViewModel
+    
+    init(player: Player) {
+        self.dpvm = DailyPlayerViewModel(player: player)
+    }
     
     var body: some View {
         VStack {
@@ -46,8 +51,7 @@ struct HomeView: View {
             VStack {
                 //MARK: Calendar
                 if vm.showCalendar {
-                    CalendarComponent(progressData: $vm.progressData,
-                                      progressDataByDate: $vm.progressDataByDate)
+                    CalendarComponent(player: dpvm.player)
                         .padding(.top, 50)
                         .padding(.horizontal, 16)
                         .background(Color.white.opacity(0.5))
@@ -89,8 +93,8 @@ struct HomeView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeView()
+//    }
+//}

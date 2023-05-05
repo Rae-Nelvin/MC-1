@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeComponents: View {
     
     @State private var currentPage: Page = Page.home
+    @ObservedObject var pvm: PlayerViewModel
     
     var body: some View {
         VStack {
@@ -17,7 +18,7 @@ struct HomeComponents: View {
                 ZStack {
                     switch currentPage {
                     case Page.home:
-                        HomeView()
+                        HomeView(player: pvm.player)
                     case Page.friend:
                         MainTeamView()
                     case Page.mission:
@@ -25,7 +26,7 @@ struct HomeComponents: View {
                     case Page.user:
                         UserComponent()
                     default:
-                        HomeView()
+                        HomeView(player: pvm.player)
                     }
                     // bottom tab bar
                     VStack {
@@ -69,8 +70,8 @@ struct HomeComponents: View {
     }
 }
 
-struct HomeComponents_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeComponents()
-    }
-}
+//struct HomeComponents_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HomeComponents()
+//    }
+//}

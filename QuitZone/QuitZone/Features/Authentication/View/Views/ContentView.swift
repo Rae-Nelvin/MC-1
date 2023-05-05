@@ -21,9 +21,9 @@ struct ContentView: View {
             case "Register Form Screen" :
                 FormComponent(pvm: self.pvm)
             case "Home Screen":
-                HomeComponents()
+                HomeComponents(pvm: self.pvm)
             default:
-                HomeComponents()
+                HomeComponents(pvm: self.pvm)
             }
         }
     }
