@@ -17,7 +17,6 @@ struct LeaderboardDetailView: View {
 
     var body: some View {
         VStack{
-            closeButton()
             HStack{
                 CompareLungComponent(condition: $condition, emotion: $emotion, name: $name)
                     .offset(x:7)
