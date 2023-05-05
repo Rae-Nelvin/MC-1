@@ -34,6 +34,7 @@ struct WelcomeComponent: View {
                 pvm.currPage = "Loading iCloud Screen"
             }
         }
+        
     }
 }
 

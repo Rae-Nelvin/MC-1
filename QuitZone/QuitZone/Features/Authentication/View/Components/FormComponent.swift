@@ -30,13 +30,15 @@ struct FormComponent: View {
         ZStack {
             VStack {
                 Image("formBackground")
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             
             VStack {
                 customTextField(question: $tempvar1, answer: $name)
                     .padding(.bottom, 29)
-//                customTextField(question: $tempvar3, answer: $dob)
-//                    .padding(.bottom, 29)
+                CustomDatePickerComponent(question: .constant("Date of birth"), dateOfBirth: $dummyUser.dateOfBirth)
+                .padding(.bottom, 20)
                 customIntField(question: $tempvar5, answer: $smokerFor)
                     .padding(.bottom, 29)
                 HStack {
@@ -81,6 +83,7 @@ struct FormComponent: View {
                 )
             }
             .frame(width:315)
+            .offset(y:28)
         }
     }
     

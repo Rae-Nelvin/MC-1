@@ -11,15 +11,9 @@ struct CreateTeamNavComponent: View {
         
     var body: some View {
         HStack{
-            
-            //nav button
             Text("Create Team")
-                .customText(size:30)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.bottom, 1)
-            Spacer()
+                .font(.secondary(.subtitle))
         }
-        .padding(EdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10))
     }
     
 }

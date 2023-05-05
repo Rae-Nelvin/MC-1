@@ -98,3 +98,25 @@ struct UserDetailComponent: View {
         .padding(.bottom, 10)
     }
 }
+
+struct UserDetailComponent: View {
+    var text: String
+    var detail: String
+    
+    var body: some View {
+        VStack {
+            
+            HStack {
+                Text(text)
+                    .font(.secondary(.body))
+                Spacer()
+                Text(detail)
+                    .font(.secondary(.body))
+            }
+            .hAlign(.center)
+            Divider()
+                .background(.black)
+        }
+        .padding(.bottom, 10)
+    }
+}
