@@ -14,24 +14,16 @@ struct SplashScreenComponentView: View {
     
     var body: some View {
         VStack {
-            VStack {
-                LottieViewComponent(name: "testing", loopMode: .playOnce)
-                    .frame(width: 350, height: 350)
-                    .padding(.top, -150)
-            }
+            LottieViewComponent(name: "page2", loopMode: .playOnce)
         }
-        .background(Image("mainBackground"))
         .edgesIgnoringSafeArea(.all)
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                withAnimation(.easeOut(duration: 1.0)) {
-                    currentPage = .form                    
-                }
+            withAnimation(.easeInOut(duration:2.0)) {
+                currentPage = .form
             }
         }
     }
 }
-
 struct SplashScreenComponentView_Previews: PreviewProvider {
     static var previews: some View {
         SplashScreenComponentView(currentPage: .constant(.splashScreen))

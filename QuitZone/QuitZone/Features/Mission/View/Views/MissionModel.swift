@@ -11,5 +11,5 @@ struct MissionModel: Identifiable {
     let id = UUID()
     let missionTitle: String
     let missionText: String
-    var isDone = false
+    var isDone: Bool
 }

@@ -34,9 +34,11 @@ struct ContentView: View {
                         case Page.task:
                             MissionView()
                         case Page.profile:
-                            UserComponent()
+                            UserComponent(currentPage: $currentPage)
                         case Page.createteam:
                             CreateTeamView(currentPage: $currentPage)
+                        case Page.editProfile:
+                            UserEditComponent(currentPage: $currentPage)
                         default:
                             HomeView()
                         }

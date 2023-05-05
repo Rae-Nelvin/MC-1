@@ -1,8 +1,9 @@
 {
   "data" : [
     {
-      "filename" : "loading-sand-clock.json",
-      "idiom" : "universal"
+      "filename" : "121826-loading-sand-clock.json",
+      "idiom" : "universal",
+      "universal-type-identifier" : "public.json"
     }
   ],
   "info" : {

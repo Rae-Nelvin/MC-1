@@ -43,6 +43,7 @@ extension Font {
         case body
         case caption
         case custom(Int)
+        case subPage
         
         
         var value: CGFloat {
@@ -57,6 +58,8 @@ extension Font {
                 return 20
             case .caption:
                 return 16
+            case .subPage:
+                return 50
             case .custom (let size):
                 return CGFloat(size)
             }

@@ -10,40 +10,35 @@ import SwiftUI
 struct WelcomeComponent: View {
     
     @Binding var currentPage : Page
+    @State var isAnimate = false
     
     var body: some View {
-        VStack (alignment: .center) {
-            
-            //tulisan quitgang
-            Text("Quitgang")
-                .font(.primary(.maintitle))
-                .padding(.top, 100)
-            
-            //gambar rokok
-            //animasi on tap gesture
-            LottieViewComponent(name: "testing", loopMode: .loop)
-                .frame(width: 250, height: 250)
-                .padding(.top, 50)
-            
-            Spacer()
-            
-            Text("Lorem impusm dolor sit amet! \nconsectur adipiscing \n...")
-                .font(.secondary(.body))
-                .multilineTextAlignment(.center)
-                .padding(.bottom, 100)
-            //
+        ZStack {
+            VStack {
+                LottieViewComponent(name: "page1", loopMode: .loop)
+            }
+            VStack {
+                //tulisan quitgang
+                Text("Quitgang")
+                    .font(.primary(.maintitle))
+                    .padding(.top, 130)
+                
+                Spacer()
+                
+                Text("Tap anywhere \nto continue")
+                    .font(.secondary(.body))
+                    .multilineTextAlignment(.center)
+                    .padding(.bottom, 140)
+                
+            }
         }
-        .frame(maxWidth:.infinity, maxHeight: .infinity)
-        .background(Image("mainBackground")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .edgesIgnoringSafeArea(.all)
-        )
+        .edgesIgnoringSafeArea(.all)
         .onTapGesture {
-//            currentPage = Page.form
-            currentPage = .splashScreen
-//            SplashScreenComponentView()
+            withAnimation(.easeIn(duration: 0.1)) {
+                currentPage = .splashScreen
+            }
         }
+        
     }
 }
 

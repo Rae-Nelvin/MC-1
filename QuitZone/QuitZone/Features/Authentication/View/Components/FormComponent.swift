@@ -19,11 +19,10 @@ struct FormComponent: View {
     @State private var tempvar7 : String = "How frequent?"
     @State private var tempvar8 : Double = 1
     
-    
     @Binding var dummyUser: User
     @Binding var currentPage : Page
     
-    var buttonText = "See your lung \nhealth now!"
+    var buttonText = "See your lung\nhealth now!"
     
     var body: some View {        
         ZStack {
@@ -54,16 +53,6 @@ struct FormComponent: View {
                         .font(.secondary(.custom(12)))
                         .padding(.bottom, 6)
                 }
-                
-//                Button {
-//                    currentPage = "Home"
-//                } label : {
-//                    Text("See your lung health now!")
-//                        .font(.secondary(.body))
-//                        .padding(8)
-//                }
-//                .padding(.top, 32)
-//                .buttonStyle(customButtonStyle())
                 
                 customButton(text: buttonText, currentPage: $currentPage)
             }

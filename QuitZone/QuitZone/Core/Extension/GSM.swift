@@ -92,6 +92,7 @@ struct customNavigationButton: View {
                 Image((self.page == currentPage) ? "blankSquarePressed" : "blankSquare")
                     .resizable()
                     .frame(width: 80, height: 73.89)
+                
                 VStack {
                     Image("\(self.image)")
                         .resizable()
@@ -103,6 +104,7 @@ struct customNavigationButton: View {
                 }
                 .offset((self.page == currentPage) ? CGSize(width: 3, height: 5) : CGSize(width: -2, height: 0))
             }
+            .animation(nil)
         }
         
     }
@@ -158,6 +160,7 @@ enum Page : String {
     case gangs
     case task
     case profile
+    case editProfile
     
     case leaderboard
     case createteam
