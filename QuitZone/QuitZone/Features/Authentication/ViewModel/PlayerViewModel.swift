@@ -58,14 +58,13 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, player: Player) {
+    func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, email: String?, phone: String?, avatar: UIImage? ,player: Player) {
         
         if name != "" {
             player.name = name
         }
         
-        // Supposedly to be unset after registering so it won't be buggy
-        if dob != Date() {
+        if dob != nil {
             player.dob = dob
         }
         
@@ -77,10 +76,36 @@ class PlayerViewModel: ObservableObject {
             player.smokerFor = smokerFor!
         }
         
-        if (typeOfCigarattes != nil) {
+        if typeOfCigarattes != nil {
             player.typeOfCigarattes = typeOfCigarattes?.name
         }
         
+        if email != "" {
+            player.email = email
+        }
+        
+        if phone != "" {
+            player.phone = phone
+        }
+        
+        if avatar != nil {
+            player.avatar = self.convertImageToBinaryData(avatar!)
+        }
+        
         PersistenceController.shared.save()
+        self.getPlayer()
+    }
+    
+    private func convertImageToBinaryData(_ image: UIImage) -> Data? {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+        return imageData
+    }
+    
+    func convertDateToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: self.player.dob!)
     }
 }

@@ -66,7 +66,7 @@ struct MissionView: View {
                 Text("Tasks will reset weekly")
                     .font(.secondary(.caption))
                     .foregroundColor(.black.opacity(0.4))
-                    .padding(.bottom, 80)
+                    .padding(.bottom, 150)
             }
         }
         .vAlign(.top)

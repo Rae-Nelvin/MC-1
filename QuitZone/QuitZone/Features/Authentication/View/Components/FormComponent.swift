@@ -22,7 +22,7 @@ struct FormComponent: View {
     @State private var dob: Date = Date()
     @State private var smokerFor: Int16 = 0
     @State private var frequency: Int16 = 0
-    @State private var typeOfCigarattes: Cigarattes = Cigarattes(name: "Placeholder", tar: 0, nicotine: 0)
+    @State private var typeOfCigarettes: Cigarattes?
     var buttonText = "See your lung \nhealth now!"
     @State private var didTap:Bool = false
     
@@ -59,13 +59,13 @@ struct FormComponent: View {
                         .font(.secondary(.custom(12)))
                         .padding(.bottom, 6)
                 }
-                DropdownInputField(title: "Type of Cigarattes", options: cigarattesLists.lists, selection: $typeOfCigarattes)
+                DropdownInputField(title: "Type of Cigarattes", options: cigarattesLists.lists, selection: $typeOfCigarettes)
                 Button {
                     self.didTap.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                         self.didTap.toggle()
                     }
-                    pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
+                    pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarettes ?? cigarattesLists.lists[0])
                 } label : {
                     Text("\(self.buttonText)")
                         .font(.secondary(.body))
@@ -89,7 +89,7 @@ struct FormComponent: View {
 struct DropdownInputField: View {
     let title: String
     let options: [Cigarattes]
-    @Binding var selection: Cigarattes
+    @Binding var selection: Cigarattes?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
