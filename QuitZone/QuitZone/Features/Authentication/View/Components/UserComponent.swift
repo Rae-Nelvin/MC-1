@@ -21,6 +21,7 @@ struct UserComponent: View {
                         VStack {
                             if self.pvm.player.avatar != nil {
                                 Image(uiImage: UIImage(data: self.pvm.player.avatar!)!)
+                                    .resizable()
                             } else {
                                 Image("dummyUserPhoto")
                                     .resizable()
@@ -69,7 +70,7 @@ struct UserComponent: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: UserEditComponent(pvm: self.pvm)) {
-                        customButton(text: "Edit")
+                        customActionButton(text: "Edit")
                     }
                 }
             }

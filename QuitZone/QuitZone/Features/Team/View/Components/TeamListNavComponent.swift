@@ -119,10 +119,7 @@ struct TeamListNavComponent: View {
                 .padding(.bottom, 1)
             
             Spacer()
-            
-            Button {
-                tvm.currPage = "Create Team View"
-            } label: {
+            NavigationLink(destination: CreateTeamView(tvm: self.tvm)) {
                 customActionButton(text: "Create")
             }
             Button {

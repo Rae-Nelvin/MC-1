@@ -9,11 +9,7 @@ import SwiftUI
 
 struct LeaderboardListComponent: View {
 
-    @Binding var picture:String
-    @Binding var emotion:String
-    @Binding var name:String
-    @Binding var score:Double
-    @Binding var date_joined:Date
+    var leaderboard: Member
     
     //for binding to detail page
     @State var condition:String = "lunglvl8"
@@ -24,27 +20,29 @@ struct LeaderboardListComponent: View {
                 
                 //MARK: PROFILE & EMOJI
                 ZStack{
-                    Image("\(picture)")
-                        .frame(width: 67.05, height: 67.05)
-                    Image("\(emotion)")
-                        .resizable()
-                        .frame(width: 21.33, height: 21.33)
-                        .offset(x:-22, y:24)
-                        .zIndex(1)
+                    if leaderboard.player?.avatar != nil {
+                        Image(uiImage: UIImage(data: (leaderboard.player?.avatar)!)!)
+                            .resizable()
+                    } else {
+                        Image("dummyUserPhoto")
+                            .resizable()
+                    }
                 }
+                .frame(width: 67.05, height: 67.05)
+                .cornerRadius(.infinity)
                 
                 //MARK: LEADERBOARD CONTENT
                 VStack{
                     HStack{
-                        Text("**\(name)**")
+                        Text(leaderboard.player?.name ?? "Placeholder")
                             .hAlign(.leading)
                             .font(.secondary(.custom(25)))
                         Spacer()
-                        buttonLeaderboardDetail(condition: $condition, emotion: $emotion, name: $name, score: $score)
+                        buttonLeaderboardDetail(leaderboard: self.leaderboard)
                     }
-                    Text("Score: \(Int(score))")
+                    Text("Score: \(Int(leaderboard.score))")
                         .hAlign(.leading)
-                    Text("Date joined: \(dateOnly(date:date_joined))")
+                    Text("Date joined: \(dateOnly(date:leaderboard.date_joined ?? Date()))")
                         .hAlign(.leading)
                 }
                 .padding(.leading, 25)
@@ -68,14 +66,10 @@ struct LeaderboardListComponent: View {
 
 struct buttonLeaderboardDetail: View{
     
+    var leaderboard: Member
+    
     @State private var showingSheet = false
     @State private var isTapped = false
-    
-    @Binding var condition:String
-    @Binding var emotion:String
-    @Binding var name:String
-    @Binding var score:Double
-
     
     var body: some View{
         Button {
@@ -89,20 +83,7 @@ struct buttonLeaderboardDetail: View{
         .sheet(isPresented: $showingSheet, onDismiss: {
             isTapped = false
         }) {
-            LeaderboardDetailView(condition: $condition, emotion: $emotion, name: $name, score: $score)
+            LeaderboardDetailView(leaderboard: self.leaderboard)
         }
-    }
-}
-
-struct LeaderboardListComponent_Previews: PreviewProvider {
-    
-    @State static var picture:String = "profilePicture"
-    @State static var emotion:String = "happyface"
-    @State static var name:String = "Jovan"
-    @State static var score:Double = 10
-    @State static var date_joined:Date = Date()
-    
-    static var previews: some View {
-        LeaderboardListComponent(picture: $picture, emotion: $emotion, name: $name, score: $score, date_joined: $date_joined)
     }
 }

@@ -57,7 +57,7 @@ struct UserEditComponent: View {
                     presentationMode.wrappedValue.dismiss()
                     self.pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarettes, email: email, phone: phone, avatar: avatar, player: self.pvm.player)
                 } label: {
-                    customButton(text: "Save")
+                    customActionButton(text: "Save")
                 }
                 
             }
@@ -65,7 +65,7 @@ struct UserEditComponent: View {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    customButton(text: "Back")
+                    customActionButton(text: "Back")
                 }
             }
         }

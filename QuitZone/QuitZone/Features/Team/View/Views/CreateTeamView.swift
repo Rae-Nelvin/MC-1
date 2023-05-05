@@ -9,6 +9,7 @@ import SwiftUI
 struct CreateTeamView: View {
     
     @ObservedObject var tvm: TeamViewModel
+    @Environment(\.presentationMode) var presentationMode
     @State private var showingAlert = false
     @State private var teamName: String = ""
     @State private var teamGoal: String = ""
@@ -16,7 +17,6 @@ struct CreateTeamView: View {
     
     var body: some View {
         NavigationView {
-            
             //MARK: FORM
             VStack (alignment: .leading) {
                 Text("Create Team")
@@ -38,7 +38,7 @@ struct CreateTeamView: View {
                 //MARK: BACK BUTTON
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        self.tvm.currPage = "Main Team Component"
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         customBackButton(text: "Back")
                     }
@@ -54,7 +54,7 @@ struct CreateTeamView: View {
                         Button("Yeay!"){
                             showingAlert.toggle()
                             tvm.createTeam(name: teamName, goal: teamGoal, invitationCode: invitationCode)
-                            self.tvm.currPage = "Main Team Component"
+                            presentationMode.wrappedValue.dismiss()
                         }
                     } message: {
                         Text("Your team is created")
@@ -62,5 +62,6 @@ struct CreateTeamView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
