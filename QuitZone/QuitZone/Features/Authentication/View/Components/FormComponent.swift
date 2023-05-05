@@ -37,7 +37,7 @@ struct FormComponent: View {
             VStack {
                 customTextField(question: $tempvar1, answer: $name)
                     .padding(.bottom, 29)
-                CustomDatePickerComponent(question: .constant("Date of birth"), dateOfBirth: $dummyUser.dateOfBirth)
+                customDatePicker(question: .constant("Date of birth"), answer: $dob)
                 .padding(.bottom, 20)
                 customIntField(question: $tempvar5, answer: $smokerFor)
                     .padding(.bottom, 29)
@@ -118,13 +118,3 @@ struct DropdownInputField: View {
         }
     }
 }
-
-
-//struct FormComponent_Previews: PreviewProvider {
-//
-//    @State static var user:User = User(name: "", dateOfBirth: "", frequency: 1, smokerFor: "", typeOfCigarette: "", email: "", phone: "")
-//
-//    static var previews: some View {
-//        FormComponent(dummyUser: $user, currentPage: .constant("Form"))
-//    }
-//}

@@ -1,75 +1,35 @@
-////
-////  CreateTeamComponent.swift
-////  QuitZone
-////
-////  Created by Jonathan Evan Christian on 19/04/23.
-////
 //
-//import SwiftUI
+//  CreateTeamComponent.swift
+//  QuitZone
 //
-//struct MainTeamView: View {
-//    
-//    @State var teamLists: [Team] = []
-//    var body: some View {
-//        NavigationView {
-//            VStack{
-//                TeamListNavComponent(currentPage: $currentPage)
-//                List($teamLists, id: \.self) { team in
-//                    TeamListComponent(team: team)
-//                }
-//                .teamListStyle()
-//            }
-//            
-//        }
-//    }
-//}
+//  Created by Jonathan Evan Christian on 19/04/23.
 //
-//extension List {
-//    func teamListStyle() -> some View {
-//        self.background(.white)
-//            .scrollContentBackground(.hidden)
-//    }
-//}
-//
-//struct MainTeamView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainTeamView(currentPage: .constant(Page.gangs))
-//    }
-//}
 
 import SwiftUI
 
 struct MainTeamView: View {
         
-    @State var teamLists:[Team] = [
-        Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 2", players: 8, goal: "Stop merokok"),
-        Team(name: "Team 3", players: 5, goal: "Stop rokok"),
-        Team(name: "Team 4", players: 12, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 5", players: 20, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 3", players: 5, goal: "Stop rokok"),
-        Team(name: "Team 4", players: 12, goal: "Mengurangi rokok 3 batang per hari"),
-        Team(name: "Team 5", players: 20, goal: "Mengurangi rokok 3 batang per hari"),
-    ]
+    @ObservedObject var tvm: TeamViewModel
     
-    //Paging
-    @Binding var currentPage : Page
-    @State var gangPage : Page = Page.gangs
+    init(player: Player) {
+        self.tvm = TeamViewModel(player: player)
+    }
     
     var body: some View {
         VStack{
             
-            //MARK: TITLE, CREATE & JOIN BUTTON
-            TeamListNavComponent(currentPage: $currentPage)
-                .padding(.bottom, 20)
-                .background(LinearGradient(
-                    gradient: Gradient(colors: [.white, .white.opacity(0.9)]), startPoint: .top, endPoint: .bottom))
+//            //MARK: TITLE, CREATE & JOIN BUTTON
+//            TeamListNavComponent(currentPage: $currentPage)
+//                .padding(.bottom, 20)
+//                .background(LinearGradient(
+//                    gradient: Gradient(colors: [.white, .white.opacity(0.9)]), startPoint: .top, endPoint: .bottom))
             
             
             //MARK: MEMBER'S LIST
             ScrollView(showsIndicators: false){
-                ForEach($teamLists, id: \.self) { team in
-                    TeamListComponent(page:Page.leaderboard, currentPage: $currentPage, team: team)
+                ForEach(tvm.teams, id: \.id) { team in
+                    Text(team.name ?? "Placeholder")
+//                    TeamListComponent(team: Team)
                     Rectangle()
                         .fill(.gray)
                         .frame(width: 303, height: 1)
@@ -89,11 +49,5 @@ struct MainTeamView: View {
             Image("mainBackground")
                 .offset(y:-10)
         )
-    }
-}
-
-struct MainTeamView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainTeamView(currentPage: .constant(Page.gangs))
     }
 }

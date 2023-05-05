@@ -11,7 +11,6 @@ import CoreData
 
 @main
 struct QuitZoneApp: App {
-    @ObservedObject var qzvm: QuitZoneViewModel = QuitZoneViewModel()
     
     var body: some Scene {
         WindowGroup {

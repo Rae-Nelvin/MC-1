@@ -19,8 +19,8 @@ struct HomeView: View {
                     switch currentPage {
                     case Page.home:
                         HomeComponents(player: pvm.player)
-//                    case Page.friend:
-//                        MainTeamView()
+                    case Page.friend:
+                        MainTeamView(player: pvm.player)
                     case Page.mission:
                         MissionView(player: pvm.player)
                     case Page.user:

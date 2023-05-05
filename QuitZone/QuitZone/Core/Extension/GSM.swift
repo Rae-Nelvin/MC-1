@@ -72,8 +72,7 @@ struct customButtonStyle: ButtonStyle {
 struct customDatePicker: View {
     
     @Binding var question: String
-    @Binding var answer: String
-    @State private var selectedDate = Date()
+    @Binding var answer: Date
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -81,7 +80,7 @@ struct customDatePicker: View {
                 .font(.secondary(.body))
                 .padding(.bottom, 6)
             DatePicker("",
-                       selection: $selectedDate,
+                       selection: $answer,
                        displayedComponents: [.date])
             .datePickerStyle(.compact)
             .padding(.horizontal, 12)
@@ -329,9 +328,6 @@ struct customBackButton: View {
 //        }
 //    }
 //}
-
-
-
 
 //MARK: ENUM2
 enum faceImage : String {

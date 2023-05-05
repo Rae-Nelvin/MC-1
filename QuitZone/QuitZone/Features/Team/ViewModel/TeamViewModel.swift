@@ -13,7 +13,8 @@ class TeamViewModel: ObservableObject {
     
     @Published var teams: [Team] = []
     
-    init() {
+    init(player: Player) {
+        getMemberOfs(player: player)
     }
     
     private func generateRandomStrings() -> String {
