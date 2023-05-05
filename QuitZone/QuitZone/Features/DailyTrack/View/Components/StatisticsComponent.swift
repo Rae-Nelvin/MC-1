@@ -13,20 +13,6 @@ struct StatisticsComponent: View {
     @Binding var progressDataByDate: [ProgressModel]
     
     var body: some View {
-        //MARK: Cigarettes
-        VStack(alignment: .leading) {
-            Text("**Cigarette**")
-            Chart(progressDataByDate) { data in
-                BarMark (
-                    x: .value("Date", data.date, unit: .day),
-                    y: .value("Cigarettes", data.cigarettes)
-                )
-            }
-            .chartYScale(domain: 0...StatisticsHelper(progressData: progressData).yAxisCigarettes() + 5)
-            .frame(width: 300, height: 150)
-        }
-        .statisticsFormating()
-        
         //MARK: Tar
         VStack(alignment: .leading) {
             Text("**Tar**")

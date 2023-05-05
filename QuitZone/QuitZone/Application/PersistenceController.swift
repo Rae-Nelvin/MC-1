@@ -27,13 +27,13 @@ struct PersistenceController {
         
         description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.QuitZoneWithCoreData")
         description.cloudKitContainerOptions?.databaseScope = .public
-        
+
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
+
         viewContext.automaticallyMergesChangesFromParent = true
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
@@ -45,6 +45,17 @@ struct PersistenceController {
             } catch let error as NSError {
                 print("Error saving to CD : \(error)")
             }
+        }
+    }
+    
+    func deleteAllRecords() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DailyPlayer")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            try PersistenceController.shared.viewContext.execute(batchDeleteRequest)
+        } catch {
+            print("Error deleting records: \(error)")
         }
     }
 }

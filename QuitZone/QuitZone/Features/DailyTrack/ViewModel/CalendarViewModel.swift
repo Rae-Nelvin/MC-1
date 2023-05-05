@@ -82,7 +82,7 @@ class CalendarViewModel: ObservableObject {
             return
         }
         
-        daily.setValue(cigars, forKey: "cigars")
+        daily.cigars = cigars ?? 0
         
         PersistenceController.shared.save()
         refreshViewModel()

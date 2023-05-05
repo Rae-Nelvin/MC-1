@@ -27,15 +27,14 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func createPlayer(name: String, dob: Date, frequency: Int16, smokerFor: Int16, typeOfCigarattes: String) {
-        
+    func createPlayer(name: String, dob: Date, frequency: Int16, smokerFor: Int16, typeOfCigarattes: Cigarattes) {
         let player = Player(context: PersistenceController.shared.viewContext)
         
         player.name = name
         player.dob = dob
         player.frequency = frequency
         player.smokerFor = smokerFor
-        player.typeOfCigarattes = typeOfCigarattes
+        player.typeOfCigarattes = typeOfCigarattes.name
         player.iCloud = icvm.iCloud
         
         PersistenceController.shared.save()
@@ -59,7 +58,7 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: String?, player: Player) {
+    func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, player: Player) {
         
         if name != "" {
             player.name = name
@@ -78,8 +77,8 @@ class PlayerViewModel: ObservableObject {
             player.smokerFor = smokerFor!
         }
         
-        if typeOfCigarattes != "" {
-            player.typeOfCigarattes = typeOfCigarattes
+        if (typeOfCigarattes != nil) {
+            player.typeOfCigarattes = typeOfCigarattes?.name
         }
         
         PersistenceController.shared.save()

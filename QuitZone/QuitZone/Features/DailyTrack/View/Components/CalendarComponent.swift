@@ -94,17 +94,7 @@ struct CalendarComponent: View {
                                 .frame(width: 35, height: 35)
                                 .background( Image("CalendarTickUnFill")
                                     .resizable()
-                                    .scaledToFit()
-                                    .onTapGesture {
-                                        let dateFormatter = DateFormatter()
-                                        dateFormatter.dateFormat = "dd MMMM yyyy"
-                                        let itemDateString = dateFormatter.string(from: day.date)
-                                        customAlertTextField(title: itemDateString, message: "Number of Cigarattes", leftButton: "Cancel", rightButton: "Save") {
-                                            print("Canceled")
-                                        } rightAction: { cigar in
-                                            cvm.updateDaily(cigars: Int16(cigar), date: day.date)
-                                        }
-                                    })
+                                    .scaledToFit())
                         }
                     } else {
                         VStack {
@@ -122,7 +112,7 @@ struct CalendarComponent: View {
                                         customAlertTextField(title: itemDateString, message: "Number of Cigarattes", leftButton: "Cancel", rightButton: "Save") {
                                             print("Canceled")
                                         } rightAction: { cigar in
-                                            cvm.updateDaily(cigars: Int16(cigar), date: day.date)
+                                            cvm.createDaily(cigars: Int16(cigar), date: day.date)
                                         }
                                     })
                         }

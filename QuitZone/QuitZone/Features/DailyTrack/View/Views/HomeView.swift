@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    @ObservedObject var vm = TestSheetViewModel()
     @ObservedObject private var dpvm: DailyPlayerViewModel
     
     init(player: Player) {
@@ -22,15 +21,15 @@ struct HomeView: View {
                 //MARK: Nicotine
                 ProgressBarComponent(percentage: 57, tickValue: 320, showText: true)
                     .onTapGesture {
-                        vm.showSheetContentStatus = .nicotine
-                        vm.sheetStatus.toggle()
+                        dpvm.showSheetContentStatus = .nicotine
+                        dpvm.sheetStatus.toggle()
                     }
                 
                 //MARK: Tar
                 ProgressBarComponent(percentage: 75, tickValue: 14, showText: true)
                     .onTapGesture {
-                        vm.showSheetContentStatus = .tar
-                        vm.sheetStatus.toggle()
+                        dpvm.showSheetContentStatus = .tar
+                        dpvm.sheetStatus.toggle()
                     }
                 
                 //MARK: Calendar
@@ -40,7 +39,8 @@ struct HomeView: View {
                         .font(.largeTitle)
                 }
                 .onTapGesture {
-                    vm.showCalendar.toggle()
+                    dpvm.showCalendar.toggle()
+                    dpvm.fetchDailyPlayer()
                 }
             }
             .hAlign(.top)
@@ -50,7 +50,7 @@ struct HomeView: View {
             
             VStack {
                 //MARK: Calendar
-                if vm.showCalendar {
+                if dpvm.showCalendar {
                     CalendarComponent(player: dpvm.player)
                         .padding(.top, 50)
                         .padding(.horizontal, 16)
@@ -72,29 +72,23 @@ struct HomeView: View {
                 Image("humanBody")
                     .resizable()
                     .scaledToFit()
-                    .blur(radius: vm.showCalendar ? 3 : 0)
+                    .blur(radius: dpvm.showCalendar ? 3 : 0)
             )
-            .sheet(isPresented: $vm.sheetStatus) {
-                switch vm.showSheetContentStatus {
+            .sheet(isPresented: $dpvm.sheetStatus) {
+                switch dpvm.showSheetContentStatus {
                     case .nicotine:
-                    NicotineComponent(progressData: $vm.progressData, progressDataByDate: $vm.progressDataByDate)
+                    NicotineComponent(progressData: $dpvm.progressData, progressDataByDate: $dpvm.progressDataByDate)
                             .presentationDetents([.height(250)])
                             .presentationDragIndicator(.visible)
                     case .tar:
-                    TarComponent(progressData: $vm.progressData, progressDataByDate: $vm.progressDataByDate)
+                    TarComponent(progressData: $dpvm.progressData, progressDataByDate: $dpvm.progressDataByDate)
                             .presentationDetents([.height(250)])
                             .presentationDragIndicator(.visible)
                 }
             }
             .onAppear {
-                vm.progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: vm.progressData)
+                dpvm.progressDataByDate = CalendarHelper().showStatLastSevenDays(progressData: dpvm.progressData)
             }
         }
     }
 }
-
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView()
-//    }
-//}

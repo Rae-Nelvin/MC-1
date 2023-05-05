@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		153422D02A0127D200F41915 /* PlayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153422CF2A0127D200F41915 /* PlayerExtension.swift */; };
 		153422D12A025B8A00F41915 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1565D0792A010B53002D3C33 /* CoreData.framework */; };
 		1565D0802A010B9A002D3C33 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D07F2A010B9A002D3C33 /* Mission.swift */; };
 		1565D0832A010BA3002D3C33 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1565D0822A010BA3002D3C33 /* MissionViewModel.swift */; };
@@ -21,6 +20,8 @@
 		15A437B129F4181200300BF5 /* Lung.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437B029F4181200300BF5 /* Lung.swift */; };
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
 		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
+		15B1D4312A05089A00320AA5 /* Cigarattes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4302A05089A00320AA5 /* Cigarattes.swift */; };
+		15B1D4332A05106300320AA5 /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4322A05106300320AA5 /* StatisticViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -115,7 +116,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		153422CF2A0127D200F41915 /* PlayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerExtension.swift; sourceTree = "<group>"; };
 		1565D0792A010B53002D3C33 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		1565D07F2A010B9A002D3C33 /* Mission.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		1565D0822A010BA3002D3C33 /* MissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
@@ -131,6 +131,8 @@
 		15A437B029F4181200300BF5 /* Lung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lung.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
+		15B1D4302A05089A00320AA5 /* Cigarattes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cigarattes.swift; sourceTree = "<group>"; };
+		15B1D4322A05106300320AA5 /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */,
 				1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */,
+				15B1D4322A05106300320AA5 /* StatisticViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -521,8 +524,8 @@
 			isa = PBXGroup;
 			children = (
 				ABC3E74829EFEBF300682177 /* UserModel.swift */,
+				15B1D4302A05089A00320AA5 /* Cigarattes.swift */,
 				15A437B029F4181200300BF5 /* Lung.swift */,
-				153422CF2A0127D200F41915 /* PlayerExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -769,7 +772,6 @@
 				15E470522A03A18C001BA9AA /* HomeComponents.swift in Sources */,
 				8003DFF529FD34020092937D /* HomeView.swift in Sources */,
 				1565D0902A010EB7002D3C33 /* QuitZoneModel.xcdatamodeld in Sources */,
-				153422D02A0127D200F41915 /* PlayerExtension.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
 				1565D0882A010BCB002D3C33 /* CalendarViewModel.swift in Sources */,
 				8003E00729FD37AD0092937D /* MissionComponent.swift in Sources */,
@@ -784,6 +786,7 @@
 				8003E00B29FD38820092937D /* StatisticsHelper.swift in Sources */,
 				AB81F38229FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7B929FC52DB00B6BC93 /* LeaderboardView.swift in Sources */,
+				15B1D4312A05089A00320AA5 /* Cigarattes.swift in Sources */,
 				15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */,
 				8003DFFD29FD35590092937D /* ProgressModel.swift in Sources */,
 				ABD4BF002A026F4B00B83554 /* NicotineComponent.swift in Sources */,
@@ -796,6 +799,7 @@
 				8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */,
 				68FAC7E729FC755700B6BC93 /* CreateTeamFormComponent.swift in Sources */,
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
+				15B1D4332A05106300320AA5 /* StatisticViewModel.swift in Sources */,
 				68FAC7D329FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,
