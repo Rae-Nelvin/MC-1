@@ -20,6 +20,7 @@ class DailyPlayerViewModel: ObservableObject {
     
     init(player: Player) {
         self.player = player
+        updatePlayerLung()
         fetchDailyPlayer()
     }
     
@@ -51,6 +52,13 @@ class DailyPlayerViewModel: ObservableObject {
             }
         }
         return nil
+    }
+    
+    func updatePlayerLung() {
+        let lvm: LungViewModel = LungViewModel(player: self.player)
+        let pvm: PlayerViewModel = PlayerViewModel()
+        
+        pvm.updatePlayer(name: "", dob: nil, frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: self.player)
     }
 }
 

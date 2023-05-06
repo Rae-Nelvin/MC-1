@@ -25,13 +25,29 @@ class TeamViewModel: ObservableObject {
         let length = 5
         var randomString = ""
 
-        for _ in 0..<length {
-            let randomIndex = Int.random(in: 0..<allowedChars.count)
-            let newChar = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomIndex)]
-            randomString.append(newChar)
-        }
+        repeat {
+            for _ in 0..<length {
+                let randomIndex = Int.random(in: 0..<allowedChars.count)
+                let newChar = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomIndex)]
+                randomString.append(newChar)
+            }
+        } while(self.checkRandomStrings(randomString) == true)
 
         return randomString
+    }
+    
+    private func checkRandomStrings(_ string: String) -> Bool {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Team")
+        fetchRequest.predicate = NSPredicate(format: "inviteCode == %@", string)
+        fetchRequest.fetchLimit = 1
+        
+        do {
+            let count = try PersistenceController.shared.viewContext.count(for: fetchRequest)
+            return count == 0
+        } catch let error as NSError {
+            print("Error checking uniqueness of random string :\(error)")
+            return false
+        }
     }
     
     func createMember(player: Player, team: Team) {

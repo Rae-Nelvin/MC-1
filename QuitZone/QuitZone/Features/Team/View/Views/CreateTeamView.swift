@@ -48,7 +48,7 @@ struct CreateTeamView: View {
                     Button {
                         showingAlert.toggle()
                     } label: {
-                        customBackButton(text: "Create")
+                        customActionButton(text: "Create")
                     }
                     .alert("Congratulations!", isPresented: $showingAlert){
                         Button("Yeay!"){

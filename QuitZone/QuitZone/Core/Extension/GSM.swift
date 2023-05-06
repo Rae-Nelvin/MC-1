@@ -308,14 +308,13 @@ struct customBackButton : View {
     var text: String
 
     var body: some View {
-        ZStack {
-            Image("blankRectangleGray")
+        HStack {
+            Image("ButtonLeft")
                 .resizable()
-                .frame(width: 91.38, height: 38)
+                .frame(width: 42, height: 40)
             Text("\(text)")
                 .foregroundColor(.black)
                 .font(.secondary(.body))
-                .offset(CGSize(width: -2, height: -2))
         }
     }
 }

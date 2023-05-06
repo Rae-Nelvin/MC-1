@@ -13,24 +13,18 @@
     </entity>
     <entity name="Player" representedClassName="Player" syncable="YES" codeGenerationType="class">
         <attribute name="avatar" optional="YES" attributeType="Binary"/>
-        <attribute name="condition" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dob" optional="YES" attributeType="Date" defaultDateTimeInterval="704802120" usesScalarValueType="NO"/>
         <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="frequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="iCloud" optional="YES" attributeType="Transformable" valueTransformerName=""/>
+        <attribute name="lungCondition" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="phone" optional="YES" attributeType="String"/>
         <attribute name="smokerFor" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="typeOfCigarattes" optional="YES" attributeType="String"/>
         <relationship name="daily" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyPlayer" inverseName="player" inverseEntity="DailyPlayer"/>
-        <relationship name="lung" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PlayerLung" inverseName="player" inverseEntity="PlayerLung"/>
         <relationship name="member" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Member" inverseName="player" inverseEntity="Member"/>
         <relationship name="mission" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerMission" inverseName="player" inverseEntity="PlayerMission"/>
-    </entity>
-    <entity name="PlayerLung" representedClassName="PlayerLung" syncable="YES" codeGenerationType="class">
-        <attribute name="condition" optional="YES" attributeType="Transformable"/>
-        <attribute name="playerID" optional="YES" attributeType="Transformable"/>
-        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="lung" inverseEntity="Player"/>
     </entity>
     <entity name="PlayerMission" representedClassName="PlayerMission" syncable="YES" codeGenerationType="class">
         <attribute name="creationDate" attributeType="Date" defaultDateTimeInterval="704803740" usesScalarValueType="NO"/>

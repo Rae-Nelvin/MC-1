@@ -17,7 +17,7 @@ struct CompareLungComponent:View {
                 Image("backgroundLungDetail")
                     .resizable()
                     .frame(width: 142.75, height: 131.84)
-                Image("\(member.player?.condition)")
+                Image("\(member.player?.lungCondition)")
                     .resizable()
                     .frame(width: 103.79, height: 88.97)
                     .offset(x:-4, y:-1)

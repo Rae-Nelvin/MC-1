@@ -6,64 +6,87 @@
 //
 
 import Foundation
-import CloudKit
+import CoreData
 
 class LungViewModel: ObservableObject {
     private var player: Player
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    private var cigaratte: Cigarattes = Cigarattes(name: "Placeholder", tar: 0, nicotine: 0)
+    private var progressMonthly: [ProgressModel] = []
     
     init(player: Player) {
         self.player = player
+        getCigarattes()
     }
     
-    func createPlayerLung() {
-        let record = CKRecord(recordType: "PlayerLung")
-        let reference = CKRecord.Reference(recordID: self.player.id ?? CKRecord.ID(recordName: "Placeholder"), action: .none)
-//        let lung = PlayerLung(playerID: reference, condition: Lung(images: <#T##String#>))
-//        record.setValuesForKeys(lung.toDictionary())
-        
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
+    private func getCigarattes() {
+        for cigaratte in cigarattesLists.lists {
+            if self.player.typeOfCigarattes == cigaratte.name {
+                self.cigaratte = cigaratte
+                break
             }
         }
     }
     
-    private func calculateLungBasedOnAge() -> Double {
-        let minAge = 18
-        let maxAge = 60
-        let ageRange = minAge - maxAge
-        let age = self.calculateAge(birthDate: self.player.dob)
-        let cal = age - minAge
-        let result: Double = Double((cal * 5) / ageRange)
-        return result
+    func calculateRegisterLungCondition() -> String {
+        let condition: Double = Double(self.player.frequency * self.player.smokerFor) * 30 * self.cigaratte.tar
+        return self.calculateLungCondition(condition: condition)
     }
     
-    private func calculateAge(birthDate: Date) -> Int {
+    func calculateLungCondition(condition: Double) -> String {
+        if condition <= 6 * 30 * 6 {
+            return "lunglvl1"
+        } else if condition > 6 * 30 * 6 && condition <= 6 * 30 * 12 {
+            return "lunglvl2"
+        } else if condition > 6 * 30 * 12 && condition <= 6 * 30 * 18 {
+            return "lunglvl3"
+        } else if condition > 6 * 30 * 18 && condition <= 6 * 30 * 24 {
+            return "lunglvl4"
+        } else if condition > 6 * 30 * 24 && condition <= 6 * 30 * 30 {
+            return "lunglvl5"
+        } else if condition > 6 * 30 * 30 && condition <= 6 * 30 * 36 {
+            return "lunglvl6"
+        } else if condition > 6 * 30 * 36 && condition <= 6 * 30 * 42 {
+            return "lunglvl7"
+        } else if condition > 6 * 30 * 42 && condition <= 6 * 30 * 48 {
+            return "lunglvl8"
+        } else if condition > 6 * 30 * 48 && condition <= 6 * 30 * 54 {
+            return "lunglvl9"
+        } else {
+            return "lunglvl10"
+        }
+    }
+    
+    private func fetchProgressMonthly() {
         let calendar = Calendar.current
-        let now = Date()
-        let ageComponents = calendar.dateComponents([.year], from: birthDate, to: now)
-        let age = ageComponents.year!
-        return age
+        let startDate = calendar.date(byAdding: .month, value: -1, to: Date())!
+        
+        let fetchRequest: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "player == %@ AND date >= %@", self.player, startDate as NSDate)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(fetchRequest)
+            if results.count > 0 {
+                for result in results {
+                    let progressModel: ProgressModel = ProgressModel(date: result.date ?? Date(), totalCigars: Int(result.cigars), cigarettes: self.cigaratte)
+                    progressMonthly.append(progressModel)
+                }
+            }
+        } catch let error as NSError {
+            print("Error fetching data: \(error), \(error.userInfo)")
+        }
     }
     
-//    func updatePlayerLung() {
-//        let predicate = NSPredicate(format: "playerID == %@", self.player.id ?? CKRecord.ID(recordName: "Placeholder"))
-//        let query = CKQuery(recordType: "PlayerLung", predicate: predicate)
-//        
-//        dvm.read(query: query) { result in
-//            switch result {
-//            case .failure(let error):
-//                print(error)
-//            case .success(let records):
-//                let record = records.first
-//                DispatchQueue.main.async {
-//                    <#code#>
-//                }
-//            }
-//        }
-//    }
+    func calculateLoggedInLung() -> String {
+        self.fetchProgressMonthly()
+        guard let condition = self.player.lungCondition else { return "" }
+        var average: Double = 0
+        if progressMonthly.count < 29 {
+            return condition
+        } else {
+            for daily in progressMonthly {
+                average = average + Double(daily.tarConsume)
+            }
+            return self.calculateLungCondition(condition: average * 30)
+        }
+    }
 }

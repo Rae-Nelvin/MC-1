@@ -61,7 +61,7 @@ struct HomeComponents: View {
                 else {
                     //MARK: Lung
                     VStack {
-                        LungsComponent()
+                        LungsComponent(lung: self.dpvm.player.lungCondition ?? "lunglvl1")
                             .padding(.bottom, 28)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)

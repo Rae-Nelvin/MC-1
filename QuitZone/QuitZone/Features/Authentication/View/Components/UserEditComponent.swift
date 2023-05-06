@@ -55,7 +55,7 @@ struct UserEditComponent: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     presentationMode.wrappedValue.dismiss()
-                    self.pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarettes, email: email, phone: phone, avatar: avatar, player: self.pvm.player)
+                    self.pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarettes, email: email, phone: phone, avatar: avatar, lungCondition: "", player: self.pvm.player)
                 } label: {
                     customActionButton(text: "Save")
                 }
@@ -65,7 +65,7 @@ struct UserEditComponent: View {
                 Button {
                     presentationMode.wrappedValue.dismiss()
                 } label: {
-                    customActionButton(text: "Back")
+                    customBackButton(text: "Back")
                 }
             }
         }

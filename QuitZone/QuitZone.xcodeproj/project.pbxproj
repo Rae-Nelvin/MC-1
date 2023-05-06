@@ -19,11 +19,11 @@
 		15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C229F57F6700300BF5 /* TeamViewModel.swift */; };
 		15A437C929F7CE6C00300BF5 /* DailyPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */; };
 		15B1D4312A05089A00320AA5 /* Cigarattes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4302A05089A00320AA5 /* Cigarattes.swift */; };
-		15B1D4332A05106300320AA5 /* StatisticViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4322A05106300320AA5 /* StatisticViewModel.swift */; };
 		15B1D4372A05426800320AA5 /* QuitZoneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4352A05426800320AA5 /* QuitZoneModel.xcdatamodeld */; };
 		15B1D4462A05428300320AA5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D43E2A05428300320AA5 /* HomeView.swift */; };
 		15B1D44A2A05508B00320AA5 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D4492A05508B00320AA5 /* UserView.swift */; };
 		15B1D44E2A05847B00320AA5 /* LeaderboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D44D2A05847B00320AA5 /* LeaderboardViewModel.swift */; };
+		15B1D4502A06B98600320AA5 /* LungViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B1D44F2A06B98600320AA5 /* LungViewModel.swift */; };
 		15BF5D7129EFBC68003C1500 /* QuitZoneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */; };
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
@@ -122,17 +122,16 @@
 		1565D0A92A0111EE002D3C33 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		157792EB29F24F8F0031AA1C /* QuitZone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuitZone.entitlements; sourceTree = "<group>"; };
 		157792F329F26BA20031AA1C /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
-		15965F9429FCC8D600F04678 /* LungViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungViewModel.swift; sourceTree = "<group>"; };
 		15A437AE29F4180200300BF5 /* iCloudViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudViewModel.swift; sourceTree = "<group>"; };
 		15A437B029F4181200300BF5 /* Lung.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lung.swift; sourceTree = "<group>"; };
 		15A437C229F57F6700300BF5 /* TeamViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamViewModel.swift; sourceTree = "<group>"; };
 		15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlayerViewModel.swift; sourceTree = "<group>"; };
 		15B1D4302A05089A00320AA5 /* Cigarattes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cigarattes.swift; sourceTree = "<group>"; };
-		15B1D4322A05106300320AA5 /* StatisticViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewModel.swift; sourceTree = "<group>"; };
 		15B1D4362A05426800320AA5 /* QuitZoneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuitZoneModel.xcdatamodel; sourceTree = "<group>"; };
 		15B1D43E2A05428300320AA5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		15B1D4492A05508B00320AA5 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		15B1D44D2A05847B00320AA5 /* LeaderboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewModel.swift; sourceTree = "<group>"; };
+		15B1D44F2A06B98600320AA5 /* LungViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LungViewModel.swift; sourceTree = "<group>"; };
 		15BF5D6D29EFBC68003C1500 /* QuitZone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuitZone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15BF5D7029EFBC68003C1500 /* QuitZoneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneApp.swift; sourceTree = "<group>"; };
 		15BF5D7229EFBC68003C1500 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -289,7 +288,6 @@
 			children = (
 				15A437C829F7CE6C00300BF5 /* DailyPlayerViewModel.swift */,
 				1565D0862A010BCB002D3C33 /* CalendarViewModel.swift */,
-				15B1D4322A05106300320AA5 /* StatisticViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -485,7 +483,6 @@
 			children = (
 				ABF47E4E29EFC7BB0067F243 /* Views */,
 				ABF47E4F29EFC7ED0067F243 /* Components */,
-				ABF47E5029EFC7F90067F243 /* Extension */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -495,7 +492,7 @@
 			children = (
 				157792F329F26BA20031AA1C /* PlayerViewModel.swift */,
 				15A437AE29F4180200300BF5 /* iCloudViewModel.swift */,
-				15965F9429FCC8D600F04678 /* LungViewModel.swift */,
+				15B1D44F2A06B98600320AA5 /* LungViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -525,10 +522,7 @@
 		ABF47E4729EFC5D80067F243 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				ABF47E4929EFC6490067F243 /* Constants */,
 				ABF47E4A29EFC64F0067F243 /* Resources */,
-				ABF47E4B29EFC6550067F243 /* Utilities */,
-				ABF47E4C29EFC65A0067F243 /* Themes */,
 				ABF47E4D29EFC6900067F243 /* Extension */,
 			);
 			path = Core;
@@ -543,13 +537,6 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		ABF47E4929EFC6490067F243 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		ABF47E4A29EFC64F0067F243 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -558,20 +545,6 @@
 				68FAC7A029FBA93F00B6BC93 /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		ABF47E4B29EFC6550067F243 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		ABF47E4C29EFC65A0067F243 /* Themes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Themes;
 			sourceTree = "<group>";
 		};
 		ABF47E4D29EFC6900067F243 /* Extension */ = {
@@ -603,13 +576,6 @@
 				80602C172A03CC4600EFE9C0 /* SplashScreenComponentView.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		ABF47E5029EFC7F90067F243 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -764,6 +730,7 @@
 				6888D2052A055412001A5503 /* CustomActionButtonComponent.swift in Sources */,
 				68FAC7C529FC620100B6BC93 /* LeaderboardNavComponent.swift in Sources */,
 				ABF47E5229EFD25F0067F243 /* WelcomeComponent.swift in Sources */,
+				15B1D4502A06B98600320AA5 /* LungViewModel.swift in Sources */,
 				ABF47E6029EFD37D0067F243 /* FormComponent.swift in Sources */,
 				8003DFFB29FD35270092937D /* CalendarHelper.swift in Sources */,
 				80602C182A03CC4600EFE9C0 /* SplashScreenComponentView.swift in Sources */,
@@ -784,7 +751,6 @@
 				8003DFF929FD343A0092937D /* StatisticsComponent.swift in Sources */,
 				8003DFF329FD33E30092937D /* CalendarComponent.swift in Sources */,
 				15A437AF29F4180200300BF5 /* iCloudViewModel.swift in Sources */,
-				15B1D4332A05106300320AA5 /* StatisticViewModel.swift in Sources */,
 				68FAC7D329FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
 				157792F429F26BA20031AA1C /* PlayerViewModel.swift in Sources */,
 				15A437C329F57F6700300BF5 /* TeamViewModel.swift in Sources */,

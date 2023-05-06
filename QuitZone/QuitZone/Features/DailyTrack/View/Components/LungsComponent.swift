@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct LungsComponent: View {
-    //testing
+    
     @State private var isAnimated: Bool = false
-    var lungs = Lung(images: .lv10)
+    var lung: String
     
     var body: some View {
-        Image(lungs.images.rawValue)
+        Image(lung)
             .resizable()
             .frame(width: 301*0.7, height: 258*0.7)
             .padding(.bottom, 124)
