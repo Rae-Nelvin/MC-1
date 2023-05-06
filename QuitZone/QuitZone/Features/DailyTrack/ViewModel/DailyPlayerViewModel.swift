@@ -17,6 +17,8 @@ class DailyPlayerViewModel: ObservableObject {
     @Published var showSheetContentStatus: sheetContent = .nicotine
     @Published var sheetStatus: Bool = false
     @Published var showCalendar: Bool = false
+    @Published var averageNicotine: Int = 0
+    @Published var averageTar: Int = 0
     
     init(player: Player) {
         self.player = player
@@ -43,6 +45,24 @@ class DailyPlayerViewModel: ObservableObject {
         } catch let error as NSError {
             print("Error fetching data: \(error), \(error.userInfo)")
         }
+        self.calculateAverageTar()
+        self.calculateAverageNicotine()
+    }
+    
+    private func calculateAverageNicotine() {
+        var average: Int = 0
+        for daily in progressData {
+            average = average + Int(daily.nicotineConsume)
+        }
+        self.averageNicotine = average / progressData.count
+    }
+    
+    private func calculateAverageTar() {
+        var average: Int = 0
+        for daily in progressData {
+            average = average + Int(daily.tarConsume)
+        }
+        self.averageTar = average / progressData.count
     }
     
     private func foundCigar(dailyPlayers: [DailyPlayer]) -> Cigarattes? {

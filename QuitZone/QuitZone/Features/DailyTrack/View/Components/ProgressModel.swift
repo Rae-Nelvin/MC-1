@@ -13,15 +13,11 @@ struct ProgressModel: Identifiable {
     var totalCigars: Int
     var cigarettes: Cigarattes
     
-    var nicotineConsume: CGFloat {
-        return CGFloat(totalCigars) * self.cigarettes.nicotine
+    var nicotineConsume: Double {
+        return Double(totalCigars) * self.cigarettes.nicotine
     }
     
-    var tarConsume: Int {
-        return totalCigars * Int(self.cigarettes.tar)
+    var tarConsume: Double {
+        return Double(totalCigars) * self.cigarettes.tar
     }
-    
-//    var moneySpend: CGFloat {
-//        return CGFloat(cigarettes) * CGFloat(self.price)
-//    }
 }

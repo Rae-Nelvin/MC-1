@@ -17,7 +17,7 @@ struct StatisticsHelper {
         let yAxis = self.progressData.max {x, y in
             return x.tarConsume < y.tarConsume
         }!.tarConsume
-        return yAxis
+        return Int(yAxis)
     }
 
     func yAxisNicotine() -> Int {

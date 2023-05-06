@@ -19,14 +19,14 @@ struct HomeComponents: View {
             //MARK: 3 button
             HStack {
                 //MARK: Nicotine
-                ProgressBarComponent(percentage: 57, tickValue: 320, showText: true)
+                ProgressBarComponent(percentage: self.dpvm.averageNicotine, tickValue: 320, showText: true)
                     .onTapGesture {
                         dpvm.showSheetContentStatus = .nicotine
                         dpvm.sheetStatus.toggle()
                     }
                 
                 //MARK: Tar
-                ProgressBarComponent(percentage: 75, tickValue: 14, showText: true)
+                ProgressBarComponent(percentage: self.dpvm.averageTar, tickValue: 14, showText: true)
                     .onTapGesture {
                         dpvm.showSheetContentStatus = .tar
                         dpvm.sheetStatus.toggle()
@@ -34,7 +34,7 @@ struct HomeComponents: View {
                 
                 //MARK: Calendar
                 ZStack {
-                    ProgressBarComponent(percentage: 100, tickValue: 40, showText: false)
+                    ProgressBarComponent(percentage: 300, tickValue: 14, showText: false)
                     Image(systemName:"calendar")
                         .font(.largeTitle)
                 }
