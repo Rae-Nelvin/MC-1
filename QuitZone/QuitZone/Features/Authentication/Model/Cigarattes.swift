@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Cigarattes: Identifiable {
+struct Cigarattes: Identifiable, Hashable {
     let id = UUID()
     let name: String
     let tar: Double

@@ -39,7 +39,7 @@ class PlayerViewModel: ObservableObject {
         
         PersistenceController.shared.save()
         let lvm: LungViewModel = LungViewModel(player: player)
-        self.updatePlayer(name: "", dob: nil, frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: player)
+        self.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: player)
         
         self.currPage = "Home Screen"
     }
@@ -61,14 +61,10 @@ class PlayerViewModel: ObservableObject {
         }
     }
     
-    func updatePlayer(name: String?, dob: Date?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, email: String?, phone: String?, avatar: UIImage? , lungCondition: String?, player: Player) {
+    func updatePlayer(name: String?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, email: String?, phone: String?, avatar: UIImage? , lungCondition: String?, player: Player) {
         
         if name != "" {
             player.name = name
-        }
-        
-        if dob != nil {
-            player.dob = dob
         }
         
         if frequency != 0 {

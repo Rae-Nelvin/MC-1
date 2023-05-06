@@ -78,7 +78,7 @@ class DailyPlayerViewModel: ObservableObject {
         let lvm: LungViewModel = LungViewModel(player: self.player)
         let pvm: PlayerViewModel = PlayerViewModel()
         
-        pvm.updatePlayer(name: "", dob: nil, frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: self.player)
+        pvm.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: self.player)
     }
 }
 

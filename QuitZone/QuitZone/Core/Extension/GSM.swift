@@ -94,22 +94,52 @@ struct customDatePicker: View {
     }
 }
 
+// Image Picker
+struct customImagePicker: View {
+    
+    @Binding var question: String
+    @Binding var selectedImage: UIImage?
+    @Binding var showImagePicker: Bool
+    
+    var body: some View {
+        Button(action: {
+            showImagePicker = true
+        }) {
+            Text("Select Image")
+                .font(.secondary(.body))
+                .foregroundColor(.black)
+                .offset(CGSize(width: 0, height: showImagePicker ? -2 : -6))
+                .animation(nil)
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+        }
+        .frame(width: 120, height: 80, alignment: .center)
+        .padding(.all, 20)
+        .background(Image("blankRectangleGray")
+            .resizable()
+            .frame(width: 170, height: 70)
+        )
+        .offset(CGSize(width: 0, height: showImagePicker ? 0 : -6))
+    }
+
+}
+
 //Dropdown
 struct customDropdown: View {
     
     @Binding var question: String
-    @Binding var answer: String
-    @State private var selectedOption = 0
-    let options = ["Option 1", "Option 2", "Option 3"]
+    @Binding var answer: Cigarattes?
+    let options: [Cigarattes] = cigarattesLists.lists
     
     var body: some View {
         VStack (alignment: .leading) {
             Text("\(question)")
                 .font(.secondary(.body))
                 .padding(.bottom, 6)
-            Picker("Select an option", selection: $selectedOption) {
-                ForEach(0 ..< options.count) { index in
-                    Text(self.options[index]).tag(index)
+            Picker("Select an option", selection: $answer) {
+                ForEach(options) { option in
+                    Text(option.name)
                 }
             }
             .pickerStyle(.menu)
@@ -121,6 +151,41 @@ struct customDropdown: View {
             )
         }
         .frame(width:.infinity, height:82)
+    }
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var selectedImage: UIImage?
+    var sourceType: UIImagePickerController.SourceType
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: ImagePicker
+        
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+            
+            parent.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 

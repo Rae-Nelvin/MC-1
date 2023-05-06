@@ -61,7 +61,7 @@ struct FormComponent: View {
                         .font(.secondary(.custom(12)))
                         .padding(.bottom, 6)
                 }
-                DropdownInputField(title: "Type of Cigarattes", options: cigarattesLists.lists, selection: $typeOfCigarettes)
+                customDropdown(question: .constant("Type of Cigarattes"), answer: $typeOfCigarettes)
                 Button {
                     self.didTap.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
@@ -87,34 +87,4 @@ struct FormComponent: View {
         }
     }
     
-}
-
-struct DropdownInputField: View {
-    let title: String
-    let options: [Cigarattes]
-    @Binding var selection: Cigarattes?
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.headline)
-            Menu {
-                ForEach(options, id: \.id) { option in
-                    Button(action: {
-                        self.selection = option
-                    }) {
-                        Text(option.name)
-                    }
-                }
-            } label: {
-                HStack {
-                    Text("Select an option")
-                        .foregroundColor(selection == nil ? .gray : .primary)
-                    Spacer()
-                    Image(systemName: "chevron.down")
-                        .foregroundColor(.gray)
-                }
-            }
-        }
-    }
 }
