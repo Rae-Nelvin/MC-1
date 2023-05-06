@@ -10,8 +10,10 @@ import SwiftUI
 struct MainTeamView: View {
         
     @ObservedObject var tvm: TeamViewModel
+    private var player: Player
     
     init(player: Player) {
+        self.player = player
         self.tvm = TeamViewModel(player: player)
     }
     
@@ -28,7 +30,7 @@ struct MainTeamView: View {
                 //MARK: MEMBER'S LIST
                 ScrollView(showsIndicators: false){
                     ForEach(tvm.teams, id: \.self) { team in
-                        NavigationLink(destination: LeaderboardView(team: team)) {
+                        NavigationLink(destination: LeaderboardView(team: team, player: self.player)) {
                             TeamListComponent(team: team)
                         }
                         Rectangle()

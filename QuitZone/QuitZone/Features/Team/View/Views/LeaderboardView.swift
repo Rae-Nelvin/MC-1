@@ -11,8 +11,10 @@ struct LeaderboardView: View {
     
     @ObservedObject var lvm: LeaderboardViewModel
     @Environment(\.presentationMode) var presentationMode
+    private var player: Player
     
-    init(team: Team) {
+    init(team: Team, player: Player) {
+        self.player = player
         self.lvm = LeaderboardViewModel(team: team)
     }
         
@@ -26,7 +28,7 @@ struct LeaderboardView: View {
                 ScrollView(showsIndicators: false){
                     ForEach(lvm.leaderboards,  id: \.id) { leaderboard in
                         HStack{
-                            LeaderboardListComponent(leaderboard: leaderboard)
+                            LeaderboardListComponent(player: self.player, member: leaderboard)
                         }
                    }
                 }

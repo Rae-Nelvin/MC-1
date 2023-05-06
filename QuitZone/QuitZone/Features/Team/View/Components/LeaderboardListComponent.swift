@@ -9,7 +9,8 @@ import SwiftUI
 
 struct LeaderboardListComponent: View {
 
-    var leaderboard: Member
+    var player: Player
+    var member: Member
     
     //for binding to detail page
     @State var condition:String = "lunglvl8"
@@ -20,8 +21,8 @@ struct LeaderboardListComponent: View {
                 
                 //MARK: PROFILE & EMOJI
                 ZStack{
-                    if leaderboard.player?.avatar != nil {
-                        Image(uiImage: UIImage(data: (leaderboard.player?.avatar)!)!)
+                    if member.player?.avatar != nil {
+                        Image(uiImage: UIImage(data: (member.player?.avatar)!)!)
                             .resizable()
                     } else {
                         Image("dummyUserPhoto")
@@ -34,15 +35,17 @@ struct LeaderboardListComponent: View {
                 //MARK: LEADERBOARD CONTENT
                 VStack{
                     HStack{
-                        Text(leaderboard.player?.name ?? "Placeholder")
+                        Text(member.player?.name ?? "Placeholder")
                             .hAlign(.leading)
                             .font(.secondary(.custom(25)))
                         Spacer()
-                        buttonLeaderboardDetail(leaderboard: self.leaderboard)
+                        if self.player != self.member.player {
+                            buttonLeaderboardDetail(player: self.player, member: self.member)
+                        }
                     }
-                    Text("Score: \(Int(leaderboard.score))")
+                    Text("Score: \(Int(member.score))")
                         .hAlign(.leading)
-                    Text("Date joined: \(dateOnly(date:leaderboard.date_joined ?? Date()))")
+                    Text("Date joined: \(dateOnly(date:member.date_joined ?? Date()))")
                         .hAlign(.leading)
                 }
                 .padding(.leading, 25)
@@ -66,7 +69,8 @@ struct LeaderboardListComponent: View {
 
 struct buttonLeaderboardDetail: View{
     
-    var leaderboard: Member
+    var player: Player
+    var member: Member
     
     @State private var showingSheet = false
     @State private var isTapped = false
@@ -83,7 +87,7 @@ struct buttonLeaderboardDetail: View{
         .sheet(isPresented: $showingSheet, onDismiss: {
             isTapped = false
         }) {
-            LeaderboardDetailView(leaderboard: self.leaderboard)
+            LeaderboardDetailView(player: self.player, opponent: self.member)
         }
     }
 }

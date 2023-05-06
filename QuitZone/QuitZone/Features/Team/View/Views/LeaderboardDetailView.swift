@@ -9,27 +9,34 @@ import SwiftUI
 
 struct LeaderboardDetailView: View {
     
-    var leaderboard: Member
+    @ObservedObject var bvm: BingoViewModel
+    var player: Player
+    var opponent: Member
+    
+    init(player: Player, opponent: Member) {
+        self.player = player
+        self.opponent = opponent
+        self.bvm = BingoViewModel(player: player, opponent: opponent.player!)
+    }
 
     var body: some View {
         VStack{
             HStack{
-                CompareLungComponent(member: self.leaderboard)
+                CompareLungComponent(player: self.player)
                     .offset(x:7)
                 Text("**-**")
                     .offset(x:-5, y:22)
-                CompareLungComponent(member: self.leaderboard)
+                CompareLungComponent(player: self.opponent.player!)
                     .offset(x:-7)
 
             }
             .padding(.bottom)
-            BingoScoreComponent(score1: .constant(20), score2: .constant(50))
+            BingoScoreComponent(score1: .constant(self.bvm.playerScore), score2: .constant(self.bvm.opponentScore))
         }
         .padding()
         .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
         .presentationCornerRadius(50)
-
     }
 }
 
