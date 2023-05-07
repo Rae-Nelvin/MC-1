@@ -49,7 +49,7 @@ struct PersistenceController {
     }
     
     func deleteAllRecords() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DailyPlayer")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Player")
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {

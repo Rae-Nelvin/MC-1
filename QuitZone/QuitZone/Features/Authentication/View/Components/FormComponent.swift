@@ -14,7 +14,7 @@ struct FormComponent: View {
     @State private var tempvar1 : String = "Your name"
     @State private var tempvar3 : String = "Date of Birth"
     @State private var tempvar4 : String = ""
-    @State private var tempvar5 : String = "How long have you smoked (in Months)"
+    @State private var tempvar5 : String = "How long have you smoked (Months)"
     @State private var tempvar7 : String = "How frequent?"
     @State private var tempvar8 : Double = 1
     @State private var tempvar9: String = "What cigarattes do you smoke?"
@@ -61,7 +61,7 @@ struct FormComponent: View {
                         .font(.secondary(.custom(12)))
                         .padding(.bottom, 6)
                 }
-                customDropdown(question: .constant("Type of Cigarattes"), answer: $typeOfCigarettes)
+                DropdownInputField(title: "Type of Cigarattes", options: cigarattesLists.lists, selection: $typeOfCigarettes)
                 Button {
                     self.didTap.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
@@ -83,8 +83,39 @@ struct FormComponent: View {
                 )
             }
             .frame(width:315)
-            .offset(y:28)
+            .offset(y:38)
         }
     }
     
 }
+
+struct DropdownInputField: View {
+    let title: String
+    let options: [Cigarattes]
+    @Binding var selection: Cigarattes?
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(title)
+                .font(.headline)
+            Menu {
+                ForEach(options, id: \.id) { option in
+                    Button(action: {
+                        self.selection = option
+                    }) {
+                        Text(option.name)
+                    }
+                }
+            } label: {
+                HStack {
+                    Text(selection?.name ?? "Select an option")
+                        .foregroundColor(selection == nil ? .gray : .primary)
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+    }
+}
+

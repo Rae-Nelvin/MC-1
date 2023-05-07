@@ -23,14 +23,14 @@ struct Mission: Identifiable, Equatable {
     }
     
     static func compare (lhs: Mission, rhs: PlayerMission) -> Bool {
-        return lhs.title == rhs.missionTitle && lhs.point == rhs.missionPoint
+        return lhs.title == rhs.missionTitle
     }
 }
 
 struct missionLists {
-    static let lists = [Mission(title: "Dummy 1", description: "Dummy 1", point: 20),
-                        Mission(title: "Dummy 2", description: "Dummy 2", point: 30),
-                        Mission(title: "Dummy 3", description: "Dummy 3", point: 30),
+    static let lists = [Mission(title: "Tidak merokok sehari penuh", description: "Tidak merokok sehari penuh", point: 20),
+                        Mission(title: "Tidak merokok dua hari penuh", description: "Tidak merokok dua hari penuh", point: 30),
+                        Mission(title: "Tidak merokok setelah makan", description: "Tidak merokok setelah makan", point: 30),
                         Mission(title: "Dummy 4", description: "Dummy 4", point: 30),
                         Mission(title: "Dummy 5", description: "Dummy 5", point: 30),
                         Mission(title: "Dummy 6", description: "Dummy 6", point: 30),

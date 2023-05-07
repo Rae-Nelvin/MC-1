@@ -34,25 +34,25 @@ class LungViewModel: ObservableObject {
     
     func calculateLungCondition(condition: Double) -> String {
         if condition <= 6 * 30 * 6 {
-            return "lunglvl1"
-        } else if condition > 6 * 30 * 6 && condition <= 6 * 30 * 12 {
-            return "lunglvl2"
-        } else if condition > 6 * 30 * 12 && condition <= 6 * 30 * 18 {
-            return "lunglvl3"
-        } else if condition > 6 * 30 * 18 && condition <= 6 * 30 * 24 {
-            return "lunglvl4"
-        } else if condition > 6 * 30 * 24 && condition <= 6 * 30 * 30 {
-            return "lunglvl5"
-        } else if condition > 6 * 30 * 30 && condition <= 6 * 30 * 36 {
-            return "lunglvl6"
-        } else if condition > 6 * 30 * 36 && condition <= 6 * 30 * 42 {
-            return "lunglvl7"
-        } else if condition > 6 * 30 * 42 && condition <= 6 * 30 * 48 {
-            return "lunglvl8"
-        } else if condition > 6 * 30 * 48 && condition <= 6 * 30 * 54 {
-            return "lunglvl9"
-        } else {
             return "lunglvl10"
+        } else if condition > 6 * 30 * 6 && condition <= 6 * 30 * 12 {
+            return "lunglvl9"
+        } else if condition > 6 * 30 * 12 && condition <= 6 * 30 * 18 {
+            return "lunglvl8"
+        } else if condition > 6 * 30 * 18 && condition <= 6 * 30 * 24 {
+            return "lunglvl7"
+        } else if condition > 6 * 30 * 24 && condition <= 6 * 30 * 30 {
+            return "lunglvl6"
+        } else if condition > 6 * 30 * 30 && condition <= 6 * 30 * 36 {
+            return "lunglvl5"
+        } else if condition > 6 * 30 * 36 && condition <= 6 * 30 * 42 {
+            return "lunglvl4"
+        } else if condition > 6 * 30 * 42 && condition <= 6 * 30 * 48 {
+            return "lunglvl3"
+        } else if condition > 6 * 30 * 48 && condition <= 6 * 30 * 54 {
+            return "lunglvl2"
+        } else {
+            return "lunglvl1"
         }
     }
     

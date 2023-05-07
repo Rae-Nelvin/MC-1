@@ -39,9 +39,10 @@ struct LeaderboardListComponent: View {
                             .hAlign(.leading)
                             .font(.secondary(.custom(25)))
                         Spacer()
-                        if self.player != self.member.player {
-                            buttonLeaderboardDetail(player: self.player, member: self.member)
-                        }
+                        buttonLeaderboardDetail(player: self.player, member: self.member)
+//                        if self.player != self.member.player {
+//                            buttonLeaderboardDetail(player: self.player, member: self.member)
+//                        }
                     }
                     Text("Score: \(Int(member.score))")
                         .hAlign(.leading)

@@ -36,10 +36,12 @@ class PlayerViewModel: ObservableObject {
         player.smokerFor = smokerFor
         player.typeOfCigarattes = typeOfCigarattes.name
         player.iCloud = icvm.iCloud
-        
-        PersistenceController.shared.save()
         let lvm: LungViewModel = LungViewModel(player: player)
-        self.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: player)
+        let lungCondition = lvm.calculateRegisterLungCondition()
+        player.lungCondition = lungCondition
+        
+        self.player = player
+        PersistenceController.shared.save()
         
         self.currPage = "Home Screen"
     }

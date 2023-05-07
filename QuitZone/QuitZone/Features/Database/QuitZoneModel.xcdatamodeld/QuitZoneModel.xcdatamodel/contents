@@ -27,7 +27,7 @@
         <relationship name="mission" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PlayerMission" inverseName="player" inverseEntity="PlayerMission"/>
     </entity>
     <entity name="PlayerMission" representedClassName="PlayerMission" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" attributeType="Date" defaultDateTimeInterval="704803740" usesScalarValueType="NO"/>
+        <attribute name="createdAt" attributeType="Date" defaultDateTimeInterval="704803740" usesScalarValueType="NO"/>
         <attribute name="missionPoint" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="missionTitle" optional="YES" attributeType="String"/>
         <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="mission" inverseEntity="Player"/>

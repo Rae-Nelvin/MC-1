@@ -54,7 +54,9 @@ class DailyPlayerViewModel: ObservableObject {
         for daily in progressData {
             average = average + Int(daily.nicotineConsume)
         }
-        self.averageNicotine = average / progressData.count
+        if progressData.count > 0 {
+            self.averageNicotine = average / progressData.count
+        }
     }
     
     private func calculateAverageTar() {
@@ -62,7 +64,9 @@ class DailyPlayerViewModel: ObservableObject {
         for daily in progressData {
             average = average + Int(daily.tarConsume)
         }
-        self.averageTar = average / progressData.count
+        if progressData.count > 0 {
+            self.averageTar = average / progressData.count
+        }
     }
     
     private func foundCigar(dailyPlayers: [DailyPlayer]) -> Cigarattes? {
@@ -78,7 +82,7 @@ class DailyPlayerViewModel: ObservableObject {
         let lvm: LungViewModel = LungViewModel(player: self.player)
         let pvm: PlayerViewModel = PlayerViewModel()
         
-        pvm.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateRegisterLungCondition(), player: self.player)
+        pvm.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateLoggedInLung(), player: self.player)
     }
 }
 

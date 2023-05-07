@@ -31,7 +31,7 @@ class TeamViewModel: ObservableObject {
                 let newChar = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomIndex)]
                 randomString.append(newChar)
             }
-        } while(self.checkRandomStrings(randomString) == true)
+        } while(self.checkRandomStrings(randomString) == false)
 
         return randomString
     }

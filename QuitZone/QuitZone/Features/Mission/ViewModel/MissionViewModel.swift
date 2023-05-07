@@ -30,7 +30,7 @@ class MissionViewModel: ObservableObject {
         let endOfWeek = calendar.date(byAdding: .day, value: 6, to: startOfWeek)!
         
         let request: NSFetchRequest<PlayerMission> = PlayerMission.fetchRequest()
-        request.predicate = NSPredicate(format: "player == %@ AND creationDate >= %@ AND creationDate < %@", self.player, startOfWeek as NSDate, endOfWeek as NSDate)
+        request.predicate = NSPredicate(format: "player == %@ AND createdAt >= %@ AND createdAt < %@", self.player, startOfWeek as NSDate, endOfWeek as NSDate)
         
         do {
             let count = try PersistenceController.shared.container.viewContext.count(for: request)
@@ -39,6 +39,7 @@ class MissionViewModel: ObservableObject {
                 for result in results {
                     let playerMission = result
                     self.playerMissions.append(playerMission)
+                    print("Fetched result: ", result)
                 }
             }
         } catch let error as NSError {
@@ -66,7 +67,7 @@ class MissionViewModel: ObservableObject {
         
         playerMission.missionTitle = mission.title
         playerMission.missionPoint = Int16(mission.point)
-        playerMission.creationDate = Date()
+        playerMission.createdAt = Date()
         playerMission.player = self.player
         
         PersistenceController.shared.save()
