@@ -29,9 +29,6 @@
 		15BF5D7329EFBC68003C1500 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D7229EFBC68003C1500 /* ContentView.swift */; };
 		15BF5D7529EFBC69003C1500 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7429EFBC69003C1500 /* Assets.xcassets */; };
 		15BF5D7829EFBC69003C1500 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15BF5D7729EFBC69003C1500 /* Preview Assets.xcassets */; };
-		15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */; };
-		15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */; };
-		15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */; };
 		6888D2052A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
 		6888D2062A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
 		6888D2072A055412001A5503 /* CustomActionButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */; };
@@ -140,10 +137,7 @@
 		15BF5D7429EFBC69003C1500 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15BF5D7729EFBC69003C1500 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15BF5D7D29EFBC69003C1500 /* QuitZoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneTests.swift; sourceTree = "<group>"; };
 		15BF5D8729EFBC69003C1500 /* QuitZoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuitZoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITests.swift; sourceTree = "<group>"; };
-		15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuitZoneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6888D2042A055412001A5503 /* CustomActionButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActionButtonComponent.swift; sourceTree = "<group>"; };
 		68FAC7A029FBA93F00B6BC93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		68FAC7B429FBD72900B6BC93 /* TeamListComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListComponent.swift; sourceTree = "<group>"; };
@@ -316,8 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				15BF5D6F29EFBC68003C1500 /* QuitZone */,
-				15BF5D8029EFBC69003C1500 /* QuitZoneTests */,
-				15BF5D8A29EFBC69003C1500 /* QuitZoneUITests */,
 				15BF5D6E29EFBC68003C1500 /* Products */,
 				1565D0772A010AFF002D3C33 /* Recovered References */,
 				1565D0782A010B53002D3C33 /* Frameworks */,
@@ -352,23 +344,6 @@
 				15BF5D7729EFBC69003C1500 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		15BF5D8029EFBC69003C1500 /* QuitZoneTests */ = {
-			isa = PBXGroup;
-			children = (
-				15BF5D8129EFBC69003C1500 /* QuitZoneTests.swift */,
-			);
-			path = QuitZoneTests;
-			sourceTree = "<group>";
-		};
-		15BF5D8A29EFBC69003C1500 /* QuitZoneUITests */ = {
-			isa = PBXGroup;
-			children = (
-				15BF5D8B29EFBC69003C1500 /* QuitZoneUITests.swift */,
-				15BF5D8D29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift */,
-			);
-			path = QuitZoneUITests;
 			sourceTree = "<group>";
 		};
 		8003DFFE29FD36380092937D /* Mission */ = {
@@ -794,7 +769,6 @@
 				68FAC7BE29FC57A600B6BC93 /* TeamListNavComponent.swift in Sources */,
 				AB81F38329FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7C229FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
-				15BF5D8229EFBC69003C1500 /* QuitZoneTests.swift in Sources */,
 				68FAC7B629FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
 				ABF5520529FE856800785A06 /* Font.swift in Sources */,
 			);
@@ -811,13 +785,11 @@
 				68FAC7B729FBD72900B6BC93 /* TeamListComponent.swift in Sources */,
 				ABF5520629FE856800785A06 /* Font.swift in Sources */,
 				6888D2072A055412001A5503 /* CustomActionButtonComponent.swift in Sources */,
-				15BF5D8E29EFBC69003C1500 /* QuitZoneUITestsLaunchTests.swift in Sources */,
 				68FAC7D129FC6CF200B6BC93 /* LeaderboardDetailView.swift in Sources */,
 				AB81F38429FBCA13009EFFE8 /* MainTeamView.swift in Sources */,
 				68FAC7C729FC620100B6BC93 /* LeaderboardNavComponent.swift in Sources */,
 				68FAC7C329FC5FA400B6BC93 /* LeaderboardListComponent.swift in Sources */,
 				68FAC7D529FC701F00B6BC93 /* BingoScoreComponent.swift in Sources */,
-				15BF5D8C29EFBC69003C1500 /* QuitZoneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

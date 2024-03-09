@@ -20,7 +20,7 @@ This iOS application, built with SwiftUI, CoreData, and CloudKit, aims to empowe
 
 ## Features
 
-List the key of gameplay of QuitZone:
+List the key of features of QuitZone:
 
 -   Nicotine Tracking:
 
