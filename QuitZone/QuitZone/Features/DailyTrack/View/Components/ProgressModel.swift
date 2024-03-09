@@ -10,22 +10,14 @@ import SwiftUI
 struct ProgressModel: Identifiable {
     let id = UUID()
     let date: Date
-    var cigarettes: Int
+    var totalCigars: Int
+    var cigarettes: Cigarattes
     
-    //patokan: Sampoerna
-    private let nicotine = 0.8
-    private let tar = 12
-    private let price = 2000
-    
-    var nicotineConsume: CGFloat {
-        return CGFloat(cigarettes) * self.nicotine
+    var nicotineConsume: Double {
+        return Double(totalCigars) * self.cigarettes.nicotine
     }
     
-    var tarConsume: Int {
-        return cigarettes * self.tar
-    }
-    
-    var moneySpend: CGFloat {
-        return CGFloat(cigarettes) * CGFloat(self.price)
+    var tarConsume: Double {
+        return Double(totalCigars) * self.cigarettes.tar
     }
 }

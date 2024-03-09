@@ -6,150 +6,111 @@
 //
 
 import Foundation
-import CloudKit
 import SwiftUI
+import CoreData
 
 class PlayerViewModel: ObservableObject {
     
-    private var iCloud: CKRecord.ID = CKRecord.ID(recordName: "placeholder")
-    @Published var player: Player = Player(name: "", dob: Date(), frequency: 0, smokerFor: 0, typeOfCigarattes: "", iCloud: CKRecord.Reference(recordID: CKRecord.ID(recordName: "placeholder"), action: .none))
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    private var icvm: iCloudViewModel
+    @Published var isRegistered: Bool = false
+    @Published var isLoading: Bool = true
+    @Published var player: Player = Player()
+    @Published var currPage: String = "Splash Screen"
     
     init() {
-        fetchiCloudUserRecord()
+        self.icvm = iCloudViewModel()
+        self.isLoading = false
+        DispatchQueue.main.async {
+            if self.icvm.isLoading == false {
+                self.getPlayer()
+            }
+        }
     }
     
-    func createPlayer(name: String, dob: Date, frequency: Int, smokerFor: Int, typeOfCigarattes: String) {
-        let record = CKRecord(recordType: "Player")
-        let iCloudReference = CKRecord.Reference(recordID: iCloud, action: .none)
-        let player = Player(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes, iCloud: iCloudReference)
-        record.setValuesForKeys(player.toDictionary())
+    func createPlayer(name: String, dob: Date, frequency: Int16, smokerFor: Int16, typeOfCigarattes: Cigarattes) {
+        let player = Player(context: PersistenceController.shared.viewContext)
         
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-            }
-        }
-    }
-    
-    private func fetchiCloudUserRecord() {
-        CKContainer.default().fetchUserRecordID { [weak self] returnedID, returnedError in
-            if let id = returnedID {
-                self?.iCloud = id
-            }
-        }
+        player.name = name
+        player.dob = dob
+        player.frequency = frequency
+        player.smokerFor = smokerFor
+        player.typeOfCigarattes = typeOfCigarattes.name
+        player.iCloud = icvm.iCloud
+        let lvm: LungViewModel = LungViewModel(player: player)
+        let lungCondition = lvm.calculateRegisterLungCondition()
+        player.lungCondition = lungCondition
+        
+        self.player = player
+        PersistenceController.shared.save()
+        
+        self.currPage = "Home Screen"
     }
     
     func getPlayer() {
-        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
-        let query = CKQuery(recordType: "Player", predicate: predicate)
+        let request: NSFetchRequest<Player> = Player.fetchRequest()
+        request.predicate = NSPredicate(format: "iCloud == %@", icvm.iCloud)
         
-        dvm.read(query: query) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                let fetchedPlayer = Player(id: record?.recordID,name: record?.value(forKey: "name") as! String, dob: record?.value(forKey: "dob") as! Date, frequency: record?.value(forKey: "frequency") as! Int, smokerFor: record?.value(forKey: "smokerFor") as! Int, typeOfCigarattes: record?.value(forKey: "typeOfCigarattes") as! String, iCloud: record?.value(forKey: "iCloud") as! CKRecord.Reference)
-                self?.player = fetchedPlayer
+        do {
+            let count = try PersistenceController.shared.viewContext.count(for: request)
+            print("Player", count)
+            if count > 0 {
+                let results = try PersistenceController.shared.viewContext.fetch(request)
+                player = results.first ?? Player()
+                isRegistered = true
             }
+        } catch let error {
+            print("Error fetching records: \(error)")
         }
     }
     
-    func updatePlayer(name: String?, dob: Date?, frequency: Int?, smokerFor: Int?, typeOfCigarattes: String?) {
-        let predicate = NSPredicate(format: "iCloud == %@", iCloud)
-        let query = CKQuery(recordType: "Player", predicate: predicate)
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                DispatchQueue.main.async {
-                    let player = records.first
-                    
-                    if name != "" {
-                        player?.setValue(name, forKey: "name")
-                    }
-                    
-                    // Supposedly to be unset after registering so it won't be buggy
-                    if dob != Date() {
-                        player?.setValue(dob, forKey: "dob")
-                    }
-                    
-                    if frequency != 0 {
-                        player?.setValue(frequency, forKey: "frequency")
-                    }
-                    
-                    if smokerFor != 0 {
-                        player?.setValue(smokerFor, forKey: "smokerFor")
-                    }
-                    
-                    if typeOfCigarattes != "" {
-                        player?.setValue(typeOfCigarattes, forKey: "typeOfCigarattes")
-                    }
-                    
-                    self.dvm.create(record: player ?? CKRecord(recordType: "")) { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let record):
-                            print(record)
-                        }
-                    }
-                }
-            }
+    func updatePlayer(name: String?, frequency: Int16?, smokerFor: Int16?, typeOfCigarattes: Cigarattes?, email: String?, phone: String?, avatar: UIImage? , lungCondition: String?, player: Player) {
+        
+        if name != "" {
+            player.name = name
         }
+        
+        if frequency != 0 {
+            player.frequency = frequency!
+        }
+        
+        if smokerFor != 0 {
+            player.smokerFor = smokerFor!
+        }
+        
+        if typeOfCigarattes != nil {
+            player.typeOfCigarattes = typeOfCigarattes?.name
+        }
+        
+        if email != "" {
+            player.email = email
+        }
+        
+        if phone != "" {
+            player.phone = phone
+        }
+        
+        if avatar != nil {
+            player.avatar = self.convertImageToBinaryData(avatar!)
+        }
+        
+        if lungCondition != "" {
+            player.lungCondition = lungCondition
+        }
+        
+        PersistenceController.shared.save()
+        self.getPlayer()
     }
     
-    func createPlayerLung() {}
-    
-    func updatePlayerLung() {}
-    
-}
-
-// For Testing Purposes Delete Later
-
-struct PlayerView: View {
-    @StateObject private var pvm: PlayerViewModel
-    @State private var name: String = ""
-    @State private var dob: Date = Date()
-    @State private var frequency: Int = 0
-    @State private var smokerFor: Int = 0
-    @State private var typeOfCigarattes: String = ""
-    
-    init(pvm: PlayerViewModel) {
-        _pvm = StateObject(wrappedValue: pvm)
+    private func convertImageToBinaryData(_ image: UIImage) -> Data? {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+            return nil
+        }
+        return imageData
     }
     
-    var body: some View {
-        VStack {
-            Section(header: Text("Personal Info")) {
-                TextField("Enter your name", text: $name)
-                DatePicker("Enter your Date of Birth", selection: $dob, displayedComponents: [.date])
-            }
-            
-            Section(header: Text("Smoking Info")) {
-                TextField("Enter your frequency of smoking", value: $frequency, formatter: NumberFormatter())
-                TextField("Enter you've been smoking for in months", value: $smokerFor, formatter: NumberFormatter())
-                TextField("Enter your type of cigarattes", text: $typeOfCigarattes)
-            }
-        }
-        .padding()
-        Button("Submit") {
-            //            pvm.createPlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-            pvm.updatePlayer(name: name, dob: dob, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarattes)
-        }
-        Button("Check Account") {
-            pvm.getPlayer()
-        }
-    }
-}
-
-struct PlayerView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayerView(pvm: PlayerViewModel())
+    func convertDateToString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM yyyy"
+        return dateFormatter.string(from: self.player.dob!)
     }
 }

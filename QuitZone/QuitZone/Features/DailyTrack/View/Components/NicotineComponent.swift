@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 
 struct NicotineComponent: View {
+    
     @Binding var progressData: [ProgressModel]
     @Binding var progressDataByDate: [ProgressModel]
     

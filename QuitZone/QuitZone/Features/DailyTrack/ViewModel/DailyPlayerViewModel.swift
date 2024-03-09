@@ -6,56 +6,85 @@
 //
 
 import Foundation
-import CloudKit
+import SwiftUI
+import CoreData
 
 class DailyPlayerViewModel: ObservableObject {
     
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    @Published var player: Player
+    @Published var progressData: [ProgressModel] = []
+    @Published var progressDataByDate: [ProgressModel] = []
+    @Published var showSheetContentStatus: sheetContent = .nicotine
+    @Published var sheetStatus: Bool = false
+    @Published var showCalendar: Bool = false
+    @Published var averageNicotine: Int = 0
+    @Published var averageTar: Int = 0
     
-    func createDaily(playerID: CKRecord.ID, cigars: Int?) {
-        let record = CKRecord(recordType: "DailyPlayer")
-        let reference = CKRecord.Reference(recordID: playerID, action: .none)
-        let daily = DailyPlayer(playerID: reference, cigars: cigars ?? 0, date: Date())
-        record.setValuesForKeys(daily.toDictionary())
-        
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-            }
-        }
+    init(player: Player) {
+        self.player = player
+        updatePlayerLung()
+        fetchDailyPlayer()
     }
     
-    func updateDaily(playerID: CKRecord.ID, cigars: Int) {
-        let predicate = NSPredicate(format: "playerID == %@", playerID)
-        let query = CKQuery(recordType: "DailyPlayer", predicate: predicate)
+    func fetchDailyPlayer() {
+        let calendar = Calendar.current
+        let startDate = calendar.date(byAdding: .day, value: -7, to: Date())!
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                var totalCigars = record?.value(forKey: "cigars") as! Int + cigars
-                record?.setValue(totalCigars, forKey: "cigars")
-                
-                self.dvm.create(record: record ?? CKRecord(recordType: "DailyPlayer")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let record):
-                        print(record)
-                    }
+        let fetchRequest: NSFetchRequest<DailyPlayer> = DailyPlayer.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "player == %@ AND date >= %@", self.player, startDate as NSDate)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(fetchRequest)
+            if results.count > 0 {
+                guard let cigarattes = self.foundCigar(dailyPlayers: results) else { return }
+                for result in results {
+                    let progressModel: ProgressModel = ProgressModel(date: result.date ?? Date(), totalCigars: Int(result.cigars), cigarettes: cigarattes)
+                    progressData.append(progressModel)
                 }
             }
+        } catch let error as NSError {
+            print("Error fetching data: \(error), \(error.userInfo)")
+        }
+        self.calculateAverageTar()
+        self.calculateAverageNicotine()
+    }
+    
+    private func calculateAverageNicotine() {
+        var average: Int = 0
+        for daily in progressData {
+            average = average + Int(daily.nicotineConsume)
+        }
+        if progressData.count > 0 {
+            self.averageNicotine = average / progressData.count
         }
     }
     
+    private func calculateAverageTar() {
+        var average: Int = 0
+        for daily in progressData {
+            average = average + Int(daily.tarConsume)
+        }
+        if progressData.count > 0 {
+            self.averageTar = average / progressData.count
+        }
+    }
+    
+    private func foundCigar(dailyPlayers: [DailyPlayer]) -> Cigarattes? {
+        for cigarattes in cigarattesLists.lists {
+            if cigarattes.name == dailyPlayers.first?.player?.typeOfCigarattes {
+                return cigarattes
+            }
+        }
+        return nil
+    }
+    
+    func updatePlayerLung() {
+        let lvm: LungViewModel = LungViewModel(player: self.player)
+        let pvm: PlayerViewModel = PlayerViewModel()
+        
+        pvm.updatePlayer(name: "", frequency: 0, smokerFor: 0, typeOfCigarattes: nil, email: "", phone: "", avatar: nil, lungCondition: lvm.calculateLoggedInLung(), player: self.player)
+    }
 }
-
-
 
 enum sheetContent: Identifiable {
     case nicotine
@@ -63,22 +92,4 @@ enum sheetContent: Identifiable {
     var id: Int {
         hashValue
     }
-}
-
-class TestSheetViewModel: ObservableObject {
-    @Published var showSheetContentStatus: sheetContent = .nicotine
-    @Published var sheetStatus: Bool = false
-    @Published var showCalendar: Bool = false
-    @Published var progressDataByDate: [ProgressModel] = []
-    @Published var progressData: [ProgressModel] = [
-        ProgressModel(date: CalendarHelper().getItemDate(day: 1, currAppDate: Date()), cigarettes: 5),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 2, currAppDate: Date()), cigarettes: 2),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 3, currAppDate: Date()), cigarettes: 3),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 4, currAppDate: Date()), cigarettes: 6),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 5, currAppDate: Date()), cigarettes: 1),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 29, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 2),
-        ProgressModel(date: CalendarHelper().getItemDate(day: 30, currAppDate: Calendar.current.date(byAdding: .month, value: -1, to: Date())!), cigarettes: 3)
-    ]
-    
-    
 }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct UserComponent: View {
-    @Binding var currentPage: Page
-    @State var dummyBool = false
+    
+    @ObservedObject var pvm: PlayerViewModel
+    
     var body: some View {
         NavigationStack {
             VStack (alignment: .leading){
@@ -18,8 +19,13 @@ struct UserComponent: View {
                     ZStack {
                         //MARK: User Image
                         VStack {
-                            Image("dummyUserPhoto")
-                                .resizable()
+                            if self.pvm.player.avatar != nil {
+                                Image(uiImage: UIImage(data: self.pvm.player.avatar!)!)
+                                    .resizable()
+                            } else {
+                                Image("dummyUserPhoto")
+                                    .resizable()
+                            }
                         }
                         .frame(width:176, height:176)
                         .clipShape(Circle())
@@ -36,11 +42,11 @@ struct UserComponent: View {
                     
                     //MARK: User
                     VStack(alignment: .leading) {
-                        Text("Leonardo Wijaya AAA YYY BBB CCC DDD")
+                        Text(self.pvm.player.name ?? "")
                             .font(.secondary(.custom(30)))
                             .padding(.bottom, 0)
 
-                        Text("17 yo")
+                        Text("20 yo")
                             .hAlign(.leading)
                             .font(.secondary(.custom(20)))
                     }
@@ -51,29 +57,24 @@ struct UserComponent: View {
                 .padding(.bottom, 50)
                 .padding(.top, -50)
                 
-                
-                UserDetailComponent(text: "Date of Birth", detail: "1 April 1050")
-                UserDetailComponent(text: "Frequency", detail: "Active")
-                UserDetailComponent(text: "Smoker for...", detail: "Not set")
-                UserDetailComponent(text: "Type of Cigarette", detail: "Not set")
-                UserDetailComponent(text: "Email", detail: "Not set")
-                UserDetailComponent(text: "Phone", detail: "Not set")
+                UserDetailComponent(text: "Date of Birth", detail: pvm.convertDateToString())
+                UserDetailComponent(text: "Frequency", detail: String(self.pvm.player.frequency))
+                UserDetailComponent(text: "Smoker for...", detail: String(self.pvm.player.smokerFor))
+                UserDetailComponent(text: "Type of Cigarette", detail: self.pvm.player.typeOfCigarattes ?? "")
+                UserDetailComponent(text: "Email", detail: self.pvm.player.email ?? "")
+                UserDetailComponent(text: "Phone", detail: self.pvm.player.phone ?? "")
                 
                 Spacer()
             }
             .padding(32)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    customActionButton(page: .editProfile, text: "edit", action: $dummyBool, currentPage: $currentPage)
+                    NavigationLink(destination: UserEditComponent(pvm: self.pvm)) {
+                        customActionButton(text: "Edit")
+                    }
                 }
             }
         }
-    }
-}
-
-struct UserComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        UserComponent(currentPage: .constant(.profile))
     }
 }
 
@@ -97,4 +98,4 @@ struct UserDetailComponent: View {
         }
         .padding(.bottom, 10)
     }
-}
+}  

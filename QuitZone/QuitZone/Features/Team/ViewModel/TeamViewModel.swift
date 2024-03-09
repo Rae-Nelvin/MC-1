@@ -6,203 +6,179 @@
 //
 
 import Foundation
-import CloudKit
+import CoreData
 import SwiftUI
 
 class TeamViewModel: ObservableObject {
     
-    private var database: CKDatabase
-    private var container: CKContainer
     @Published var teams: [Team] = []
-    private var dvm: DatabaseViewModel = DatabaseViewModel.myInstance
+    @Published var player: Player
+    @Published var currPage: String = "Main Team View"
     
-    init(container: CKContainer) {
-        self.container = container
-        self.database = self.container.publicCloudDatabase
+    init(player: Player) {
+        self.player = player
+        getMemberOfs(player: player)
     }
     
-    private func generateRandomStrings() -> String {
+    func generateRandomStrings() -> String {
         let allowedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let length = 5
         var randomString = ""
 
-        for _ in 0..<length {
-            let randomIndex = Int.random(in: 0..<allowedChars.count)
-            let newChar = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomIndex)]
-            randomString.append(newChar)
-        }
+        repeat {
+            for _ in 0..<length {
+                let randomIndex = Int.random(in: 0..<allowedChars.count)
+                let newChar = allowedChars[allowedChars.index(allowedChars.startIndex, offsetBy: randomIndex)]
+                randomString.append(newChar)
+            }
+        } while(self.checkRandomStrings(randomString) == false)
 
         return randomString
     }
     
-    func createMember(playerID: CKRecord.ID, teamID: CKRecord.ID) {
-        let record = CKRecord(recordType: "Member")
-        let playerReference = CKRecord.Reference(recordID: playerID, action: .none)
-        let teamReference = CKRecord.Reference(recordID: teamID, action: .none)
+    private func checkRandomStrings(_ string: String) -> Bool {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Team")
+        fetchRequest.predicate = NSPredicate(format: "inviteCode == %@", string)
+        fetchRequest.fetchLimit = 1
         
-        let member = Member(playerID: playerReference, teamID: teamReference, score: 0, date_joined: Date())
-        record.setValuesForKeys(member.toDictionary())
-        
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-                self.updateTeam(name: "", player: 1, teamID: teamID)
-            }
+        do {
+            let count = try PersistenceController.shared.viewContext.count(for: fetchRequest)
+            return count == 0
+        } catch let error as NSError {
+            print("Error checking uniqueness of random string :\(error)")
+            return false
         }
     }
     
-    func getMemberOfs(playerID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "playerID == %@", playerID)
-        let query = CKQuery(recordType: "Member", predicate: predicate)
+    func createMember(player: Player, team: Team) {
+        let member = Member(context: PersistenceController.shared.viewContext)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                for record in records {
-                    self.getTeam(teamID: record.value(forKey: "teamID") as! CKRecord.ID)
-                }
-            }
-        }
+        member.player = player
+        member.team = team
+        member.date_joined = Date()
+        member.score = 0
+        
+        PersistenceController.shared.save()
+        self.getMemberOfs(player: player)
     }
     
-    func deleteMember(playerID: CKRecord.ID, teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "playerID == %@ && teamID == %@", playerID, teamID)
-        let query = CKQuery(recordType: "Member", predicate: predicate)
+    func getMemberOfs(player: Player) {
+        let request: NSFetchRequest<Member> = Member.fetchRequest()
+        request.predicate = NSPredicate(format: "player == %@", player)
         
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.dvm.delete(recordID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let result):
-                        print(result)
-                    }
-                }
-            }
-        }
-    }
-    
-    func createTeam(name: String, goal: String) {
-        let record = CKRecord(recordType: "Team")
-        let team = Team(name: name, players: 1, inviteCode: generateRandomStrings(), goal: goal)
-        record.setValuesForKeys(team.toDictionary())
-        
-        dvm.create(record: record) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let record):
-                print(record)
-            }
-        }
-    }
-    
-    func getTeam(teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "teamID == %@", teamID)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
-        
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let team = Team(name: (records.first?.value(forKey: "name")) as! String, players: records.first?.value(forKey: "players") as! Int, goal: (records.first?.value(forKey: "name")) as! String)
-                self.teams.append(team)
-            }
-        }
-    }
-    
-    func updateTeam(name: String?, player: Int?, teamID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "teamID == %@", teamID)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
-        
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                if name != "" {
-                    record?.setValue(name, forKey: "name")
-                }
-                
-                if player != 0 {
-                    var players = record?.value(forKey: "players")
-                    players = players as! Int + (player ?? 0)
-                    record?.setValue(players, forKey: "players")
-                }
-                
-                DispatchQueue.main.async {
-                    self.dvm.create(record: record ?? CKRecord(recordType: "Team")) { result in
-                        switch result {
-                        case .failure(let error):
-                            print(error)
-                        case .success(let record):
-                            print(record)
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func joinTeam(inviteCode: String, playerID: CKRecord.ID) {
-        let predicate = NSPredicate(format: "inviteCode == %@", inviteCode)
-        let query = CKQuery(recordType: "Team", predicate: predicate)
-        
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.createMember(playerID: playerID, teamID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder"))
-            }
-        }
-    }
-    
-    func deleteTeam(teamID: CKRecord.ID) {
-        var predicate = NSPredicate(format: "teamID == %@", teamID)
-        var query = CKQuery(recordType: "Member", predicate: predicate)
-        
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let results):
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            if results.count > 0 {
                 for result in results {
-                    self.deleteMember(playerID: result.value(forKey: "playerID") as! CKRecord.ID, teamID: result.value(forKey: "teamID") as! CKRecord.ID)
+                    self.getTeam(team: result.team!)
                 }
             }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
+        }
+    }
+    
+    func deleteMember(player: Player, team: Team) {
+        let request: NSFetchRequest<Member> = Member.fetchRequest()
+        request.predicate = NSPredicate(format: "player == %@ AND team == %@", player, team)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            PersistenceController.shared.viewContext.delete(result)
+            
+            PersistenceController.shared.save()
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
+        }
+    }
+    
+    func createTeam(name: String, goal: String, invitationCode: String) {
+        let team = Team(context: PersistenceController.shared.viewContext)
+        
+        team.name = name
+        team.goal = goal
+        team.inviteCode = invitationCode
+        team.players = 1
+        
+        PersistenceController.shared.save()
+        
+        self.createMember(player: self.player, team: team)
+    }
+    
+    func getTeam(team: Team) {
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "self == %@", team)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            self.teams.append(result)
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
+        }
+    }
+    
+    func updateTeam(name: String?, player: Int16?, team: Team) {
+        var players: Int16 = 0
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "self == %@", team)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            if name != "" {
+                result.setValue(name, forKey: "name")
+            }
+            
+            if player != 0 {
+                players = players + (player ?? 0)
+                result.setValue(players, forKey: "players")
+            }
+            
+            PersistenceController.shared.save()
+            
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
+        }
+    }
+    
+    func joinTeam(inviteCode: String, player: Player) {
+        let request: NSFetchRequest<Team> = Team.fetchRequest()
+        request.predicate = NSPredicate(format: "inviteCode == %@", inviteCode)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(request)
+            guard let result = results.first else { return }
+            self.createMember(player: player, team: result)
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
+        }
+    }
+    
+    func deleteTeam(team: Team) {
+        let requestMember: NSFetchRequest<Member> = Member.fetchRequest()
+        requestMember.predicate = NSPredicate(format: "team == %@", team)
+        
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(requestMember)
+            for result in results {
+                self.deleteMember(player: result.player!, team: result.team!)
+            }
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
         
-        predicate = NSPredicate(format: "teamID == %@", teamID)
-        query = CKQuery(recordType: "Team", predicate: predicate)
-        dvm.read(query: query) { result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let records):
-                let record = records.first
-                self.dvm.delete(recordID: record?.recordID ?? CKRecord.ID(recordName: "Placeholder")) { result in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                    case .success(let result):
-                        print(result)
-                    }
-                }
-            }
+        let requestTeam: NSFetchRequest<Team> = Team.fetchRequest()
+        requestTeam.predicate = NSPredicate(format: "self == %@", team)
+        do {
+            let results = try PersistenceController.shared.viewContext.fetch(requestTeam)
+            guard let result = results.first else { return }
+            PersistenceController.shared.viewContext.delete(result)
+            
+            PersistenceController.shared.save()
+        } catch let error as NSError {
+            print("Error fetching records: \(error)")
         }
     }
     

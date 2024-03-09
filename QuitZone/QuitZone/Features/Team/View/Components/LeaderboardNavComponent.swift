@@ -9,31 +9,26 @@ import SwiftUI
 
 struct LeaderboardNavComponent: View {
     
-    @Binding var team:Team
+    var team: Team
     
     var body: some View {
         VStack{
-            Text("\(team.name)")
+            Text(team.name ?? "Placeholder")
                 .customText(size:30)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 1)
-            Text("**Goal:** \(team.goal)")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5)
-                        .stroke(.black, lineWidth: 1)
-                )
+            HStack {
+                Text("Goal: ")
+                Text(team.goal ?? "Placeholder")
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(.black, lineWidth: 1)
+            )
         }
         .padding(EdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10))
     }
     
-}
-
-struct LeaderboardNavComponent_Previews: PreviewProvider {
-    @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 5 batang perhari")
-    
-    static var previews: some View {
-        LeaderboardNavComponent(team: $team)
-    }
 }

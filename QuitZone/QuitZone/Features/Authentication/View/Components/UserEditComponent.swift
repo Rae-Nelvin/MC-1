@@ -9,67 +9,73 @@ import SwiftUI
 
 struct UserEditComponent: View {
     
-    @State private var tempName : String = "Leonardo Da Vinci"
-    @State private var tempDateOfBirth : String = "1 April 1050"
-    @State private var tempFrequency : String = "Active"
-    @State private var tempSmokerFor : String = "Not set"
-    @State private var tempTypeOfCigarette : String = "Not set"
-    @State private var tempEmail : String = "Not set"
-    @State private var tempPhone : String = "Not set"
-    @Binding var currentPage: Page
-    @State var dummyBool: Bool = false
+    @ObservedObject var pvm: PlayerViewModel
+    @Environment(\.presentationMode) var presentationMode
+    @State private var name: String = ""
+    @State private var frequency: Int16 = 0
+    @State private var smokerFor: Int16 = 0
+    @State private var typeOfCigarettes: Cigarattes?
+    @State private var email: String = ""
+    @State private var phone: String = ""
+    @State private var avatar: UIImage?
+    @State private var showImagePicker: Bool = false
     
     var body: some View {
-        NavigationStack {
-            VStack (alignment: .leading) {
-                HStack {
-                    VStack {
-                        Text("Ini buat image")
+        NavigationView {
+            ScrollView {
+                VStack (alignment: .leading) {
+                    HStack {
+                        VStack {
+                            if self.pvm.player.avatar != nil && self.avatar == nil {
+                                Image(uiImage: UIImage(data: self.pvm.player.avatar!)!)
+                                    .resizable()
+                            } else if self.avatar != nil {
+                                Image(uiImage: self.avatar!)
+                                    .resizable()
+                            } else {
+                                Image("dummyUserPhoto")
+                                    .resizable()
+                            }
+                        }
+                        .frame(width:96, height:96)
+                        .background(.red)
+                        .clipShape(Circle())
+                        .padding(.trailing, 16)
+                        VStack (alignment: .leading) {
+                            customImagePicker(question: .constant("Select Your Image"), selectedImage: $avatar, showImagePicker: $showImagePicker)
+                        }
                     }
-                    .frame(width:96, height:96)
-                    .background(.red)
-                    .clipShape(Circle())
-                    .padding(.trailing, 16)
-                    VStack (alignment: .leading) {
-                        Text("Select new image")
-                            .underline()
-                    }
+                    
+                    customTextField(question: .constant("Name"), answer: $name)
+                    customIntField(question: .constant("Frequency"), answer: $frequency)
+                    customIntField(question: .constant("Smoker for..."), answer: $smokerFor)
+                    customDropdown(question: .constant("Type of Cigarattes"), answer: $typeOfCigarettes)
+                    customTextField(question: .constant("Email"), answer: $email)
+                    customTextField(question: .constant("Phone"), answer: $phone)
+                    Spacer()
                 }
-                
-                customTextField(question: .constant("Name"), answer: $tempName)
-                customTextField(question: .constant("Date of Birth"), answer: $tempName)
-                customTextField(question: .constant("Frequency"), answer: $tempName)
-                customTextField(question: .constant("Smoker for..."), answer: $tempName)
-                customTextField(question: .constant("Type of Cigarette"), answer: $tempName)
-                customTextField(question: .constant("Email"), answer: $tempName)
-                customTextField(question: .constant("Phone"), answer: $tempName)
-                
-//                    .padding(.bottom, 29)
-                
-            
-                
-                Spacer()
-                
-                
+                .padding(32)
+                .padding(.bottom, 200)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                    self.pvm.updatePlayer(name: name, frequency: frequency, smokerFor: smokerFor, typeOfCigarattes: typeOfCigarettes, email: email, phone: phone, avatar: avatar, lungCondition: "", player: self.pvm.player)
+                } label: {
+                    customActionButton(text: "Save")
+                }
                 
             }
-            .padding(32)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    customActionButton(page: .profile, text: "save", action: $dummyBool, currentPage: $currentPage)
-                }
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    customBackButton(page: .profile, text: "Profile", currentPage: $currentPage)
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    customBackButton(text: "Back")
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
-
-struct UserEditComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        UserEditComponent(currentPage: .constant(.editProfile))
-    }
-}
-

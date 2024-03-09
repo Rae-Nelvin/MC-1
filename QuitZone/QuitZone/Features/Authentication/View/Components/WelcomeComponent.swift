@@ -9,8 +9,7 @@ import SwiftUI
 
 struct WelcomeComponent: View {
     
-    @Binding var currentPage : Page
-    @State var isAnimate = false
+    @ObservedObject var pvm: PlayerViewModel
     
     var body: some View {
         ZStack {
@@ -22,28 +21,25 @@ struct WelcomeComponent: View {
                 Text("Quitgang")
                     .font(.primary(.maintitle))
                     .padding(.top, 130)
-                
                 Spacer()
-                
                 Text("Tap anywhere \nto continue")
                     .font(.secondary(.body))
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 140)
-                
             }
         }
         .edgesIgnoringSafeArea(.all)
         .onTapGesture {
             withAnimation(.easeIn(duration: 0.1)) {
-                currentPage = .splashScreen
+                pvm.currPage = "Loading iCloud Screen"
             }
         }
         
     }
 }
 
-struct WelcomeComponent_Previews: PreviewProvider {
-    static var previews: some View {
-        WelcomeComponent(currentPage: .constant(Page.welcome))
-    }
-}
+//struct WelcomeComponent_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WelcomeComponent(pvm: pvm)
+//    }
+//}

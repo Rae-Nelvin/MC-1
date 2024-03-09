@@ -7,33 +7,28 @@
 
 import SwiftUI
 
-
-
 struct LeaderboardView: View {
     
-    @Binding var currentPage: Page
-
-    @Binding var team:Team
-    @State var members:[Member] = []
+    @ObservedObject var lvm: LeaderboardViewModel
+    @Environment(\.presentationMode) var presentationMode
+    private var player: Player
     
-    //delete if integrated with backend (User & Player Model)
-    @State var picture:String = "profilePicture"
-    @State var emotion:String = "happyface"
-    @State var name:String = "Jovan"
-    @State var score:Double = 10
-    @State var date_joined:Date = Date()
+    init(team: Team, player: Player) {
+        self.player = player
+        self.lvm = LeaderboardViewModel(team: team)
+    }
         
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationView {
+            VStack {
                 //MARK: TITLE & GOAL
-                LeaderboardNavComponent(team: $team)
+                LeaderboardNavComponent(team: self.lvm.team)
                 
                 //MARK: MEMBER'S LIST
                 ScrollView(showsIndicators: false){
-                    ForEach(0 ..< 5,  id: \.self) { index in
+                    ForEach(lvm.leaderboards,  id: \.id) { leaderboard in
                         HStack{
-                            LeaderboardListComponent(picture: $picture, emotion:$emotion, name: $name, score: $score, date_joined: $date_joined)
+                            LeaderboardListComponent(player: self.player, member: leaderboard)
                         }
                    }
                 }
@@ -46,21 +41,15 @@ struct LeaderboardView: View {
             )
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    customBackButton(page: Page.gangs, text: "Gangs", currentPage: $currentPage)
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        customBackButton(text: "Back")
+                    }
+
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
-    }
-}
-
-
-
-struct LeaderboardView_Previews: PreviewProvider {
-        
-    @State static var team:Team = Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 5 batang perhari")
-    
-    static var previews: some View {
-        LeaderboardView(currentPage: .constant(Page.leaderboard), team: $team)
     }
 }

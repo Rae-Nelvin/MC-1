@@ -9,50 +9,21 @@ import SwiftUI
 
 struct ContentView: View {
     
-    //    @State private var currentPage : String = Page.home.rawValue
-    @State private var currentPage = Page.home
-    
-    @State private var dummyUser : User = User(name: "Leonardo Da Vinci", dateOfBirth: "1 April 1050", frequency: 1, smokerFor: "Not set", typeOfCigarette: "Not set", email: "Not set", phone: "Not set")
+    @ObservedObject var pvm: PlayerViewModel = PlayerViewModel()
     
     var body: some View {
         VStack {
-            switch currentPage {
-            case Page.welcome :
-                WelcomeComponent(currentPage: $currentPage)
-            case Page.form :
-                FormComponent(dummyUser: $dummyUser, currentPage: $currentPage)
+            switch pvm.currPage {
+            case "Splash Screen" :
+                WelcomeComponent(pvm: self.pvm)
+            case "Loading iCloud Screen":
+                SplashScreenComponentView(pvm: self.pvm)
+            case "Register Form Screen" :
+                FormComponent(pvm: self.pvm)
+            case "Home Screen":
+                HomeView(pvm: self.pvm)
             default:
-                VStack {
-                    ZStack {
-                        switch currentPage {
-                        case Page.home:
-                            HomeView()
-                        case Page.gangs:
-                            MainTeamView(currentPage: $currentPage)
-                        case Page.task:
-                            MissionView()
-                        case Page.profile:
-                            UserComponent(currentPage: $currentPage)
-                        case Page.createteam:
-                            CreateTeamView(currentPage: $currentPage)
-                        case Page.editProfile:
-                            UserEditComponent(currentPage: $currentPage)
-                        case Page.leaderboard:
-                            LeaderboardView(currentPage: $currentPage, team: .constant(Team(name: "Team 1", players: 10, goal: "Mengurangi rokok 5 batang perhari")))
-                        default:
-                            HomeView()
-                        }
-                        // bottom tab bar
-                        
-                        switch currentPage {
-                        case .home, .gangs, .task, .profile:
-                            NavigationBarView (currentPage: $currentPage)
-                        default:
-                            VStack {}
-                        }
-                        
-                    }
-                }
+                HomeView(pvm: self.pvm)
             }
         }
     }

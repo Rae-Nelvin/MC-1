@@ -35,6 +35,30 @@ struct customTextField: View {
     }
 }
 
+struct customIntField: View {
+    
+    @Binding var question: String
+    @Binding var answer: Int16
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            Text("\(question)")
+                .font(.secondary(.body))
+                .padding(.bottom, 6)
+            TextField("", value: $answer, formatter: NumberFormatter())
+                .font(.title)
+                .autocapitalization(.none)
+                .padding(.horizontal, 12)
+                .frame(width:315, height:52)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14)
+                        .stroke(Color("SystemGray"), lineWidth: 2)
+                )
+        }
+        .frame(width:.infinity, height:82)
+    }
+}
+
 //button start, submit
 struct customButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -48,8 +72,7 @@ struct customButtonStyle: ButtonStyle {
 struct customDatePicker: View {
     
     @Binding var question: String
-    @Binding var answer: String
-    @State private var selectedDate = Date()
+    @Binding var answer: Date
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -57,7 +80,7 @@ struct customDatePicker: View {
                 .font(.secondary(.body))
                 .padding(.bottom, 6)
             DatePicker("",
-                       selection: $selectedDate,
+                       selection: $answer,
                        displayedComponents: [.date])
             .datePickerStyle(.compact)
             .padding(.horizontal, 12)
@@ -71,22 +94,52 @@ struct customDatePicker: View {
     }
 }
 
+// Image Picker
+struct customImagePicker: View {
+    
+    @Binding var question: String
+    @Binding var selectedImage: UIImage?
+    @Binding var showImagePicker: Bool
+    
+    var body: some View {
+        Button(action: {
+            showImagePicker = true
+        }) {
+            Text("Select Image")
+                .font(.secondary(.body))
+                .foregroundColor(.black)
+                .offset(CGSize(width: 0, height: showImagePicker ? -2 : -6))
+                .animation(nil)
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+        }
+        .frame(width: 120, height: 80, alignment: .center)
+        .padding(.all, 20)
+        .background(Image("blankRectangleGray")
+            .resizable()
+            .frame(width: 170, height: 70)
+        )
+        .offset(CGSize(width: 0, height: showImagePicker ? 0 : -6))
+    }
+
+}
+
 //Dropdown
 struct customDropdown: View {
     
     @Binding var question: String
-    @Binding var answer: String
-    @State private var selectedOption = 0
-    let options = ["Option 1", "Option 2", "Option 3"]
+    @Binding var answer: Cigarattes?
+    let options: [Cigarattes] = cigarattesLists.lists
     
     var body: some View {
         VStack (alignment: .leading) {
             Text("\(question)")
                 .font(.secondary(.body))
                 .padding(.bottom, 6)
-            Picker("Select an option", selection: $selectedOption) {
-                ForEach(0 ..< options.count) { index in
-                    Text(self.options[index]).tag(index)
+            Picker("Select an option", selection: $answer) {
+                ForEach(options) { option in
+                    Text(option.name)
                 }
             }
             .pickerStyle(.menu)
@@ -98,6 +151,41 @@ struct customDropdown: View {
             )
         }
         .frame(width:.infinity, height:82)
+    }
+}
+
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var selectedImage: UIImage?
+    var sourceType: UIImagePickerController.SourceType
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = sourceType
+        imagePicker.delegate = context.coordinator
+        return imagePicker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        let parent: ImagePicker
+        
+        init(_ parent: ImagePicker) {
+            self.parent = parent
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                parent.selectedImage = image
+            }
+            
+            parent.presentationMode.wrappedValue.dismiss()
+        }
     }
 }
 
@@ -135,7 +223,6 @@ struct customButton: View {
     
     var text: String
     @State private var didTap:Bool = false
-    @Binding var currentPage: Page
     
     var body: some View {
         Button {
@@ -143,7 +230,6 @@ struct customButton: View {
             DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                 self.didTap.toggle()
             }
-            currentPage = Page.home
         } label : {
             Text("\(self.text)")
                 .font(.secondary(.body))
@@ -160,9 +246,27 @@ struct customButton: View {
     }
 }
 
+struct customActionButton:View {
+    var text: String
+    @State private var didTap:Bool = false
+    
+    var body: some View {
+        ZStack {
+            Image("blankRectangleGray")
+                .resizable()
+                .frame(width: 91.38, height: 38)
+            Text("\(text)")
+                .foregroundColor(.black)
+                .font(.secondary(.body))
+                .offset(CGSize(width: -2, height: -2))
+        }
+    }
+}
+
 //custom generate field
 struct customGenerateField : View {
     
+    @ObservedObject var tvm: TeamViewModel
     @Binding var invitationCode: String
     @State private var emptyString: String = ""
     
@@ -178,7 +282,7 @@ struct customGenerateField : View {
                 Spacer()
                 Button {
                     generateAlert.toggle()
-                    invitationCode = "abcde"
+                    invitationCode = tvm.generateRandomStrings()
                     self.didTap.toggle()
                     DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                         self.didTap.toggle()
@@ -264,52 +368,21 @@ struct AppColor {
     private init() {}
 }
 
-struct customBackButton: View {
+struct customBackButton : View {
     
-    var page: Page
     var text: String
-    @Binding var currentPage: Page
-    
+
     var body: some View {
-        Button {
-            currentPage = self.page
-        } label: {
-            HStack {
-                Image("ButtonLeft")
-                    .resizable()
-                    .frame(width: 42, height: 40)
-                Text("\(self.text)")
-                    .foregroundColor(.black)
-                    .font(.secondary(.body))
-            }
+        HStack {
+            Image("ButtonLeft")
+                .resizable()
+                .frame(width: 42, height: 40)
+            Text("\(text)")
+                .foregroundColor(.black)
+                .font(.secondary(.body))
         }
     }
 }
-
-struct customActionButton:View {
-    var page:Page
-    var text:String
-    @Binding var action: Bool
-    @Binding var currentPage: Page
-    
-    var body: some View {
-        Button {
-            currentPage = self.page
-            self.action.toggle()
-        } label: {
-            ZStack {
-                Image("blankRectangleGray")
-                    .resizable()
-                    .frame(width: 91.38, height: 38)
-                Text("\(text)")
-                    .foregroundColor(.black)
-                    .font(.secondary(.body))
-                    .offset(CGSize(width: -2, height: -2))
-            }
-        }
-    }
-}
-
 
 //MARK: ENUM2
 enum faceImage : String {
@@ -327,10 +400,11 @@ enum Page : String {
     case task
     case profile
     case editProfile
-    
+    case friend
     case leaderboard
     case createteam
-    
+    case mission
+    case user
 }
 
 

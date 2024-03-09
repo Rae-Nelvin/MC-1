@@ -9,8 +9,7 @@ import SwiftUI
 
 struct SplashScreenComponentView: View {
     
-    @State var dummyUser = User()
-    @Binding var currentPage: Page
+    @ObservedObject var pvm: PlayerViewModel
     
     var body: some View {
         VStack {
@@ -19,13 +18,14 @@ struct SplashScreenComponentView: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear {
             withAnimation(.easeInOut(duration:2.0)) {
-                currentPage = .form
+                if pvm.isLoading == false {
+                    if pvm.isRegistered == false {
+                        pvm.currPage = "Register Form Screen"
+                    } else {
+                        pvm.currPage = "Home Screen"
+                    }
+                }
             }
         }
-    }
-}
-struct SplashScreenComponentView_Previews: PreviewProvider {
-    static var previews: some View {
-        SplashScreenComponentView(currentPage: .constant(.splashScreen))
     }
 }

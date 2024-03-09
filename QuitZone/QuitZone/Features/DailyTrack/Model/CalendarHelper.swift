@@ -105,15 +105,4 @@ struct CalendarHelper {
         }
         return daysData
     }
-    
-    //MARK: to find a cigarette from our model with itemDate
-    func findCigInProgressData(itemDate: Date, progressData: [ProgressModel]) -> Int {
-        for progress in progressData {
-            if itemDate == progress.date {
-                return progress.cigarettes
-            }
-        }
-        return -1
-    }
-    
 }
