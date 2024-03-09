@@ -91,7 +91,6 @@ class MissionViewModel: ObservableObject {
                 let playerMission = result
                 if (mission.title == playerMission.missionTitle && mission.point == playerMission.missionPoint) {
                     PersistenceController.shared.viewContext.delete(playerMission)
-                    PersistenceController.shared.save()
                 }
             }
         } catch let error as NSError {

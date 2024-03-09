@@ -42,11 +42,11 @@ struct UserComponent: View {
                     
                     //MARK: User
                     VStack(alignment: .leading) {
-                        Text(self.pvm.player.name ?? "Placeholder")
+                        Text(self.pvm.player.name ?? "")
                             .font(.secondary(.custom(30)))
                             .padding(.bottom, 0)
 
-                        Text("17 yo")
+                        Text("20 yo")
                             .hAlign(.leading)
                             .font(.secondary(.custom(20)))
                     }
@@ -60,9 +60,9 @@ struct UserComponent: View {
                 UserDetailComponent(text: "Date of Birth", detail: pvm.convertDateToString())
                 UserDetailComponent(text: "Frequency", detail: String(self.pvm.player.frequency))
                 UserDetailComponent(text: "Smoker for...", detail: String(self.pvm.player.smokerFor))
-                UserDetailComponent(text: "Type of Cigarette", detail: self.pvm.player.typeOfCigarattes ?? "Placeholder")
-                UserDetailComponent(text: "Email", detail: self.pvm.player.email ?? "Placeholder")
-                UserDetailComponent(text: "Phone", detail: self.pvm.player.phone ?? "Placeholder")
+                UserDetailComponent(text: "Type of Cigarette", detail: self.pvm.player.typeOfCigarattes ?? "")
+                UserDetailComponent(text: "Email", detail: self.pvm.player.email ?? "")
+                UserDetailComponent(text: "Phone", detail: self.pvm.player.phone ?? "")
                 
                 Spacer()
             }

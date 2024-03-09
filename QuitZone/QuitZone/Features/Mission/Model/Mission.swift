@@ -28,9 +28,9 @@ struct Mission: Identifiable, Equatable {
 }
 
 struct missionLists {
-    static let lists = [Mission(title: "Tidak merokok sehari penuh", description: "Tidak merokok sehari penuh", point: 20),
-                        Mission(title: "Tidak merokok dua hari penuh", description: "Tidak merokok dua hari penuh", point: 30),
-                        Mission(title: "Tidak merokok setelah makan", description: "Tidak merokok setelah makan", point: 30),
+    static let lists = [Mission(title: "Mission 1", description: "Not smoking for 2 days", point: 20),
+                        Mission(title: "Mission 2", description: "Not smoking for 3 days", point: 30),
+                        Mission(title: "Mission 3", description: "Not smoking after eating", point: 30),
                         Mission(title: "Dummy 4", description: "Dummy 4", point: 30),
                         Mission(title: "Dummy 5", description: "Dummy 5", point: 30),
                         Mission(title: "Dummy 6", description: "Dummy 6", point: 30),
