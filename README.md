@@ -78,6 +78,8 @@ git clone https://github.com/Rae-Nelvin/QuitZone.git
 
 2. To build and run the project, simply just click play button on the top left of the XCode and let it build to the emulator or your own device.
 
+3. Login using Apple ID Account to use the App.
+
 ## Contributing
 
 Since it's just a prototype project, I don't expect any contributions to QuitZone.
